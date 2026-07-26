@@ -2,6 +2,14 @@
    MODAL — Shared shell styles
    ══════════════════════════════════════════ */
 
+/* ─── Scroll Lock ──────────────────────────── */
+body.modal-open,
+html.modal-open {
+    overflow: hidden !important;
+    height: 100vh !important;
+    touch-action: none;
+}
+
 /* ─── Overlay ────────────────────────────── */
 .modal-overlay {
     position: fixed;
@@ -268,6 +276,114 @@
     font-size: 13px;
     color: rgba(196,181,253,0.6);
     margin: 0;
+}
+
+/* ─── Compact Rexi Header & Expanded Chat ───── */
+.modal-box-rexi {
+    padding: 24px 28px 24px;
+    max-width: 620px;
+}
+
+.modal-rexi-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(124, 58, 237, 0.22);
+}
+
+.modal-rexi-header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.modal-icon-compact {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    font-size: 18px;
+    margin-bottom: 0;
+}
+
+.modal-title-compact {
+    margin: 0;
+    font-size: 21px;
+    line-height: 1;
+}
+
+.modal-close-relative {
+    position: static;
+}
+
+.modal-rexi-header-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.modal-header-btn {
+    width: 38px !important;
+    height: 38px !important;
+    min-width: 38px !important;
+    min-height: 38px !important;
+    max-width: 38px !important;
+    max-height: 38px !important;
+    border-radius: 10px !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    background: rgba(255, 255, 255, 0.06) !important;
+    color: rgba(255, 255, 255, 0.7) !important;
+    font-size: 14px !important;
+    line-height: 1 !important;
+    cursor: pointer;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+    position: static !important;
+    top: auto !important;
+    right: auto !important;
+    transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.2s !important;
+}
+
+.modal-header-btn:hover {
+    background: rgba(124, 58, 237, 0.28) !important;
+    border-color: rgba(124, 58, 237, 0.55) !important;
+    color: #ffffff !important;
+    transform: scale(1.05);
+}
+
+/* Fullscreen modal style */
+.modal-box-rexi.modal-box-fullscreen {
+    max-width: 95vw !important;
+    width: 95vw !important;
+    height: 90vh !important;
+    max-height: 90vh !important;
+    display: flex;
+    flex-direction: column;
+    padding: 24px 28px 24px;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.modal-box-rexi.modal-box-fullscreen .modal-chat {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 60px);
+}
+
+.modal-box-rexi.modal-box-fullscreen .chat-messages {
+    flex: 1;
+    min-height: 0 !important;
+    max-height: none !important;
+}
+
+.modal-box-rexi .chat-messages {
+    min-height: 340px;
+    max-height: 450px;
 }
 
 /* ─── Chat modal ─────────────────────────── */

@@ -28,6 +28,9 @@
             <a href="#home" class="brand">
                 <img src="/static/images/logo.webp" alt="Roshan Damor Logo" class="logo-image" decoding="async">
             </a>
+            <button type="button" class="btn btn-primary mobile-resume-btn" data-modal="modal-download-resume" aria-label="Download Resume">
+                <i class="fas fa-download"></i>
+            </button>
         </div>
         
         <!-- Mobile Menu -->
@@ -56,7 +59,7 @@
                 <!-- Left Content -->
                 <div class="hero-content">
                     <span class="hero-badge">Hello, I am</span>
-                    <h1 class="hero-heading">Roshan Damor<br><span class="text-gradient">AI - Developer</span></h1>
+                    <h1 class="hero-heading">Roshan Damor<br><span class="text-gradient">AI Full Stack<br>Developer</span></h1>
                     <p class="hero-description">🙏 GREETINGS, ALL DIGITAL EXPLORERS! I AM ROSHAN, A PASSIONATE AND INNOVATIVE DEVELOPER <i><b>"BUILDING AI-POWERED SOLUTIONS & SCALABLE WEB APPS — SDE & AI ENGINEER"</b></i>. Also searched as Roshand Damor.</p>
                     <div class="hero-btn-group">
                         <button type="button" class="btn btn-primary" data-modal="modal-resume">
@@ -449,7 +452,7 @@
 
                 <article class="blog-card" data-modal="modal-blog-3" role="button" tabindex="0" aria-label="Read article: Docker and Kubernetes Container Orchestration">
                     <div class="blog-image-wrapper">
-                        <img src="https://images.unsplash.com/photo-1635322966219-b75ed2a7e7e9?w=600&h=400&fit=crop" alt="Blog Post" class="blog-image" loading="lazy" decoding="async">
+                        <img src="https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?w=600&h=400&fit=crop" alt="Blog Post" class="blog-image" loading="lazy" decoding="async">
                     </div>
                     <div class="blog-content">
                         <div class="blog-date">
@@ -1027,17 +1030,23 @@ spec:
 
     <!-- Modal: Ask Rexi (AI Chat) -->
     <div class="modal-overlay" id="modal-rexi">
-        <div class="modal-box">
-            <button class="modal-close" aria-label="Close"><i class="fas fa-times"></i></button>
-            <div class="modal-icon-wrap modal-icon-green"><i class="fas fa-dragon"></i></div>
-            <h2 class="modal-title">Ask Rexi</h2>
-            <p class="modal-subtitle">Your AI assistant — ask me anything about Roshan</p>
-            <div class="modal-divider"></div>
+        <div class="modal-box modal-box-rexi">
+            <div class="modal-rexi-header">
+                <div class="modal-rexi-header-left">
+                    <div class="modal-icon-wrap modal-icon-green modal-icon-compact"><i class="fas fa-dragon"></i></div>
+                    <h2 class="modal-title modal-title-compact">Ask Rexi</h2>
+                    <span class="rexi-model-badge">Qwen3-0.6B</span>
+                </div>
+                <div class="modal-rexi-header-right">
+                    <button class="modal-header-btn modal-expand-btn" id="rexi-fullscreen-btn" aria-label="Toggle Fullscreen" title="Toggle Fullscreen"><i class="fas fa-expand"></i></button>
+                    <button class="modal-header-btn modal-close modal-close-relative" aria-label="Close" title="Close"><i class="fas fa-times"></i></button>
+                </div>
+            </div>
             <div class="modal-chat">
                 <div class="chat-messages" id="rexi-messages">
                     <div class="chat-msg chat-msg-bot">
                         <div class="chat-avatar"><i class="fas fa-dragon"></i></div>
-                        <div class="chat-bubble">Hey! 👋 I'm Rexi, Roshan's AI assistant. Ask me about his skills, projects, experience — anything!</div>
+                        <div class="chat-bubble">Hey! 👋 I'm Rexi, Roshan's AI assistant powered by ⚡ <b>Qwen3-0.6B</b>. Ask me about his skills, projects, experience, or anything else!</div>
                     </div>
                 </div>
                 <div class="chat-input-row">

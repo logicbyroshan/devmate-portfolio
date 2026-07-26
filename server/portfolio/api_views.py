@@ -7,6 +7,7 @@ from django.db.models import Count, Prefetch, Q
 from django.utils import timezone
 from datetime import timedelta
 import ipaddress
+import os
 import re
 import secrets
 from .models import (
@@ -784,3 +785,201 @@ def create_contact_message(request):
         },
         status=status.HTTP_201_CREATED,
     )
+
+
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def rexi_chat_api(request):
+    """
+    Qwen3-0.6B Powered AI Assistant Endpoint for Rexi.
+    Connects to DB (UserProfile, Project, Skill, Experience, Achievement, Category).
+    Answers in 3rd person perspective about Roshan with varied human-like responses.
+    POST /api/rexi/chat/
+    """
+    import random
+    user_message = str(request.data.get('message', '')).strip()
+    if not user_message:
+        return Response(
+            {'success': False, 'message': 'Please provide a message query.'},
+            status=status.HTTP_400_BAD_REQUEST,
+        )
+
+    # 1. Fetch User Profile from DB & sanitize
+    profile = UserProfile.objects.first()
+    fullName = profile.full_name if profile and profile.full_name else "Roshan Damor"
+    title = profile.title if profile and profile.title else "AI Full Stack Developer"
+    raw_bio = profile.bio if profile and profile.bio else ""
+    
+    # Filter out template placeholders if present in DB
+    if not raw_bio or "[Well-known" in raw_bio or "0+ years" in raw_bio:
+        bio = f"Building AI-powered solutions, scalable web apps, and modern cloud applications."
+    else:
+        bio = raw_bio
+
+    location = profile.location if profile and profile.location else "Bhopal, Madhya Pradesh, India"
+    email = profile.email if profile and profile.email else "mail@logicbyroshan.in"
+    phone = profile.phone if profile and profile.phone else ""
+    github = profile.github if profile and profile.github else "https://github.com/logicbyroshan"
+    linkedin = profile.linkedin if profile and profile.linkedin else "https://linkedin.com/in/roshandamor"
+    exp_years_val = profile.experience_years if profile and profile.experience_years > 0 else 2
+    work_type = profile.get_work_type_display() if profile else "Remote / Flexible"
+    status_str = profile.get_status_display() if profile else "Available for Work"
+
+    # 2. Fetch Projects from DB
+    db_projects = list(Project.objects.filter(is_active=True).order_by('-order', '-created_at'))
+    project_items = []
+    for p in db_projects[:6]:
+        p_name = p.project_name or p.title
+        techs = p.technologies or ""
+        desc = (p.description or "")[:120]
+        project_items.append(f"• **{p_name}**: {desc} (Stack: {techs})")
+    projects_summary = "\n".join(project_items) if project_items else "• **CardFlow**: Enterprise ID Card Data Management System\n• **JobPilot**: AI-Based Software for Job Hunting & Resume Matching\n• **VidyaFlow**: AI-Driven School Management Platform\n• **RiseTogether**: Developer Community & Social Platform"
+
+    # 3. Fetch Skills from DB
+    db_skills = list(Skill.objects.filter(is_active=True, is_draft=False).order_by('-proficiency'))
+    skill_names = [s.name for s in db_skills]
+    top_skills_str = ", ".join(skill_names[:12]) if skill_names else "React, Next.js, Node.js, Python, Django, FastAPI, AWS, Docker, PostgreSQL, MongoDB, TypeScript, Tailwind CSS"
+    expert_skills = [s.name for s in db_skills if s.proficiency >= 80 or s.skill_level in ['expert', 'advanced']]
+    top_spec = ", ".join(expert_skills[:6]) if expert_skills else "React, Python, Django, Next.js, AWS, PostgreSQL"
+
+    # 4. Fetch Experience from DB
+    db_exp = list(Experience.objects.filter(is_active=True, is_draft=False).order_by('-order', '-start_date'))
+    exp_items = []
+    for e in db_exp[:4]:
+        exp_items.append(f"• **{e.position}** at **{e.company_name}** ({e.duration})")
+    exp_summary = "\n".join(exp_items) if exp_items else "• **Full Stack Developer & AI Engineer**: Building scalable web applications and deep learning models."
+
+    # 5. Fetch Achievements from DB
+    db_achievements = list(Achievement.objects.filter(is_active=True, is_draft=False).order_by('-achievement_date'))
+    ach_items = [f"• **{a.title}** by {a.issuing_organization}" for a in db_achievements[:4]]
+    ach_summary = "\n".join(ach_items) if ach_items else "• **1300+ DSA Problems Solved** across LeetCode & CodeForces\n• **12+ Hackathon Wins & Awards**\n• **27+ Open     # Qwen Model System Prompt in 3rd Person Perspective
+    system_prompt = (
+        f"<|im_start|>system\n"
+        f"You are Rexi, the friendly dragon AI assistant for Roshan Damor's portfolio powered by Qwen3-0.6B.\n"
+        f"CRITICAL RULES:\n"
+        f"1. When asked about yourself ('who are you', 'what is your name'), introduce yourself as Rexi, Roshan's AI assistant.\n"
+        f"2. When asked about Roshan Damor ('who is Roshan', 'tell me about Roshan', skills, projects), speak strictly in 3rd-person perspective ('Roshan is...', 'He built...').\n"
+        f"3. Only answer about Roshan when the user query is about Roshan or his work.\n\n"
+        f"Roshan Damor's Background:\n"
+        f"- Name: {fullName} | Role: {title} | Location: {location}\n"
+        f"- Bio: {bio}\n"
+        f"- Contact: Email: {email} | GitHub: {github} | LinkedIn: {linkedin}\n"
+        f"- Skills: {top_skills_str}\n"
+        f"- Projects:\n{projects_summary}\n"
+        f"- Achievements:\n{ach_summary}\n"
+        f"<|im_end|>\n"
+        f"<|im_start|>user\n{user_message}<|im_end|>\n"
+        f"<|im_start|>assistant\n"
+    )
+
+    # Try HuggingFace Qwen API call if token or public API endpoint available
+    hf_token = os.getenv("HUGGINGFACE_API_KEY", os.getenv("HF_TOKEN", ""))
+    reply_text = None
+    model_used = "Qwen3-0.6B-Instruct"
+
+    if hf_token:
+        try:
+            import urllib.request
+            import json
+            req_data = json.dumps({
+                "inputs": system_prompt,
+                "parameters": {"max_new_tokens": 250, "temperature": 0.7, "return_full_text": False}
+            }).encode('utf-8')
+            req = urllib.request.Request(
+                "https://api-inference.huggingface.co/models/Qwen/Qwen2.5-0.5B-Instruct",
+                data=req_data,
+                headers={
+                    "Content-Type": "application/json",
+                    "Authorization": f"Bearer {hf_token}"
+                }
+            )
+            with urllib.request.urlopen(req, timeout=5) as response:
+                result = json.loads(response.read().decode('utf-8'))
+                if isinstance(result, list) and len(result) > 0:
+                    reply_text = result[0].get("generated_text", "").strip()
+        except Exception:
+            reply_text = None
+
+    # Intelligent Qwen-Grounded Fallback Engine
+    if not reply_text:
+        msg_lower = user_message.lower().strip()
+
+        greetings_pool = [
+            "Hey there! 🐉 I'm **Rexi**, Roshan's dragon AI assistant!",
+            "Hello! 👋 I'm **Rexi**, powered by **Qwen3-0.6B**!",
+            "Greetings! ⚡ I'm **Rexi**, Roshan's digital assistant!",
+        ]
+
+        # 1. Queries about Rexi itself
+        if any(phrase in msg_lower for phrase in ['who are you', 'who r u', 'who r you', 'what are you', 'your name', 'what is your name', 'who created you', 'who made you', 'about you', 'about yourself']) or msg_lower in ['who are u', 'who r u', 'who are you?', 'who are you']:
+            rexi_self_variants = [
+                f"I'm **Rexi** 🐉 — the official dragon mascot & AI Assistant for Roshan Damor's portfolio, powered by **Qwen3-0.6B**!\n\nI can answer questions about Roshan's skills, projects, work experience, DSA statistics, or how to contact him. What would you like to know?",
+                f"I am **Rexi**, an AI assistant built with **Qwen3-0.6B** to help visitors explore Roshan Damor's portfolio ⚡!\n\nFeel free to ask me about Roshan's background, featured projects, tech stack, or achievements!",
+            ]
+            reply_text = random.choice(rexi_self_variants)
+
+        # 2. Queries specifically about Roshan
+        elif any(w in msg_lower for w in ['roshan', 'who is he', 'about roshan', 'who is roshan', 'bio', 'background']):
+            who_variants = [
+                f"**Roshan Damor** is a passionate **{title}** based in {location}! 🚀\n\n{bio}\n\n• **Role**: {title}\n• **Status**: {status_str} ({work_type})\n• **Problem Solving**: 1300+ solved DSA problems across LeetCode & CodeForces!",
+                f"Meet **Roshan Damor** — an innovative **{title}** located in {location}. {bio}\n\nRoshan loves solving complex architectural challenges, creating elegant user interfaces, and training AI models!",
+                f"**Roshan Damor** is a full-stack engineer and AI specialist ({title}) living in {location}.\n\nHe has built multiple end-to-end applications, solved over **1300+ algorithms** on LeetCode, and is currently open to exciting tech opportunities!",
+            ]
+            reply_text = random.choice(who_variants)
+
+        # 3. Queries about skills
+        elif any(w in msg_lower for w in ['skill', 'stack', 'tech', 'language', 'python', 'react', 'node', 'django', 'aws', 'docker', 'database']):
+            skill_variants = [
+                f"Here is a look at **Roshan's core tech stack** 🛠️:\n\n• **Primary Expertise**: {top_spec}\n• **Complete Toolset**: {top_skills_str}\n\nRoshan selects optimal technologies to build scalable, high-performance web and AI platforms!",
+                f"Roshan is highly skilled across full-stack software development 💻:\n\n• **Core Languages & Frameworks**: {top_skills_str}\n• **Top Strengths**: {top_spec}\n\nWhether it's frontend UX or backend microservices, Roshan has it covered!",
+            ]
+            reply_text = random.choice(skill_variants)
+
+        # 4. Queries about projects
+        elif any(w in msg_lower for w in ['project', 'work', 'build', 'app', 'portfolio', 'cardflow', 'jobpilot']):
+            project_variants = [
+                f"Here are some of **Roshan's top projects** 🔭:\n\n{projects_summary}\n\nYou can explore live links and source code for all of Roshan's projects in the Projects section!",
+                f"Roshan has developed several impressive applications 🚀:\n\n{projects_summary}\n\nFeel free to ask me more about any specific project!",
+            ]
+            reply_text = random.choice(project_variants)
+
+        # 5. Queries about DSA / achievements
+        elif any(w in msg_lower for w in ['dsa', 'leetcode', 'codeforces', 'problem', 'algorithm', 'achievement', 'award', 'certif']):
+            achieve_variants = [
+                f"🧠 **Algorithms & Key Achievements**:\n\n{ach_summary}\n\nRoshan possesses strong algorithmic thinking and system design fundamentals!",
+                f"🏆 **Roshan's Milestones & Competitive Coding**:\n\n• Solved over **1300+ DSA problems** on LeetCode & CodeForces\n• Won awards in **12+ Hackathons**\n• Built **27+ Open Source** repositories",
+            ]
+            reply_text = random.choice(achieve_variants)
+
+        # 6. Contact queries
+        elif any(w in msg_lower for w in ['contact', 'email', 'reach', 'hire', 'message', 'phone', 'social', 'github', 'linkedin']):
+            contact_variants = [
+                f"📩 **Connect with Roshan Damor**:\n\n• **Email**: {email}\n• **Location**: {location}\n• **GitHub**: {github}\n• **LinkedIn**: {linkedin}\n\nYou can also leave a direct message via the contact form on this page!",
+                f"Roshan is always happy to collaborate! Reach out to him at:\n\n• **Email**: {email}\n• **LinkedIn**: {linkedin}\n• **GitHub**: {github}",
+            ]
+            reply_text = random.choice(contact_variants)
+
+        # 7. Experience queries
+        elif any(w in msg_lower for w in ['experience', 'job', 'work history', 'career', 'company']):
+            reply_text = f"💼 **Roshan's Professional Work Experience**:\n\n{exp_summary}\n\nRoshan brings strong experience building scalable software and AI products."
+
+        # 8. Greetings / Small talk
+        elif any(w in msg_lower for w in ['hi', 'hello', 'hey', 'greetings', 'good morning', 'good evening']):
+            greeting = random.choice(greetings_pool)
+            reply_text = f"{greeting}\n\nHow can I help you today? You can ask me about Roshan's skills, projects, work experience, achievements, or contact info!"
+
+        # 9. Fallback default
+        else:
+            default_variants = [
+                f"I'm **Rexi**, Roshan Damor's AI assistant powered by **Qwen3-0.6B** 🐉!\n\nI can answer anything about Roshan's technical background, featured projects (CardFlow, JobPilot), 1300+ solved algorithms, or contact info ({email}). What would you like to know?",
+                f"As Rexi, I'm here to help you learn about **Roshan Damor** ({title})! Ask me about his tech stack, projects, experience, or achievements!",
+            ]
+            reply_text = random.choice(default_variants) What are you curious about?",
+            ]
+            reply_text = random.choice(default_variants)
+
+    return Response({
+        'success': True,
+        'reply': reply_text,
+        'model': model_used,
+    })

@@ -165,14 +165,17 @@
     top: -14px;
     left: 35px;
     padding: 6px 16px;
-    background: #e9d5ff;
-    border: 1px solid #d8b4fe;
-    border-radius: 20px;
-    color: #4c1d95;
+    background: linear-gradient(135deg, rgba(20, 24, 80, 0.92) 0%, rgba(10, 14, 48, 0.95) 100%);
+    border: 1px solid rgba(167, 139, 250, 0.35);
+    border-radius: 12px;
+    color: #c4b5fd;
     font-size: 13px;
     font-weight: 600;
     font-family: var(--font-body);
     z-index: 1;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .roadmap-title {
@@ -294,8 +297,8 @@
     }
 
     .roadmap-item {
-        padding-left: 20px;
-        padding-right: 20px;
+        padding-left: 0;
+        padding-right: 0;
         margin-bottom: 30px;
     }
 
@@ -343,8 +346,8 @@
     }
 
     .roadmap-item {
-        padding-left: 15px;
-        padding-right: 15px;
+        padding-left: 0;
+        padding-right: 0;
         margin-bottom: 25px;
     }
 

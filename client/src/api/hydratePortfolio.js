@@ -164,8 +164,17 @@ function setText(selector, text) {
 function updateProfile(profile) {
   if (!profile) return;
 
-  setText('.hero-heading', `I am ${profile.full_name || 'Roshan Damor'}`);
-  setText('.text-gradient', profile.title || 'Software Developer');
+  const heroHeading = document.querySelector('.hero-heading');
+  if (heroHeading) {
+    const fullName = profile.full_name || 'Roshan Damor';
+    let title = profile.title || 'AI Full Stack Developer';
+    let titleHtml = escapeHtml(title);
+    if (title.toLowerCase() === 'ai full stack developer') {
+      titleHtml = 'AI Full Stack<br>Developer';
+    }
+    heroHeading.innerHTML = `${escapeHtml(fullName)}<br><span class="text-gradient">${titleHtml}</span>`;
+  }
+
   setText('.about-description', profile.bio || 'A full-stack developer building scalable products.');
 
   const contactValues = document.querySelectorAll('.contact-value');

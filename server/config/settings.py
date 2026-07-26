@@ -397,10 +397,7 @@ if domain_origins:
 API_KEY = os.getenv('PORTFOLIO_API_KEY', '')
 TINYMCE_API_KEY = os.getenv('TINYMCE_API_KEY', 'no-api-key')
 
-SECURE_SSL_REDIRECT = os.getenv(
-    'SECURE_SSL_REDIRECT',
-    'True' if not DEBUG else 'False',
-).lower() in {'1', 'true', 'yes', 'on'}
+SECURE_SSL_REDIRECT = env_bool('SECURE_SSL_REDIRECT', False)
 
 SESSION_COOKIE_SECURE = env_bool(
     'SESSION_COOKIE_SECURE',

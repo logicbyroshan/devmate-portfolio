@@ -287,11 +287,14 @@
     }
 
     .footer-top {
-        grid-template-columns: 1fr;
-        gap: 30px;
+        /* brand full-width, then nav+tech 2-col, then contact full-width */
+        grid-template-columns: 1fr 1fr;
+        gap: 30px 20px;
     }
 
+    /* Brand spans both columns */
     .footer-brand {
+        grid-column: 1 / -1;
         align-items: center;
         text-align: center;
     }
@@ -302,6 +305,11 @@
 
     .footer-socials {
         justify-content: center;
+    }
+
+    /* Contact spans both columns */
+    .footer-col:last-child {
+        grid-column: 1 / -1;
     }
 
     .footer-logo {

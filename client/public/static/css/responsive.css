@@ -156,11 +156,13 @@
         align-items: center;
         margin-bottom: 16px;
         width: 100%;
+        overflow: hidden;
     }
 
     .hero-content {
         order: 1;
         padding-top: 0;
+        text-align: center;
     }
 
     /* Requested: noticeably smaller hero text in this range */
@@ -204,10 +206,14 @@
         letter-spacing: 0.4px;
     }
 
-    /* Requested: hero image smaller */
+    /* Hero image: 20px narrower than the card below it */
     .hero-image {
-        max-width: 72%;
+        width: calc(100% - 20px);
+        max-width: calc(100% - 20px);
         margin-bottom: -34px;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
     }
 
     .nft-card {
@@ -216,6 +222,7 @@
         margin: 0 auto;
         border-radius: 18px;
         overflow: hidden;
+        box-sizing: border-box;
     }
 
     .nft-info-row {
@@ -368,24 +375,33 @@
     }
 
     .hero-btn-group {
-        flex-direction: column;
-        gap: 12px;
+        flex-direction: row;
+        gap: 10px;
         margin-bottom: 28px;
-        align-items: stretch;
-    }
-
-    .hero-btn-group .btn {
-        width: 100%;
+        justify-content: center;
     }
 
     .btn {
-        font-size: 14px;
-        padding: 13px 18px;
-        border-radius: 12px;
+        font-size: 13px;
+        padding: 11px 18px;
+        min-height: 40px;
+        border-radius: 10px;
+    }
+
+    .hero-badge,
+    .about-badge,
+    .tech-badge,
+    .projects-badge,
+    .roadmap-badge,
+    .faq-badge,
+    .contact-badge {
+        padding: 6px 14px;
+        font-size: 12px;
+        margin-bottom: 16px;
     }
 
     .hero-image {
-        max-width: 76%;
+        max-width: 100%;
         margin-bottom: -24px;
     }
 
@@ -515,21 +531,72 @@
     }
 
     .hero-btn-group {
-        flex-direction: column;
+        flex-direction: row;
         gap: 10px;
+        justify-content: center;
     }
 
+    .hero-visual-wrapper {
+        overflow: hidden;
+    }
+
+    /* Hero image: 20px narrower than the card below it */
     .hero-image {
-        max-width: 74%;
+        width: calc(100% - 20px);
+        max-width: calc(100% - 20px);
         margin-bottom: -16px;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+
+    .nft-card {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        overflow: hidden;
     }
 
     .nft-countdown {
         justify-content: space-between;
     }
 
-    .stat-number {
-        font-size: 22px;
+    .nft-card-body .hero-stats {
+        gap: 0;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .nft-card-body .stat-item {
+        padding: 0 2px;
+        flex: 1;
+        min-width: 0;
+        align-items: center;
+    }
+
+    .nft-card-body .stat-item:not(:last-child)::after {
+        display: none;
+    }
+
+    .nft-card-body .stat-number {
+        font-size: 15px;
+        gap: 3px;
+    }
+
+    .nft-card-body .stat-icon {
+        width: 26px;
+        height: 26px;
+        min-width: 26px;
+        min-height: 26px;
+        font-size: 13px;
+        margin-right: 4px;
+        border-radius: 6px;
+    }
+
+    .nft-card-body .stat-label {
+        font-size: 9px;
+        letter-spacing: 0;
     }
 
     .stat-label,
@@ -594,7 +661,11 @@
     }
 
     .hero-image {
-        max-width: 72%;
+        width: calc(100% - 20px);
+        max-width: calc(100% - 20px);
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
     }
 
     .btn,
@@ -627,7 +698,11 @@
     }
 
     .hero-image {
-        max-width: 70%;
+        width: calc(100% - 20px);
+        max-width: calc(100% - 20px);
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
     }
 
     .btn,
@@ -841,7 +916,7 @@
     .project-buttons .project-btn,
     .modal-actions .modal-btn,
     .hero-btn-group .btn {
-        min-height: 44px;
+        min-height: 40px;
     }
 
     .project-buttons .project-btn {
@@ -852,7 +927,7 @@
     .project-btn,
     .form-submit-btn,
     .modal-btn {
-        min-height: 44px;
+        min-height: 40px;
     }
 
     .nav-btn,

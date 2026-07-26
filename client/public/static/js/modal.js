@@ -12,7 +12,8 @@
     function openModal(id) {
         const overlay = document.getElementById(id);
         if (!overlay) return;
-        // Lock both <html> and <body> so the page is completely inactive
+        document.body.classList.add('modal-open');
+        document.documentElement.classList.add('modal-open');
         document.body.style.overflow = 'hidden';
         document.documentElement.style.overflow = 'hidden';
         overlay.classList.add('modal-visible');
@@ -24,12 +25,33 @@
 
     function closeModal(overlay) {
         overlay.classList.remove('modal-visible');
-        // Restore scroll only when ALL modals are closed
         if (!document.querySelector('.modal-overlay.modal-visible')) {
+            document.body.classList.remove('modal-open');
+            document.documentElement.classList.remove('modal-open');
             document.body.style.overflow = '';
             document.documentElement.style.overflow = '';
         }
     }
+
+    // Prevent background wheel scrolling when modal is open
+    document.addEventListener('wheel', function (e) {
+        const open = document.querySelector('.modal-overlay.modal-visible');
+        if (!open) return;
+        const modalBox = e.target.closest('.modal-box');
+        if (!modalBox) {
+            e.preventDefault();
+        }
+    }, { passive: false });
+
+    // Prevent background touchmove scrolling when modal is open
+    document.addEventListener('touchmove', function (e) {
+        const open = document.querySelector('.modal-overlay.modal-visible');
+        if (!open) return;
+        const modalBox = e.target.closest('.modal-box');
+        if (!modalBox) {
+            e.preventDefault();
+        }
+    }, { passive: false });
 
     // ── Wire trigger buttons ──────────────────────────────────────────────────
 
@@ -72,29 +94,33 @@
 
     const REXI_KNOWLEDGE = {
         name:       'Roshan Damor',
-        role:       'Full-Stack Developer & AI Engineer',
-        location:   'Mumbai, Maharashtra, India',
-        tech:       'React, Node.js, Django, AWS, TypeScript, Python, MongoDB, PostgreSQL',
+        role:       'AI Full Stack Developer',
+        location:   'Bhopal, Madhya Pradesh, India',
+        tech:       'React, Next.js, Node.js, Python, Django, FastAPI, AWS, Docker, PostgreSQL, MongoDB, TypeScript, Tailwind CSS',
         dsa:        '1300+ DSA problems solved across LeetCode, CodeForces and HackerRank',
-        projects:   'AI-powered web apps, NFT marketplace, real-time chat system, cloud infrastructure',
-        experience: 'Internships in software engineering; built and shipped production applications',
-        contact:    'Available via LinkedIn or the contact form on this site',
-        education:  'B.Tech Computer Science with specialisation in AI & Machine Learning',
+        projects:   'CardFlow (ID Management), JobPilot (AI Job Matcher), VidyaFlow (School OS), RiseTogether',
+        experience: 'Full-stack software engineering; built and shipped production applications',
+        contact:    'mail@logicbyroshan.in | Available via LinkedIn or the contact form on this site',
+        education:  'B.Tech Computer Science with specialization in AI & Machine Learning',
         hobbies:    'Competitive programming, open-source contributions, exploring new AI tools',
     };
 
     const REXI_RESPONSES = [
         {
-            pattern: /name|who|roshan/i,
-            reply:   `Roshan Damor is a ${REXI_KNOWLEDGE.role} based in ${REXI_KNOWLEDGE.location}. A builder at heart with a love for clean code and hard problems. 🚀`,
+            pattern: /who are you|who r u|what are you|your name|who created you|who made you|about you|about yourself/i,
+            reply:   `I'm **Rexi** 🐉 — the official dragon mascot & AI Assistant for Roshan Damor's portfolio, powered by **Qwen3-0.6B**!\n\nI can answer questions about Roshan's skills, projects, work experience, DSA statistics, or how to contact him. What would you like to know?`,
+        },
+        {
+            pattern: /who is roshan|about roshan|who is he|roshan damor|who is roshan damor|tell me about roshan/i,
+            reply:   `Roshan Damor is an **${REXI_KNOWLEDGE.role}** based in ${REXI_KNOWLEDGE.location}. A builder at heart with a love for clean code, AI solutions, and hard problems! 🚀`,
         },
         {
             pattern: /role|job|work|does|what/i,
-            reply:   `He's a ${REXI_KNOWLEDGE.role} — building AI-powered solutions and scalable web apps. Full-stack through and through. 💻`,
+            reply:   `Roshan is an **${REXI_KNOWLEDGE.role}** — building AI-powered solutions, scalable web apps, and modern cloud applications. 💻`,
         },
         {
             pattern: /tech|stack|skill|language|framework/i,
-            reply:   `His core stack: **${REXI_KNOWLEDGE.tech}**. He picks the right tool for every job. 🛠️`,
+            reply:   `Roshan's core stack: **${REXI_KNOWLEDGE.tech}**. He picks the right tool for every job. 🛠️`,
         },
         {
             pattern: /dsa|algorithm|leetcode|problem|competitive/i,
@@ -141,6 +167,19 @@
         return `Hmm, I'm not sure about that one. Try asking about Roshan's skills, projects, experience, tech stack, or how to contact him! 🤔`;
     }
 
+    function formatMarkdown(text) {
+        if (!text) return '';
+        let html = text
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+            .replace(/\*(.*?)\*/g, '<em>$1</em>')
+            .replace(/`([^`]+)`/g, '<code>$1</code>')
+            .replace(/\n/g, '<br>');
+        return html;
+    }
+
     function appendMessage(container, text, isUser) {
         const msgEl = document.createElement('div');
         msgEl.className = 'chat-msg ' + (isUser ? 'chat-msg-user' : 'chat-msg-bot');
@@ -151,7 +190,11 @@
 
         const bubbleEl = document.createElement('div');
         bubbleEl.className = 'chat-bubble';
-        bubbleEl.textContent = text;
+        if (isUser) {
+            bubbleEl.textContent = text;
+        } else {
+            bubbleEl.innerHTML = formatMarkdown(text);
+        }
 
         if (isUser) {
             msgEl.appendChild(bubbleEl);
@@ -186,6 +229,21 @@
     }
 
     function initRexi() {
+        // Wire fullscreen toggle button (works regardless of rexiInitialized flag)
+        const fullscreenBtn = document.getElementById('rexi-fullscreen-btn');
+        if (fullscreenBtn && !fullscreenBtn.dataset.bound) {
+            fullscreenBtn.dataset.bound = 'true';
+            fullscreenBtn.addEventListener('click', function () {
+                const modalBox = this.closest('.modal-box-rexi');
+                if (modalBox) {
+                    modalBox.classList.toggle('modal-box-fullscreen');
+                    const isFullscreen = modalBox.classList.contains('modal-box-fullscreen');
+                    this.innerHTML = isFullscreen ? '<i class="fas fa-compress"></i>' : '<i class="fas fa-expand"></i>';
+                    this.setAttribute('title', isFullscreen ? 'Exit Fullscreen' : 'Toggle Fullscreen');
+                }
+            });
+        }
+
         if (rexiInitialized) return;
 
         const input      = document.getElementById('rexi-input');
@@ -195,7 +253,7 @@
 
         rexiInitialized = true;
 
-        function sendMessage() {
+        async function sendMessage() {
             const text = input.value.trim();
             if (!text) return;
 
@@ -205,14 +263,38 @@
             appendMessage(messages, text, true);
 
             const typingEl = showTyping(messages);
+            const startTime = Date.now();
 
-            const delay = 700 + Math.random() * 600;
-            setTimeout(function () {
+            try {
+                const apiBase = window.PORTFOLIO_CONFIG?.API_BASE_URL || 'http://127.0.0.1:8000/api';
+                const response = await fetch(`${apiBase}/rexi/chat/`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: text }),
+                });
+
+                // Ensure at least 1.4s typing animation for a realistic human pace
+                const elapsed = Date.now() - startTime;
+                const minDelay = 1400 + Math.random() * 600;
+                if (elapsed < minDelay) {
+                    await new Promise(r => setTimeout(r, minDelay - elapsed));
+                }
+
+                if (response.ok) {
+                    const data = await response.json();
+                    typingEl.remove();
+                    appendMessage(messages, data.reply || getRexiReply(text), false);
+                } else {
+                    typingEl.remove();
+                    appendMessage(messages, getRexiReply(text), false);
+                }
+            } catch (err) {
                 typingEl.remove();
                 appendMessage(messages, getRexiReply(text), false);
+            } finally {
                 sendBtn.disabled = false;
                 input.focus();
-            }, delay);
+            }
         }
 
         sendBtn.addEventListener('click', sendMessage);
