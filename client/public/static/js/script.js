@@ -1,6 +1,46 @@
-// JavaScript for interactivity
+function initPreloader() {
+    const preloader = document.getElementById('preloader');
+    const progressBar = document.getElementById('preloaderProgressBar');
+    const counter = document.getElementById('preloaderCounter');
+    
+    if (!preloader) return;
+    
+    document.body.style.overflow = 'hidden';
+    
+    let progress = 0;
+    const duration = 2200; // 2.2s loading duration
+    const intervalTime = 20;
+    const step = (100 / (duration / intervalTime));
+    
+    const interval = setInterval(() => {
+        progress += step;
+        if (progress >= 100) {
+            progress = 100;
+            clearInterval(interval);
+            
+            if (progressBar) progressBar.style.width = '100%';
+            if (counter) counter.textContent = '100%';
+            
+            setTimeout(() => {
+                preloader.classList.add('fade-out');
+                document.body.style.overflow = '';
+                setTimeout(() => {
+                    if (preloader && preloader.parentNode) {
+                        preloader.parentNode.removeChild(preloader);
+                    }
+                }, 850);
+            }, 300);
+        } else {
+            const roundedProgress = Math.floor(progress);
+            if (progressBar) progressBar.style.width = `${roundedProgress}%`;
+            if (counter) counter.textContent = `${roundedProgress}%`;
+        }
+    }, intervalTime);
+}
 
 function initCoreInteractions() {
+    initPreloader();
+    
     // Mobile Menu functionality
     const hamburgerMenu = document.getElementById('hamburgerMenu');
     const mobileMenu = document.getElementById('mobileMenu');

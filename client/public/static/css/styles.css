@@ -1131,3 +1131,300 @@ body {
         scroll-behavior: auto !important;
     }
 }
+
+/* ========================================
+   PRELOADER OVERLAY (5-Image Animated Formation)
+   ======================================== */
+.preloader-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #080c16;
+    z-index: 9999999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.8s;
+}
+
+.preloader-overlay.fade-out {
+    opacity: 0;
+    transform: scale(1.05);
+    pointer-events: none;
+    visibility: hidden;
+}
+
+.preloader-bg-glows {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.preloader-glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.25;
+}
+
+.preloader-glow.glow-1 {
+    width: 450px;
+    height: 450px;
+    background: #38bdf8;
+    top: 15%;
+    left: 15%;
+    animation: preloaderGlowPulse 6s ease-in-out infinite alternate;
+}
+
+.preloader-glow.glow-2 {
+    width: 500px;
+    height: 500px;
+    background: #7c3aed;
+    bottom: 15%;
+    right: 15%;
+    animation: preloaderGlowPulse 7s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes preloaderGlowPulse {
+    0% { transform: scale(1) translate(0, 0); opacity: 0.2; }
+    100% { transform: scale(1.25) translate(30px, -20px); opacity: 0.35; }
+}
+
+.preloader-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+}
+
+/* 5-Image Floating Collage */
+.preloader-collage {
+    position: relative;
+    width: 580px;
+    height: 380px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.preloader-img-wrap {
+    position: absolute;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.55);
+    transition: transform 0.3s ease;
+}
+
+.preloader-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.preloader-img-main {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 26px;
+}
+
+/* Main Central Portrait */
+.float-main {
+    position: relative;
+    width: 220px;
+    height: 310px;
+    border-radius: 26px;
+    z-index: 5;
+    animation: mainPopIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s both, floatMain 4.5s ease-in-out infinite 1s;
+}
+
+.main-portrait-border {
+    position: absolute;
+    inset: -2px;
+    border-radius: 28px;
+    border: 1.5px solid rgba(167, 139, 250, 0.6);
+    box-shadow: 0 0 30px rgba(56, 189, 248, 0.35), 0 0 60px rgba(167, 139, 250, 0.2);
+    pointer-events: none;
+    z-index: 6;
+}
+
+/* Floating Avatars */
+.float-tl {
+    top: 15px;
+    left: 20px;
+    width: 125px;
+    height: 135px;
+    border-radius: 24px;
+    overflow: hidden;
+    z-index: 3;
+    animation: avatarPop 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.35s both, floatTL 4.2s ease-in-out infinite 1.1s;
+}
+
+.float-bl {
+    bottom: 30px;
+    left: 85px;
+    width: 75px;
+    height: 75px;
+    border-radius: 20px;
+    overflow: hidden;
+    z-index: 4;
+    animation: avatarPop 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.55s both, floatBL 4.8s ease-in-out infinite 1.3s;
+}
+
+.float-tr {
+    top: 30px;
+    right: 35px;
+    width: 110px;
+    height: 115px;
+    border-radius: 24px;
+    overflow: hidden;
+    z-index: 3;
+    animation: avatarPop 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.45s both, floatTR 4.4s ease-in-out infinite 1.2s;
+}
+
+.float-br {
+    bottom: 25px;
+    right: 50px;
+    width: 90px;
+    height: 90px;
+    border-radius: 22px;
+    overflow: hidden;
+    z-index: 4;
+    animation: avatarPop 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 0.65s both, floatBR 5s ease-in-out infinite 1.4s;
+}
+
+/* Pop In Keyframes */
+@keyframes mainPopIn {
+    0% { transform: scale(0.6) translateY(30px); opacity: 0; }
+    100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+@keyframes avatarPop {
+    0% { transform: scale(0) translateY(20px); opacity: 0; }
+    100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+/* Levitation Drift Animations */
+@keyframes floatMain {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes floatTL {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-8px) rotate(-2deg); }
+}
+
+@keyframes floatBL {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(6px) rotate(3deg); }
+}
+
+@keyframes floatTR {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-9px) rotate(2deg); }
+}
+
+@keyframes floatBR {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(7px) rotate(-3deg); }
+}
+
+/* Preloader Text & Counter */
+.preloader-meta {
+    margin-top: 35px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.preloader-title {
+    font-family: var(--font-heading);
+    font-size: 22px;
+    letter-spacing: 4px;
+    color: #ffffff;
+    margin: 0 0 6px 0;
+    font-weight: 700;
+}
+
+.preloader-subtitle {
+    font-family: var(--font-body);
+    font-size: 13px;
+    letter-spacing: 2.5px;
+    color: #38bdf8;
+    margin: 0 0 20px 0;
+    font-weight: 600;
+}
+
+.preloader-progress-track {
+    width: 240px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+}
+
+.preloader-progress-bar {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #38bdf8 0%, #a78bfa 100%);
+    border-radius: 4px;
+    transition: width 0.1s linear;
+    box-shadow: 0 0 10px #38bdf8;
+}
+
+.preloader-counter {
+    margin-top: 10px;
+    font-size: 13px;
+    font-family: var(--font-heading);
+    color: #9ca3af;
+    letter-spacing: 1px;
+}
+
+/* Responsive adjustment for mobile screens */
+@media screen and (max-width: 600px) {
+    .preloader-collage {
+        width: 340px;
+        height: 280px;
+    }
+    .float-main {
+        width: 150px;
+        height: 220px;
+        border-radius: 20px;
+    }
+    .float-tl {
+        width: 85px;
+        height: 90px;
+        top: 10px;
+        left: 5px;
+    }
+    .float-tr {
+        width: 75px;
+        height: 80px;
+        top: 20px;
+        right: 10px;
+    }
+    .float-bl {
+        width: 55px;
+        height: 55px;
+        bottom: 15px;
+        left: 45px;
+    }
+    .float-br {
+        width: 60px;
+        height: 60px;
+        bottom: 10px;
+        right: 25px;
+    }
+    .preloader-title {
+        font-size: 18px;
+        letter-spacing: 3px;
+    }
+}
