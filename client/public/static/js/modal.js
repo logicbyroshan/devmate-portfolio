@@ -9,9 +9,12 @@
 
     // ── Open / Close ──────────────────────────────────────────────────────────
 
+    // ── Open / Close ──────────────────────────────────────────────────────────
+
     function openModal(id) {
         const overlay = document.getElementById(id);
         if (!overlay) return;
+        
         document.body.classList.add('modal-open');
         document.documentElement.classList.add('modal-open');
         document.body.style.overflow = 'hidden';
@@ -24,7 +27,13 @@
     }
 
     function closeModal(overlay) {
+        if (!overlay) return;
         overlay.classList.remove('modal-visible');
+        const modalBox = overlay.querySelector('.modal-box, .modal-box--blog, .modal-box-rexi, .modal-box-project');
+        if (modalBox) {
+            modalBox.classList.remove('modal-box-fullscreen');
+        }
+
         if (!document.querySelector('.modal-overlay.modal-visible')) {
             document.body.classList.remove('modal-open');
             document.documentElement.classList.remove('modal-open');
@@ -33,11 +42,44 @@
         }
     }
 
+    function populateProjectModal(card) {
+        const modal = document.getElementById('modal-project');
+        if (!modal || !card) return;
+
+        const title = card.querySelector('.project-title')?.textContent.trim() || 'Project Showcase';
+        const nickname = card.querySelector('.project-nickname')?.textContent.trim() || card.querySelector('.project-category')?.textContent.trim() || 'Featured Project';
+        const img = card.querySelector('.project-image img')?.getAttribute('src') || card.querySelector('img')?.getAttribute('src') || '/static/images/hero.webp';
+        const desc = card.querySelector('.project-description')?.textContent.trim() || 'No description available for this project.';
+        const techBadges = Array.from(card.querySelectorAll('.project-tech-badge')).map(b => b.outerHTML).join(' ');
+        const githubHref = card.querySelector('.github-btn')?.getAttribute('href') || '#';
+
+        const titleEl = modal.querySelector('.project-modal-title');
+        if (titleEl) titleEl.textContent = title;
+
+        const nickEl = modal.querySelector('.project-modal-nickname');
+        if (nickEl) nickEl.textContent = nickname;
+
+        const imgEl = modal.querySelector('.project-modal-img');
+        if (imgEl) {
+            imgEl.src = img;
+            imgEl.alt = title;
+        }
+
+        const descEl = modal.querySelector('.project-modal-desc');
+        if (descEl) descEl.textContent = desc;
+
+        const stackEl = modal.querySelector('.project-modal-stack');
+        if (stackEl) stackEl.innerHTML = techBadges;
+
+        const githubEl = modal.querySelector('.project-modal-github');
+        if (githubEl) githubEl.href = githubHref;
+    }
+
     // Prevent background wheel scrolling when modal is open
     document.addEventListener('wheel', function (e) {
         const open = document.querySelector('.modal-overlay.modal-visible');
         if (!open) return;
-        const modalBox = e.target.closest('.modal-box');
+        const modalBox = e.target.closest('.modal-box, .modal-box--blog, .modal-box-rexi, .modal-box-project');
         if (!modalBox) {
             e.preventDefault();
         }
@@ -47,32 +89,60 @@
     document.addEventListener('touchmove', function (e) {
         const open = document.querySelector('.modal-overlay.modal-visible');
         if (!open) return;
-        const modalBox = e.target.closest('.modal-box');
+        const modalBox = e.target.closest('.modal-box, .modal-box--blog, .modal-box-rexi, .modal-box-project');
         if (!modalBox) {
             e.preventDefault();
         }
     }, { passive: false });
 
-    // ── Wire trigger buttons ──────────────────────────────────────────────────
+    // ── Wire trigger buttons & Window controls ───────────────────────────────
 
     document.addEventListener('click', function (e) {
-        const trigger = e.target.closest('[data-modal]');
-        if (trigger) {
+        // Full Page View (Fullscreen Toggle) button
+        const expandBtn = e.target.closest('.modal-expand-btn');
+        if (expandBtn) {
             e.preventDefault();
-            openModal(trigger.dataset.modal);
+            e.stopPropagation();
+            const modalBox = expandBtn.closest('.modal-box, .modal-box--blog, .modal-box-rexi, .modal-box-project');
+            if (modalBox) {
+                modalBox.classList.toggle('modal-box-fullscreen');
+                const isFull = modalBox.classList.contains('modal-box-fullscreen');
+                expandBtn.innerHTML = isFull ? '<i class="fas fa-compress"></i>' : '<i class="fas fa-expand"></i>';
+                expandBtn.setAttribute('title', isFull ? 'Restore Normal Size' : 'Full Page View');
+            }
             return;
         }
 
-        // close button inside modal
+        // Close button inside modal
         const closeBtn = e.target.closest('.modal-close');
         if (closeBtn) {
+            e.preventDefault();
+            e.stopPropagation();
             const overlay = closeBtn.closest('.modal-overlay');
             if (overlay) closeModal(overlay);
             return;
         }
 
-        // click on the backdrop (not the card itself)
-        if (e.target.classList.contains('modal-overlay')) {
+        // Modal triggers (Project cards, Blog cards, About buttons, Rexi AI button)
+        const trigger = e.target.closest('[data-modal]');
+        if (trigger) {
+            // If github external link clicked inside card, don't intercept modal
+            if (e.target.closest('.github-btn')) return;
+
+            e.preventDefault();
+            const modalId = trigger.dataset.modal;
+
+            if (modalId === 'modal-project') {
+                const projectCard = trigger.closest('.project-card') || trigger;
+                populateProjectModal(projectCard);
+            }
+
+            openModal(modalId);
+            return;
+        }
+
+        // Click on backdrop (outside card)
+        if (e.target.classList.contains('modal-overlay') && !e.target.classList.contains('has-minimized-modal')) {
             closeModal(e.target);
         }
     });
@@ -81,7 +151,11 @@
     document.addEventListener('keydown', function (e) {
         if ((e.key === 'Enter' || e.key === ' ') && e.target && e.target.matches('[data-modal][role="button"]')) {
             e.preventDefault();
-            openModal(e.target.dataset.modal);
+            const modalId = e.target.dataset.modal;
+            if (modalId === 'modal-project') {
+                populateProjectModal(e.target.closest('.project-card') || e.target);
+            }
+            openModal(modalId);
             return;
         }
 

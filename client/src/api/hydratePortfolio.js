@@ -273,14 +273,14 @@ function updateProjects(projects) {
       const githubLink = safeUrl(project.github_url);
 
       return `
-        <div class="project-card ${index === 0 ? 'active' : ''}" data-index="${index}">
+        <div class="project-card ${index === 0 ? 'active' : ''}" data-index="${index}" data-modal="modal-project" role="button" tabindex="0" aria-label="View project details: ${escapeHtml(project.title)}">
           <div class="project-content">
             <span class="project-nickname">${escapeHtml(projectName)}</span>
             <h3 class="project-title">${escapeHtml(project.title)}</h3>
             <p class="project-description">${escapeHtml(project.description || '')}</p>
             <div class="project-tech-stack">${techBadges}</div>
             <div class="project-buttons">
-              <a href="${escapeHtml(projectLink)}" class="btn btn-primary project-btn" target="_blank" rel="noopener noreferrer">Live Preview</a>
+              <button type="button" class="btn btn-primary project-btn" data-modal="modal-project">Live Preview</button>
               <a href="${escapeHtml(githubLink)}" class="github-btn" target="_blank" rel="noopener noreferrer" aria-label="Open project repository"><i class="fab fa-github"></i></a>
             </div>
           </div>

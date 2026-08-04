@@ -49,38 +49,57 @@ html.modal-open {
     transition-delay: 0s;
 }
 
-/* ─── Card ───────────────────────────────── */
-.modal-box {
+/* ─── Card (Unified Standard Size for All Modals) ──────────────── */
+.modal-box,
+.modal-box--blog,
+.modal-box-rexi,
+.modal-box-project {
     position: relative;
-    width: 100%;
-    max-width: 560px;
-    max-height: 88vh;
-    background: linear-gradient(160deg, rgba(40, 50, 120, 0.98) 0%, rgba(10, 14, 55, 0.98) 100%);
-    border: 1px solid rgba(124, 58, 237, 0.32);
+    width: 90vw;
+    max-width: 680px;
+    max-height: 85vh;
+    background: linear-gradient(160deg, rgba(25, 32, 85, 0.98) 0%, rgba(10, 14, 50, 0.98) 100%);
+    border: 1px solid rgba(124, 58, 237, 0.35);
     border-radius: 20px;
-    padding: 36px 36px 32px;
+    padding: 24px 28px 28px;
     overflow-y: auto;
     box-shadow:
-        0 0 0 1px rgba(255,255,255,0.04),
-        0 24px 80px rgba(92, 39, 254, 0.22),
-        0 8px 32px rgba(0,0,0,0.5);
+        0 0 0 1px rgba(255,255,255,0.06),
+        0 24px 80px rgba(92, 39, 254, 0.28),
+        0 8px 32px rgba(0,0,0,0.6);
     transform: translateY(28px) scale(0.97);
-    transition: transform 0.32s cubic-bezier(0.22,1,0.36,1), opacity 0.28s ease;
+    transition: transform 0.32s cubic-bezier(0.22,1,0.36,1), opacity 0.28s ease, max-width 0.3s cubic-bezier(0.16,1,0.3,1), max-height 0.3s cubic-bezier(0.16,1,0.3,1), width 0.3s cubic-bezier(0.16,1,0.3,1), height 0.3s cubic-bezier(0.16,1,0.3,1);
     /* scrollbar */
     scrollbar-width: thin;
     scrollbar-color: rgba(124,58,237,0.35) transparent;
 }
 
-.modal-overlay.modal-visible .modal-box {
+.modal-overlay.modal-visible .modal-box,
+.modal-overlay.modal-visible .modal-box--blog,
+.modal-overlay.modal-visible .modal-box-rexi,
+.modal-overlay.modal-visible .modal-box-project {
     transform: translateY(0) scale(1);
 }
 
-.modal-box::-webkit-scrollbar            { width: 4px; }
-.modal-box::-webkit-scrollbar-track      { background: transparent; }
-.modal-box::-webkit-scrollbar-thumb      { background: rgba(124,58,237,0.4); border-radius: 4px; }
+.modal-box::-webkit-scrollbar,
+.modal-box--blog::-webkit-scrollbar,
+.modal-box-rexi::-webkit-scrollbar,
+.modal-box-project::-webkit-scrollbar { width: 4px; }
+
+.modal-box::-webkit-scrollbar-track,
+.modal-box--blog::-webkit-scrollbar-track,
+.modal-box-rexi::-webkit-scrollbar-track,
+.modal-box-project::-webkit-scrollbar-track { background: transparent; }
+
+.modal-box::-webkit-scrollbar-thumb,
+.modal-box--blog::-webkit-scrollbar-thumb,
+.modal-box-rexi::-webkit-scrollbar-thumb,
+.modal-box-project::-webkit-scrollbar-thumb { background: rgba(124,58,237,0.4); border-radius: 4px; }
 
 /* purple top-accent line */
-.modal-box::before {
+.modal-box::before,
+.modal-box-rexi::before,
+.modal-box-project::before {
     content: '';
     position: absolute;
     top: 0;
@@ -91,30 +110,342 @@ html.modal-open {
     border-radius: 20px 20px 0 0;
 }
 
-/* ─── Close button ───────────────────────── */
-.modal-close {
-    position: absolute;
-    top: 16px;
-    right: 16px;
-    width: 36px;
-    height: 36px;
-    border-radius: 10px;
-    border: 1px solid rgba(255,255,255,0.1);
-    background: rgba(255,255,255,0.05);
-    color: rgba(255,255,255,0.6);
-    font-size: 14px;
-    cursor: pointer;
+/* ─── Universal Header Bar with Window Controls (Sticky Documentation Header) ─ */
+.modal-header-bar {
+    position: sticky;
+    top: -24px;
+    z-index: 30;
     display: flex;
     align-items: center;
-    justify-content: center;
-    transition: background 0.2s, color 0.2s, border-color 0.2s;
-    z-index: 10;
+    justify-content: space-between;
+    margin: -24px -28px 20px -28px;
+    padding: 16px 28px 14px 28px;
+    background: rgba(15, 20, 55, 0.92);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(124, 58, 237, 0.25);
+    border-radius: 20px 20px 0 0;
+}
+
+.modal-box--blog .modal-header-bar {
+    top: 0;
+    margin: 0;
+    padding: 16px 24px 14px 24px;
+    border-radius: 20px 20px 0 0;
+}
+
+.modal-header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.modal-header-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-left: auto;
+}
+
+.modal-header-btn {
+    width: 36px !important;
+    height: 36px !important;
+    min-width: 36px !important;
+    min-height: 36px !important;
+    max-width: 36px !important;
+    max-height: 36px !important;
+    border-radius: 10px !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    color: rgba(255, 255, 255, 0.85) !important;
+    font-size: 13px !important;
+    line-height: 1 !important;
+    cursor: pointer;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+    position: static !important;
+    transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.2s !important;
+}
+
+.modal-header-btn:hover {
+    background: rgba(124, 58, 237, 0.35) !important;
+    border-color: rgba(124, 58, 237, 0.6) !important;
+    color: #ffffff !important;
+    transform: scale(1.05);
 }
 
 .modal-close:hover {
-    background: rgba(124,58,237,0.25);
-    border-color: rgba(124,58,237,0.5);
+    background: rgba(239, 68, 68, 0.35) !important;
+    border-color: rgba(239, 68, 68, 0.65) !important;
+    color: #ffffff !important;
+}
+
+/* ─── Documentation Callout Alert Blocks ───────────────────────────── */
+.doc-callout {
+    position: relative;
+    display: flex;
+    gap: 14px;
+    padding: 16px 20px;
+    margin: 20px 0;
+    border-radius: 12px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    background: rgba(15, 23, 60, 0.8);
+    border: 1px solid rgba(124, 58, 237, 0.25);
+}
+
+.doc-callout-icon {
+    font-size: 18px;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.doc-callout-body {
+    flex: 1;
+}
+
+.doc-callout-title {
+    font-weight: 700;
+    font-size: 14px;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.doc-callout-note {
+    background: rgba(124, 58, 237, 0.1);
+    border-color: rgba(124, 58, 237, 0.4);
+    color: #ddd6fe;
+}
+.doc-callout-note .doc-callout-icon { color: #a78bfa; }
+.doc-callout-note .doc-callout-title { color: #c4b5fd; }
+
+.doc-callout-tip {
+    background: rgba(16, 185, 129, 0.1);
+    border-color: rgba(16, 185, 129, 0.4);
+    color: #d1fae5;
+}
+.doc-callout-tip .doc-callout-icon { color: #34d399; }
+.doc-callout-tip .doc-callout-title { color: #6ee7b7; }
+
+.doc-callout-info {
+    background: rgba(59, 130, 246, 0.1);
+    border-color: rgba(59, 130, 246, 0.4);
+    color: #dbeafe;
+}
+.doc-callout-info .doc-callout-icon { color: #60a5fa; }
+.doc-callout-info .doc-callout-title { color: #93c5fd; }
+
+.doc-callout-warning {
+    background: rgba(245, 158, 11, 0.1);
+    border-color: rgba(245, 158, 11, 0.4);
+    color: #fef3c7;
+}
+.doc-callout-warning .doc-callout-icon { color: #fbbf24; }
+.doc-callout-warning .doc-callout-title { color: #fde68a; }
+
+/* ─── Documentation ER Diagram & Schema Cards ─────────────────────── */
+.doc-er-diagram-wrap {
+    margin: 24px 0;
+    padding: 20px;
+    background: rgba(8, 12, 40, 0.95);
+    border: 1px solid rgba(124, 58, 237, 0.3);
+    border-radius: 14px;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.doc-er-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed rgba(124, 58, 237, 0.25);
+}
+
+.doc-er-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #c4b5fd;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.doc-er-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+}
+
+.doc-er-table-card {
+    background: rgba(18, 24, 65, 0.9);
+    border: 1px solid rgba(124, 58, 237, 0.35);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
+}
+
+.doc-er-table-card:hover {
+    border-color: rgba(167, 139, 250, 0.6);
+    transform: translateY(-2px);
+}
+
+.doc-er-table-name {
+    padding: 8px 12px;
+    background: linear-gradient(90deg, rgba(124, 58, 237, 0.3), rgba(92, 39, 254, 0.15));
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    color: #ffffff;
+    border-bottom: 1px solid rgba(124, 58, 237, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.doc-er-field-list {
+    list-style: none;
+    padding: 8px 12px;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.doc-er-field {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    color: rgba(225, 220, 255, 0.85);
+}
+
+.doc-er-key {
+    font-size: 10px;
+    padding: 1px 4px;
+    border-radius: 4px;
+    font-weight: 700;
+}
+
+.doc-er-pk { background: rgba(245, 158, 11, 0.25); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.4); }
+.doc-er-fk { background: rgba(59, 130, 246, 0.25); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.4); }
+
+.doc-er-type {
+    font-size: 11px;
+    color: rgba(167, 139, 250, 0.65);
+}
+
+/* ─── Documentation Technical Code Frame with Header ──────────────── */
+.doc-code-block {
+    margin: 20px 0;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid rgba(124, 58, 237, 0.3);
+    background: #090c24;
+}
+
+.doc-code-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 14px;
+    background: rgba(18, 24, 65, 0.95);
+    border-bottom: 1px solid rgba(124, 58, 237, 0.2);
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    color: rgba(196, 181, 253, 0.7);
+}
+
+.doc-code-lang {
+    padding: 2px 8px;
+    background: rgba(124, 58, 237, 0.25);
+    border-radius: 4px;
+    color: #c4b5fd;
+    font-weight: 700;
+}
+
+.doc-code-block pre {
+    margin: 0 !important;
+    border: none !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+}
+
+/* ─── Documentation Step Workflow Cards ───────────────────────────── */
+.doc-steps-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 20px 0;
+}
+
+.doc-step-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 14px 16px;
+    background: rgba(124, 58, 237, 0.06);
+    border: 1px solid rgba(124, 58, 237, 0.18);
+    border-radius: 12px;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.doc-step-item:hover {
+    background: rgba(124, 58, 237, 0.12);
+    border-color: rgba(124, 58, 237, 0.4);
+}
+
+.doc-step-badge {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #7c3aed, #5c27fe);
     color: #fff;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 0 12px rgba(124, 58, 237, 0.4);
+}
+
+.doc-step-content {
+    flex: 1;
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    color: rgba(235, 230, 255, 0.88);
+    line-height: 1.5;
+}
+
+.doc-step-title {
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 2px;
+}
+
+/* ─── Full Page View (Fullscreen State - Uniform for All Modals) ───────────────────────── */
+.modal-box.modal-box-fullscreen,
+.modal-box--blog.modal-box-fullscreen,
+.modal-box-rexi.modal-box-fullscreen,
+.modal-box-project.modal-box-fullscreen {
+    max-width: 95vw !important;
+    width: 95vw !important;
+    height: 92vh !important;
+    max-height: 92vh !important;
+    border-radius: 16px !important;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 /* ─── Header area ────────────────────────── */
@@ -623,23 +954,24 @@ html.modal-open {
    BLOG READER MODAL
    ══════════════════════════════════════════ */
 
-/* Wide variant for blog articles */
+/* Wide variant for blog articles & technical documentation */
 .modal-box--blog {
-    max-width: 740px;
+    max-width: 680px;
     padding: 0;
     overflow-y: auto;
+    overflow-x: hidden;
+    box-sizing: border-box;
 }
 
-/* Remove the default top-accent line — hero image takes that role */
+/* Remove the default top-accent line — header bar & hero handle top border */
 .modal-box--blog::before { display: none; }
 
 /* ─── Hero banner image ──────────────────── */
 .blog-modal-hero {
     position: relative;
     width: 100%;
-    height: 220px;
+    height: 200px;
     overflow: hidden;
-    border-radius: 20px 20px 0 0;
     flex-shrink: 0;
 }
 

@@ -9,7 +9,7 @@
     let bgAudio = null;
     let bgStarted = false;
     let audioReady = false;
-    const BG_VOLUME = 0.10;
+    const BG_VOLUME = 0.25;
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     let isMuted = localStorage.getItem('portfolioMuted') === 'true' || prefersReducedMotion;
     let soundBindingsReady = false;
@@ -59,7 +59,7 @@
         if (isMuted) return;
         const c = getCtx();
         const osc = c.createOscillator();
-        const g   = c.createGain();
+        const g = c.createGain();
         osc.type = 'sine';
         osc.frequency.setValueAtTime(1100, c.currentTime);
         osc.frequency.exponentialRampToValueAtTime(700, c.currentTime + 0.05);
@@ -77,23 +77,23 @@
        ════════════════════════════════════════════════ */
     function playSlide(direction) {
         if (isMuted) return;
-        const c      = getCtx();
-        const dur    = 0.2;
+        const c = getCtx();
+        const dur = 0.2;
         const bufLen = Math.floor(c.sampleRate * dur);
-        const buf    = c.createBuffer(1, bufLen, c.sampleRate);
-        const data   = buf.getChannelData(0);
+        const buf = c.createBuffer(1, bufLen, c.sampleRate);
+        const data = buf.getChannelData(0);
 
         // White noise with natural amplitude envelope
         for (let i = 0; i < bufLen; i++) {
             const env = Math.pow(1 - i / bufLen, 1.8);
-            data[i]   = (Math.random() * 2 - 1) * env;
+            data[i] = (Math.random() * 2 - 1) * env;
         }
 
-        const src    = c.createBufferSource();
-        src.buffer   = buf;
+        const src = c.createBufferSource();
+        src.buffer = buf;
 
         const filter = c.createBiquadFilter();
-        filter.type  = 'bandpass';
+        filter.type = 'bandpass';
         filter.Q.value = 2.5;
 
         if (direction >= 0) {
@@ -123,8 +123,8 @@
         if (isMuted) return;
         const c = getCtx();
         const osc = c.createOscillator();
-        const g   = c.createGain();
-        osc.type  = 'sine';
+        const g = c.createGain();
+        osc.type = 'sine';
 
         if (opening) {
             osc.frequency.setValueAtTime(320, c.currentTime);
@@ -149,8 +149,8 @@
         if (isMuted) return;
         const c = getCtx();
         const osc = c.createOscillator();
-        const g   = c.createGain();
-        osc.type  = 'sine';
+        const g = c.createGain();
+        osc.type = 'sine';
         osc.frequency.value = 1400;
         g.gain.setValueAtTime(0.025, c.currentTime);
         g.gain.exponentialRampToValueAtTime(0.0001, c.currentTime + 0.04);

@@ -852,7 +852,9 @@ def rexi_chat_api(request):
     # 5. Fetch Achievements from DB
     db_achievements = list(Achievement.objects.filter(is_active=True, is_draft=False).order_by('-achievement_date'))
     ach_items = [f"• **{a.title}** by {a.issuing_organization}" for a in db_achievements[:4]]
-    ach_summary = "\n".join(ach_items) if ach_items else "• **1300+ DSA Problems Solved** across LeetCode & CodeForces\n• **12+ Hackathon Wins & Awards**\n• **27+ Open     # Qwen Model System Prompt in 3rd Person Perspective
+    ach_summary = "\n".join(ach_items) if ach_items else "• **1300+ DSA Problems Solved** across LeetCode & CodeForces\n• **12+ Hackathon Wins & Awards**\n• **27+ Open Source Repositories**"
+    
+    # Qwen Model System Prompt in 3rd Person Perspective
     system_prompt = (
         f"<|im_start|>system\n"
         f"You are Rexi, the friendly dragon AI assistant for Roshan Damor's portfolio powered by Qwen3-0.6B.\n"
@@ -972,9 +974,7 @@ def rexi_chat_api(request):
         else:
             default_variants = [
                 f"I'm **Rexi**, Roshan Damor's AI assistant powered by **Qwen3-0.6B** 🐉!\n\nI can answer anything about Roshan's technical background, featured projects (CardFlow, JobPilot), 1300+ solved algorithms, or contact info ({email}). What would you like to know?",
-                f"As Rexi, I'm here to help you learn about **Roshan Damor** ({title})! Ask me about his tech stack, projects, experience, or achievements!",
-            ]
-            reply_text = random.choice(default_variants) What are you curious about?",
+                f"As Rexi, I'm here to help you learn about **Roshan Damor** ({title})! Ask me about his tech stack, projects, experience, or achievements! What are you curious about?",
             ]
             reply_text = random.choice(default_variants)
 
