@@ -15,6 +15,12 @@
         const overlay = document.getElementById(id);
         if (!overlay) return;
         
+        overlay.setAttribute('data-lenis-prevent', 'true');
+        const modalBox = overlay.querySelector('.modal-box, .modal-box--blog, .modal-box-rexi, .modal-box-project');
+        if (modalBox) {
+            modalBox.setAttribute('data-lenis-prevent', 'true');
+        }
+
         document.body.classList.add('modal-open');
         document.documentElement.classList.add('modal-open');
         document.body.style.overflow = 'hidden';

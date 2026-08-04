@@ -62,7 +62,10 @@ html.modal-open {
     border: 1px solid rgba(124, 58, 237, 0.35);
     border-radius: 20px;
     padding: 24px 28px 28px;
-    overflow-y: auto;
+    overflow-y: auto !important;
+    overscroll-behavior-y: contain !important;
+    -webkit-overflow-scrolling: touch !important;
+    touch-action: pan-y !important;
     box-shadow:
         0 0 0 1px rgba(255,255,255,0.06),
         0 24px 80px rgba(92, 39, 254, 0.28),
@@ -963,7 +966,118 @@ html.modal-open {
     box-sizing: border-box;
 }
 
-/* Remove the default top-accent line — header bar & hero handle top border */
+/* ══════════════════════════════════════════
+   FULLSCREEN MODAL MODE (Sleek & Formatted Documentation Layout)
+   ══════════════════════════════════════════ */
+.modal-box.modal-box-fullscreen,
+.modal-box--blog.modal-box-fullscreen,
+.modal-box-rexi.modal-box-fullscreen,
+.modal-box-project.modal-box-fullscreen {
+    width: 95vw !important;
+    height: 92vh !important;
+    max-width: 1400px !important;
+    max-height: 92vh !important;
+    border-radius: 24px !important;
+    padding: 0 !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    overflow-y: auto !important;
+    overscroll-behavior-y: contain !important;
+    box-shadow: 0 32px 100px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(124, 58, 237, 0.4) !important;
+}
+
+/* Centered formatted reading column in Fullscreen */
+.modal-box-fullscreen .blog-modal-content {
+    width: 100%;
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 32px 40px 64px;
+    box-sizing: border-box;
+}
+
+.modal-box-fullscreen .modal-resume-preview,
+.modal-box-fullscreen .modal-download-options {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 24px 32px 48px;
+    box-sizing: border-box;
+}
+
+/* Constrained hero image banner in Fullscreen mode */
+.modal-box-fullscreen .blog-modal-hero {
+    width: 100%;
+    max-width: 960px;
+    height: 280px;
+    margin: 20px auto 0;
+    border-radius: 16px;
+    overflow: hidden;
+    flex-shrink: 0;
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4);
+}
+
+/* Fullscreen sticky header container */
+.modal-box-fullscreen .modal-header-bar {
+    position: sticky;
+    top: 0;
+    z-index: 45;
+    width: 100%;
+    margin: 0;
+    padding: 18px 40px 16px;
+    box-sizing: border-box;
+    background: rgba(10, 14, 45, 0.96);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(124, 58, 237, 0.3);
+}
+
+/* Responsive & legible article typography in Fullscreen */
+.modal-box-fullscreen .blog-modal-title {
+    font-size: 28px;
+    line-height: 1.3;
+    max-width: 880px;
+    margin-bottom: 22px;
+}
+
+.modal-box-fullscreen .blog-modal-article p,
+.modal-box-fullscreen .blog-modal-article ul,
+.modal-box-fullscreen .blog-modal-article ol {
+    max-width: 76ch;
+    font-size: 15.5px;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.92);
+}
+
+.modal-box-fullscreen .doc-er-diagram-wrap,
+.modal-box-fullscreen .doc-code-block,
+.modal-box-fullscreen .doc-callout,
+.modal-box-fullscreen .doc-steps-list {
+    max-width: 880px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.modal-box-fullscreen .doc-er-grid {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+}
+
+/* Fullscreen Rexi AI chat modal formatting */
+.modal-box-fullscreen.modal-box-rexi .modal-chat {
+    width: 100%;
+    max-width: 960px;
+    height: calc(92vh - 80px);
+    margin: 0 auto;
+    padding: 24px 32px 32px;
+    box-sizing: border-box;
+}
+
+.modal-box-fullscreen.modal-box-rexi .chat-messages {
+    max-height: calc(92vh - 180px);
+}
+
+/* Remove default top-accent line — header bar & hero handle top border */
 .modal-box--blog::before { display: none; }
 
 /* ─── Hero banner image ──────────────────── */
