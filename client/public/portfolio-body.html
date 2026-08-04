@@ -762,124 +762,159 @@
                     <button class="modal-header-btn modal-close" aria-label="Close" title="Close"><i class="fas fa-times"></i></button>
                 </div>
             </div>
-            <div class="blog-modal-hero">
-                <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1200&h=500&fit=crop" alt="Microservices" class="blog-modal-hero-img" loading="lazy" decoding="async">
-                <div class="blog-modal-hero-fade"></div>
-            </div>
-            <div class="blog-modal-content">
-                <div class="blog-modal-meta">
-                    <span class="blog-modal-tag"><i class="fas fa-cubes"></i> Architecture</span>
-                    <span class="blog-modal-tag"><i class="fas fa-server"></i> Backend</span>
-                    <span class="blog-modal-read-time"><i class="far fa-clock"></i> 8 min read</span>
-                </div>
-                <h2 class="blog-modal-title">Understanding Microservices Architecture: A Developer's Guide</h2>
-                <div class="blog-modal-author-row">
-                    <div class="blog-modal-avatar">R</div>
-                    <div>
-                        <div class="blog-modal-author-name">Roshan Damor</div>
-                        <div class="blog-modal-author-date">November 15, 2024</div>
-                    </div>
-                </div>
-                <div class="blog-modal-divider"></div>
-                <div class="blog-modal-article">
-                    <p>Microservices architecture has become one of the most talked-about patterns in modern software engineering. Unlike traditional monoliths where the entire app resides in a single codebase, microservices decompose systems into independent, specialized domain services.</p>
 
-                    <div class="doc-callout doc-callout-note">
-                        <i class="fas fa-info-circle doc-callout-icon"></i>
-                        <div class="doc-callout-body">
-                            <div class="doc-callout-title">Core Principle</div>
-                            Each microservice must own its database exclusively. Direct cross-database queries between services are strictly prohibited to prevent tight coupling.
+            <!-- Two-column body: sidebar + main (sidebar only visible in fullscreen) -->
+            <div class="modal-fs-body">
+
+                <!-- LEFT SIDEBAR (shown only in fullscreen) -->
+                <aside class="modal-sidebar">
+                    <div class="sb-section">
+                        <div class="sb-heading"><i class="fas fa-user-circle"></i> Author</div>
+                        <div class="sb-author-card">
+                            <div class="sb-avatar">R</div>
+                            <div>
+                                <div class="sb-author-name">Roshan Damor</div>
+                                <div class="sb-author-role">AI & Full Stack Engineer</div>
+                            </div>
                         </div>
                     </div>
 
-                    <h3><i class="fas fa-database"></i> Entity Relationship & Microservice Boundaries</h3>
-                    <p>Here is an architectural ER Diagram illustrating isolated database schemas across distinct domain microservices:</p>
+                    <div class="sb-section">
+                        <div class="sb-heading"><i class="fas fa-info-circle"></i> Article Info</div>
+                        <ul class="sb-meta-list">
+                            <li class="sb-meta-item"><i class="far fa-calendar-alt"></i> November 15, 2024</li>
+                            <li class="sb-meta-item"><i class="far fa-clock"></i> 8 min read</li>
+                            <li class="sb-meta-item"><i class="fas fa-folder-open"></i> Architecture</li>
+                            <li class="sb-meta-item"><i class="fas fa-layer-group"></i> Backend Engineering</li>
+                        </ul>
+                    </div>
 
-                    <div class="doc-er-diagram-wrap">
-                        <div class="doc-er-header">
-                            <div class="doc-er-title"><i class="fas fa-project-diagram"></i> Database ER Diagram & Domain Seams</div>
-                            <span class="blog-modal-tag">PostgreSQL / Redis</span>
+                    <div class="sb-section">
+                        <div class="sb-heading"><i class="fas fa-tags"></i> Tags</div>
+                        <div class="sb-tags">
+                            <span class="sb-tag"><i class="fas fa-cubes"></i> Microservices</span>
+                            <span class="sb-tag">REST API</span>
+                            <span class="sb-tag">Node.js</span>
+                            <span class="sb-tag">Docker</span>
+                            <span class="sb-tag">PostgreSQL</span>
+                            <span class="sb-tag">RabbitMQ</span>
                         </div>
-                        <div class="doc-er-grid">
-                            <div class="doc-er-table-card">
-                                <div class="doc-er-table-name">
-                                    <span>USERS_DB.users</span>
-                                    <i class="fas fa-table"></i>
+                    </div>
+
+                    <div class="sb-section sb-toc-section">
+                        <div class="sb-heading"><i class="fas fa-list-ul"></i> Contents</div>
+                        <ul class="sb-toc-list">
+                            <li><span class="sb-toc-link">Core Principle</span></li>
+                            <li><span class="sb-toc-link">ER Diagram & Boundaries</span></li>
+                            <li><span class="sb-toc-link">Implementation Steps</span></li>
+                            <li><span class="sb-toc-link">Service Implementation</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="sb-section">
+                        <div class="sb-heading"><i class="fas fa-link"></i> Related</div>
+                        <ul class="sb-link-list">
+                            <li class="sb-link-item"><a href="#"><i class="fas fa-file-alt"></i> GraphQL APIs Guide</a></li>
+                            <li class="sb-link-item"><a href="#"><i class="fas fa-file-alt"></i> Docker & K8s</a></li>
+                            <li class="sb-link-item"><a href="https://github.com/logicbyroshan" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub Profile</a></li>
+                        </ul>
+                    </div>
+                </aside>
+
+                <!-- RIGHT MAIN CONTENT -->
+                <div class="modal-fs-main">
+                    <div class="blog-modal-hero">
+                        <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1200&h=500&fit=crop" alt="Microservices" class="blog-modal-hero-img" loading="lazy" decoding="async">
+                        <div class="blog-modal-hero-fade"></div>
+                    </div>
+                    <div class="blog-modal-content">
+                        <div class="blog-modal-meta">
+                            <span class="blog-modal-tag"><i class="fas fa-cubes"></i> Architecture</span>
+                            <span class="blog-modal-tag"><i class="fas fa-server"></i> Backend</span>
+                            <span class="blog-modal-read-time"><i class="far fa-clock"></i> 8 min read</span>
+                        </div>
+                        <h2 class="blog-modal-title">Understanding Microservices Architecture: A Developer's Guide</h2>
+                        <div class="blog-modal-author-row">
+                            <div class="blog-modal-avatar">R</div>
+                            <div>
+                                <div class="blog-modal-author-name">Roshan Damor</div>
+                                <div class="blog-modal-author-date">November 15, 2024</div>
+                            </div>
+                        </div>
+                        <div class="blog-modal-divider"></div>
+                        <div class="blog-modal-article">
+                            <p>Microservices architecture has become one of the most talked-about patterns in modern software engineering. Unlike traditional monoliths where the entire app resides in a single codebase, microservices decompose systems into independent, specialized domain services.</p>
+
+                            <div class="doc-callout doc-callout-note">
+                                <i class="fas fa-info-circle doc-callout-icon"></i>
+                                <div class="doc-callout-body">
+                                    <div class="doc-callout-title">Core Principle</div>
+                                    Each microservice must own its database exclusively. Direct cross-database queries between services are strictly prohibited to prevent tight coupling.
                                 </div>
-                                <ul class="doc-er-field-list">
-                                    <li class="doc-er-field"><span><span class="doc-er-key doc-er-pk">PK</span> id</span> <span class="doc-er-type">UUID</span></li>
-                                    <li class="doc-er-field"><span>email</span> <span class="doc-er-type">VARCHAR(255)</span></li>
-                                    <li class="doc-er-field"><span>password_hash</span> <span class="doc-er-type">TEXT</span></li>
-                                    <li class="doc-er-field"><span>created_at</span> <span class="doc-er-type">TIMESTAMP</span></li>
-                                </ul>
                             </div>
 
-                            <div class="doc-er-table-card">
-                                <div class="doc-er-table-name">
-                                    <span>ORDERS_DB.orders</span>
-                                    <i class="fas fa-table"></i>
+                            <h3><i class="fas fa-database"></i> Entity Relationship & Microservice Boundaries</h3>
+                            <p>Here is an architectural ER Diagram illustrating isolated database schemas across distinct domain microservices:</p>
+
+                            <div class="doc-er-diagram-wrap">
+                                <div class="doc-er-header">
+                                    <div class="doc-er-title"><i class="fas fa-project-diagram"></i> Database ER Diagram & Domain Seams</div>
+                                    <span class="blog-modal-tag">PostgreSQL / Redis</span>
                                 </div>
-                                <ul class="doc-er-field-list">
-                                    <li class="doc-er-field"><span><span class="doc-er-key doc-er-pk">PK</span> id</span> <span class="doc-er-type">UUID</span></li>
-                                    <li class="doc-er-field"><span><span class="doc-er-key doc-er-fk">FK</span> user_id</span> <span class="doc-er-type">UUID</span></li>
-                                    <li class="doc-er-field"><span>total_amount</span> <span class="doc-er-type">NUMERIC(10,2)</span></li>
-                                    <li class="doc-er-field"><span>status</span> <span class="doc-er-type">ENUM</span></li>
-                                </ul>
-                            </div>
-
-                            <div class="doc-er-table-card">
-                                <div class="doc-er-table-name">
-                                    <span>PAYMENTS_DB.txns</span>
-                                    <i class="fas fa-table"></i>
+                                <div class="doc-er-grid">
+                                    <div class="doc-er-table-card">
+                                        <div class="doc-er-table-name"><span>USERS_DB.users</span><i class="fas fa-table"></i></div>
+                                        <ul class="doc-er-field-list">
+                                            <li class="doc-er-field"><span><span class="doc-er-key doc-er-pk">PK</span> id</span> <span class="doc-er-type">UUID</span></li>
+                                            <li class="doc-er-field"><span>email</span> <span class="doc-er-type">VARCHAR(255)</span></li>
+                                            <li class="doc-er-field"><span>password_hash</span> <span class="doc-er-type">TEXT</span></li>
+                                            <li class="doc-er-field"><span>created_at</span> <span class="doc-er-type">TIMESTAMP</span></li>
+                                        </ul>
+                                    </div>
+                                    <div class="doc-er-table-card">
+                                        <div class="doc-er-table-name"><span>ORDERS_DB.orders</span><i class="fas fa-table"></i></div>
+                                        <ul class="doc-er-field-list">
+                                            <li class="doc-er-field"><span><span class="doc-er-key doc-er-pk">PK</span> id</span> <span class="doc-er-type">UUID</span></li>
+                                            <li class="doc-er-field"><span><span class="doc-er-key doc-er-fk">FK</span> user_id</span> <span class="doc-er-type">UUID</span></li>
+                                            <li class="doc-er-field"><span>total_amount</span> <span class="doc-er-type">NUMERIC(10,2)</span></li>
+                                            <li class="doc-er-field"><span>status</span> <span class="doc-er-type">ENUM</span></li>
+                                        </ul>
+                                    </div>
+                                    <div class="doc-er-table-card">
+                                        <div class="doc-er-table-name"><span>PAYMENTS_DB.txns</span><i class="fas fa-table"></i></div>
+                                        <ul class="doc-er-field-list">
+                                            <li class="doc-er-field"><span><span class="doc-er-key doc-er-pk">PK</span> txn_id</span> <span class="doc-er-type">UUID</span></li>
+                                            <li class="doc-er-field"><span><span class="doc-er-key doc-er-fk">FK</span> order_id</span> <span class="doc-er-type">UUID</span></li>
+                                            <li class="doc-er-field"><span>stripe_charge_id</span> <span class="doc-er-type">VARCHAR</span></li>
+                                            <li class="doc-er-field"><span>paid_at</span> <span class="doc-er-type">TIMESTAMP</span></li>
+                                        </ul>
+                                    </div>
                                 </div>
-                                <ul class="doc-er-field-list">
-                                    <li class="doc-er-field"><span><span class="doc-er-key doc-er-pk">PK</span> txn_id</span> <span class="doc-er-type">UUID</span></li>
-                                    <li class="doc-er-field"><span><span class="doc-er-key doc-er-fk">FK</span> order_id</span> <span class="doc-er-type">UUID</span></li>
-                                    <li class="doc-er-field"><span>stripe_charge_id</span> <span class="doc-er-type">VARCHAR</span></li>
-                                    <li class="doc-er-field"><span>paid_at</span> <span class="doc-er-type">TIMESTAMP</span></li>
-                                </ul>
                             </div>
-                        </div>
-                    </div>
 
-                    <h3><i class="fas fa-sitemap"></i> Implementation Step-by-Step</h3>
-                    <div class="doc-steps-list">
-                        <div class="doc-step-item">
-                            <div class="doc-step-badge">1</div>
-                            <div class="doc-step-content">
-                                <div class="doc-step-title">Domain Decomposition</div>
-                                Identify clear domain boundaries using Event Storming to extract bounded contexts.
+                            <h3><i class="fas fa-sitemap"></i> Implementation Step-by-Step</h3>
+                            <div class="doc-steps-list">
+                                <div class="doc-step-item">
+                                    <div class="doc-step-badge">1</div>
+                                    <div class="doc-step-content"><div class="doc-step-title">Domain Decomposition</div>Identify clear domain boundaries using Event Storming to extract bounded contexts.</div>
+                                </div>
+                                <div class="doc-step-item">
+                                    <div class="doc-step-badge">2</div>
+                                    <div class="doc-step-content"><div class="doc-step-title">API Gateway Routing</div>Set up an API Gateway (Kong, Traefik, or Nginx) for single-entry routing and SSL termination.</div>
+                                </div>
+                                <div class="doc-step-item">
+                                    <div class="doc-step-badge">3</div>
+                                    <div class="doc-step-content"><div class="doc-step-title">Asynchronous Event Bus</div>Connect RabbitMQ or Kafka for event-driven messaging between independent services.</div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="doc-step-item">
-                            <div class="doc-step-badge">2</div>
-                            <div class="doc-step-content">
-                                <div class="doc-step-title">API Gateway Routing</div>
-                                Set up an API Gateway (Kong, Traefik, or Nginx) for single-entry routing and SSL termination.
-                            </div>
-                        </div>
-                        <div class="doc-step-item">
-                            <div class="doc-step-badge">3</div>
-                            <div class="doc-step-content">
-                                <div class="doc-step-title">Asynchronous Event Bus</div>
-                                Connect RabbitMQ or Kafka for event-driven messaging between independent services.
-                            </div>
-                        </div>
-                    </div>
 
-                    <h3><i class="fas fa-code"></i> Service Implementation</h3>
-                    <p>Here's what a clean microservice endpoint with event broadcasting looks like:</p>
-
-                    <div class="doc-code-block">
-                        <div class="doc-code-header">
-                            <span><i class="fas fa-file-code"></i> user-service/index.js</span>
-                            <span class="doc-code-lang">JavaScript</span>
-                        </div>
-                        <pre><code>const express = require('express');
+                            <h3><i class="fas fa-code"></i> Service Implementation</h3>
+                            <div class="doc-code-block">
+                                <div class="doc-code-header"><span><i class="fas fa-file-code"></i> user-service/index.js</span><span class="doc-code-lang">JavaScript</span></div>
+                                <pre><code>const express = require('express');
 const app = express();
 app.use(express.json());
 
-// Owns only user-related logic
 app.get('/users/:id', async (req, res) => {
   const user = await UserRepository.findById(req.params.id);
   if (!user) return res.status(404).json({ error: 'Not found' });
@@ -888,25 +923,26 @@ app.get('/users/:id', async (req, res) => {
 
 app.post('/users', async (req, res) => {
   const user = await UserRepository.create(req.body);
-  // Emit async event for notification service
   eventBus.emit('user.created', { userId: user.id, email: user.email });
   res.status(201).json(user);
 });
 
 app.listen(3001, () => console.log('User Service running on :3001'));</code></pre>
-                    </div>
+                            </div>
 
-                    <div class="doc-callout doc-callout-tip">
-                        <i class="fas fa-lightbulb doc-callout-icon"></i>
-                        <div class="doc-callout-body">
-                            <div class="doc-callout-title">Pro Tip</div>
-                            Start with a modular monolith first! Only extract microservices when team boundaries or distinct scaling demands make it necessary.
+                            <div class="doc-callout doc-callout-tip">
+                                <i class="fas fa-lightbulb doc-callout-icon"></i>
+                                <div class="doc-callout-body">
+                                    <div class="doc-callout-title">Pro Tip</div>
+                                    Start with a modular monolith first! Only extract microservices when team boundaries or distinct scaling demands make it necessary.
+                                </div>
+                            </div>
+
+                            <p class="blog-modal-closing">The key is not to microservice everything from day one, but to design with clear boundaries and clean APIs so the transition is smooth when scaling.</p>
                         </div>
                     </div>
-
-                    <p class="blog-modal-closing">The key is not to microservice everything from day one, but to design with clear boundaries and clean APIs so the transition is smooth when scaling.</p>
                 </div>
-            </div>
+            </div><!-- /.modal-fs-body -->
         </div>
     </div>
 
@@ -923,97 +959,92 @@ app.listen(3001, () => console.log('User Service running on :3001'));</code></pr
                     <button class="modal-header-btn modal-close" aria-label="Close" title="Close"><i class="fas fa-times"></i></button>
                 </div>
             </div>
-            <div class="blog-modal-hero">
-                <img src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=1200&h=500&fit=crop" alt="GraphQL APIs" class="blog-modal-hero-img" loading="lazy" decoding="async">
-                <div class="blog-modal-hero-fade"></div>
-            </div>
-            <div class="blog-modal-content">
-                <div class="blog-modal-meta">
-                    <span class="blog-modal-tag"><i class="fab fa-node-js"></i> Node.js</span>
-                    <span class="blog-modal-tag"><i class="fas fa-project-diagram"></i> API Design</span>
-                    <span class="blog-modal-read-time"><i class="far fa-clock"></i> 6 min read</span>
-                </div>
-                <h2 class="blog-modal-title">Building Scalable APIs with Node.js and GraphQL Best Practices</h2>
-                <div class="blog-modal-author-row">
-                    <div class="blog-modal-avatar">R</div>
-                    <div>
-                        <div class="blog-modal-author-name">Roshan Damor</div>
-                        <div class="blog-modal-author-date">October 28, 2024</div>
-                    </div>
-                </div>
-                <div class="blog-modal-divider"></div>
-                <div class="blog-modal-article">
-                    <p>REST has served us well for decades, but as frontends grew more complex and mobile came to dominate, over-fetching and under-fetching became real pain points. GraphQL lets clients specify exact response structures in a single query.</p>
-
-                    <div class="doc-callout doc-callout-info">
-                        <i class="fas fa-info-circle doc-callout-icon"></i>
-                        <div class="doc-callout-body">
-                            <div class="doc-callout-title">GraphQL vs REST</div>
-                            GraphQL collapses 3+ REST HTTP roundtrips into a single declarative POST query while automatically generating typescript type definitions.
-                        </div>
-                    </div>
-
-                    <h3><i class="fas fa-database"></i> Schema & ER Model</h3>
-
-                    <div class="doc-er-diagram-wrap">
-                        <div class="doc-er-header">
-                            <div class="doc-er-title"><i class="fas fa-project-diagram"></i> GraphQL Type System & ER Schema</div>
-                            <span class="blog-modal-tag">GraphQL SDL</span>
-                        </div>
-                        <div class="doc-er-grid">
-                            <div class="doc-er-table-card">
-                                <div class="doc-er-table-name">
-                                    <span>type User</span>
-                                    <i class="fas fa-code-branch"></i>
-                                </div>
-                                <ul class="doc-er-field-list">
-                                    <li class="doc-er-field"><span><span class="doc-er-key doc-er-pk">ID</span> id</span> <span class="doc-er-type">ID!</span></li>
-                                    <li class="doc-er-field"><span>name</span> <span class="doc-er-type">String!</span></li>
-                                    <li class="doc-er-field"><span>email</span> <span class="doc-er-type">String!</span></li>
-                                    <li class="doc-er-field"><span><span class="doc-er-key doc-er-fk">REL</span> posts</span> <span class="doc-er-type">[Post!]!</span></li>
-                                </ul>
-                            </div>
-
-                            <div class="doc-er-table-card">
-                                <div class="doc-er-table-name">
-                                    <span>type Post</span>
-                                    <i class="fas fa-code-branch"></i>
-                                </div>
-                                <ul class="doc-er-field-list">
-                                    <li class="doc-er-field"><span><span class="doc-er-key doc-er-pk">ID</span> id</span> <span class="doc-er-type">ID!</span></li>
-                                    <li class="doc-er-field"><span>title</span> <span class="doc-er-type">String!</span></li>
-                                    <li class="doc-er-field"><span>content</span> <span class="doc-er-type">String</span></li>
-                                    <li class="doc-er-field"><span><span class="doc-er-key doc-er-fk">FK</span> authorId</span> <span class="doc-er-type">ID!</span></li>
-                                </ul>
+            <div class="modal-fs-body">
+                <aside class="modal-sidebar">
+                    <div class="sb-section">
+                        <div class="sb-heading"><i class="fas fa-user-circle"></i> Author</div>
+                        <div class="sb-author-card">
+                            <div class="sb-avatar">R</div>
+                            <div>
+                                <div class="sb-author-name">Roshan Damor</div>
+                                <div class="sb-author-role">AI & Full Stack Engineer</div>
                             </div>
                         </div>
                     </div>
-
-                    <h3><i class="fas fa-code"></i> Apollo Server & DataLoader Integration</h3>
-
-                    <div class="doc-code-block">
-                        <div class="doc-code-header">
-                            <span><i class="fas fa-file-code"></i> src/server.js</span>
-                            <span class="doc-code-lang">JavaScript</span>
+                    <div class="sb-section">
+                        <div class="sb-heading"><i class="fas fa-info-circle"></i> Article Info</div>
+                        <ul class="sb-meta-list">
+                            <li class="sb-meta-item"><i class="far fa-calendar-alt"></i> October 28, 2024</li>
+                            <li class="sb-meta-item"><i class="far fa-clock"></i> 6 min read</li>
+                            <li class="sb-meta-item"><i class="fas fa-folder-open"></i> API Design</li>
+                            <li class="sb-meta-item"><i class="fab fa-node-js"></i> Node.js</li>
+                        </ul>
+                    </div>
+                    <div class="sb-section">
+                        <div class="sb-heading"><i class="fas fa-tags"></i> Tags</div>
+                        <div class="sb-tags">
+                            <span class="sb-tag">GraphQL</span>
+                            <span class="sb-tag">Apollo</span>
+                            <span class="sb-tag">Node.js</span>
+                            <span class="sb-tag">DataLoader</span>
+                            <span class="sb-tag">REST</span>
                         </div>
-                        <pre><code>const { ApolloServer } = require('@apollo/server');
+                    </div>
+                    <div class="sb-section sb-toc-section">
+                        <div class="sb-heading"><i class="fas fa-list-ul"></i> Contents</div>
+                        <ul class="sb-toc-list">
+                            <li><span class="sb-toc-link">GraphQL vs REST</span></li>
+                            <li><span class="sb-toc-link">Schema & ER Model</span></li>
+                            <li><span class="sb-toc-link">Apollo Server Integration</span></li>
+                            <li><span class="sb-toc-link">Production Security</span></li>
+                        </ul>
+                    </div>
+                    <div class="sb-section">
+                        <div class="sb-heading"><i class="fas fa-link"></i> Related</div>
+                        <ul class="sb-link-list">
+                            <li class="sb-link-item"><a href="#"><i class="fas fa-file-alt"></i> Microservices Guide</a></li>
+                            <li class="sb-link-item"><a href="#"><i class="fas fa-file-alt"></i> Docker & K8s</a></li>
+                            <li class="sb-link-item"><a href="https://github.com/logicbyroshan" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub Profile</a></li>
+                        </ul>
+                    </div>
+                </aside>
+                <div class="modal-fs-main">
+                    <div class="blog-modal-hero">
+                        <img src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=1200&h=500&fit=crop" alt="GraphQL APIs" class="blog-modal-hero-img" loading="lazy" decoding="async">
+                        <div class="blog-modal-hero-fade"></div>
+                    </div>
+                    <div class="blog-modal-content">
+                        <div class="blog-modal-meta">
+                            <span class="blog-modal-tag"><i class="fab fa-node-js"></i> Node.js</span>
+                            <span class="blog-modal-tag"><i class="fas fa-project-diagram"></i> API Design</span>
+                            <span class="blog-modal-read-time"><i class="far fa-clock"></i> 6 min read</span>
+                        </div>
+                        <h2 class="blog-modal-title">Building Scalable APIs with Node.js and GraphQL Best Practices</h2>
+                        <div class="blog-modal-author-row">
+                            <div class="blog-modal-avatar">R</div>
+                            <div>
+                                <div class="blog-modal-author-name">Roshan Damor</div>
+                                <div class="blog-modal-author-date">October 28, 2024</div>
+                            </div>
+                        </div>
+                        <div class="blog-modal-divider"></div>
+                        <div class="blog-modal-article">
+                            <p>REST has served us well for decades, but as frontends grew more complex and mobile came to dominate, over-fetching and under-fetching became real pain points. GraphQL lets clients specify exact response structures in a single query.</p>
+                            <div class="doc-callout doc-callout-info"><i class="fas fa-info-circle doc-callout-icon"></i><div class="doc-callout-body"><div class="doc-callout-title">GraphQL vs REST</div>GraphQL collapses 3+ REST HTTP roundtrips into a single declarative POST query while automatically generating typescript type definitions.</div></div>
+                            <h3><i class="fas fa-database"></i> Schema &amp; ER Model</h3>
+                            <div class="doc-er-diagram-wrap"><div class="doc-er-header"><div class="doc-er-title"><i class="fas fa-project-diagram"></i> GraphQL Type System &amp; ER Schema</div><span class="blog-modal-tag">GraphQL SDL</span></div><div class="doc-er-grid"><div class="doc-er-table-card"><div class="doc-er-table-name"><span>type User</span><i class="fas fa-code-branch"></i></div><ul class="doc-er-field-list"><li class="doc-er-field"><span><span class="doc-er-key doc-er-pk">ID</span> id</span><span class="doc-er-type">ID!</span></li><li class="doc-er-field"><span>name</span><span class="doc-er-type">String!</span></li><li class="doc-er-field"><span>email</span><span class="doc-er-type">String!</span></li><li class="doc-er-field"><span><span class="doc-er-key doc-er-fk">REL</span> posts</span><span class="doc-er-type">[Post!]!</span></li></ul></div><div class="doc-er-table-card"><div class="doc-er-table-name"><span>type Post</span><i class="fas fa-code-branch"></i></div><ul class="doc-er-field-list"><li class="doc-er-field"><span><span class="doc-er-key doc-er-pk">ID</span> id</span><span class="doc-er-type">ID!</span></li><li class="doc-er-field"><span>title</span><span class="doc-er-type">String!</span></li><li class="doc-er-field"><span>content</span><span class="doc-er-type">String</span></li><li class="doc-er-field"><span><span class="doc-er-key doc-er-fk">FK</span> authorId</span><span class="doc-er-type">ID!</span></li></ul></div></div></div>
+                            <h3><i class="fas fa-code"></i> Apollo Server &amp; DataLoader Integration</h3>
+                            <div class="doc-code-block"><div class="doc-code-header"><span><i class="fas fa-file-code"></i> src/server.js</span><span class="doc-code-lang">JavaScript</span></div><pre><code>const { ApolloServer } = require('@apollo/server');
 const DataLoader = require('dataloader');
 
-// DataLoader prevents N+1 DB queries by batching IDs
 const userLoader = new DataLoader(async (userIds) => {
   const users = await db.users.findMany({ where: { id: { in: userIds } } });
   return userIds.map(id => users.find(u => u.id === id));
 });
 
 const server = new ApolloServer({ typeDefs, resolvers });
-await server.start();</code></pre>
-                    </div>
-
-                    <div class="doc-callout doc-callout-warning">
-                        <i class="fas fa-exclamation-triangle doc-callout-icon"></i>
-                        <div class="doc-callout-body">
-                            <div class="doc-callout-title">Production Security</div>
-                            Always enforce Depth Limiting and Query Complexity scoring in production to prevent recursive DOS queries.
+await server.start();</code></pre></div>
+                            <div class="doc-callout doc-callout-warning"><i class="fas fa-exclamation-triangle doc-callout-icon"></i><div class="doc-callout-body"><div class="doc-callout-title">Production Security</div>Always enforce Depth Limiting and Query Complexity scoring in production to prevent recursive DOS queries.</div></div>
                         </div>
                     </div>
                 </div>
@@ -1034,10 +1065,57 @@ await server.start();</code></pre>
                     <button class="modal-header-btn modal-close" aria-label="Close" title="Close"><i class="fas fa-times"></i></button>
                 </div>
             </div>
-            <div class="blog-modal-hero">
-                <img src="https://images.unsplash.com/photo-1635322966219-b75ed2a7e7e9?w=1200&h=500&fit=crop" alt="Docker and Kubernetes" class="blog-modal-hero-img" loading="lazy" decoding="async">
-                <div class="blog-modal-hero-fade"></div>
-            </div>
+            <div class="modal-fs-body">
+                <aside class="modal-sidebar">
+                    <div class="sb-section">
+                        <div class="sb-heading"><i class="fas fa-user-circle"></i> Author</div>
+                        <div class="sb-author-card">
+                            <div class="sb-avatar">R</div>
+                            <div><div class="sb-author-name">Roshan Damor</div><div class="sb-author-role">AI &amp; Full Stack Engineer</div></div>
+                        </div>
+                    </div>
+                    <div class="sb-section">
+                        <div class="sb-heading"><i class="fas fa-info-circle"></i> Article Info</div>
+                        <ul class="sb-meta-list">
+                            <li class="sb-meta-item"><i class="far fa-calendar-alt"></i> December 3, 2024</li>
+                            <li class="sb-meta-item"><i class="far fa-clock"></i> 10 min read</li>
+                            <li class="sb-meta-item"><i class="fas fa-folder-open"></i> DevOps</li>
+                            <li class="sb-meta-item"><i class="fas fa-cloud"></i> Cloud Infrastructure</li>
+                        </ul>
+                    </div>
+                    <div class="sb-section">
+                        <div class="sb-heading"><i class="fas fa-tags"></i> Tags</div>
+                        <div class="sb-tags">
+                            <span class="sb-tag"><i class="fab fa-docker"></i> Docker</span>
+                            <span class="sb-tag">Kubernetes</span>
+                            <span class="sb-tag">CI/CD</span>
+                            <span class="sb-tag">Nginx</span>
+                            <span class="sb-tag">Node.js</span>
+                        </div>
+                    </div>
+                    <div class="sb-section sb-toc-section">
+                        <div class="sb-heading"><i class="fas fa-list-ul"></i> Contents</div>
+                        <ul class="sb-toc-list">
+                            <li><span class="sb-toc-link">Container Architecture</span></li>
+                            <li><span class="sb-toc-link">Dockerfile Patterns</span></li>
+                            <li><span class="sb-toc-link">Orchestration with K8s</span></li>
+                            <li><span class="sb-toc-link">Production Deploy</span></li>
+                        </ul>
+                    </div>
+                    <div class="sb-section">
+                        <div class="sb-heading"><i class="fas fa-link"></i> Related</div>
+                        <ul class="sb-link-list">
+                            <li class="sb-link-item"><a href="#"><i class="fas fa-file-alt"></i> Microservices Guide</a></li>
+                            <li class="sb-link-item"><a href="#"><i class="fas fa-file-alt"></i> GraphQL APIs</a></li>
+                            <li class="sb-link-item"><a href="https://github.com/logicbyroshan" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub Profile</a></li>
+                        </ul>
+                    </div>
+                </aside>
+                <div class="modal-fs-main">
+                    <div class="blog-modal-hero">
+                        <img src="https://images.unsplash.com/photo-1635322966219-b75ed2a7e7e9?w=1200&h=500&fit=crop" alt="Docker and Kubernetes" class="blog-modal-hero-img" loading="lazy" decoding="async">
+                        <div class="blog-modal-hero-fade"></div>
+                    </div>
             <div class="blog-modal-content">
                 <div class="blog-modal-meta">
                     <span class="blog-modal-tag"><i class="fab fa-docker"></i> DevOps</span>
@@ -1125,8 +1203,10 @@ CMD ["node", "dist/index.js"]</code></pre>
                     </div>
 
                     <p class="blog-modal-closing">Start with Docker, get comfortable building optimized images, then layer on Kubernetes for self-healing, scalable production deployments.</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </div><!-- /.modal-fs-body -->
         </div>
     </div>
 
@@ -1147,22 +1227,53 @@ CMD ["node", "dist/index.js"]</code></pre>
                     <button class="modal-header-btn modal-close" aria-label="Close" title="Close"><i class="fas fa-times"></i></button>
                 </div>
             </div>
-            <div class="blog-modal-hero" style="height: 200px; margin-bottom: 20px;">
-                <img src="/static/images/hero.webp" alt="Project Preview" class="project-modal-img blog-modal-hero-img" loading="lazy">
-                <div class="blog-modal-hero-fade"></div>
-            </div>
-            <div class="blog-modal-meta" style="margin-bottom: 12px;">
-                <span class="blog-modal-tag project-modal-nickname">Featured Project</span>
-            </div>
-            <p class="project-modal-desc modal-subtitle" style="font-size: 15px; line-height: 1.6; color: rgba(255,255,255,0.85); margin-bottom: 16px;">
-                Detailed project showcase and technical breakdown.
-            </p>
-            <div class="modal-divider"></div>
-            <h4 style="color: #fff; margin-bottom: 10px; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;">Technologies Used</h4>
-            <div class="project-tech-stack project-modal-stack" style="margin-bottom: 24px;"></div>
-            <div class="modal-actions">
-                <a href="#" class="btn btn-primary modal-btn project-modal-live" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Live Preview</a>
-                <a href="#" class="btn btn-secondary modal-btn project-modal-github" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> Source Code</a>
+            <!-- Sidebar: shown only in fullscreen -->
+            <aside class="modal-sidebar">
+                <div class="sb-section">
+                    <div class="sb-heading"><i class="fas fa-layer-group"></i> Project Type</div>
+                    <ul class="sb-meta-list">
+                        <li class="sb-meta-item"><i class="fas fa-tag"></i> <span class="project-modal-nickname">Featured Project</span></li>
+                        <li class="sb-meta-item"><i class="fas fa-user"></i> Roshan Damor</li>
+                        <li class="sb-meta-item"><i class="fas fa-calendar"></i> 2024</li>
+                        <li class="sb-meta-item"><i class="fas fa-check-circle" style="color:#34d399"></i> Live & Active</li>
+                    </ul>
+                </div>
+                <div class="sb-section">
+                    <div class="sb-heading"><i class="fas fa-code"></i> Tech Stack</div>
+                    <div class="project-modal-stack sb-tech-list"></div>
+                </div>
+                <div class="sb-section">
+                    <div class="sb-heading"><i class="fas fa-external-link-alt"></i> Links</div>
+                    <ul class="sb-link-list">
+                        <li class="sb-link-item"><a href="#" class="project-modal-live" target="_blank" rel="noopener"><i class="fas fa-globe"></i> Live Preview</a></li>
+                        <li class="sb-link-item"><a href="#" class="project-modal-github" target="_blank" rel="noopener"><i class="fab fa-github"></i> Source Code</a></li>
+                    </ul>
+                </div>
+                <div class="sb-section">
+                    <div class="sb-heading"><i class="fas fa-chart-bar"></i> Stats</div>
+                    <div class="sb-stat-grid">
+                        <div class="sb-stat-card"><div class="sb-stat-value">100%</div><div class="sb-stat-label">Responsive</div></div>
+                        <div class="sb-stat-card"><div class="sb-stat-value">A+</div><div class="sb-stat-label">Performance</div></div>
+                    </div>
+                </div>
+            </aside>
+            <!-- Main project body -->
+            <div class="modal-body-content">
+                <div class="blog-modal-hero" style="height: 200px; margin-bottom: 20px;">
+                    <img src="/static/images/hero.webp" alt="Project Preview" class="project-modal-img blog-modal-hero-img" loading="lazy">
+                    <div class="blog-modal-hero-fade"></div>
+                </div>
+                <div class="blog-modal-meta" style="margin-bottom: 12px;">
+                    <span class="blog-modal-tag project-modal-nickname">Featured Project</span>
+                </div>
+                <p class="project-modal-desc modal-subtitle" style="font-size: 15px; line-height: 1.6; color: rgba(255,255,255,0.85); margin-bottom: 16px;">Detailed project showcase and technical breakdown.</p>
+                <div class="modal-divider"></div>
+                <h4 style="color: #fff; margin-bottom: 10px; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;">Technologies Used</h4>
+                <div class="project-tech-stack project-modal-stack" style="margin-bottom: 24px;"></div>
+                <div class="modal-actions">
+                    <a href="#" class="btn btn-primary modal-btn project-modal-live" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Live Preview</a>
+                    <a href="#" class="btn btn-secondary modal-btn project-modal-github" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> Source Code</a>
+                </div>
             </div>
         </div>
     </div>
@@ -1180,6 +1291,46 @@ CMD ["node", "dist/index.js"]</code></pre>
                     <button class="modal-header-btn modal-close" aria-label="Close" title="Close"><i class="fas fa-times"></i></button>
                 </div>
             </div>
+            <!-- Sidebar: Profile card shown in fullscreen -->
+            <aside class="modal-sidebar">
+                <div class="sb-section">
+                    <div class="sb-author-card">
+                        <div class="sb-avatar">R</div>
+                        <div>
+                            <div class="sb-author-name">Roshan Damor</div>
+                            <div class="sb-author-role">Full Stack · AI Engineer</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="sb-section">
+                    <div class="sb-heading"><i class="fas fa-chart-bar"></i> Stats</div>
+                    <div class="sb-stat-grid">
+                        <div class="sb-stat-card"><div class="sb-stat-value">1300+</div><div class="sb-stat-label">DSA Solved</div></div>
+                        <div class="sb-stat-card"><div class="sb-stat-value">3+</div><div class="sb-stat-label">Years Exp.</div></div>
+                        <div class="sb-stat-card"><div class="sb-stat-value">15+</div><div class="sb-stat-label">Projects</div></div>
+                        <div class="sb-stat-card"><div class="sb-stat-value">5+</div><div class="sb-stat-label">Tech Stacks</div></div>
+                    </div>
+                </div>
+                <div class="sb-section">
+                    <div class="sb-heading"><i class="fas fa-code"></i> Core Skills</div>
+                    <ul class="sb-tech-list">
+                        <li class="sb-tech-item"><span class="sb-tech-dot"></span> React & Next.js</li>
+                        <li class="sb-tech-item"><span class="sb-tech-dot"></span> Django & Python</li>
+                        <li class="sb-tech-item"><span class="sb-tech-dot"></span> Node.js & Express</li>
+                        <li class="sb-tech-item"><span class="sb-tech-dot"></span> AWS & Cloud Infra</li>
+                        <li class="sb-tech-item"><span class="sb-tech-dot"></span> TypeScript & JS</li>
+                        <li class="sb-tech-item"><span class="sb-tech-dot"></span> AI/ML Integration</li>
+                    </ul>
+                </div>
+                <div class="sb-section">
+                    <div class="sb-heading"><i class="fas fa-share-alt"></i> Connect</div>
+                    <ul class="sb-link-list">
+                        <li class="sb-link-item"><a href="https://github.com/logicbyroshan" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a></li>
+                        <li class="sb-link-item"><a href="https://linkedin.com" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
+                        <li class="sb-link-item"><a href="mailto:hello@roshandra.me"><i class="fas fa-envelope"></i> Email Me</a></li>
+                    </ul>
+                </div>
+            </aside>
             <div class="modal-body-content">
                 <p class="modal-subtitle">Roshan Damor — Full-Stack Developer & AI Engineer</p>
                 <div class="modal-divider"></div>
