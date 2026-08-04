@@ -506,25 +506,48 @@ html.modal-open {
     margin: 20px 0;
 }
 
+/* ─── Body content wrapper (used for non-blog modals to enable centered fullscreen) ─── */
+.modal-body-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+/* In fullscreen, center and constrain .modal-body-content */
+.modal-box-fullscreen .modal-body-content {
+    width: 100%;
+    max-width: 580px;
+    margin: 24px auto;
+    padding: 0 20px 48px;
+    box-sizing: border-box;
+}
+
 /* shared action buttons row */
 .modal-actions {
     display: flex;
-    gap: 12px;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
     margin-top: 24px;
     flex-wrap: wrap;
+    width: 100%;
 }
 
 .modal-btn {
-    flex: 1;
-    min-width: 120px;
+    flex: 0 1 220px;
+    min-width: 140px;
+    max-width: 240px;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
     font-size: 14px;
-    padding: 11px 18px;
+    font-weight: 600;
+    padding: 12px 22px;
     text-decoration: none;
-    border-radius: 10px;
+    border-radius: 12px;
+    box-sizing: border-box;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* ─── Resume preview ─────────────────────── */
@@ -969,17 +992,25 @@ html.modal-open {
 /* ══════════════════════════════════════════
    FULLSCREEN MODAL MODE (Sleek & Formatted Documentation Layout)
    ══════════════════════════════════════════ */
+
+/* When overlay contains a fullscreen box, remove padding so box fills viewport */
+.modal-overlay:has(.modal-box-fullscreen) {
+    padding: 0 !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
 .modal-box.modal-box-fullscreen,
 .modal-box--blog.modal-box-fullscreen,
 .modal-box-rexi.modal-box-fullscreen,
 .modal-box-project.modal-box-fullscreen {
     width: 95vw !important;
     height: 92vh !important;
-    max-width: 1400px !important;
+    max-width: 95vw !important;
     max-height: 92vh !important;
     border-radius: 24px !important;
     padding: 0 !important;
-    margin: 0 auto !important;
+    margin: 0 !important;
     display: flex !important;
     flex-direction: column !important;
     overflow-y: auto !important;
@@ -996,12 +1027,87 @@ html.modal-open {
     box-sizing: border-box;
 }
 
+/* ── Non-blog modal body centering in fullscreen (Resume, Download, Project, Video) ── */
+.modal-box.modal-box-fullscreen > *:not(.modal-header-bar),
+.modal-box-project.modal-box-fullscreen > *:not(.modal-header-bar) {
+    width: 100%;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+}
+
+/* Specifically fix the modal content wrapper for fullscreen non-blog modals */
+.modal-box.modal-box-fullscreen .modal-resume-preview,
+.modal-box.modal-box-fullscreen .modal-download-options,
+.modal-box-project.modal-box-fullscreen .modal-resume-preview,
+.modal-box-project.modal-box-fullscreen .modal-download-options {
+    width: 100%;
+    max-width: 620px;
+    margin: 0 auto;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Fullscreen action buttons: remain compact, centered */
+.modal-box.modal-box-fullscreen .modal-actions,
+.modal-box-project.modal-box-fullscreen .modal-actions {
+    justify-content: center;
+    gap: 16px;
+    max-width: 620px;
+    margin: 24px auto 0;
+}
+
+.modal-box.modal-box-fullscreen .modal-btn,
+.modal-box-project.modal-box-fullscreen .modal-btn {
+    flex: 0 0 auto;
+    min-width: 160px;
+    max-width: 200px;
+    padding: 13px 24px;
+    font-size: 14px;
+}
+
+/* Fullscreen subtitle & divider */
+.modal-box.modal-box-fullscreen .modal-subtitle {
+    max-width: 620px;
+    margin: 8px auto 0;
+    text-align: center;
+    display: block;
+}
+
+.modal-box.modal-box-fullscreen .modal-divider,
+.modal-box-project.modal-box-fullscreen .modal-divider {
+    max-width: 620px;
+    margin: 16px auto;
+}
+
+/* Video placeholder in fullscreen */
+.modal-box.modal-box-fullscreen .modal-video-wrap {
+    max-width: 640px;
+    margin: 0 auto;
+}
+
+/* Resume preview in fullscreen - nicely padded */
+.modal-box.modal-box-fullscreen .resume-row {
+    padding: 12px 18px;
+}
+
+.modal-box.modal-box-fullscreen .resume-label {
+    min-width: 90px;
+    font-size: 12px;
+}
+
+.modal-box.modal-box-fullscreen .resume-value {
+    font-size: 15px;
+}
+
+/* Download cards in fullscreen */
 .modal-box-fullscreen .modal-resume-preview,
 .modal-box-fullscreen .modal-download-options {
     width: 100%;
-    max-width: 800px;
+    max-width: 620px;
     margin: 0 auto;
-    padding: 24px 32px 48px;
+    padding: 0;
     box-sizing: border-box;
 }
 
