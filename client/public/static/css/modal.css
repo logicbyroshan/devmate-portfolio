@@ -993,8 +993,8 @@ html.modal-open {
    FULLSCREEN MODAL MODE (Sleek & Formatted Documentation Layout)
    ══════════════════════════════════════════ */
 
-/* When overlay contains a fullscreen box, remove padding so box fills viewport */
-.modal-overlay:has(.modal-box-fullscreen) {
+/* When overlay has fullscreen active, remove padding so box fills viewport */
+.modal-overlay-fullscreen {
     padding: 0 !important;
     align-items: center !important;
     justify-content: center !important;

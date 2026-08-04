@@ -113,6 +113,13 @@
             if (modalBox) {
                 modalBox.classList.toggle('modal-box-fullscreen');
                 const isFull = modalBox.classList.contains('modal-box-fullscreen');
+                // Also toggle class on overlay for CSS targeting
+                const overlay = modalBox.closest('.modal-overlay');
+                if (overlay) {
+                    overlay.classList.toggle('modal-overlay-fullscreen', isFull);
+                    // Scroll modal box back to top on restore
+                    if (!isFull) modalBox.scrollTop = 0;
+                }
                 expandBtn.innerHTML = isFull ? '<i class="fas fa-compress"></i>' : '<i class="fas fa-expand"></i>';
                 expandBtn.setAttribute('title', isFull ? 'Restore Normal Size' : 'Full Page View');
             }
