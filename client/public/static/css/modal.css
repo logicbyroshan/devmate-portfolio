@@ -1053,7 +1053,9 @@ html.modal-open {
 }
 
 .modal-box--blog.modal-box-fullscreen .modal-fs-body {
-    flex-direction: row !important;
+    display: grid !important;
+    grid-template-columns: 270px 1fr !important;
+    grid-template-rows: 1fr !important;
     flex: 1 !important;
     min-height: 0 !important;
     overflow: hidden !important;
@@ -1062,9 +1064,6 @@ html.modal-open {
 .modal-box--blog.modal-box-fullscreen .modal-sidebar {
     display: flex !important;
     flex-direction: column !important;
-    width: 270px !important;
-    min-width: 270px !important;
-    flex-shrink: 0 !important;
     overflow-y: auto !important;
     overflow-x: hidden !important;
     background: rgba(6, 9, 38, 0.75) !important;
@@ -1074,27 +1073,36 @@ html.modal-open {
     box-sizing: border-box !important;
     scrollbar-width: thin !important;
     scrollbar-color: rgba(124, 58, 237, 0.25) transparent !important;
+    /* Force GPU layer */
+    transform: translateZ(0) !important;
+    -webkit-transform: translateZ(0) !important;
 }
 
 .modal-box--blog.modal-box-fullscreen .modal-fs-main {
-    flex: 1 !important;
     min-width: 0 !important;
-    display: flex !important;
-    flex-direction: column !important;
     overflow-y: auto !important;
     overflow-x: hidden !important;
     overscroll-behavior-y: contain !important;
     -webkit-overflow-scrolling: touch !important;
     scrollbar-width: thin !important;
     scrollbar-color: rgba(124, 58, 237, 0.25) transparent !important;
-    /* Force rendering — content-visibility override */
-    content-visibility: visible !important;
-    contain: none !important;
+    /* Force GPU compositing layer so browser paints this subtree */
+    transform: translateZ(0) !important;
+    -webkit-transform: translateZ(0) !important;
+    isolation: isolate !important;
+    position: relative !important;
+    z-index: 1 !important;
 }
 
 .modal-box--blog.modal-box-fullscreen .blog-modal-hero {
     height: 220px !important;
     flex-shrink: 0 !important;
+    display: block !important;
+}
+
+.modal-box--blog.modal-box-fullscreen .blog-modal-hero-img {
+    /* Override lazy loading effect — force display */
+    content-visibility: visible !important;
 }
 
 .modal-box--blog.modal-box-fullscreen .blog-modal-content {
