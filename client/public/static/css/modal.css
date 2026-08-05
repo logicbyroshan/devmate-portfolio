@@ -25,29 +25,8 @@ html.modal-open {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    contain: layout paint style;
     will-change: opacity;
     transition: opacity 0.28s ease, visibility 0s linear 0.28s;
-}
-
-@supports (content-visibility: hidden) {
-    .modal-overlay {
-        content-visibility: hidden;
-    }
-
-    .modal-overlay.modal-visible {
-        content-visibility: visible;
-    }
-}
-
-/* Force all descendant elements in a visible modal to render */
-.modal-overlay.modal-visible *,
-.modal-overlay.modal-visible .modal-fs-main,
-.modal-overlay.modal-visible .modal-fs-body,
-.modal-overlay.modal-visible .modal-sidebar,
-.modal-overlay.modal-visible .modal-body-content {
-    content-visibility: visible !important;
-    contain: none !important;
 }
 
 .modal-overlay.modal-visible {
