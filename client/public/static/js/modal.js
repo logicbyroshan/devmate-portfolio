@@ -38,7 +38,18 @@
         const modalBox = overlay.querySelector('.modal-box, .modal-box--blog, .modal-box-rexi, .modal-box-project');
         if (modalBox) {
             modalBox.classList.remove('modal-box-fullscreen');
+            // Reset scroll positions of inner scrollable panels
+            modalBox.scrollTop = 0;
+            const scrollables = modalBox.querySelectorAll('.modal-fs-main, .modal-sidebar, .modal-body-content, .modal-fs-body');
+            scrollables.forEach(el => { el.scrollTop = 0; });
+            // Reset expand button icon
+            const expandBtn = modalBox.querySelector('.modal-expand-btn');
+            if (expandBtn) {
+                expandBtn.innerHTML = '<i class="fas fa-expand"></i>';
+                expandBtn.setAttribute('title', 'Full Page View');
+            }
         }
+        overlay.classList.remove('modal-overlay-fullscreen');
 
         if (!document.querySelector('.modal-overlay.modal-visible')) {
             document.body.classList.remove('modal-open');
@@ -62,8 +73,8 @@
         const titleEl = modal.querySelector('.project-modal-title');
         if (titleEl) titleEl.textContent = title;
 
-        const nickEl = modal.querySelector('.project-modal-nickname');
-        if (nickEl) nickEl.textContent = nickname;
+        // Update nickname in BOTH main body and sidebar
+        modal.querySelectorAll('.project-modal-nickname').forEach(el => { el.textContent = nickname; });
 
         const imgEl = modal.querySelector('.project-modal-img');
         if (imgEl) {
@@ -74,11 +85,29 @@
         const descEl = modal.querySelector('.project-modal-desc');
         if (descEl) descEl.textContent = desc;
 
-        const stackEl = modal.querySelector('.project-modal-stack');
-        if (stackEl) stackEl.innerHTML = techBadges;
+        // Update tech stack in BOTH main body and sidebar
+        modal.querySelectorAll('.project-modal-stack').forEach(el => {
+            // Sidebar: render as sb-tech-item list
+            if (el.classList.contains('sb-tech-list')) {
+                const techs = Array.from(card.querySelectorAll('.project-tech-badge')).map(b => b.textContent.trim());
+                el.innerHTML = techs.map(t =>
+                    `<li class="sb-tech-item"><span class="sb-tech-dot"></span>${t}</li>`
+                ).join('');
+            } else {
+                el.innerHTML = techBadges;
+            }
+        });
 
         const githubEl = modal.querySelector('.project-modal-github');
         if (githubEl) githubEl.href = githubHref;
+
+        // Update sidebar links hrefs
+        const sidebarGithub = modal.querySelector('.modal-sidebar .project-modal-github');
+        if (sidebarGithub) sidebarGithub.href = githubHref;
+
+        const liveEl = modal.querySelector('.project-modal-live');
+        const sidebarLive = modal.querySelector('.modal-sidebar .project-modal-live');
+        if (liveEl && sidebarLive) sidebarLive.href = liveEl.href || '#';
     }
 
     // Prevent background wheel scrolling when modal is open
