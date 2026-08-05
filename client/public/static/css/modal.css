@@ -176,6 +176,28 @@ html.modal-open {
     color: #ffffff !important;
 }
 
+/* ─── Expand button: only Blog, Project, and Rexi AI modals ─── */
+/* Hide expand button by default on all modals */
+.modal-expand-btn {
+    display: none !important;
+}
+
+/* Show only in blog, project, and rexi AI modals */
+#modal-blog-1 .modal-expand-btn,
+#modal-blog-2 .modal-expand-btn,
+#modal-blog-3 .modal-expand-btn,
+#modal-project .modal-expand-btn,
+#modal-rexi .modal-expand-btn {
+    display: inline-flex !important;
+}
+
+/* Hide expand button on mobile / small screens */
+@media (max-width: 768px) {
+    .modal-expand-btn {
+        display: none !important;
+    }
+}
+
 /* ─── Documentation Callout Alert Blocks ───────────────────────────── */
 .doc-callout {
     position: relative;
@@ -1084,6 +1106,7 @@ html.modal-open {
 }
 
 /* ─── PROJECT / RESUME fullscreen: CSS grid (header + sidebar + main) ─── */
+/* NOTE: .modal-box--blog is excluded here — it uses flex-row via modal-fs-body instead */
 .modal-box-project.modal-box-fullscreen {
     display: grid !important;
     grid-template-rows: auto 1fr !important;
@@ -1091,16 +1114,17 @@ html.modal-open {
     grid-template-areas: "header header" "sidebar main" !important;
 }
 
-.modal-box.modal-box-fullscreen:has(.modal-sidebar) {
+/* Resume modal: .modal-box (not blog, not project) with sidebar → grid */
+.modal-box.modal-box-fullscreen:not(.modal-box--blog):not(.modal-box-rexi):has(.modal-sidebar) {
     display: grid !important;
     grid-template-rows: auto 1fr !important;
     grid-template-columns: 270px 1fr !important;
     grid-template-areas: "header header" "sidebar main" !important;
 }
 
-/* Grid area assignments for project/resume */
+/* Grid area assignments — project/resume only (NOT blog) */
 .modal-box-project.modal-box-fullscreen .modal-header-bar,
-.modal-box.modal-box-fullscreen .modal-header-bar {
+.modal-box.modal-box-fullscreen:not(.modal-box--blog):not(.modal-box-rexi) .modal-header-bar {
     grid-area: header;
     position: sticky;
     top: 0;
@@ -1117,7 +1141,7 @@ html.modal-open {
 }
 
 .modal-box-project.modal-box-fullscreen .modal-sidebar,
-.modal-box.modal-box-fullscreen .modal-sidebar {
+.modal-box.modal-box-fullscreen:not(.modal-box--blog):not(.modal-box-rexi) .modal-sidebar {
     grid-area: sidebar;
     display: flex !important;
     flex-direction: column !important;
@@ -1133,7 +1157,7 @@ html.modal-open {
 }
 
 .modal-box-project.modal-box-fullscreen .modal-body-content,
-.modal-box.modal-box-fullscreen .modal-body-content {
+.modal-box.modal-box-fullscreen:not(.modal-box--blog):not(.modal-box-rexi) .modal-body-content {
     grid-area: main;
     overflow-y: auto !important;
     overflow-x: hidden !important;
