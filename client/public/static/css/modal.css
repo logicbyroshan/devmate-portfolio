@@ -40,6 +40,16 @@ html.modal-open {
     }
 }
 
+/* Force all descendant elements in a visible modal to render */
+.modal-overlay.modal-visible *,
+.modal-overlay.modal-visible .modal-fs-main,
+.modal-overlay.modal-visible .modal-fs-body,
+.modal-overlay.modal-visible .modal-sidebar,
+.modal-overlay.modal-visible .modal-body-content {
+    content-visibility: visible !important;
+    contain: none !important;
+}
+
 .modal-overlay.modal-visible {
     opacity: 1;
     visibility: visible;
@@ -1068,27 +1078,30 @@ html.modal-open {
 .modal-box--blog.modal-box-fullscreen .modal-fs-main {
     flex: 1 !important;
     min-width: 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
     overflow-y: auto !important;
     overflow-x: hidden !important;
     overscroll-behavior-y: contain !important;
     -webkit-overflow-scrolling: touch !important;
     scrollbar-width: thin !important;
     scrollbar-color: rgba(124, 58, 237, 0.25) transparent !important;
-}
-
-.modal-box--blog.modal-box-fullscreen .blog-modal-content {
-    padding: 28px 48px 64px !important;
-    max-width: 860px !important;
-    box-sizing: border-box !important;
-}
-
-.modal-box--blog.modal-box-fullscreen .blog-modal-title {
-    font-size: 26px !important;
-    line-height: 1.3 !important;
+    /* Force rendering — content-visibility override */
+    content-visibility: visible !important;
+    contain: none !important;
 }
 
 .modal-box--blog.modal-box-fullscreen .blog-modal-hero {
     height: 220px !important;
+    flex-shrink: 0 !important;
+}
+
+.modal-box--blog.modal-box-fullscreen .blog-modal-content {
+    flex: 1 !important;
+    padding: 28px 48px 64px !important;
+    max-width: 860px !important;
+    box-sizing: border-box !important;
+    overflow-y: visible !important;
 }
 
 /* ─── PROJECT / RESUME fullscreen: CSS grid (header + sidebar + main) ─── */
