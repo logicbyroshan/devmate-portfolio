@@ -53,31 +53,30 @@
 
 .project-card {
     display: none;
-    flex-direction: column;
-    justify-content: center;
-    background: linear-gradient(135deg, #1e1b4b 0%, #312e81 35%, #4c1d95 70%, #7c3aed 100%);
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+    background: linear-gradient(180deg, rgba(25, 30, 65, 0.75) 0%, rgba(18, 22, 52, 0.6) 50%, rgba(11, 15, 38, 0.85) 100%);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    border-radius: 28px;
-    padding: 48px 56px;
+    border: 1px solid rgba(124, 58, 237, 0.25);
+    border-radius: 24px;
+    padding: 40px;
     position: absolute;
     width: 100%;
-    min-height: 420px;
+    min-height: 440px;
     opacity: 0;
-    overflow: hidden;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
     transform: translateX(100px);
     transition: transform 0.6s ease, opacity 0.6s ease;
     box-sizing: border-box;
 }
 
 .project-card.active {
-    display: flex;
+    display: grid;
     opacity: 1;
     transform: translateX(0);
     position: relative;
-    min-height: 420px;
+    min-height: 440px;
 }
 
 .project-card.slide-out-left {
@@ -98,7 +97,7 @@
 
 .project-card.slide-out-left,
 .project-card.slide-out-right {
-    display: flex;
+    display: grid;
     position: absolute;
     width: 100%;
     top: 0;
@@ -107,41 +106,9 @@
 
 .project-card.slide-in-left,
 .project-card.slide-in-right {
-    display: flex;
+    display: grid;
     position: relative;
     width: 100%;
-}
-
-.project-card-bg-pattern {
-    position: absolute;
-    inset: 0;
-    background-image: 
-        radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.12) 0%, transparent 40%),
-        radial-gradient(circle at 80% 80%, rgba(0, 0, 0, 0.35) 0%, transparent 50%),
-        linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-    background-size: 100% 100%, 100% 100%, 32px 32px, 32px 32px;
-    pointer-events: none;
-}
-
-.project-card-watermark {
-    position: absolute;
-    right: 40px;
-    bottom: 20px;
-    font-size: 190px;
-    color: rgba(255, 255, 255, 0.06);
-    pointer-events: none;
-    line-height: 1;
-    z-index: 1;
-}
-
-.project-card-inner {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    max-width: 820px;
 }
 
 @keyframes slideOutLeft {

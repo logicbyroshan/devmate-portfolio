@@ -840,6 +840,7 @@ function updateProjects(projects = []) {
 
       const gradClass = UNIVERSAL_GRADIENTS[index % UNIVERSAL_GRADIENTS.length];
       const iconClass = UNIVERSAL_ICONS[index % UNIVERSAL_ICONS.length];
+      const thumbTechPills = techList.slice(0, 4).map(t => `<span class="universal-thumb-tech-pill">${escapeHtml(t)}</span>`).join('');
 
       // Use JS case-study doc first; fall back to DB documentation
       const docHtml = PROJECT_DOCUMENTATION[projectName]
@@ -847,23 +848,42 @@ function updateProjects(projects = []) {
         || project.documentation
         || '';
 
-      return `
-        <div class="project-card ${gradClass} ${index === 0 ? 'active' : ''}" data-index="${index}" data-project-slug="${projectSlug}">
-          <div class="project-doc-content" style="display:none;">${docHtml}</div>
-          <div class="project-card-bg-pattern"></div>
-          <i class="fas ${iconClass} project-card-watermark"></i>
-          <div class="project-card-inner">
-            <div class="project-meta-row">
-              <span class="project-nickname">${escapeHtml(categoryName)}</span>
-              <span class="project-status-badge ${statusClass}">${escapeHtml(statusText)}</span>
-            </div>
-            <h3 class="project-title">${escapeHtml(projectName)}</h3>
-            <p class="project-description">${escapeHtml(project.description || '')}</p>
-            <div class="project-tech-stack">${techBadges}</div>
-            <div class="project-buttons">
-              ${buttonsHtml}
-            </div>
+      const contentHtml = `
+        <div class="project-content">
+          <div class="project-meta-row">
+            <span class="project-nickname">${escapeHtml(categoryName)}</span>
+            <span class="project-status-badge ${statusClass}">${escapeHtml(statusText)}</span>
           </div>
+          <h3 class="project-title">${escapeHtml(projectName)}</h3>
+          <p class="project-description">${escapeHtml(project.description || '')}</p>
+          <div class="project-tech-stack">${techBadges}</div>
+          <div class="project-buttons">
+            ${buttonsHtml}
+          </div>
+        </div>
+      `;
+
+      const imageHtml = `
+        <div class="project-image">
+          <div class="universal-project-thumb ${gradClass}">
+            <div class="universal-thumb-bg-pattern"></div>
+            <i class="fas ${iconClass} universal-thumb-watermark"></i>
+            <div class="universal-thumb-content">
+              <span class="universal-thumb-tag">${escapeHtml(categoryName)}</span>
+              <h3 class="universal-thumb-title">${escapeHtml(projectName)}</h3>
+              <div class="universal-thumb-tech-row">${thumbTechPills}</div>
+            </div>
+            <span class="project-category">${escapeHtml(categoryName)}</span>
+          </div>
+        </div>
+      `;
+
+      const isEven = index % 2 === 0;
+
+      return `
+        <div class="project-card ${index === 0 ? 'active' : ''}" data-index="${index}" data-project-slug="${projectSlug}">
+          <div class="project-doc-content" style="display:none;">${docHtml}</div>
+          ${isEven ? contentHtml + imageHtml : imageHtml + contentHtml}
         </div>
       `;
     })
