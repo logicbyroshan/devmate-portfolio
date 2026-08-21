@@ -214,8 +214,8 @@ const PROJECT_DOCUMENTATION = {
       <!-- 1. Hero & Scale Metrics -->
       <div class="case-study-hero-banner">
         <div class="case-study-badge"><i class="fas fa-shield-alt"></i> Enterprise Production SaaS</div>
-        <h3 class="case-study-headline">Enterprise ID Card Management & Automated Generation Platform</h3>
-        <p class="case-study-lead">CardFlow is a centralized production platform built from the ground up to help schools and organizations manage large-scale ID-card data, streamline verification and approval workflows, process records, and generate high-DPI downloadable cards across web, desktop, and mobile.</p>
+        <h3 class="case-study-headline">CardFlow — Enterprise ID Card Management & Automated Generation Platform</h3>
+        <p class="case-study-lead">CardFlow is a centralized production software platform built to help schools and organizations manage large volumes of ID-card data, streamline verification and approval workflows, process student information, and generate downloadable high-DPI ID-card outputs through a centralized system. Designed and developed from the ground up by me end-to-end.</p>
       </div>
 
       <!-- Links Row -->
@@ -232,12 +232,12 @@ const PROJECT_DOCUMENTATION = {
         <div class="case-study-stats-grid">
           <div class="cs-stat-card">
             <div class="cs-stat-number">1,000+</div>
-            <div class="cs-stat-label">Active Users</div>
-            <div class="cs-stat-sub">Real organization workloads</div>
+            <div class="cs-stat-label">Production Users</div>
+            <div class="cs-stat-sub">Actively used by real organizations</div>
           </div>
           <div class="cs-stat-card">
             <div class="cs-stat-number">136K+</div>
-            <div class="cs-stat-label">Cards Managed</div>
+            <div class="cs-stat-label">ID Cards Managed</div>
             <div class="cs-stat-sub">Processed student & staff records</div>
           </div>
           <div class="cs-stat-card">
@@ -248,47 +248,50 @@ const PROJECT_DOCUMENTATION = {
           <div class="cs-stat-card">
             <div class="cs-stat-number">435+</div>
             <div class="cs-stat-label">Play Store Installs</div>
-            <div class="cs-stat-sub">Cross-platform Android users</div>
+            <div class="cs-stat-sub">Android mobile app users</div>
           </div>
         </div>
       </div>
 
       <!-- 2. Core Data Workflow (State Machine) -->
       <div class="case-study-section">
-        <h4 class="case-study-sec-title"><i class="fas fa-random"></i> Core Data Workflow (State Machine)</h4>
+        <h4 class="case-study-sec-title"><i class="fas fa-random"></i> Core Data Workflow Lifecycle</h4>
+        <p class="cs-sub-lead">The system is built around an explicit workflow-based state model rather than treating ID cards as isolated files:</p>
         <div class="cs-workflow-flow">
-          <div class="cs-wf-step">1. Pending Import</div>
+          <div class="cs-wf-step">1. Pending</div>
           <div class="cs-wf-arrow"><i class="fas fa-chevron-right"></i></div>
-          <div class="cs-wf-step">2. Verified Data</div>
+          <div class="cs-wf-step">2. Verified</div>
           <div class="cs-wf-arrow"><i class="fas fa-chevron-right"></i></div>
           <div class="cs-wf-step">3. Approved</div>
           <div class="cs-wf-arrow"><i class="fas fa-chevron-right"></i></div>
-          <div class="cs-wf-step">4. Batch Processed</div>
+          <div class="cs-wf-step">4. Processed</div>
           <div class="cs-wf-arrow"><i class="fas fa-chevron-right"></i></div>
-          <div class="cs-wf-step wf-active">5. Downloaded (300 DPI)</div>
+          <div class="cs-wf-step wf-active">5. Downloaded</div>
         </div>
       </div>
 
-      <!-- 3. Problem vs Solution -->
+      <!-- 3. Problem Solved vs. CardFlow Solution -->
       <div class="case-study-section">
         <h4 class="case-study-sec-title"><i class="fas fa-crosshairs"></i> Problem Solved vs. CardFlow Solution</h4>
         <div class="cs-two-col">
           <div class="cs-col-box cs-problem-box">
             <div class="cs-col-header"><i class="fas fa-exclamation-triangle"></i> Traditional Bottlenecks</div>
             <ul class="cs-list cs-list-problem">
-              <li>Manual spreadsheets, duplicate rows, and conflicting edits</li>
-              <li>Disorganized image folders with mismatched portrait files</li>
-              <li>Repetitive manual verification & zero status tracking</li>
-              <li>Slow, error-prone manual exports and printing delays</li>
+              <li>Manual spreadsheets and disconnected image folders</li>
+              <li>Duplicate records and disorganized student photographs</li>
+              <li>Repetitive manual data verification and status tracking</li>
+              <li>Multiple stakeholders editing conflicting datasets</li>
+              <li>Slow, error-prone manual approval and export processes</li>
             </ul>
           </div>
           <div class="cs-col-box cs-solution-box">
             <div class="cs-col-header"><i class="fas fa-check-circle"></i> Centralized CardFlow Solution</div>
             <ul class="cs-list cs-list-solution">
-              <li>Centralized database with automated duplicate record detection</li>
-              <li>Automated photo cropping, validation, and missing photo alerts</li>
+              <li>Centralized data pipelines with instant duplicate detection</li>
+              <li>Automated photo cropping, finishing, and matching</li>
               <li>Granular RBAC for Admins, Schools, and Operators</li>
-              <li>Async Celery rendering of calibrated print-ready thermal files</li>
+              <li>Asynchronous background rendering via Celery & Redis</li>
+              <li>One-click batch generation of print-ready thermal card files</li>
             </ul>
           </div>
         </div>
@@ -299,94 +302,116 @@ const PROJECT_DOCUMENTATION = {
         <h4 class="case-study-sec-title"><i class="fas fa-cubes"></i> 9 Core Engineering Components</h4>
         <div class="cs-grid-3">
           <div class="cs-card-sm">
-            <div class="cs-card-sm-title"><i class="fas fa-table"></i> 1. Data Engine</div>
-            <p>Flexible schema supporting configurable fields, relational photography, deduplication, and bulk record operations.</p>
+            <div class="cs-card-sm-title"><i class="fas fa-table"></i> 1. Data Management Engine</div>
+            <p>Flexible table-oriented schema supporting configurable fields, multi-type values, unique constraints, duplicate detection, and high-performance bulk operations.</p>
           </div>
           <div class="cs-card-sm">
-            <div class="cs-card-sm-title"><i class="fas fa-user-shield"></i> 2. RBAC & Auth</div>
-            <p>Multi-tier roles (Owner, Admin, Assistant, Operator) enforcing granular permissions for view, edit, approve, and export.</p>
+            <div class="cs-card-sm-title"><i class="fas fa-user-shield"></i> 2. Authentication & RBAC</div>
+            <p>Role-based architecture (Owner, Admin, Assistant, Operator) strictly governing permissions for view, create, edit, verify, approve, download, and user administration.</p>
           </div>
           <div class="cs-card-sm">
-            <div class="cs-card-sm-title"><i class="fas fa-tasks"></i> 3. Workflow Engine</div>
-            <p>Explicit lifecycle states tracking operational progress across tens of thousands of records simultaneously.</p>
+            <div class="cs-card-sm-title"><i class="fas fa-tasks"></i> 3. Workflow Management</div>
+            <p>Explicit lifecycle transitions making it possible to track progress across large datasets with complete administrative visibility.</p>
           </div>
           <div class="cs-card-sm">
-            <div class="cs-card-sm-title"><i class="fas fa-history"></i> 4. Audit Logging</div>
-            <p>Immutable audit trail recording actor, timestamp, affected record, and field-level diffs for regulatory compliance.</p>
+            <div class="cs-card-sm-title"><i class="fas fa-history"></i> 4. Audit Logging Layer</div>
+            <p>Records who performed an action, what operation occurred, affected record, timestamp, and field-level diffs for full organizational compliance.</p>
           </div>
           <div class="cs-card-sm">
-            <div class="cs-card-sm-title"><i class="fas fa-file-import"></i> 5. Import/Export</div>
-            <p>Robust parsers for CSV, XLSX, and ZIP photo archives in; exports to XLSX, CSV, high-res PDF, and DOCX formats.</p>
+            <div class="cs-card-sm-title"><i class="fas fa-file-import"></i> 5. Import & Export Engine</div>
+            <p>Imports CSV, XLSX, and ZIP photo datasets with automatic schema validation; exports XLSX, CSV, print-ready PDF, and DOCX outputs.</p>
           </div>
           <div class="cs-card-sm">
-            <div class="cs-card-sm-title"><i class="fas fa-images"></i> 6. Photo Pipeline</div>
-            <p>Validation, aspect-ratio checking, missing image indicators, and automated portrait alignment.</p>
+            <div class="cs-card-sm-title"><i class="fas fa-images"></i> 6. Image & Photo Pipeline</div>
+            <p>Dedicated processing for student & relationship photographs, missing photo indicators, and auto-cropping to prevent misprinted physical cards.</p>
           </div>
           <div class="cs-card-sm">
-            <div class="cs-card-sm-title"><i class="fas fa-bolt"></i> 7. Celery & Redis</div>
-            <p>Asynchronous worker queues executing heavy image rendering, bulk exports, and imports off the main HTTP thread.</p>
+            <div class="cs-card-sm-title"><i class="fas fa-bolt"></i> 7. Background Processing</div>
+            <p>Celery + Redis workers offload heavy image manipulation, PDF compilation, and large imports from the synchronous HTTP request thread.</p>
           </div>
           <div class="cs-card-sm">
-            <div class="cs-card-sm-title"><i class="fas fa-network-wired"></i> 8. REST API (DRF)</div>
-            <p>Clean API-first architecture exposing centralized endpoints for web, desktop, and mobile client applications.</p>
+            <div class="cs-card-sm-title"><i class="fas fa-network-wired"></i> 8. REST API Architecture</div>
+            <p>Django REST Framework API-first backend providing centralized endpoints for auth, cards, workflows, and batch operations across all clients.</p>
           </div>
           <div class="cs-card-sm">
-            <div class="cs-card-sm-title"><i class="fas fa-mobile-alt"></i> 9. Cross-Platform</div>
-            <p>Shared backend serving React Web, Electron Desktop, and React Native Android clients with identical business rules.</p>
+            <div class="cs-card-sm-title"><i class="fas fa-mobile-alt"></i> 9. Cross-Platform Ecosystem</div>
+            <p>Shared backend logic serving React Web, Electron Desktop, and React Native Android clients with identical business rules.</p>
           </div>
         </div>
       </div>
 
-      <!-- 5. System Architecture Flow -->
+      <!-- 5. Background Processing Pipeline Flowchart -->
       <div class="case-study-section">
-        <h4 class="case-study-sec-title"><i class="fas fa-sitemap"></i> High-Level System Architecture</h4>
-        <div class="cs-arch-flow">
-          <div class="cs-arch-step">
-            <div class="cs-arch-icon"><i class="fas fa-users"></i></div>
-            <div class="cs-arch-name">Clients Ecosystem</div>
-            <div class="cs-arch-desc">React Web • Electron Desktop • Android App</div>
-          </div>
-          <div class="cs-arch-arrow"><i class="fas fa-arrow-right"></i></div>
-          <div class="cs-arch-step">
-            <div class="cs-arch-icon"><i class="fas fa-server"></i></div>
-            <div class="cs-arch-name">Django REST API</div>
-            <div class="cs-arch-desc">Nginx • Gunicorn • JWT Auth • RBAC Engine</div>
-          </div>
-          <div class="cs-arch-arrow"><i class="fas fa-arrow-right"></i></div>
-          <div class="cs-arch-step">
-            <div class="cs-arch-icon"><i class="fas fa-database"></i></div>
-            <div class="cs-arch-name">Data & Workers</div>
-            <div class="cs-arch-desc">PostgreSQL DB • Redis Queue • Celery Workers</div>
-          </div>
-        </div>
+        <h4 class="case-study-sec-title"><i class="fas fa-microchip"></i> Background Processing Architecture (Celery + Redis)</h4>
+        <div class="cs-ascii-box">User Request ──► Django REST API ──► Create Background Job ──► Redis Queue
+                                                                   │
+                                                                   ▼
+User Receives Result ◄── Update Database ◄── Process Task ◄── Celery Worker</div>
       </div>
 
-      <!-- 6. Engineering Challenges & Solutions -->
+      <!-- 6. Production Infrastructure Flowchart -->
+      <div class="case-study-section">
+        <h4 class="case-study-sec-title"><i class="fas fa-server"></i> Production Deployment & Infrastructure</h4>
+        <div class="cs-ascii-box">[Web Clients / Apps] ──► Internet ──► Nginx Reverse Proxy ──► Gunicorn ──► Django / DRF ──► PostgreSQL DB
+                                                                      │
+                                                                      ▼
+                                                                Redis Queue ──► Celery Workers ──► High-DPI Output Generation</div>
+      </div>
+
+      <!-- 7. Technology Stack Breakdown Table -->
+      <div class="case-study-section">
+        <h4 class="case-study-sec-title"><i class="fas fa-layer-group"></i> Technology Stack Breakdown</h4>
+        <table class="cs-table">
+          <thead>
+            <tr><th>Layer</th><th>Technologies</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Frontend</strong></td><td>React, Modern CSS3, HTML5</td></tr>
+            <tr><td><strong>Backend</strong></td><td>Python, Django, Django REST Framework</td></tr>
+            <tr><td><strong>Database</strong></td><td>PostgreSQL (ACID, Relational, Indexing)</td></tr>
+            <tr><td><strong>Background Jobs & Cache</strong></td><td>Celery, Redis Message Broker</td></tr>
+            <tr><td><strong>Desktop & Mobile</strong></td><td>Electron (Desktop), React Native (Android)</td></tr>
+            <tr><td><strong>Deployment & Infrastructure</strong></td><td>Docker, Nginx, Gunicorn, Linux VPS</td></tr>
+            <tr><td><strong>Version Control</strong></td><td>Git, GitHub</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 8. Engineering Evolution Flow -->
+      <div class="case-study-section">
+        <h4 class="case-study-sec-title"><i class="fas fa-chart-line"></i> Engineering Evolution</h4>
+        <div class="cs-ascii-box">Initial Data Management ──► Authentication ──► Role-Based Access ──► Workflow Management
+                                                                                   │
+                                                                                   ▼
+Production Operations ◄── Cross-Platform Clients ◄── Background Processing ◄── Bulk Import/Export</div>
+      </div>
+
+      <!-- 9. 5 Real Engineering Challenges -->
       <div class="case-study-section">
         <h4 class="case-study-sec-title"><i class="fas fa-tools"></i> 5 Real Engineering Challenges Overcome</h4>
         <div class="cs-challenge-card">
-          <div class="cs-challenge-title">1. Large Dataset Virtualization & Bulk Operations</div>
-          <p>Handled 136K+ records without UI lag by introducing backend pagination, database indexes on tenant foreign keys, and batch SQL updates.</p>
+          <div class="cs-challenge-title">1. Large Dataset Operations</div>
+          <p>Users needed to search, filter, sort, verify, and approve 136K+ card records without UI lag. Solved via database indexing, query optimization, and bulk SQL updates.</p>
         </div>
         <div class="cs-challenge-card">
-          <div class="cs-challenge-title">2. Multi-Tenant Authorization & Concurrency</div>
-          <p>Prevented unauthorized operations across organizations by designing an explicit RBAC matrix validated at the DRF serializer layer.</p>
+          <div class="cs-challenge-title">2. Multi-User Operations & RBAC</div>
+          <p>Prevented unauthorized operations across organizations with an explicit permission matrix enforced at both API serializers and service layers.</p>
         </div>
         <div class="cs-challenge-card">
-          <div class="cs-challenge-title">3. Long-Running Workloads & HTTP Timeouts</div>
-          <p>Decoupled multi-thousand record card generation into Celery tasks, storing job progress in Redis with real-time UI polling.</p>
+          <div class="cs-challenge-title">3. Long-Running Operations</div>
+          <p>Moving multi-thousand record exports and photo calibrations into Celery background workers decoupled user actions from HTTP response timeouts.</p>
         </div>
         <div class="cs-challenge-card">
-          <div class="cs-challenge-title">4. Photo Quality & Deduplication</div>
-          <p>Implemented checksum duplicate detection and pre-generation validation checks to catch missing portraits before print cycles.</p>
+          <div class="cs-challenge-title">4. Source Data Quality & Deduplication</div>
+          <p>Implemented checksum duplicate detection and pre-generation validation checks to eliminate missing photographs and corrupt rows before printing.</p>
         </div>
         <div class="cs-challenge-card">
-          <div class="cs-challenge-title">5. Production Reliability & Edge Cases</div>
-          <p>Hardened error recovery for malformed Excel uploads, partial batch failures, and network disconnects during bulk transfers.</p>
+          <div class="cs-challenge-title">5. Real Production Reliability</div>
+          <p>Refined error handling, graceful fallback for malformed spreadsheets, and seamless rolling updates on production Linux servers.</p>
         </div>
       </div>
 
-      <!-- 7. Architectural Decisions -->
+      <!-- 10. Key Architectural Decisions -->
       <div class="case-study-section">
         <h4 class="case-study-sec-title"><i class="fas fa-brain"></i> Key Architectural Decisions</h4>
         <div class="cs-grid-2">
@@ -409,10 +434,13 @@ const PROJECT_DOCUMENTATION = {
         </div>
       </div>
 
-      <!-- 8. End-to-End Ownership Summary -->
+      <!-- 11. End-to-End Ownership Summary -->
       <div class="case-study-section">
         <h4 class="case-study-sec-title"><i class="fas fa-award"></i> Software Engineer Ownership Summary</h4>
-        <p class="cs-text">Designed, engineered, deployed, and maintained CardFlow end-to-end as the sole engineer. It transitioned my software development practice from writing isolated features to architecting and operating resilient, scalable systems that real organizations rely on daily.</p>
+        <div class="cs-highlight-box green">
+          <div class="cs-highlight-title"><i class="fas fa-check-circle"></i> End-to-End Responsibility</div>
+          <p>Responsible for CardFlow from concept to production: architecture, database design, backend APIs, frontend, authentication, background workers, deployment, and ongoing optimization. Handling 1,000+ users, 136K+ records, 86K+ downloads, and 435+ Android installs in real production.</p>
+        </div>
       </div>
     </div>
   `,
@@ -422,7 +450,7 @@ const PROJECT_DOCUMENTATION = {
       <div class="case-study-hero-banner">
         <div class="case-study-badge"><i class="fas fa-flask"></i> MVP / Pilot Testing</div>
         <h3 class="case-study-headline">VidyaMaxx — AI-First Unified School Management Platform</h3>
-        <p class="case-study-lead">VidyaMaxx is an AI-first school management ecosystem designed to bring academic management, administration, communication, student information, and day-to-day school operations into one unified digital platform across web and desktop.</p>
+        <p class="case-study-lead">VidyaMaxx is an AI-first school management platform designed to bring academic management, administration, communication, student information, and day-to-day school operations into a unified digital ecosystem across web and desktop.</p>
       </div>
 
       <!-- Links Row -->
@@ -431,16 +459,16 @@ const PROJECT_DOCUMENTATION = {
         <a href="https://github.com/logicbyroshan/vidyamaxx-school-management-saas.git" target="_blank" rel="noopener noreferrer" class="cs-link-pill primary"><i class="fab fa-github"></i> GitHub Repository</a>
         <span class="cs-link-pill secondary"><i class="fas fa-globe"></i> Web: Available</span>
         <span class="cs-link-pill secondary"><i class="fas fa-desktop"></i> Desktop: Available</span>
-        <span class="cs-link-pill secondary"><i class="fab fa-android"></i> Android/iOS: Planned</span>
+        <span class="cs-link-pill secondary"><i class="fab fa-android"></i> Android / iOS: Planned</span>
       </div>
 
       <!-- 2. Pilot Stage & Validation Focus -->
       <div class="case-study-section">
-        <h4 class="case-study-sec-title"><i class="fas fa-vial"></i> Pilot Testing & Validation</h4>
+        <h4 class="case-study-sec-title"><i class="fas fa-vial"></i> Current Status & Pilot Validation</h4>
         <div class="cs-two-col">
           <div class="cs-col-box cs-solution-box">
             <div class="cs-col-header"><i class="fas fa-school"></i> Partner School Demonstrations</div>
-            <p class="cs-text">Demonstrated through live pilot environments to selected partner schools, allowing real educators and administrators to validate workflows, usability, and operational throughput before wide rollout.</p>
+            <p class="cs-text">Demonstrated through live development environments to selected partner schools, allowing educators and administrators to validate workflows, usability, and operational throughput before production rollout.</p>
           </div>
           <div class="cs-col-box cs-problem-box">
             <div class="cs-col-header"><i class="fas fa-bullseye"></i> Current Phase Focus</div>
@@ -449,80 +477,68 @@ const PROJECT_DOCUMENTATION = {
         </div>
       </div>
 
-      <!-- 3. The Problem vs Connected Vision -->
+      <!-- 3. The Problem of Fragmentation -->
       <div class="case-study-section">
-        <h4 class="case-study-sec-title"><i class="fas fa-crosshairs"></i> The Problem vs. VidyaMaxx Solution</h4>
+        <h4 class="case-study-sec-title"><i class="fas fa-crosshairs"></i> The Problem: Fragmented Legacy Systems</h4>
         <div class="cs-two-col">
           <div class="cs-col-box cs-problem-box">
-            <div class="cs-col-header"><i class="fas fa-exclamation-triangle"></i> Fragmented Legacy Systems</div>
+            <div class="cs-col-header"><i class="fas fa-exclamation-triangle"></i> Distributed School Bottlenecks</div>
             <ul class="cs-list cs-list-problem">
               <li>Disconnected databases for attendance, grades, and fees</li>
               <li>Duplicated manual data entry across disparate departments</li>
               <li>Zero unified visibility for principals and administrators</li>
               <li>Isolated communication channels causing parent friction</li>
+              <li>Lack of predictive intelligence for struggling students</li>
             </ul>
           </div>
           <div class="cs-col-box cs-solution-box">
-            <div class="cs-col-header"><i class="fas fa-check-circle"></i> Connected Operating System</div>
+            <div class="cs-col-header"><i class="fas fa-check-circle"></i> Connected VidyaMaxx Operating System</div>
             <ul class="cs-list cs-list-solution">
               <li>Unified relational data model with shared business rules</li>
               <li>Single source of truth for student & staff lifecycles</li>
               <li>Real-time administrative dashboards and reporting</li>
-              <li>AI-assisted analytics predicting student academic needs</li>
+              <li>AI-assisted analytics predicting academic needs early</li>
+              <li>Cross-platform access for Web, Desktop, and Mobile</li>
             </ul>
           </div>
         </div>
       </div>
 
-      <!-- 4. Product Vision & Architecture -->
+      <!-- 4. Product Vision & Architecture Flowchart -->
       <div class="case-study-section">
-        <h4 class="case-study-sec-title"><i class="fas fa-sitemap"></i> Product Architecture & Data Flow</h4>
-        <div class="cs-arch-flow">
-          <div class="cs-arch-step">
-            <div class="cs-arch-icon"><i class="fas fa-graduation-cap"></i></div>
-            <div class="cs-arch-name">Academics</div>
-            <div class="cs-arch-desc">Timetables • Grades • Attendance</div>
-          </div>
-          <div class="cs-arch-arrow"><i class="fas fa-plus"></i></div>
-          <div class="cs-arch-step">
-            <div class="cs-arch-icon"><i class="fas fa-building"></i></div>
-            <div class="cs-arch-name">Administration</div>
-            <div class="cs-arch-desc">Fees • Staff • Operations</div>
-          </div>
-          <div class="cs-arch-arrow"><i class="fas fa-plus"></i></div>
-          <div class="cs-arch-step">
-            <div class="cs-arch-icon"><i class="fas fa-comments"></i></div>
-            <div class="cs-arch-name">Communication</div>
-            <div class="cs-arch-desc">Parent Portals • Alerts</div>
-          </div>
-          <div class="cs-arch-arrow"><i class="fas fa-arrow-right"></i></div>
-          <div class="cs-arch-step">
-            <div class="cs-arch-icon"><i class="fas fa-brain"></i></div>
-            <div class="cs-arch-name">AI Capabilities</div>
-            <div class="cs-arch-desc">Predictive Learning Analytics</div>
-          </div>
-        </div>
+        <h4 class="case-study-sec-title"><i class="fas fa-sitemap"></i> Product Vision & Connected Data Architecture</h4>
+        <div class="cs-ascii-box">                    VidyaMaxx Platform
+                            │
+            ┌───────────────┼────────────────┐
+            ↓               ↓                ↓
+       Academics       Administration    Communication
+            │               │                │
+            └───────────────┼────────────────┘
+                            ↓
+                    Unified School Data
+                            ↓
+                      AI Capabilities (Predictive Learning Analytics)</div>
       </div>
 
-      <!-- 5. Core Capabilities Grid -->
+      <!-- 5. Core Functional Modules -->
       <div class="case-study-section">
         <h4 class="case-study-sec-title"><i class="fas fa-cubes"></i> Core Functional Modules</h4>
         <div class="cs-grid-2">
           <div class="cs-card-sm">
-            <div class="cs-card-sm-title"><i class="fas fa-book-reader"></i> Academic Management</div>
-            <p>Course planning, automated clash-free timetable generator, configurable grading rubrics, and automated report card printing.</p>
+            <div class="cs-card-sm-title"><i class="fas fa-book-reader"></i> Academic Operations</div>
+            <p>Course planning, automated clash-free timetable generator, configurable grading rubrics, exam scheduling, and automated report card printing.</p>
           </div>
           <div class="cs-card-sm">
             <div class="cs-card-sm-title"><i class="fas fa-id-badge"></i> Student & Staff SIS</div>
-            <p>Complete student lifecycle records, digital enrollment, attendance logs, and staff payroll/leave tracking.</p>
+            <p>Complete student lifecycle records, digital admissions, biometric/digital attendance logs, and staff payroll/leave tracking.</p>
           </div>
           <div class="cs-card-sm">
             <div class="cs-card-sm-title"><i class="fas fa-brain"></i> AI Insights Engine</div>
-            <p>Machine learning models detect learning pattern anomalies early, recommending targeted interventions for teachers.</p>
+            <p>Machine learning models detect learning pattern anomalies early, recommending targeted interventions and customized study plans.</p>
           </div>
           <div class="cs-card-sm">
             <div class="cs-card-sm-title"><i class="fas fa-shield-alt"></i> Multi-Tenancy & Security</div>
-            <p>Isolated organizational tenancy ensuring FERPA and strict privacy compliance with granular RBAC permissions.</p>
+            <p>Isolated organizational tenancy ensuring FERPA and strict privacy compliance with granular role-based permissions.</p>
           </div>
         </div>
       </div>
