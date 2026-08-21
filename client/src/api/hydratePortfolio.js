@@ -633,7 +633,7 @@ export const STATIC_PROJECTS = [
     status: '🟢 In Active Use',
     status_class: 'status-prod',
     technologies_list: ['Python', 'OpenCV', 'Image Processing', 'Automation'],
-    thumbnail: '/static/images/task.webp',
+    thumbnail: null,
     has_github: false,
     secondary_btn: 'Technical Overview',
     primary_btn: 'Case Study',
@@ -646,7 +646,7 @@ export const STATIC_PROJECTS = [
     status: '🟢 Production',
     status_class: 'status-prod',
     technologies_list: ['Django', 'React', 'PostgreSQL', 'REST API', 'AI'],
-    thumbnail: '/static/images/hero.webp',
+    thumbnail: null,
     has_github: false,
     live_url: 'https://logicbyroshan.in/#projects',
     primary_btn: 'Case Study',
@@ -659,7 +659,7 @@ export const STATIC_PROJECTS = [
     status: '🟢 Live',
     status_class: 'status-prod',
     technologies_list: ['Django', 'React', 'PostgreSQL', 'AI', 'REST API'],
-    thumbnail: '/static/images/mybgimg.webp',
+    thumbnail: null,
     github_url: 'https://github.com/logicbyroshan',
     has_github: true,
     primary_btn: 'Case Study',
@@ -672,7 +672,7 @@ export const STATIC_PROJECTS = [
     status: '🔵 Open Source',
     status_class: 'status-oss',
     technologies_list: ['Python', 'Django', 'React', 'PostgreSQL', 'AI'],
-    thumbnail: '/static/images/about/about1.webp',
+    thumbnail: null,
     github_url: 'https://github.com/logicbyroshan',
     has_github: true,
     primary_btn: 'Case Study',
@@ -703,44 +703,49 @@ const STATIC_SKILL_CARDS = [
 ];
 
 function updateSkills(skills) {
-  const techGrid = document.querySelector('.tech-grid');
-  if (!techGrid) return;
+  const container = document.querySelector('.skills-grid');
+  if (!container) return;
 
-  // Group by category name if available
-  const groups = new Map();
-  if (Array.isArray(skills)) {
-    skills.forEach((skill) => {
-      const catName = skill.category?.name || skill.category_name;
-      if (catName) {
-        if (!groups.has(catName)) {
-          groups.set(catName, []);
-        }
-        groups.get(catName).push(skill.name);
-      }
-    });
-  }
-
-  // Render the 4 curated category cards, ensuring complete skill lists are always preserved
-  const cardsToRender = STATIC_SKILL_CARDS.map((staticCard) => {
-    const liveItems = groups.get(staticCard.title) || [];
-    // Union to ensure full static skills list is never reduced
-    const combinedSkills = Array.from(new Set([...staticCard.skills, ...liveItems]));
-    return {
-      title: staticCard.title,
-      icon: staticCard.icon,
-      skills: combinedSkills.length > 0 ? combinedSkills : staticCard.skills,
-    };
-  });
-
-  techGrid.innerHTML = cardsToRender
-    .map((card) => {
-      const listItems = card.skills.map((name) => `<li>${escapeHtml(name)}</li>`).join('');
-      return `
+  const validSkills = Array.isArray(skills) ? skills.filter(Boolean) : [];
+  if (!validSkills.length) {
+    container.innerHTML = STATIC_SKILL_CARDS
+      .map(
+        (card) => `
         <div class="tech-card">
           <div class="tech-icon-wrapper">
             <i class="fas ${card.icon}"></i>
           </div>
           <h3 class="tech-card-title">${escapeHtml(card.title)}</h3>
+          <ul class="skills-list">
+            ${card.skills.map((skill) => `<li>${escapeHtml(skill)}</li>`).join('')}
+          </ul>
+        </div>
+      `
+      )
+      .join('');
+    return;
+  }
+
+  const grouped = validSkills.reduce((acc, skill) => {
+    const category = skill.category?.name || 'Other';
+    if (!acc[category]) acc[category] = [];
+    acc[category].push(skill);
+    return acc;
+  }, {});
+
+  container.innerHTML = Object.entries(grouped)
+    .map(([category, items]) => {
+      const card = STATIC_SKILL_CARDS.find((c) => c.title === category) || {
+        icon: 'fa-code',
+        title: category,
+      };
+      const listItems = items.map((s) => `<li>${escapeHtml(s.name)}</li>`).join('');
+      return `
+        <div class="tech-card">
+          <div class="tech-icon-wrapper">
+            <i class="fas ${card.icon}"></i>
+          </div>
+          <h3 class="tech-card-title">${escapeHtml(category)}</h3>
           <ul class="skills-list">${listItems}</ul>
         </div>
       `;
@@ -764,6 +769,23 @@ export function getCombinedProjects(projects = []) {
   return STATIC_PROJECTS;
 }
 
+const UNIVERSAL_GRADIENTS = [
+  'universal-gradient-1',
+  'universal-gradient-2',
+  'universal-gradient-3',
+  'universal-gradient-4',
+  'universal-gradient-5',
+];
+
+const UNIVERSAL_ICONS = [
+  'fa-cogs',
+  'fa-plane',
+  'fa-tasks',
+  'fa-graduation-cap',
+  'fa-cubes',
+  'fa-code',
+];
+
 function updateProjects(projects = []) {
   const slider = document.querySelector('.projects-slider');
   if (!slider) return;
@@ -782,8 +804,13 @@ function updateProjects(projects = []) {
 
   slider.innerHTML = combinedProjects
     .map((project, index) => {
+      const projectName = project.project_name || project.title;
+      const staticProject = STATIC_PROJECTS.find((p) => p.project_name === projectName || p.title === projectName);
+      const categoryName = project.category?.name || staticProject?.category?.name || 'Enterprise SaaS';
+      const imageUrl = project.thumbnail || staticProject?.thumbnail || null;
+
       // Normalize technologies_list (API may return array, static has array)
-      let techList = project.technologies_list || [];
+      let techList = project.technologies_list || staticProject?.technologies_list || [];
       if (typeof techList === 'string') {
         techList = techList.split(',').map((t) => t.trim()).filter(Boolean);
       }
@@ -791,11 +818,6 @@ function updateProjects(projects = []) {
         .slice(0, 5)
         .map((tech) => `<span class="project-tech-badge">${escapeHtml(tech)}</span>`)
         .join('');
-
-      const staticProject = STATIC_PROJECTS.find((p) => p.project_name === projectName || p.title === projectName);
-      const categoryName = project.category?.name || staticProject?.category?.name || 'Enterprise SaaS';
-      const imageUrl = project.thumbnail || staticProject?.thumbnail || '/static/images/ecom.webp';
-      const projectName = project.project_name || project.title;
 
       // Resolve display status — prefer explicit display format, fallback to lookup, then default
       const hasDisplayStatus = project.status && /[🟢🟡🔵🔴🟠]/u.test(project.status);
@@ -815,6 +837,39 @@ function updateProjects(projects = []) {
         buttonsHtml += `<a href="#/projects/${projectSlug}" class="btn btn-secondary project-page-link" data-project-slug="${projectSlug}">Technical Overview</a>`;
       } else if (secondaryBtn === 'Live Preview') {
         buttonsHtml += `<a href="https://logicbyroshan.in/#projects" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">Live Preview</a>`;
+      }
+
+      // Check if project has an authentic custom banner image
+      const hasCustomBanner = imageUrl && (imageUrl.includes('cardflow-banner') || imageUrl.includes('vidyamaxx-banner'));
+
+      let imageHtml = '';
+      if (hasCustomBanner) {
+        imageHtml = `
+          <div class="project-image">
+            <span class="project-category">${escapeHtml(categoryName)}</span>
+            <img src="${escapeHtml(imageUrl)}" alt="${escapeHtml(projectName)}" width="1200" height="800" loading="lazy" decoding="async">
+          </div>
+        `;
+      } else {
+        const gradClass = UNIVERSAL_GRADIENTS[index % UNIVERSAL_GRADIENTS.length];
+        const iconClass = UNIVERSAL_ICONS[index % UNIVERSAL_ICONS.length];
+        const thumbTechPills = techList.slice(0, 3).map(t => `<span class="universal-thumb-tech-pill">${escapeHtml(t)}</span>`).join('');
+
+        imageHtml = `
+          <div class="project-image">
+            <div class="universal-project-thumb ${gradClass}">
+              <div class="universal-thumb-bg-pattern"></div>
+              <i class="fas ${iconClass} universal-thumb-watermark"></i>
+              <div class="universal-thumb-content">
+                <span class="universal-thumb-tag">${escapeHtml(categoryName)}</span>
+                <h3 class="universal-thumb-title">${escapeHtml(projectName)}</h3>
+                <p class="universal-thumb-sub">${escapeHtml(project.description || '')}</p>
+                <div class="universal-thumb-tech-row">${thumbTechPills}</div>
+              </div>
+              <span class="project-category">${escapeHtml(categoryName)}</span>
+            </div>
+          </div>
+        `;
       }
 
       // Use JS case-study doc first (canonical, clean encoding); fall back to DB documentation
@@ -838,10 +893,7 @@ function updateProjects(projects = []) {
               ${buttonsHtml}
             </div>
           </div>
-          <div class="project-image">
-            <span class="project-category">${escapeHtml(categoryName)}</span>
-            <img src="${escapeHtml(imageUrl)}" alt="${escapeHtml(projectName)}" width="1200" height="800" loading="lazy" decoding="async">
-          </div>
+          ${imageHtml}
         </div>
       `;
     })

@@ -56,13 +56,32 @@ export default function ProjectDetailPage({ slug, onNavigate }) {
         {/* Hero Card with 16:9 Standardized Banner */}
         <div className="project-detail-hero-card">
           <div className="project-detail-banner-wrap">
-            <img
-              src={bannerImg}
-              alt={projectName}
-              className="project-detail-banner"
-              loading="eager"
-            />
-            <div className="project-detail-banner-overlay"></div>
+            {bannerImg && (bannerImg.includes('cardflow-banner') || bannerImg.includes('vidyamaxx-banner')) ? (
+              <>
+                <img
+                  src={bannerImg}
+                  alt={projectName}
+                  className="project-detail-banner"
+                  loading="eager"
+                />
+                <div className="project-detail-banner-overlay"></div>
+              </>
+            ) : (
+              <div className={`universal-project-thumb universal-gradient-${(projectIndex % 5) + 1}`}>
+                <div className="universal-thumb-bg-pattern"></div>
+                <i className="fas fa-cubes universal-thumb-watermark"></i>
+                <div className="universal-thumb-content">
+                  <span className="universal-thumb-tag">{categoryName}</span>
+                  <h2 className="universal-thumb-title">{projectName}</h2>
+                  <p className="universal-thumb-sub">{project?.description}</p>
+                  <div className="universal-thumb-tech-row">
+                    {(project?.technologies_list || []).slice(0, 4).map((t, idx) => (
+                      <span key={idx} className="universal-thumb-tech-pill">{t}</span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
 
           <div className="project-detail-header-info">
