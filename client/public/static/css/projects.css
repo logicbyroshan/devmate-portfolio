@@ -152,6 +152,14 @@
     gap: 12px;
 }
 
+.project-meta-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 5px;
+    flex-wrap: wrap;
+}
+
 .project-nickname {
     display: inline-block;
     padding: 6px 18px;
@@ -163,7 +171,37 @@
     font-weight: 500;
     font-family: var(--font-body);
     width: fit-content;
-    margin-bottom: 5px;
+}
+
+.project-status-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.project-status-badge.status-prod {
+    border-color: rgba(16, 185, 129, 0.4);
+    background: rgba(16, 185, 129, 0.12);
+    color: #6ee7b7;
+}
+
+.project-status-badge.status-pilot {
+    border-color: rgba(245, 158, 11, 0.4);
+    background: rgba(245, 158, 11, 0.12);
+    color: #fcd34d;
+}
+
+.project-status-badge.status-oss {
+    border-color: rgba(59, 130, 246, 0.4);
+    background: rgba(59, 130, 246, 0.12);
+    color: #93c5fd;
 }
 
 .project-title {

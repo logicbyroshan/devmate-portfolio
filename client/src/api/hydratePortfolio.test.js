@@ -22,10 +22,10 @@ describe('Static Skills Configuration', () => {
   it('contains the 4 required categories', () => {
     expect(STATIC_SKILL_CARDS).toHaveLength(4);
     const titles = STATIC_SKILL_CARDS.map((c) => c.title);
-    expect(titles).toContain('🧩 Software Engineering');
-    expect(titles).toContain('🤖 AI & Data');
-    expect(titles).toContain('🌐 Application Development');
-    expect(titles).toContain('☁️ Infrastructure & Systems');
+    expect(titles).toContain('Software Engineering');
+    expect(titles).toContain('AI & Data');
+    expect(titles).toContain('Application Development');
+    expect(titles).toContain('Infrastructure & Systems');
   });
 
   it('contains expected items in each category', () => {

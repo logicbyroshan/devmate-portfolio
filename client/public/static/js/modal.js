@@ -68,7 +68,9 @@
         const img = card.querySelector('.project-image img')?.getAttribute('src') || card.querySelector('img')?.getAttribute('src') || '/static/images/hero.webp';
         const desc = card.querySelector('.project-description')?.textContent.trim() || 'No description available for this project.';
         const techBadges = Array.from(card.querySelectorAll('.project-tech-badge')).map(b => b.outerHTML).join(' ');
-        const githubHref = card.querySelector('.github-btn')?.getAttribute('href') || '#';
+        const githubHref = card.querySelector('.github-btn')?.getAttribute('href');
+        const liveHref = card.querySelector('a.btn-secondary')?.getAttribute('href') || card.querySelector('.live-preview-btn')?.getAttribute('href');
+        const doc = card.dataset.documentation || card.querySelector('.project-doc-content')?.innerHTML || '';
 
         const titleEl = modal.querySelector('.project-modal-title');
         if (titleEl) titleEl.textContent = title;
@@ -85,6 +87,11 @@
         const descEl = modal.querySelector('.project-modal-desc');
         if (descEl) descEl.textContent = desc;
 
+        const docEl = modal.querySelector('.project-modal-doc');
+        if (docEl) {
+            docEl.innerHTML = doc;
+        }
+
         // Update tech stack in BOTH main body and sidebar
         modal.querySelectorAll('.project-modal-stack').forEach(el => {
             // Sidebar: render as sb-tech-item list
@@ -98,16 +105,45 @@
             }
         });
 
-        const githubEl = modal.querySelector('.project-modal-github');
-        if (githubEl) githubEl.href = githubHref;
-
-        // Update sidebar links hrefs
+        const githubEl = modal.querySelector('.modal-actions .project-modal-github');
         const sidebarGithub = modal.querySelector('.modal-sidebar .project-modal-github');
-        if (sidebarGithub) sidebarGithub.href = githubHref;
+        if (!githubHref || githubHref === '#' || githubHref.trim() === '') {
+            if (githubEl) githubEl.style.display = 'none';
+            if (sidebarGithub) {
+                const li = sidebarGithub.closest('li');
+                if (li) li.style.display = 'none';
+            }
+        } else {
+            if (githubEl) {
+                githubEl.style.display = '';
+                githubEl.href = githubHref;
+            }
+            if (sidebarGithub) {
+                const li = sidebarGithub.closest('li');
+                if (li) li.style.display = '';
+                sidebarGithub.href = githubHref;
+            }
+        }
 
-        const liveEl = modal.querySelector('.project-modal-live');
+        const liveEl = modal.querySelector('.modal-actions .project-modal-live');
         const sidebarLive = modal.querySelector('.modal-sidebar .project-modal-live');
-        if (liveEl && sidebarLive) sidebarLive.href = liveEl.href || '#';
+        if (!liveHref || liveHref === '#' || liveHref.trim() === '') {
+            if (liveEl) liveEl.style.display = 'none';
+            if (sidebarLive) {
+                const li = sidebarLive.closest('li');
+                if (li) li.style.display = 'none';
+            }
+        } else {
+            if (liveEl) {
+                liveEl.style.display = '';
+                liveEl.href = liveHref;
+            }
+            if (sidebarLive) {
+                const li = sidebarLive.closest('li');
+                if (li) li.style.display = '';
+                sidebarLive.href = liveHref;
+            }
+        }
     }
 
     // Prevent background wheel scrolling when modal is open

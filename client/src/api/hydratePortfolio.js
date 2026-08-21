@@ -210,75 +210,103 @@ function updateProfile(profile) {
 
 const STATIC_PROJECTS = [
   {
-    title: 'ID Card Data Management System',
+    title: 'CardFlow',
     project_name: 'CardFlow',
-    description: 'A secure and scalable management system for issuing, tracking, and maintaining ID card data across enterprise environments.',
-    category: { name: 'Enterprise Software' },
-    technologies_list: ['React', 'Django', 'PostgreSQL'],
+    description: 'Production ID card management platform built for schools and organizations, covering data management, automated workflows, card generation and cross-platform operations.',
+    category: { name: 'Enterprise SaaS' },
+    status: '🟢 Production',
+    status_class: 'status-prod',
+    technologies_list: ['Django', 'React', 'PostgreSQL', 'Redis', 'Celery'],
     thumbnail: '/static/images/ecom.webp',
-    github_url: 'https://github.com/',
-    live_url: '#',
+    has_github: false,
+    live_url: 'https://logicbyroshan.in/#projects',
+    primary_btn: 'Case Study',
   },
   {
-    title: 'Developer Social Platform',
-    project_name: 'RiseTogether',
-    description: 'A vibrant community platform enabling software developers to connect, collaborate on open-source projects, and share knowledge.',
-    category: { name: 'Social Network' },
-    technologies_list: ['Next.js', 'Node.js', 'MongoDB'],
-    thumbnail: '/static/images/task.webp',
-    github_url: 'https://github.com/',
-    live_url: '#',
-  },
-  {
-    title: 'AI Based Software for Job Hunting',
-    project_name: 'JobPilot',
-    description: 'An intelligent job-matching platform using AI to parse resumes, predict candidate success, and streamline the hiring workflow.',
-    category: { name: 'AI Software' },
-    technologies_list: ['Python', 'FastAPI', 'React'],
-    thumbnail: '/static/images/mybgimg.webp',
-    github_url: 'https://github.com/',
-    live_url: '#',
-  },
-  {
-    title: 'School Management Software AI Based',
-    project_name: 'VidyaFlow',
-    description: 'A comprehensive AI-driven school management system automating administrative tasks, grading, and student performance tracking.',
-    category: { name: 'EdTech' },
-    technologies_list: ['Vue.js', 'Django', 'MySQL'],
+    title: 'VidyaMaxx',
+    project_name: 'VidyaMaxx',
+    description: 'AI-integrated school management platform bringing academics, administration, communication and school operations into one system.',
+    category: { name: 'AI-Integrated SaaS' },
+    status: '🟡 Pilot Testing',
+    status_class: 'status-pilot',
+    technologies_list: ['Django', 'React', 'PostgreSQL', 'Redis', 'AI'],
     thumbnail: '/static/images/faqside.webp',
-    github_url: 'https://github.com/',
-    live_url: '#',
+    has_github: false,
+    live_url: 'https://logicbyroshan.in/#projects',
+    primary_btn: 'Case Study',
   },
   {
-    title: 'Smart Travel Booking Platform',
+    title: 'PrintNexx',
+    project_name: 'PrintNexx',
+    description: 'Internal image-processing and card-generation tool built to automate photo preparation, image finishing and ID card generation workflows.',
+    category: { name: 'Internal Engineering Tool' },
+    status: '🟢 In Active Use',
+    status_class: 'status-prod',
+    technologies_list: ['Python', 'OpenCV', 'Image Processing', 'Automation'],
+    thumbnail: '/static/images/task.webp',
+    has_github: false,
+    secondary_btn: 'Technical Overview',
+    primary_btn: 'Case Study',
+  },
+  {
+    title: 'EazeTrip',
     project_name: 'EazeTrip',
-    description: 'A robust travel booking engine featuring dynamic pricing, smart itineraries, and seamless API integrations with major airlines.',
-    category: { name: 'Travel Tech' },
-    technologies_list: ['React', 'Express', 'Redis'],
+    description: 'Travel management platform developed for a tour agency to manage customers, bookings, tours and operational workflows.',
+    category: { name: 'Client Project' },
+    status: '🟢 Production',
+    status_class: 'status-prod',
+    technologies_list: ['Django', 'React', 'PostgreSQL', 'REST API', 'AI'],
     thumbnail: '/static/images/hero.webp',
-    github_url: 'https://github.com/',
-    live_url: '#',
+    has_github: false,
+    live_url: 'https://logicbyroshan.in/#projects',
+    primary_btn: 'Case Study',
+  },
+  {
+    title: 'TaskFlixx',
+    project_name: 'TaskFlixx',
+    description: 'AI-powered task management application designed to combine everyday task organization with intelligent productivity workflows.',
+    category: { name: 'AI Productivity' },
+    status: '🟢 Live',
+    status_class: 'status-prod',
+    technologies_list: ['Django', 'React', 'PostgreSQL', 'AI', 'REST API'],
+    thumbnail: '/static/images/mybgimg.webp',
+    github_url: 'https://github.com/logicbyroshan',
+    has_github: true,
+    primary_btn: 'Case Study',
+  },
+  {
+    title: 'PrepSarthi',
+    project_name: 'PrepSarthi',
+    description: 'AI-powered learning and preparation platform designed to help users organize study workflows, practice concepts and prepare more effectively.',
+    category: { name: 'AI Learning Platform' },
+    status: '🔵 Open Source',
+    status_class: 'status-oss',
+    technologies_list: ['Python', 'Django', 'React', 'PostgreSQL', 'AI'],
+    thumbnail: '/static/images/about/about1.webp',
+    github_url: 'https://github.com/logicbyroshan',
+    has_github: true,
+    primary_btn: 'Case Study',
   },
 ];
 
 const STATIC_SKILL_CARDS = [
   {
-    title: '🧩 Software Engineering',
+    title: 'Software Engineering',
     icon: 'fa-puzzle-piece',
     skills: ['Python', 'Java', 'C/C++', 'JavaScript', 'TypeScript', 'Django', 'DRF', 'FastAPI', 'Flask', 'Node.js', 'REST APIs', 'System Design', 'Git'],
   },
   {
-    title: '🤖 AI & Data',
+    title: 'AI & Data',
     icon: 'fa-robot',
     skills: ['LLMs', 'RAG', 'AI Agents', 'AI Workflows', 'PyTorch', 'TensorFlow', 'Scikit-learn', 'NumPy', 'Pandas', 'ML'],
   },
   {
-    title: '🌐 Application Development',
+    title: 'Application Development',
     icon: 'fa-globe',
     skills: ['React', 'Vue', 'HTML/CSS', 'Tailwind', 'PostgreSQL', 'MySQL', 'MongoDB', 'Redis', 'React Native', 'Electron'],
   },
   {
-    title: '☁️ Infrastructure & Systems',
+    title: 'Infrastructure & Systems',
     icon: 'fa-cloud',
     skills: ['Docker', 'Nginx', 'Gunicorn', 'Linux', 'Celery', 'Redis', 'GitHub Actions', 'CI/CD', 'Deployment', 'Background Jobs'],
   },
@@ -321,8 +349,7 @@ function updateSkills(skills) {
 
   // Render the 4 category cards, populating with live items if available or static fallbacks
   const cardsToRender = STATIC_SKILL_CARDS.map((staticCard) => {
-    const rawCatName = staticCard.title.replace(/^[^\s]+\s*/, ''); // strip emoji
-    const liveItems = groups.get(rawCatName) || groups.get(staticCard.title);
+    const liveItems = groups.get(staticCard.title);
     return {
       title: staticCard.title,
       icon: staticCard.icon,
@@ -371,30 +398,45 @@ function updateProjects(projects = []) {
   slider.innerHTML = combinedProjects
     .map((project, index) => {
       const techBadges = (project.technologies_list || [])
-        .slice(0, 6)
+        .slice(0, 5)
         .map((tech) => `<span class="project-tech-badge">${escapeHtml(tech)}</span>`)
         .join('');
 
-      const categoryName = project.category?.name || 'Project';
+      const categoryName = project.category?.name || 'Enterprise SaaS';
       const imageUrl = project.thumbnail || '/static/images/ecom.webp';
       const projectName = project.project_name || project.title;
-      const githubLink = safeUrl(project.github_url || 'https://github.com/');
+      const statusText = project.status || '🟢 Production';
+      const statusClass = project.status_class || 'status-prod';
+      const githubLink = safeUrl(project.github_url || 'https://github.com/logicbyroshan');
+      const hasGithub = project.has_github ?? (Boolean(project.github_url) && !project.github_url.includes('#'));
+      const secondaryBtn = project.secondary_btn || (hasGithub ? '' : 'Live Preview');
+
+      let buttonsHtml = `<button type="button" class="btn btn-primary project-btn" data-modal="modal-project">Case Study</button>`;
+      if (hasGithub) {
+        buttonsHtml += `<a href="${escapeHtml(githubLink)}" class="github-btn" target="_blank" rel="noopener noreferrer" aria-label="Open project repository"><i class="fab fa-github"></i></a>`;
+      } else if (secondaryBtn === 'Technical Overview') {
+        buttonsHtml += `<button type="button" class="btn btn-secondary" data-modal="modal-project">Technical Overview</button>`;
+      } else if (secondaryBtn === 'Live Preview') {
+        buttonsHtml += `<a href="https://logicbyroshan.in/#projects" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">Live Preview</a>`;
+      }
 
       return `
         <div class="project-card ${index === 0 ? 'active' : ''}" data-index="${index}" data-modal="modal-project">
           <div class="project-content">
-            <span class="project-nickname">${escapeHtml(projectName)}</span>
-            <h3 class="project-title">${escapeHtml(project.title)}</h3>
+            <div class="project-meta-row">
+              <span class="project-nickname">${escapeHtml(categoryName)}</span>
+              <span class="project-status-badge ${statusClass}">${escapeHtml(statusText)}</span>
+            </div>
+            <h3 class="project-title">${escapeHtml(projectName)}</h3>
             <p class="project-description">${escapeHtml(project.description || '')}</p>
             <div class="project-tech-stack">${techBadges}</div>
             <div class="project-buttons">
-              <button type="button" class="btn btn-primary project-btn" data-modal="modal-project">Live Preview</button>
-              <a href="${escapeHtml(githubLink)}" class="github-btn" target="_blank" rel="noopener noreferrer" aria-label="Open project repository"><i class="fab fa-github"></i></a>
+              ${buttonsHtml}
             </div>
           </div>
           <div class="project-image">
             <span class="project-category">${escapeHtml(categoryName)}</span>
-            <img src="${escapeHtml(imageUrl)}" alt="${escapeHtml(project.title)}" loading="lazy" decoding="async">
+            <img src="${escapeHtml(imageUrl)}" alt="${escapeHtml(projectName)}" width="1200" height="800" loading="lazy" decoding="async">
           </div>
         </div>
       `;
