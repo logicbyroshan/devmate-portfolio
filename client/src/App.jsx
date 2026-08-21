@@ -1,6 +1,7 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo } from 'react';
 import { fetchPortfolioData } from './api/portfolioApi';
 import { hydratePortfolioDom } from './api/hydratePortfolio';
+import defaultPortfolioHtml from '../public/portfolio-body.html?raw';
 
 const CORE_LEGACY_SCRIPTS = [
   '/static/js/script.js',
@@ -22,32 +23,7 @@ const DEFERRED_SCRIPT_GAP_MS = 50;
 const DEFERRED_FALLBACK_DELAY_MS = 10000;
 
 function App() {
-  const [markup, setMarkup] = useState('');
-
-  useEffect(() => {
-    let active = true;
-    const controller = new AbortController();
-    const timeoutId = window.setTimeout(() => controller.abort(), 8000);
-
-    fetch('/portfolio-body.html', { signal: controller.signal })
-      .then((response) => response.text())
-      .then((html) => {
-        if (active) {
-          setMarkup(html);
-        }
-      })
-      .catch(() => {
-        if (active) {
-          setMarkup('<main><p>Unable to load portfolio content.</p></main>');
-        }
-      });
-
-    return () => {
-      active = false;
-      window.clearTimeout(timeoutId);
-      controller.abort();
-    };
-  }, []);
+  const markup = defaultPortfolioHtml || '';
 
   useEffect(() => {
     if (!markup) return undefined;

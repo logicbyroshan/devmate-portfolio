@@ -25,5 +25,5 @@ Allow: /
 Disallow: /api/
 Allow: /api/bootstrap/
 
-Sitemap: https://www.roshandmaor.me/sitemap.xml
-Host: www.roshandmaor.me
+Sitemap: https://logicbyroshan.in/sitemap.xml
+Host: logicbyroshan.in

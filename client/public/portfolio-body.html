@@ -1,52 +1,22 @@
     <!-- ══════════════════════════════════════════
-         PRELOADER OVERLAY (5-Image Animated Formation)
+         MODERN MINIMALIST PRELOADER WITH PARALLAX REVEAL
          ══════════════════════════════════════════ -->
     <div id="preloader" class="preloader-overlay">
-        <div class="preloader-bg-glows">
-            <div class="preloader-glow glow-1"></div>
-            <div class="preloader-glow glow-2"></div>
-        </div>
-        
-        <div class="preloader-content">
-            <!-- 5-Image Floating Collage Formation -->
-            <div class="preloader-collage">
-                <!-- Floating Small Avatar 1 (Top Left) -->
-                <div class="preloader-img-wrap float-tl">
-                    <img src="/static/images/about/about2.webp" alt="Roshan Damor" class="preloader-img">
-                </div>
-                
-                <!-- Floating Small Avatar 2 (Bottom Left) -->
-                <div class="preloader-img-wrap float-bl">
-                    <img src="/static/images/about/about4.webp" alt="Roshan Damor Avatar" class="preloader-img">
-                </div>
-                
-                <!-- Main Central Portrait -->
-                <div class="preloader-img-wrap float-main">
-                    <div class="main-portrait-border"></div>
-                    <img src="/static/images/about/about1.webp" alt="Roshan Damor Main" class="preloader-img-main">
-                </div>
-                
-                <!-- Floating Small Avatar 3 (Top Right) -->
-                <div class="preloader-img-wrap float-tr">
-                    <img src="/static/images/about/about3.webp" alt="Roshan Damor" class="preloader-img">
-                </div>
-                
-                <!-- Floating Small Avatar 4 (Bottom Right) -->
-                <div class="preloader-img-wrap float-br">
-                    <img src="/static/images/about/about5.webp" alt="Roshan Damor" class="preloader-img">
-                </div>
+        <div class="preloader-inner">
+            <div class="preloader-spinner-wrapper">
+                <div class="preloader-spinner-ring outer-ring"></div>
+                <div class="preloader-spinner-ring inner-ring"></div>
+                <div class="preloader-core-dot"></div>
             </div>
-
-            <!-- Sleek Progress Counter & Status -->
-            <div class="preloader-meta">
-                <h2 class="preloader-title">ROSHAN DAMOR</h2>
-                <p class="preloader-subtitle">AI FULL STACK DEVELOPER</p>
-                <div class="preloader-progress-track">
-                    <div class="preloader-progress-bar" id="preloaderProgressBar"></div>
-                </div>
+            <div class="preloader-info">
                 <div class="preloader-counter" id="preloaderCounter">0%</div>
+                <div class="preloader-status">
+                    <span class="status-dot"></span>
+                    <span class="status-text">INITIALIZING</span>
+                </div>
             </div>
         </div>
+        <div class="preloader-curtain-edge"></div>
     </div>
 
     <!-- Navigation for Desktop -->
@@ -58,7 +28,7 @@
                 <a href="#experience" class="nav-link">Experience</a>
             </nav>
             <a href="#home" class="brand">
-                <img src="/static/images/logo.webp" alt="Roshan Damor Logo" class="logo-image" decoding="async">
+                <img src="/static/images/logo.webp" alt="Roshan Damor Logo" class="logo-image" width="135" height="34" decoding="async">
             </a>
             <div class="nav-actions">
                 <button type="button" class="btn btn-secondary btn-nav" data-modal="modal-resume">Resume</button>
@@ -76,7 +46,7 @@
                 <span></span>
             </button>
             <a href="#home" class="brand">
-                <img src="/static/images/logo.webp" alt="Roshan Damor Logo" class="logo-image" decoding="async">
+                <img src="/static/images/logo.webp" alt="Roshan Damor Logo" class="logo-image" width="135" height="34" decoding="async">
             </a>
             <button type="button" class="btn btn-primary mobile-resume-btn" data-modal="modal-download-resume" aria-label="Download Resume">
                 <i class="fas fa-download"></i>
@@ -104,13 +74,14 @@
 
     <!-- Hero Section -->
     <section class="hero-section" id="home">
+        <div class="hero-ambient-glow" aria-hidden="true"></div>
         <div class="hero-container">
             <div class="hero-grid">
                 <!-- Left Content -->
                 <div class="hero-content">
                     <span class="hero-badge">Hello, I am</span>
-                    <h1 class="hero-heading">Roshan Damor<br><span class="text-gradient">AI Full Stack<br>Developer</span></h1>
-                    <p class="hero-description">🙏 GREETINGS, ALL DIGITAL EXPLORERS! I AM ROSHAN, A PASSIONATE AND INNOVATIVE DEVELOPER <i><b>"BUILDING AI-POWERED SOLUTIONS & SCALABLE WEB APPS — SDE & AI ENGINEER"</b></i>. Also searched as Roshand Damor.</p>
+                    <h1 class="hero-heading">Roshan Damor<br><span class="text-gradient">Software Engineer</span></h1>
+                    <p class="hero-description">I build production software and AI-powered applications, from backend systems and SaaS platforms to LLM-powered workflows and intelligent developer tools.</p>
                     <div class="hero-btn-group">
                         <button type="button" class="btn btn-primary" data-modal="modal-resume">
                             <i class="fas fa-user-circle"></i>
@@ -126,7 +97,7 @@
                 <!-- Right Visual -->
                 <div class="hero-visual-wrapper">
                     <div class="hero-glow"></div>
-                    <img src="/static/images/hero.webp" alt="Roshan Damor Hero Illustration" class="hero-image" width="1789" height="1772" fetchpriority="high" decoding="async">
+                    <img src="/static/images/hero.webp" alt="Roshan Damor Hero Illustration" class="hero-image" width="1200" height="1188" fetchpriority="high" decoding="async">
                     
                     <div class="nft-card">
                         <div class="nft-card-header">
@@ -136,24 +107,24 @@
                             <div class="hero-stats">
                                 <div class="stat-item">
                                     <div class="stat-number">
-                                        <i class="fas fa-trophy stat-icon"></i>
-                                        <span>12+</span>
+                                        <i class="fas fa-users stat-icon"></i>
+                                        <span>1000+</span>
                                     </div>
-                                    <div class="stat-label">Hackathons</div>
+                                    <div class="stat-label">Production Users</div>
                                 </div>
                                 <div class="stat-item">
                                     <div class="stat-number">
-                                        <i class="fas fa-code-branch stat-icon"></i>
-                                        <span>27+</span>
+                                        <i class="fas fa-id-card stat-icon"></i>
+                                        <span>136K+</span>
                                     </div>
-                                    <div class="stat-label">Open Source</div>
+                                    <div class="stat-label">ID Cards Processed</div>
                                 </div>
                                 <div class="stat-item">
                                     <div class="stat-number">
-                                        <i class="fas fa-code stat-icon"></i>
-                                        <span>1300+</span>
+                                        <i class="fas fa-cloud-download-alt stat-icon"></i>
+                                        <span>86K+</span>
                                     </div>
-                                    <div class="stat-label">DSA Solved</div>
+                                    <div class="stat-label">Cards Downloaded</div>
                                 </div>
                             </div>
                         </div>
@@ -167,7 +138,7 @@
     <section class="about-section" id="about">
         <div class="container">
             <span class="about-badge">About Me</span>
-            <h2 class="about-heading">Passionate Developer<br>Building Digital Solutions</h2>
+            <h2 class="about-heading">Software Engineer<br>Building Production Systems</h2>
             
             <div class="about-images">
                 <div class="about-image-item about-img-1">
@@ -201,8 +172,8 @@
             </div>
 
             <div class="about-content">
-                <p class="about-description">A full-stack developer with expertise in modern web technologies, creating scalable and efficient solutions</p>
-                <p class="about-subdescription">With a strong foundation in both frontend and backend development, I specialize in building responsive web applications using React, Node.js, and modern JavaScript frameworks. My passion for clean code and problem-solving drives me to continuously learn and implement best practices. I have successfully solved 1300+ DSA problems across multiple platforms, demonstrating strong algorithmic thinking and optimization skills. This portfolio is the official website for Roshan Damor.</p>
+                <p class="about-description">Software Engineer focused on building production-grade web systems, SaaS platforms, and practical AI-powered applications.</p>
+                <p class="about-subdescription">I work across application architecture, backend systems, APIs, databases, frontend applications, deployment, and AI integrations. I enjoy taking products from an idea to a working system — designing the architecture, building the software, deploying it, and improving it through real-world use.<br><br>My recent work includes CardFlow, a production ID-card management platform used by 1,000+ users, and VidyaMaxx, an AI-integrated school management platform currently being tested with selected schools.<br><br>I am currently deepening my work in AI engineering, particularly LLM applications, RAG systems, AI agents, intelligent workflows, and production-oriented software architecture.</p>
                 <button type="button" class="btn btn-primary about-btn" data-modal="modal-download-resume">Download Resume</button>
             </div>
         </div>
@@ -215,74 +186,86 @@
             <h2 class="tech-heading">Technical Proficiency</h2>
             
             <div class="tech-grid">
+                <!-- Card 1: Software Engineering -->
                 <div class="tech-card">
                     <div class="tech-icon-wrapper">
-                        <i class="fas fa-laptop-code"></i>
+                        <i class="fas fa-puzzle-piece"></i>
                     </div>
-                    <h3 class="tech-card-title">Frontend</h3>
+                    <h3 class="tech-card-title">🧩 Software Engineering</h3>
                     <ul class="skills-list">
-                        <li>React.js</li>
-                        <li>Next.js</li>
-                        <li>Vue.js</li>
-                        <li>TypeScript</li>
-                        <li>Tailwind CSS</li>
-                        <li>Bootstrap</li>
-                        <li>Redux</li>
-                        <li>HTML5 & CSS3</li>
-                        <li>JavaScript (ES6+)</li>
-                    </ul>
-                </div>
-
-                <div class="tech-card">
-                    <div class="tech-icon-wrapper">
-                        <i class="fas fa-server"></i>
-                    </div>
-                    <h3 class="tech-card-title">Backend</h3>
-                    <ul class="skills-list">
-                        <li>Node.js</li>
-                        <li>Express.js</li>
                         <li>Python</li>
+                        <li>Java</li>
+                        <li>C/C++</li>
+                        <li>JavaScript</li>
+                        <li>TypeScript</li>
                         <li>Django</li>
+                        <li>DRF</li>
                         <li>FastAPI</li>
-                        <li>PostgreSQL</li>
-                        <li>MongoDB</li>
+                        <li>Flask</li>
+                        <li>Node.js</li>
                         <li>REST APIs</li>
-                        <li>GraphQL</li>
+                        <li>System Design</li>
+                        <li>Git</li>
                     </ul>
                 </div>
 
+                <!-- Card 2: AI & Data -->
+                <div class="tech-card">
+                    <div class="tech-icon-wrapper">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3 class="tech-card-title">🤖 AI & Data</h3>
+                    <ul class="skills-list">
+                        <li>LLMs</li>
+                        <li>RAG</li>
+                        <li>AI Agents</li>
+                        <li>AI Workflows</li>
+                        <li>PyTorch</li>
+                        <li>TensorFlow</li>
+                        <li>Scikit-learn</li>
+                        <li>NumPy</li>
+                        <li>Pandas</li>
+                        <li>ML</li>
+                    </ul>
+                </div>
+
+                <!-- Card 3: Application Development -->
+                <div class="tech-card">
+                    <div class="tech-icon-wrapper">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3 class="tech-card-title">🌐 Application Development</h3>
+                    <ul class="skills-list">
+                        <li>React</li>
+                        <li>Vue</li>
+                        <li>HTML/CSS</li>
+                        <li>Tailwind</li>
+                        <li>PostgreSQL</li>
+                        <li>MySQL</li>
+                        <li>MongoDB</li>
+                        <li>Redis</li>
+                        <li>React Native</li>
+                        <li>Electron</li>
+                    </ul>
+                </div>
+
+                <!-- Card 4: Infrastructure & Systems -->
                 <div class="tech-card">
                     <div class="tech-icon-wrapper">
                         <i class="fas fa-cloud"></i>
                     </div>
-                    <h3 class="tech-card-title">DevOps & Cloud</h3>
+                    <h3 class="tech-card-title">☁️ Infrastructure & Systems</h3>
                     <ul class="skills-list">
                         <li>Docker</li>
-                        <li>Kubernetes</li>
-                        <li>AWS (EC2, S3, Lambda)</li>
-                        <li>Azure</li>
-                        <li>CI/CD (Jenkins, GitHub Actions)</li>
-                        <li>Terraform</li>
                         <li>Nginx</li>
-                        <li>Linux/Unix</li>
-                    </ul>
-                </div>
-
-                <div class="tech-card">
-                    <div class="tech-icon-wrapper">
-                        <i class="fas fa-tools"></i>
-                    </div>
-                    <h3 class="tech-card-title">Tools & Others</h3>
-                    <ul class="skills-list">
-                        <li>Git & GitHub</li>
-                        <li>VS Code</li>
-                        <li>Postman</li>
-                        <li>Figma</li>
-                        <li>Jira</li>
-                        <li>Firebase</li>
-                        <li>WebSockets</li>
+                        <li>Gunicorn</li>
+                        <li>Linux</li>
+                        <li>Celery</li>
                         <li>Redis</li>
-                        <li>Elasticsearch</li>
+                        <li>GitHub Actions</li>
+                        <li>CI/CD</li>
+                        <li>Deployment</li>
+                        <li>Background Jobs</li>
                     </ul>
                 </div>
             </div>
@@ -297,7 +280,7 @@
             <p class="projects-intro">Showcase of my latest development work and technical solutions</p>
 
             <div class="projects-slider">
-                <div class="project-card active" data-index="0" data-modal="modal-project" role="button" tabindex="0" aria-label="View project details: CardFlow">
+                <div class="project-card active" data-index="0" data-modal="modal-project">
                     <div class="project-content">
                         <span class="project-nickname">CardFlow</span>
                         <h3 class="project-title">ID Card Data Management System</h3>
@@ -318,7 +301,7 @@
                     </div>
                 </div>
 
-                <div class="project-card" data-index="1" data-modal="modal-project" role="button" tabindex="0" aria-label="View project details: RiseTogether">
+                <div class="project-card" data-index="1" data-modal="modal-project">
                     <div class="project-image">
                         <span class="project-category">Social Network</span>
                         <img src="/static/images/task.webp" alt="RiseTogether" width="1920" height="1080" loading="lazy" decoding="async">
@@ -339,7 +322,7 @@
                     </div>
                 </div>
 
-                <div class="project-card" data-index="2" data-modal="modal-project" role="button" tabindex="0" aria-label="View project details: JobPilot">
+                <div class="project-card" data-index="2" data-modal="modal-project">
                     <div class="project-content">
                         <span class="project-nickname">JobPilot</span>
                         <h3 class="project-title">AI Based Software for Job Hunting</h3>
@@ -360,7 +343,7 @@
                     </div>
                 </div>
 
-                <div class="project-card" data-index="3" data-modal="modal-project" role="button" tabindex="0" aria-label="View project details: VidyaFlow">
+                <div class="project-card" data-index="3" data-modal="modal-project">
                     <div class="project-image">
                         <span class="project-category">EdTech</span>
                         <img src="/static/images/faqside.webp" alt="VidyaFlow" width="1920" height="1080" loading="lazy" decoding="async">
@@ -381,7 +364,7 @@
                     </div>
                 </div>
 
-                <div class="project-card" data-index="4" data-modal="modal-project" role="button" tabindex="0" aria-label="View project details: EazeTrip">
+                <div class="project-card" data-index="4" data-modal="modal-project">
                     <div class="project-content">
                         <span class="project-nickname">EazeTrip</span>
                         <h3 class="project-title">Smart Travel Booking Platform</h3>
@@ -687,7 +670,7 @@
                 <!-- Brand -->
                 <div class="footer-brand">
                     <a href="#home" class="brand footer-logo-link">
-                        <img src="/static/images/logo.webp" alt="Roshan Damor" class="logo-image footer-logo" loading="lazy" decoding="async">
+                        <img src="/static/images/logo.webp" alt="Roshan Damor" class="logo-image footer-logo" width="151" height="38" loading="lazy" decoding="async">
                     </a>
                     <p class="footer-tagline">Crafting digital experiences<br>one line of code at a time.</p>
                     <div class="footer-socials">

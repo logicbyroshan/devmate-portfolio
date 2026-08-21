@@ -75,13 +75,13 @@ function toAbsoluteUrl(url, fallback) {
 function updateSeoMetadata(profile, projects) {
   const fullName = profile?.full_name || 'Roshan Damor';
   const alternateName = 'Roshand Damor';
-  const canonicalUrl = 'https://www.roshandmaor.me/';
-  const title = profile?.meta_title || `${fullName} | Full Stack Developer and AI Engineer Portfolio`;
-  const description = profile?.meta_description || `${fullName}, also searched as ${alternateName}, is a full stack software developer and AI engineer building scalable web apps and AI-powered solutions.`;
-  const keywords = profile?.meta_keywords || 'Roshan Damor, Roshand Damor, Roshan Damor portfolio, full stack developer, AI engineer, software developer portfolio';
+  const canonicalUrl = 'https://logicbyroshan.in/';
+  const title = profile?.meta_title || `${fullName} | Software Engineer Portfolio`;
+  const description = profile?.meta_description || `${fullName} is a software engineer focused on building production-grade web systems, SaaS platforms, and practical AI-powered applications.`;
+  const keywords = profile?.meta_keywords || 'Roshan Damor, Software Engineer, Portfolio, Full Stack, AI Engineer, React, Django, Python';
   const ogImage = toAbsoluteUrl(
     projects?.[0]?.thumbnail || '/static/images/hero.png',
-    'https://www.roshandmaor.me/static/images/hero.png',
+    'https://logicbyroshan.in/static/images/hero.png',
   );
 
   document.title = title;
@@ -114,7 +114,7 @@ function updateSeoMetadata(profile, projects) {
         alternateName: [alternateName],
         url: canonicalUrl,
         image: ogImage,
-        jobTitle: profile?.title || 'Full Stack Developer and AI Engineer',
+        jobTitle: profile?.title || 'Software Engineer',
         description,
         ...(sameAs.length ? { sameAs } : {}),
       },
@@ -167,15 +167,12 @@ function updateProfile(profile) {
   const heroHeading = document.querySelector('.hero-heading');
   if (heroHeading) {
     const fullName = profile.full_name || 'Roshan Damor';
-    let title = profile.title || 'AI Full Stack Developer';
-    let titleHtml = escapeHtml(title);
-    if (title.toLowerCase() === 'ai full stack developer') {
-      titleHtml = 'AI Full Stack<br>Developer';
-    }
+    let title = profile.title || 'Software Engineer';
+    let titleHtml = escapeHtml(title).replaceAll('\n', '<br>');
     heroHeading.innerHTML = `${escapeHtml(fullName)}<br><span class="text-gradient">${titleHtml}</span>`;
   }
 
-  setText('.about-description', profile.bio || 'A full-stack developer building scalable products.');
+  setText('.about-description', profile.bio || 'Software Engineer focused on building production-grade web systems, SaaS platforms, and practical AI-powered applications.');
 
   const contactValues = document.querySelectorAll('.contact-value');
   if (contactValues.length >= 3) {
@@ -211,39 +208,137 @@ function updateProfile(profile) {
   });
 }
 
-function updateSkills(skills) {
-  if (!skills.length) return;
+const STATIC_PROJECTS = [
+  {
+    title: 'ID Card Data Management System',
+    project_name: 'CardFlow',
+    description: 'A secure and scalable management system for issuing, tracking, and maintaining ID card data across enterprise environments.',
+    category: { name: 'Enterprise Software' },
+    technologies_list: ['React', 'Django', 'PostgreSQL'],
+    thumbnail: '/static/images/ecom.webp',
+    github_url: 'https://github.com/',
+    live_url: '#',
+  },
+  {
+    title: 'Developer Social Platform',
+    project_name: 'RiseTogether',
+    description: 'A vibrant community platform enabling software developers to connect, collaborate on open-source projects, and share knowledge.',
+    category: { name: 'Social Network' },
+    technologies_list: ['Next.js', 'Node.js', 'MongoDB'],
+    thumbnail: '/static/images/task.webp',
+    github_url: 'https://github.com/',
+    live_url: '#',
+  },
+  {
+    title: 'AI Based Software for Job Hunting',
+    project_name: 'JobPilot',
+    description: 'An intelligent job-matching platform using AI to parse resumes, predict candidate success, and streamline the hiring workflow.',
+    category: { name: 'AI Software' },
+    technologies_list: ['Python', 'FastAPI', 'React'],
+    thumbnail: '/static/images/mybgimg.webp',
+    github_url: 'https://github.com/',
+    live_url: '#',
+  },
+  {
+    title: 'School Management Software AI Based',
+    project_name: 'VidyaFlow',
+    description: 'A comprehensive AI-driven school management system automating administrative tasks, grading, and student performance tracking.',
+    category: { name: 'EdTech' },
+    technologies_list: ['Vue.js', 'Django', 'MySQL'],
+    thumbnail: '/static/images/faqside.webp',
+    github_url: 'https://github.com/',
+    live_url: '#',
+  },
+  {
+    title: 'Smart Travel Booking Platform',
+    project_name: 'EazeTrip',
+    description: 'A robust travel booking engine featuring dynamic pricing, smart itineraries, and seamless API integrations with major airlines.',
+    category: { name: 'Travel Tech' },
+    technologies_list: ['React', 'Express', 'Redis'],
+    thumbnail: '/static/images/hero.webp',
+    github_url: 'https://github.com/',
+    live_url: '#',
+  },
+];
 
+const STATIC_SKILL_CARDS = [
+  {
+    title: '🧩 Software Engineering',
+    icon: 'fa-puzzle-piece',
+    skills: ['Python', 'Java', 'C/C++', 'JavaScript', 'TypeScript', 'Django', 'DRF', 'FastAPI', 'Flask', 'Node.js', 'REST APIs', 'System Design', 'Git'],
+  },
+  {
+    title: '🤖 AI & Data',
+    icon: 'fa-robot',
+    skills: ['LLMs', 'RAG', 'AI Agents', 'AI Workflows', 'PyTorch', 'TensorFlow', 'Scikit-learn', 'NumPy', 'Pandas', 'ML'],
+  },
+  {
+    title: '🌐 Application Development',
+    icon: 'fa-globe',
+    skills: ['React', 'Vue', 'HTML/CSS', 'Tailwind', 'PostgreSQL', 'MySQL', 'MongoDB', 'Redis', 'React Native', 'Electron'],
+  },
+  {
+    title: '☁️ Infrastructure & Systems',
+    icon: 'fa-cloud',
+    skills: ['Docker', 'Nginx', 'Gunicorn', 'Linux', 'Celery', 'Redis', 'GitHub Actions', 'CI/CD', 'Deployment', 'Background Jobs'],
+  },
+];
+
+function updateSkills(skills) {
   const techGrid = document.querySelector('.tech-grid');
   if (!techGrid) return;
 
+  if (!skills || !skills.length) {
+    // Render the 4 static cards
+    techGrid.innerHTML = STATIC_SKILL_CARDS
+      .map((card) => {
+        const listItems = card.skills.map((name) => `<li>${escapeHtml(name)}</li>`).join('');
+        return `
+          <div class="tech-card">
+            <div class="tech-icon-wrapper">
+              <i class="fas ${card.icon}"></i>
+            </div>
+            <h3 class="tech-card-title">${escapeHtml(card.title)}</h3>
+            <ul class="skills-list">${listItems}</ul>
+          </div>
+        `;
+      })
+      .join('');
+    return;
+  }
+
+  // Group by category name
   const groups = new Map();
-  skills
-    .slice(0, 24)
-    .forEach((skill) => {
-      const key = skill.skill_level_display || skill.skill_level || 'Skills';
-      if (!groups.has(key)) {
-        groups.set(key, []);
+  skills.forEach((skill) => {
+    const catName = skill.category?.name || skill.category_name;
+    if (catName) {
+      if (!groups.has(catName)) {
+        groups.set(catName, []);
       }
-      groups.get(key).push(skill.name);
-    });
+      groups.get(catName).push(skill.name);
+    }
+  });
 
-  const iconCycle = ['fa-laptop-code', 'fa-server', 'fa-cloud', 'fa-tools'];
-  const cards = [...groups.entries()].slice(0, 4);
+  // Render the 4 category cards, populating with live items if available or static fallbacks
+  const cardsToRender = STATIC_SKILL_CARDS.map((staticCard) => {
+    const rawCatName = staticCard.title.replace(/^[^\s]+\s*/, ''); // strip emoji
+    const liveItems = groups.get(rawCatName) || groups.get(staticCard.title);
+    return {
+      title: staticCard.title,
+      icon: staticCard.icon,
+      skills: (liveItems && liveItems.length > 0) ? liveItems : staticCard.skills,
+    };
+  });
 
-  if (!cards.length) return;
-
-  techGrid.innerHTML = cards
-    .map(([groupName, items], index) => {
-      const icon = iconCycle[index % iconCycle.length];
-      const listItems = items.slice(0, 9).map((name) => `<li>${escapeHtml(name)}</li>`).join('');
-
+  techGrid.innerHTML = cardsToRender
+    .map((card) => {
+      const listItems = card.skills.map((name) => `<li>${escapeHtml(name)}</li>`).join('');
       return `
         <div class="tech-card">
           <div class="tech-icon-wrapper">
-            <i class="fas ${icon}"></i>
+            <i class="fas ${card.icon}"></i>
           </div>
-          <h3 class="tech-card-title">${escapeHtml(groupName)}</h3>
+          <h3 class="tech-card-title">${escapeHtml(card.title)}</h3>
           <ul class="skills-list">${listItems}</ul>
         </div>
       `;
@@ -251,15 +346,29 @@ function updateSkills(skills) {
     .join('');
 }
 
-function updateProjects(projects) {
-  if (!projects.length) return;
+export function getCombinedProjects(projects = []) {
+  const validLiveProjects = Array.isArray(projects) ? projects.filter(Boolean) : [];
 
+  if (validLiveProjects.length >= STATIC_PROJECTS.length) {
+    return validLiveProjects.slice(0, 8);
+  }
+  if (validLiveProjects.length > 0) {
+    const neededStaticCount = Math.max(0, STATIC_PROJECTS.length - validLiveProjects.length);
+    return [
+      ...validLiveProjects,
+      ...STATIC_PROJECTS.slice(validLiveProjects.length, validLiveProjects.length + neededStaticCount),
+    ];
+  }
+  return STATIC_PROJECTS;
+}
+
+function updateProjects(projects = []) {
   const slider = document.querySelector('.projects-slider');
   if (!slider) return;
 
-  const items = projects.slice(0, 6);
+  const combinedProjects = getCombinedProjects(projects);
 
-  slider.innerHTML = items
+  slider.innerHTML = combinedProjects
     .map((project, index) => {
       const techBadges = (project.technologies_list || [])
         .slice(0, 6)
@@ -269,11 +378,10 @@ function updateProjects(projects) {
       const categoryName = project.category?.name || 'Project';
       const imageUrl = project.thumbnail || '/static/images/ecom.webp';
       const projectName = project.project_name || project.title;
-      const projectLink = safeUrl(project.live_url || project.demo_url);
-      const githubLink = safeUrl(project.github_url);
+      const githubLink = safeUrl(project.github_url || 'https://github.com/');
 
       return `
-        <div class="project-card ${index === 0 ? 'active' : ''}" data-index="${index}" data-modal="modal-project" role="button" tabindex="0" aria-label="View project details: ${escapeHtml(project.title)}">
+        <div class="project-card ${index === 0 ? 'active' : ''}" data-index="${index}" data-modal="modal-project">
           <div class="project-content">
             <span class="project-nickname">${escapeHtml(projectName)}</span>
             <h3 class="project-title">${escapeHtml(project.title)}</h3>
@@ -331,3 +439,5 @@ export function hydratePortfolioDom(data) {
   updateProjects(data?.projects || []);
   updateExperience(data?.experience || []);
 }
+
+export { STATIC_PROJECTS, STATIC_SKILL_CARDS, updateProjects, updateSkills };
