@@ -316,44 +316,29 @@ function updateSkills(skills) {
   const techGrid = document.querySelector('.tech-grid');
   if (!techGrid) return;
 
-  if (!skills || !skills.length) {
-    // Render the 4 static cards
-    techGrid.innerHTML = STATIC_SKILL_CARDS
-      .map((card) => {
-        const listItems = card.skills.map((name) => `<li>${escapeHtml(name)}</li>`).join('');
-        return `
-          <div class="tech-card">
-            <div class="tech-icon-wrapper">
-              <i class="fas ${card.icon}"></i>
-            </div>
-            <h3 class="tech-card-title">${escapeHtml(card.title)}</h3>
-            <ul class="skills-list">${listItems}</ul>
-          </div>
-        `;
-      })
-      .join('');
-    return;
+  // Group by category name if available
+  const groups = new Map();
+  if (Array.isArray(skills)) {
+    skills.forEach((skill) => {
+      const catName = skill.category?.name || skill.category_name;
+      if (catName) {
+        if (!groups.has(catName)) {
+          groups.set(catName, []);
+        }
+        groups.get(catName).push(skill.name);
+      }
+    });
   }
 
-  // Group by category name
-  const groups = new Map();
-  skills.forEach((skill) => {
-    const catName = skill.category?.name || skill.category_name;
-    if (catName) {
-      if (!groups.has(catName)) {
-        groups.set(catName, []);
-      }
-      groups.get(catName).push(skill.name);
-    }
-  });
-
-  // Render the 4 category cards, populating with live items if available or static fallbacks
+  // Render the 4 curated category cards, ensuring complete skill lists are always preserved
   const cardsToRender = STATIC_SKILL_CARDS.map((staticCard) => {
-    const liveItems = groups.get(staticCard.title);
+    const liveItems = groups.get(staticCard.title) || [];
+    // Union to ensure full static skills list is never reduced
+    const combinedSkills = Array.from(new Set([...staticCard.skills, ...liveItems]));
     return {
       title: staticCard.title,
       icon: staticCard.icon,
-      skills: (liveItems && liveItems.length > 0) ? liveItems : staticCard.skills,
+      skills: combinedSkills.length > 0 ? combinedSkills : staticCard.skills,
     };
   });
 
