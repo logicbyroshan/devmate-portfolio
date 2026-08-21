@@ -1,7 +1,12 @@
-import { useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import { fetchPortfolioData } from './api/portfolioApi';
 import { hydratePortfolioDom } from './api/hydratePortfolio';
 import defaultPortfolioHtml from './portfolio-body.html?raw';
+
+import ProjectDetailPage from './pages/ProjectDetailPage';
+import ExperiencePage from './pages/ExperiencePage';
+import AboutPage from './pages/AboutPage';
+import RexiModal from './components/RexiModal';
 
 const CORE_LEGACY_SCRIPTS = [
   '/static/js/script.js',
@@ -22,11 +27,122 @@ const DEFERRED_LEGACY_SCRIPTS = [
 const DEFERRED_SCRIPT_GAP_MS = 50;
 const DEFERRED_FALLBACK_DELAY_MS = 10000;
 
+function parseCurrentRoute() {
+  const hash = window.location.hash || '';
+  const pathname = window.location.pathname || '';
+
+  if (hash.startsWith('#/projects/')) {
+    const slug = hash.replace('#/projects/', '').split('?')[0].split('/')[0];
+    return { name: 'project-detail', slug: decodeURIComponent(slug) };
+  }
+  if (hash === '#/about' || hash.startsWith('#/about?')) {
+    return { name: 'about' };
+  }
+  if (hash === '#/experience' || hash.startsWith('#/experience?')) {
+    return { name: 'experience' };
+  }
+
+  if (pathname.startsWith('/projects/')) {
+    const slug = pathname.replace('/projects/', '').split('?')[0].split('/')[0];
+    return { name: 'project-detail', slug: decodeURIComponent(slug) };
+  }
+  if (pathname === '/about' || pathname.startsWith('/about/')) {
+    return { name: 'about' };
+  }
+  if (pathname === '/experience' || pathname.startsWith('/experience/')) {
+    return { name: 'experience' };
+  }
+
+  return { name: 'home' };
+}
+
 function App() {
+  const [route, setRoute] = useState(parseCurrentRoute);
   const markup = defaultPortfolioHtml || '';
 
+  // Synchronize route changes on hashchange or popstate
   useEffect(() => {
-    if (!markup) return undefined;
+    const handleLocationChange = () => {
+      setRoute(parseCurrentRoute());
+    };
+
+    window.addEventListener('hashchange', handleLocationChange);
+    window.addEventListener('popstate', handleLocationChange);
+
+    return () => {
+      window.removeEventListener('hashchange', handleLocationChange);
+      window.removeEventListener('popstate', handleLocationChange);
+    };
+  }, []);
+
+  const navigate = useCallback((targetRoute, param) => {
+    if (targetRoute === 'home') {
+      if (param) {
+        window.location.hash = `#${param}`;
+      } else {
+        window.history.pushState(null, '', '/');
+        window.location.hash = '';
+      }
+      setRoute({ name: 'home' });
+
+      if (param) {
+        setTimeout(() => {
+          const el = document.getElementById(param);
+          if (el) {
+            el.scrollIntoView({ behavior: 'smooth' });
+          }
+        }, 80);
+      }
+    } else if (targetRoute === 'about') {
+      window.location.hash = '#/about';
+      setRoute({ name: 'about' });
+    } else if (targetRoute === 'experience') {
+      window.location.hash = '#/experience';
+      setRoute({ name: 'experience' });
+    } else if (targetRoute === 'project-detail') {
+      const slug = encodeURIComponent((param || 'cardflow').toLowerCase().replace(/[^a-z0-9]/g, ''));
+      window.location.hash = `#/projects/${slug}`;
+      setRoute({ name: 'project-detail', slug });
+    }
+  }, []);
+
+  // Intercept click on links requesting dedicated routes
+  useEffect(() => {
+    const handleClick = (e) => {
+      // 1. Project detail links
+      const projectLink = e.target.closest('.project-page-link, [data-project-slug]');
+      if (projectLink) {
+        e.preventDefault();
+        const slug = projectLink.dataset.projectSlug || projectLink.getAttribute('href')?.replace('#/projects/', '');
+        navigate('project-detail', slug);
+        return;
+      }
+
+      // 2. About page links
+      const aboutLink = e.target.closest('[data-route="about"], a[href="#/about"]');
+      if (aboutLink) {
+        e.preventDefault();
+        navigate('about');
+        return;
+      }
+
+      // 3. Experience page links
+      const expLink = e.target.closest('[data-route="experience"], a[href="#/experience"]');
+      if (expLink) {
+        e.preventDefault();
+        navigate('experience');
+      }
+    };
+
+    document.addEventListener('click', handleClick);
+    return () => {
+      document.removeEventListener('click', handleClick);
+    };
+  }, [navigate]);
+
+  // Load and hydrate legacy scripts on Home view
+  useEffect(() => {
+    if (route.name !== 'home' || !markup) return undefined;
 
     const appendedScripts = [];
     let cancelled = false;
@@ -193,11 +309,19 @@ function App() {
       }
       appendedScripts.forEach((script) => script.remove());
     };
-  }, [markup]);
+  }, [route.name, markup]);
 
   const content = useMemo(() => ({ __html: markup }), [markup]);
 
-  return <div dangerouslySetInnerHTML={content} />;
+  return (
+    <>
+      <RexiModal />
+      {route.name === 'project-detail' && <ProjectDetailPage slug={route.slug} onNavigate={navigate} />}
+      {route.name === 'experience' && <ExperiencePage onNavigate={navigate} />}
+      {route.name === 'about' && <AboutPage onNavigate={navigate} />}
+      {route.name === 'home' && <div dangerouslySetInnerHTML={content} />}
+    </>
+  );
 }
 
 export default App;

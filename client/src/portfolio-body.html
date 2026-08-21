@@ -183,7 +183,7 @@
             <div class="about-content">
                 <p class="about-description">Software Engineer focused on building production-grade web systems, SaaS platforms, and practical AI-powered applications.</p>
                 <p class="about-subdescription">I work across application architecture, backend systems, APIs, databases, frontend applications, deployment, and AI integrations. I enjoy taking products from an idea to a working system — designing the architecture, building the software, deploying it, and improving it through real-world use.<br><br>My recent work includes CardFlow, a production ID-card management platform used by 1,000+ users, and VidyaMaxx, an AI-integrated school management platform currently being tested with selected schools.<br><br>I am currently deepening my work in AI engineering, particularly LLM applications, RAG systems, AI agents, intelligent workflows, and production-oriented software architecture.</p>
-                <button type="button" class="btn btn-primary about-btn" data-modal="modal-download-resume">Download Resume</button>
+                <a href="#/about" class="btn btn-primary about-btn page-nav-link" data-route="about">Full Profile &amp; Resume</a>
             </div>
         </div>
     </section>
@@ -206,9 +206,7 @@
                         <li>Java</li>
                         <li>C/C++</li>
                         <li>JavaScript</li>
-                        <li>TypeScript</li>
                         <li>Django</li>
-                        <li>DRF</li>
                         <li>FastAPI</li>
                         <li>Flask</li>
                         <li>Node.js</li>
@@ -469,7 +467,7 @@ Production Operations ◄── Cross-Platform Clients ◄── Background Proc
                             <span class="project-tech-badge">Celery</span>
                         </div>
                         <div class="project-buttons">
-                            <button type="button" class="btn btn-primary project-btn" data-modal="modal-project">Case Study</button>
+                            <a href="#/projects/cardflow" class="btn btn-primary project-btn project-page-link" data-project-slug="cardflow">Case Study</a>
                             <a href="https://logicbyroshan.in/#projects" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">Live Preview</a>
                             <a href="https://github.com/logicbyroshan/cardfloww-idcard-management-saas.git" class="github-btn" target="_blank" rel="noopener noreferrer" aria-label="Open CardFlow repository"><i class="fab fa-github"></i></a>
                         </div>
@@ -481,95 +479,7 @@ Production Operations ◄── Cross-Platform Clients ◄── Background Proc
                 </div>
 
                 <!-- Card 2: VidyaMaxx -->
-                <div class="project-card" data-index="1" data-modal="modal-project">
-                    <div class="project-doc-content" style="display:none;">
-                        <div class="case-study-container">
-                            <!-- 1. Hero & Status -->
-                            <div class="case-study-hero-banner">
-                                <div class="case-study-badge"><i class="fas fa-flask"></i> MVP / Pilot Testing</div>
-                                <h3 class="case-study-headline">VidyaMaxx — AI-First Unified School Management Platform</h3>
-                                <p class="case-study-lead">VidyaMaxx is an AI-first school management platform designed to bring academic management, administration, communication, student information, and day-to-day school operations into a unified digital ecosystem across web and desktop.</p>
-                            </div>
-
-                            <!-- Links Row -->
-                            <div class="cs-links-row">
-                                <span style="font-size: 12px; font-weight: 600; color: #a78bfa;"><i class="fas fa-link"></i> Platform & Links:</span>
-                                <a href="https://github.com/logicbyroshan/vidyamaxx-school-management-saas.git" target="_blank" rel="noopener noreferrer" class="cs-link-pill primary"><i class="fab fa-github"></i> GitHub Repository</a>
-                                <span class="cs-link-pill secondary"><i class="fas fa-globe"></i> Web: Available</span>
-                                <span class="cs-link-pill secondary"><i class="fas fa-desktop"></i> Desktop: Available</span>
-                                <span class="cs-link-pill secondary"><i class="fab fa-android"></i> Android / iOS: Planned</span>
-                            </div>
-
-                            <!-- 2. Pilot Stage & Validation Focus -->
-                            <div class="case-study-section">
-                                <h4 class="case-study-sec-title"><i class="fas fa-vial"></i> Current Status & Pilot Validation</h4>
-                                <div class="cs-two-col">
-                                    <div class="cs-col-box cs-solution-box">
-                                        <div class="cs-col-header"><i class="fas fa-school"></i> Partner School Demonstrations</div>
-                                        <p class="cs-text">Demonstrated through live development environments to selected partner schools, allowing educators and administrators to validate workflows, usability, and operational throughput before production rollout.</p>
-                                    </div>
-                                    <div class="cs-col-box cs-problem-box">
-                                        <div class="cs-col-header"><i class="fas fa-bullseye"></i> Current Phase Focus</div>
-                                        <p class="cs-text">Validating multi-role permissions, grading schemas, automated timetabling constraints, parent-teacher communication loops, and predictive student progress tracking.</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- 3. The Problem of Fragmentation -->
-                            <div class="case-study-section">
-                                <h4 class="case-study-sec-title"><i class="fas fa-crosshairs"></i> The Problem: Fragmented Legacy Systems</h4>
-                                <div class="cs-two-col">
-                                    <div class="cs-col-box cs-problem-box">
-                                        <div class="cs-col-header"><i class="fas fa-exclamation-triangle"></i> Distributed School Bottlenecks</div>
-                                        <ul class="cs-list cs-list-problem">
-                                            <li>Disconnected databases for attendance, grades, and fees</li>
-                                            <li>Duplicated manual data entry across disparate departments</li>
-                                            <li>Zero unified visibility for principals and administrators</li>
-                                            <li>Isolated communication channels causing parent friction</li>
-                                            <li>Lack of predictive intelligence for struggling students</li>
-                                        </ul>
-                                    </div>
-                                    <div class="cs-col-box cs-solution-box">
-                                        <div class="cs-col-header"><i class="fas fa-check-circle"></i> Connected VidyaMaxx Operating System</div>
-                                        <ul class="cs-list cs-list-solution">
-                                            <li>Unified relational data model with shared business rules</li>
-                                            <li>Single source of truth for student & staff lifecycles</li>
-                                            <li>Real-time administrative dashboards and reporting</li>
-                                            <li>AI-assisted analytics predicting academic needs early</li>
-                                            <li>Cross-platform access for Web, Desktop, and Mobile</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- 4. Product Vision & Architecture Flowchart -->
-                            <div class="case-study-section">
-                                <h4 class="case-study-sec-title"><i class="fas fa-sitemap"></i> Product Vision & Connected Data Architecture</h4>
-                                <div class="cs-ascii-box">                    VidyaMaxx Platform
-                            │
-            ┌───────────────┼────────────────┐
-            ↓               ↓                ↓
-       Academics       Administration    Communication
-            │               │                │
-            └───────────────┼────────────────┘
-                            ↓
-                    Unified School Data
-                            ↓
-                      AI Capabilities (Predictive Learning Analytics)</div>
-                            </div>
-
-                            <!-- 5. Core Functional Modules -->
-                            <div class="case-study-section">
-                                <h4 class="case-study-sec-title"><i class="fas fa-cubes"></i> Core Functional Modules</h4>
-                                <div class="cs-grid-2">
-                                    <div class="cs-card-sm"><div class="cs-card-sm-title"><i class="fas fa-book-reader"></i> Academic Operations</div><p>Course planning, automated clash-free timetable generator, configurable grading rubrics, exam scheduling, and automated report card printing.</p></div>
-                                    <div class="cs-card-sm"><div class="cs-card-sm-title"><i class="fas fa-id-badge"></i> Student & Staff SIS</div><p>Complete student lifecycle records, digital admissions, biometric/digital attendance logs, and staff payroll/leave tracking.</p></div>
-                                    <div class="cs-card-sm"><div class="cs-card-sm-title"><i class="fas fa-brain"></i> AI Insights Engine</div><p>Machine learning models detect learning pattern anomalies early, recommending targeted interventions and customized study plans.</p></div>
-                                    <div class="cs-card-sm"><div class="cs-card-sm-title"><i class="fas fa-shield-alt"></i> Multi-Tenancy & Security</div><p>Isolated organizational tenancy ensuring FERPA and strict privacy compliance with granular role-based permissions.</p></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="project-card" data-index="1" data-project-slug="vidyamaxx">
                     <div class="project-image">
                         <span class="project-category">AI-Integrated SaaS</span>
                         <img src="/static/images/vidyamaxx-banner.webp" alt="VidyaMaxx" width="1200" height="800" loading="lazy" decoding="async">
@@ -589,7 +499,7 @@ Production Operations ◄── Cross-Platform Clients ◄── Background Proc
                             <span class="project-tech-badge">AI</span>
                         </div>
                         <div class="project-buttons">
-                            <button type="button" class="btn btn-primary project-btn" data-modal="modal-project">Case Study</button>
+                            <a href="#/projects/vidyamaxx" class="btn btn-primary project-btn project-page-link" data-project-slug="vidyamaxx">Case Study</a>
                             <a href="https://logicbyroshan.in/#projects" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">Live Preview</a>
                             <a href="https://github.com/logicbyroshan/vidyamaxx-school-management-saas.git" class="github-btn" target="_blank" rel="noopener noreferrer" aria-label="Open VidyaMaxx repository"><i class="fab fa-github"></i></a>
                         </div>
@@ -597,7 +507,7 @@ Production Operations ◄── Cross-Platform Clients ◄── Background Proc
                 </div>
 
                 <!-- Card 3: PrintNexx -->
-                <div class="project-card" data-index="2" data-modal="modal-project">
+                <div class="project-card" data-index="2" data-project-slug="printnexx">
                     <div class="project-content">
                         <div class="project-meta-row">
                             <span class="project-nickname">Internal Engineering Tool</span>
@@ -612,8 +522,8 @@ Production Operations ◄── Cross-Platform Clients ◄── Background Proc
                             <span class="project-tech-badge">Automation</span>
                         </div>
                         <div class="project-buttons">
-                            <button type="button" class="btn btn-primary project-btn" data-modal="modal-project">Case Study</button>
-                            <button type="button" class="btn btn-secondary" data-modal="modal-project">Technical Overview</button>
+                            <a href="#/projects/printnexx" class="btn btn-primary project-btn project-page-link" data-project-slug="printnexx">Case Study</a>
+                            <a href="#/projects/printnexx" class="btn btn-secondary project-page-link" data-project-slug="printnexx">Technical Overview</a>
                         </div>
                     </div>
                     <div class="project-image">
@@ -623,7 +533,7 @@ Production Operations ◄── Cross-Platform Clients ◄── Background Proc
                 </div>
 
                 <!-- Card 4: EazeTrip -->
-                <div class="project-card" data-index="3" data-modal="modal-project">
+                <div class="project-card" data-index="3" data-project-slug="eazetrip">
                     <div class="project-image">
                         <span class="project-category">Client Project</span>
                         <img src="/static/images/hero.webp" alt="EazeTrip" width="1200" height="800" loading="lazy" decoding="async">
@@ -643,14 +553,14 @@ Production Operations ◄── Cross-Platform Clients ◄── Background Proc
                             <span class="project-tech-badge">AI</span>
                         </div>
                         <div class="project-buttons">
-                            <button type="button" class="btn btn-primary project-btn" data-modal="modal-project">Case Study</button>
+                            <a href="#/projects/eazetrip" class="btn btn-primary project-btn project-page-link" data-project-slug="eazetrip">Case Study</a>
                             <a href="https://logicbyroshan.in/#projects" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">Live Preview</a>
                         </div>
                     </div>
                 </div>
 
                 <!-- Card 5: TaskFlixx -->
-                <div class="project-card" data-index="4" data-modal="modal-project">
+                <div class="project-card" data-index="4" data-project-slug="taskflixx">
                     <div class="project-content">
                         <div class="project-meta-row">
                             <span class="project-nickname">AI Productivity</span>
@@ -666,7 +576,7 @@ Production Operations ◄── Cross-Platform Clients ◄── Background Proc
                             <span class="project-tech-badge">REST API</span>
                         </div>
                         <div class="project-buttons">
-                            <button type="button" class="btn btn-primary project-btn" data-modal="modal-project">Case Study</button>
+                            <a href="#/projects/taskflixx" class="btn btn-primary project-btn project-page-link" data-project-slug="taskflixx">Case Study</a>
                             <a href="https://github.com/logicbyroshan" class="github-btn" target="_blank" rel="noopener noreferrer" aria-label="Open project repository"><i class="fab fa-github"></i></a>
                         </div>
                     </div>
@@ -677,7 +587,7 @@ Production Operations ◄── Cross-Platform Clients ◄── Background Proc
                 </div>
 
                 <!-- Card 6: PrepSarthi -->
-                <div class="project-card" data-index="5" data-modal="modal-project">
+                <div class="project-card" data-index="5" data-project-slug="prepsarthi">
                     <div class="project-image">
                         <span class="project-category">AI Learning Platform</span>
                         <img src="/static/images/about/about1.webp" alt="PrepSarthi" width="1200" height="800" loading="lazy" decoding="async">
@@ -697,7 +607,7 @@ Production Operations ◄── Cross-Platform Clients ◄── Background Proc
                             <span class="project-tech-badge">AI</span>
                         </div>
                         <div class="project-buttons">
-                            <button type="button" class="btn btn-primary project-btn" data-modal="modal-project">Case Study</button>
+                            <a href="#/projects/prepsarthi" class="btn btn-primary project-btn project-page-link" data-project-slug="prepsarthi">Case Study</a>
                             <a href="https://github.com/logicbyroshan" class="github-btn" target="_blank" rel="noopener noreferrer" aria-label="Open project repository"><i class="fab fa-github"></i></a>
                         </div>
                     </div>
@@ -740,6 +650,12 @@ Production Operations ◄── Cross-Platform Clients ◄── Background Proc
                     <div class="roadmap-dot"></div>
                 </div>
             </div>
+
+            <div style="text-align: center; margin-top: 36px;">
+                <a href="#/experience" class="btn btn-primary page-nav-link" data-route="experience" style="display: inline-flex; align-items: center; gap: 8px;">
+                    <i class="fas fa-layer-group"></i> Detailed Experience &amp; Architecture Roadmap
+                </a>
+            </div>
         </div>
     </section>
 
@@ -750,7 +666,7 @@ Production Operations ◄── Cross-Platform Clients ◄── Background Proc
             <h2 class="blog-heading">Latest Blog Posts<br>& Technical Articles</h2>
             
             <div class="blog-grid">
-                <article class="blog-card" data-modal="modal-blog-1" role="button" tabindex="0" aria-label="Read article: Understanding Microservices Architecture">
+                <article class="blog-card" role="button" tabindex="0" aria-label="Read article: Understanding Microservices Architecture">
                     <div class="blog-image-wrapper">
                         <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&h=400&fit=crop" alt="Blog Post" class="blog-image" loading="lazy" decoding="async">
                     </div>
@@ -763,7 +679,7 @@ Production Operations ◄── Cross-Platform Clients ◄── Background Proc
                     </div>
                 </article>
 
-                <article class="blog-card" data-modal="modal-blog-2" role="button" tabindex="0" aria-label="Read article: Building Scalable APIs with Node.js and GraphQL">
+                <article class="blog-card" role="button" tabindex="0" aria-label="Read article: Building Scalable APIs with Node.js and GraphQL">
                     <div class="blog-image-wrapper">
                         <img src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=600&h=400&fit=crop" alt="Blog Post" class="blog-image" loading="lazy" decoding="async">
                     </div>
@@ -776,7 +692,7 @@ Production Operations ◄── Cross-Platform Clients ◄── Background Proc
                     </div>
                 </article>
 
-                <article class="blog-card" data-modal="modal-blog-3" role="button" tabindex="0" aria-label="Read article: Docker and Kubernetes Container Orchestration">
+                <article class="blog-card" role="button" tabindex="0" aria-label="Read article: Docker and Kubernetes Container Orchestration">
                     <div class="blog-image-wrapper">
                         <img src="https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?w=600&h=400&fit=crop" alt="Blog Post" class="blog-image" loading="lazy" decoding="async">
                     </div>
@@ -821,6 +737,201 @@ Production Operations ◄── Cross-Platform Clients ◄── Background Proc
                         </div>
 
                         <div class="faq-item" data-category="technical projects">
+                            <div class="faq-question">
+                                <span class="faq-text">Tell me about CardFlow — what did you build exactly?</span>
+                                <span class="faq-icon">+</span>
+                            </div>
+                            <div class="faq-answer">
+                                <p>CardFlow is a production SaaS platform I designed and built from scratch for Adarsh ID Cards. It handles the complete ID card pipeline: data ingestion, verification workflows, approval stages, photo processing, card generation, and download management — for schools and organizations. It's currently serving 1,000+ real users across multiple organizations and processes tens of thousands of card records. The architecture includes a Django REST API, React web client, Electron desktop client, RBAC, Celery background workers, and a PostgreSQL database.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item" data-category="general collaboration">
+                            <div class="faq-question">
+                                <span class="faq-text">Are you open to freelance or new opportunities?</span>
+                                <span class="faq-icon">+</span>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Yes, I'm open to the right opportunities — particularly projects involving production-grade SaaS, AI-integrated systems, backend architecture, or full-stack engineering. I'm also available for technical consulting and freelance work. Reach out via the contact form and let's talk about what you're building.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item" data-category="technical general">
+                            <div class="faq-question">
+                                <span class="faq-text">How do you approach system design and architecture?</span>
+                                <span class="faq-icon">+</span>
+                            </div>
+                            <div class="faq-answer">
+                                <p>I start by understanding the real business requirements and data lifecycle, not just the feature list. I design for the workflows first, then choose the right architecture to support them. I separate concerns clearly — API layer, business logic, data layer, background processing — and avoid over-engineering early. My CardFlow architecture is a good example: multi-client (web + desktop) against a single API backend with clear workflow state machines.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item" data-category="technical projects">
+                            <div class="faq-question">
+                                <span class="faq-text">What kind of AI work have you done?</span>
+                                <span class="faq-icon">+</span>
+                            </div>
+                            <div class="faq-answer">
+                                <p>I've integrated LLMs, RAG pipelines, and AI agents into production and prototype systems. VidyaMaxx, my school management platform, includes AI-powered features for academic workflows. I also built TaskFlixx — an AI-driven task management tool — and PrepSarthi, an AI-assisted exam preparation platform. My AI work focuses on practical integrations that add real business value, not just demo-level experiments.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item" data-category="collaboration projects">
+                            <div class="faq-question">
+                                <span class="faq-text">Can you work on an existing codebase or take over a project?</span>
+                                <span class="faq-icon">+</span>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Absolutely. I've taken codebases from scratch to production, and I'm equally comfortable onboarding into existing systems. My approach is to understand the current architecture before changing anything, identify pain points systematically, and refactor incrementally with minimal disruption to ongoing operations.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item" data-category="collaboration general">
+                            <div class="faq-question">
+                                <span class="faq-text">How do you handle deployment and production operations?</span>
+                                <span class="faq-icon">+</span>
+                            </div>
+                            <div class="faq-answer">
+                                <p>I manage the full deployment stack — Nginx as a reverse proxy, Gunicorn for WSGI serving, Celery workers with Redis, PostgreSQL tuning, and Linux server management. I've operated CardFlow in production serving real users, so I understand what it takes to keep systems reliable, handle database migrations safely, and manage background job failures gracefully.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item" data-category="projects general">
+                            <div class="faq-question">
+                                <span class="faq-text">Are your projects open source?</span>
+                                <span class="faq-icon">+</span>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Some are, some aren't. CardFlow and EazeTrip are private since they serve real clients in production. VidyaMaxx is currently in pilot testing. TaskFlixx and PrepSarthi are open source — you can find them on my GitHub. I believe in contributing to the open-source ecosystem while also understanding when code is proprietary business logic.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-right">
+                    <div class="faq-circle faq-circle-1"></div>
+                    <div class="faq-circle faq-circle-2"></div>
+                    <div class="faq-circle faq-circle-3"></div>
+                    <img src="/static/images/faqside.webp" alt="FAQ Illustration" class="faq-image" width="504" height="666" loading="lazy" decoding="async">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <span class="contact-badge">Get in Touch</span>
+            <h2 class="contact-heading">Contact Me</h2>
+            
+            <div class="contact-wrapper">
+                <!-- Left Side - Contact Info -->
+                <div class="contact-info">
+                    <h3 class="contact-info-title">Let's Talk</h3>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <div class="contact-label">Email</div>
+                                <div class="contact-value">mail@logicbyroshan.in</div>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <div class="contact-text">
+                                <div class="contact-label">Website</div>
+                                <div class="contact-value">logicbyroshan.in</div>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <div class="contact-label">Address</div>
+                                <div class="contact-value">Bhopal, MP</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Urgent Toggle -->
+                    <div class="contact-urgent">
+                        <div class="urgent-toggle-wrapper">
+                            <span class="urgent-label">Mark as Urgent</span>
+                            <div class="toggle-switch">
+                                <div class="toggle-slider"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="urgent-warning">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <div class="urgent-warning-text">
+                                <div class="urgent-warning-title">Priority Response</div>
+                                <div class="urgent-warning-desc">Your message will be marked as urgent and you'll receive a response within 24 hours.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Side - Contact Form -->
+                <div class="contact-form-wrapper">
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <label for="contact-name" class="form-label">Full Name</label>
+                            <input type="text" id="contact-name" class="form-input" placeholder="Enter your full name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contact-email" class="form-label">Email Address</label>
+                            <input type="email" id="contact-email" class="form-input" placeholder="Enter your email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contact-message" class="form-label">Your Message</label>
+                            <textarea id="contact-message" class="form-textarea" placeholder="Write your message here..." required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="form-submit-btn">
+                            <span>Send Message</span>
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-glow"></div>
+        <div class="container">
+
+            <!-- Top row -->
+            <div class="footer-top">
+                <!-- Brand -->
+                <div class="footer-brand">
+                    <a href="#home" class="brand footer-logo-link">
+                        <img src="/static/images/logo.webp" alt="Roshan Damor" class="logo-image footer-logo" width="151" height="38" loading="lazy" decoding="async">
+                    </a>
+                    <p class="footer-tagline">Crafting digital experiences<br>one line of code at a time.</p>
+                    <div class="footer-socials">
+                        <a href="https://github.com/" class="footer-social-btn" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+                        <a href="https://linkedin.com/" class="footer-social-btn" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://x.com/" class="footer-social-btn" aria-label="Twitter" target="_blank" rel="noopener noreferrer"><i class="fab fa-x-twitter"></i></a>
+                        <a href="https://leetcode.com/" class="footer-social-btn" aria-label="LeetCode" target="_blank" rel="noopener noreferrer"><i class="fas fa-code"></i></a>
+                    </div>
+                </div>
+
+                <!-- Nav links -->
                             <div class="faq-question">
                                 <span class="faq-text">Tell me about CardFlow — what did you build exactly?</span>
                                 <span class="faq-icon">+</span>
@@ -1062,728 +1173,7 @@ Production Operations ◄── Cross-Platform Clients ◄── Background Proc
         </div>
     </footer>
 
-    <!-- ══════════════════════════════════════════
-         BLOG MODALS
-         ══════════════════════════════════════════ -->
-
-    <!-- Blog Modal 1: Microservices -->
-    <div class="modal-overlay" id="modal-blog-1">
-        <div class="modal-box modal-box--blog">
-            <div class="modal-header-bar">
-                <div class="modal-header-left">
-                    <div class="modal-icon-wrap modal-icon-compact"><i class="fas fa-book-open"></i></div>
-                    <h2 class="modal-title modal-title-compact">Technical Article</h2>
-                </div>
-                <div class="modal-header-right">
-                    <button class="modal-header-btn modal-expand-btn" aria-label="Full Page View" title="Full Page View"><i class="fas fa-expand"></i></button>
-                    <button class="modal-header-btn modal-close" aria-label="Close" title="Close"><i class="fas fa-times"></i></button>
-                </div>
-            </div>
-
-            <!-- Two-column body: sidebar + main (sidebar only visible in fullscreen) -->
-            <div class="modal-fs-body">
-
-                <!-- LEFT SIDEBAR (shown only in fullscreen) -->
-                <aside class="modal-sidebar">
-                    <div class="sb-section">
-                        <div class="sb-heading"><i class="fas fa-user-circle"></i> Author</div>
-                        <div class="sb-author-card">
-                            <div class="sb-avatar">R</div>
-                            <div>
-                                <div class="sb-author-name">Roshan Damor</div>
-                                <div class="sb-author-role">AI & Full Stack Engineer</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="sb-section">
-                        <div class="sb-heading"><i class="fas fa-info-circle"></i> Article Info</div>
-                        <ul class="sb-meta-list">
-                            <li class="sb-meta-item"><i class="far fa-calendar-alt"></i> November 15, 2024</li>
-                            <li class="sb-meta-item"><i class="far fa-clock"></i> 8 min read</li>
-                            <li class="sb-meta-item"><i class="fas fa-folder-open"></i> Architecture</li>
-                            <li class="sb-meta-item"><i class="fas fa-layer-group"></i> Backend Engineering</li>
-                        </ul>
-                    </div>
-
-                    <div class="sb-section">
-                        <div class="sb-heading"><i class="fas fa-tags"></i> Tags</div>
-                        <div class="sb-tags">
-                            <span class="sb-tag"><i class="fas fa-cubes"></i> Microservices</span>
-                            <span class="sb-tag">REST API</span>
-                            <span class="sb-tag">Node.js</span>
-                            <span class="sb-tag">Docker</span>
-                            <span class="sb-tag">PostgreSQL</span>
-                            <span class="sb-tag">RabbitMQ</span>
-                        </div>
-                    </div>
-
-                    <div class="sb-section sb-toc-section">
-                        <div class="sb-heading"><i class="fas fa-list-ul"></i> Contents</div>
-                        <ul class="sb-toc-list">
-                            <li><span class="sb-toc-link">Core Principle</span></li>
-                            <li><span class="sb-toc-link">ER Diagram & Boundaries</span></li>
-                            <li><span class="sb-toc-link">Implementation Steps</span></li>
-                            <li><span class="sb-toc-link">Service Implementation</span></li>
-                        </ul>
-                    </div>
-
-                    <div class="sb-section">
-                        <div class="sb-heading"><i class="fas fa-link"></i> Related</div>
-                        <ul class="sb-link-list">
-                            <li class="sb-link-item"><a href="#"><i class="fas fa-file-alt"></i> GraphQL APIs Guide</a></li>
-                            <li class="sb-link-item"><a href="#"><i class="fas fa-file-alt"></i> Docker & K8s</a></li>
-                            <li class="sb-link-item"><a href="https://github.com/logicbyroshan" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub Profile</a></li>
-                        </ul>
-                    </div>
-                </aside>
-
-                <!-- RIGHT MAIN CONTENT -->
-                <div class="modal-fs-main">
-                    <div class="blog-modal-hero">
-                        <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1200&h=500&fit=crop" alt="Microservices" class="blog-modal-hero-img" loading="lazy" decoding="async">
-                        <div class="blog-modal-hero-fade"></div>
-                    </div>
-                    <div class="blog-modal-content">
-                        <div class="blog-modal-meta">
-                            <span class="blog-modal-tag"><i class="fas fa-cubes"></i> Architecture</span>
-                            <span class="blog-modal-tag"><i class="fas fa-server"></i> Backend</span>
-                            <span class="blog-modal-read-time"><i class="far fa-clock"></i> 8 min read</span>
-                        </div>
-                        <h2 class="blog-modal-title">Understanding Microservices Architecture: A Developer's Guide</h2>
-                        <div class="blog-modal-author-row">
-                            <div class="blog-modal-avatar">R</div>
-                            <div>
-                                <div class="blog-modal-author-name">Roshan Damor</div>
-                                <div class="blog-modal-author-date">November 15, 2024</div>
-                            </div>
-                        </div>
-                        <div class="blog-modal-divider"></div>
-                        <div class="blog-modal-article">
-                            <p>Microservices architecture has become one of the most talked-about patterns in modern software engineering. Unlike traditional monoliths where the entire app resides in a single codebase, microservices decompose systems into independent, specialized domain services.</p>
-
-                            <div class="doc-callout doc-callout-note">
-                                <i class="fas fa-info-circle doc-callout-icon"></i>
-                                <div class="doc-callout-body">
-                                    <div class="doc-callout-title">Core Principle</div>
-                                    Each microservice must own its database exclusively. Direct cross-database queries between services are strictly prohibited to prevent tight coupling.
-                                </div>
-                            </div>
-
-                            <h3><i class="fas fa-database"></i> Entity Relationship & Microservice Boundaries</h3>
-                            <p>Here is an architectural ER Diagram illustrating isolated database schemas across distinct domain microservices:</p>
-
-                            <div class="doc-er-diagram-wrap">
-                                <div class="doc-er-header">
-                                    <div class="doc-er-title"><i class="fas fa-project-diagram"></i> Database ER Diagram & Domain Seams</div>
-                                    <span class="blog-modal-tag">PostgreSQL / Redis</span>
-                                </div>
-                                <div class="doc-er-grid">
-                                    <div class="doc-er-table-card">
-                                        <div class="doc-er-table-name"><span>USERS_DB.users</span><i class="fas fa-table"></i></div>
-                                        <ul class="doc-er-field-list">
-                                            <li class="doc-er-field"><span><span class="doc-er-key doc-er-pk">PK</span> id</span> <span class="doc-er-type">UUID</span></li>
-                                            <li class="doc-er-field"><span>email</span> <span class="doc-er-type">VARCHAR(255)</span></li>
-                                            <li class="doc-er-field"><span>password_hash</span> <span class="doc-er-type">TEXT</span></li>
-                                            <li class="doc-er-field"><span>created_at</span> <span class="doc-er-type">TIMESTAMP</span></li>
-                                        </ul>
-                                    </div>
-                                    <div class="doc-er-table-card">
-                                        <div class="doc-er-table-name"><span>ORDERS_DB.orders</span><i class="fas fa-table"></i></div>
-                                        <ul class="doc-er-field-list">
-                                            <li class="doc-er-field"><span><span class="doc-er-key doc-er-pk">PK</span> id</span> <span class="doc-er-type">UUID</span></li>
-                                            <li class="doc-er-field"><span><span class="doc-er-key doc-er-fk">FK</span> user_id</span> <span class="doc-er-type">UUID</span></li>
-                                            <li class="doc-er-field"><span>total_amount</span> <span class="doc-er-type">NUMERIC(10,2)</span></li>
-                                            <li class="doc-er-field"><span>status</span> <span class="doc-er-type">ENUM</span></li>
-                                        </ul>
-                                    </div>
-                                    <div class="doc-er-table-card">
-                                        <div class="doc-er-table-name"><span>PAYMENTS_DB.txns</span><i class="fas fa-table"></i></div>
-                                        <ul class="doc-er-field-list">
-                                            <li class="doc-er-field"><span><span class="doc-er-key doc-er-pk">PK</span> txn_id</span> <span class="doc-er-type">UUID</span></li>
-                                            <li class="doc-er-field"><span><span class="doc-er-key doc-er-fk">FK</span> order_id</span> <span class="doc-er-type">UUID</span></li>
-                                            <li class="doc-er-field"><span>stripe_charge_id</span> <span class="doc-er-type">VARCHAR</span></li>
-                                            <li class="doc-er-field"><span>paid_at</span> <span class="doc-er-type">TIMESTAMP</span></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <h3><i class="fas fa-sitemap"></i> Implementation Step-by-Step</h3>
-                            <div class="doc-steps-list">
-                                <div class="doc-step-item">
-                                    <div class="doc-step-badge">1</div>
-                                    <div class="doc-step-content"><div class="doc-step-title">Domain Decomposition</div>Identify clear domain boundaries using Event Storming to extract bounded contexts.</div>
-                                </div>
-                                <div class="doc-step-item">
-                                    <div class="doc-step-badge">2</div>
-                                    <div class="doc-step-content"><div class="doc-step-title">API Gateway Routing</div>Set up an API Gateway (Kong, Traefik, or Nginx) for single-entry routing and SSL termination.</div>
-                                </div>
-                                <div class="doc-step-item">
-                                    <div class="doc-step-badge">3</div>
-                                    <div class="doc-step-content"><div class="doc-step-title">Asynchronous Event Bus</div>Connect RabbitMQ or Kafka for event-driven messaging between independent services.</div>
-                                </div>
-                            </div>
-
-                            <h3><i class="fas fa-code"></i> Service Implementation</h3>
-                            <div class="doc-code-block">
-                                <div class="doc-code-header"><span><i class="fas fa-file-code"></i> user-service/index.js</span><span class="doc-code-lang">JavaScript</span></div>
-                                <pre><code>const express = require('express');
-const app = express();
-app.use(express.json());
-
-app.get('/users/:id', async (req, res) => {
-  const user = await UserRepository.findById(req.params.id);
-  if (!user) return res.status(404).json({ error: 'Not found' });
-  res.json(user);
-});
-
-app.post('/users', async (req, res) => {
-  const user = await UserRepository.create(req.body);
-  eventBus.emit('user.created', { userId: user.id, email: user.email });
-  res.status(201).json(user);
-});
-
-app.listen(3001, () => console.log('User Service running on :3001'));</code></pre>
-                            </div>
-
-                            <div class="doc-callout doc-callout-tip">
-                                <i class="fas fa-lightbulb doc-callout-icon"></i>
-                                <div class="doc-callout-body">
-                                    <div class="doc-callout-title">Pro Tip</div>
-                                    Start with a modular monolith first! Only extract microservices when team boundaries or distinct scaling demands make it necessary.
-                                </div>
-                            </div>
-
-                            <p class="blog-modal-closing">The key is not to microservice everything from day one, but to design with clear boundaries and clean APIs so the transition is smooth when scaling.</p>
-                        </div>
-                    </div>
-                </div>
-            </div><!-- /.modal-fs-body -->
-        </div>
-    </div>
-
-    <!-- Blog Modal 2: GraphQL APIs -->
-    <div class="modal-overlay" id="modal-blog-2">
-        <div class="modal-box modal-box--blog">
-            <div class="modal-header-bar">
-                <div class="modal-header-left">
-                    <div class="modal-icon-wrap modal-icon-compact"><i class="fas fa-book-open"></i></div>
-                    <h2 class="modal-title modal-title-compact">Technical Article</h2>
-                </div>
-                <div class="modal-header-right">
-                    <button class="modal-header-btn modal-expand-btn" aria-label="Full Page View" title="Full Page View"><i class="fas fa-expand"></i></button>
-                    <button class="modal-header-btn modal-close" aria-label="Close" title="Close"><i class="fas fa-times"></i></button>
-                </div>
-            </div>
-            <div class="modal-fs-body">
-                <aside class="modal-sidebar">
-                    <div class="sb-section">
-                        <div class="sb-heading"><i class="fas fa-user-circle"></i> Author</div>
-                        <div class="sb-author-card">
-                            <div class="sb-avatar">R</div>
-                            <div>
-                                <div class="sb-author-name">Roshan Damor</div>
-                                <div class="sb-author-role">AI & Full Stack Engineer</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="sb-section">
-                        <div class="sb-heading"><i class="fas fa-info-circle"></i> Article Info</div>
-                        <ul class="sb-meta-list">
-                            <li class="sb-meta-item"><i class="far fa-calendar-alt"></i> October 28, 2024</li>
-                            <li class="sb-meta-item"><i class="far fa-clock"></i> 6 min read</li>
-                            <li class="sb-meta-item"><i class="fas fa-folder-open"></i> API Design</li>
-                            <li class="sb-meta-item"><i class="fab fa-node-js"></i> Node.js</li>
-                        </ul>
-                    </div>
-                    <div class="sb-section">
-                        <div class="sb-heading"><i class="fas fa-tags"></i> Tags</div>
-                        <div class="sb-tags">
-                            <span class="sb-tag">GraphQL</span>
-                            <span class="sb-tag">Apollo</span>
-                            <span class="sb-tag">Node.js</span>
-                            <span class="sb-tag">DataLoader</span>
-                            <span class="sb-tag">REST</span>
-                        </div>
-                    </div>
-                    <div class="sb-section sb-toc-section">
-                        <div class="sb-heading"><i class="fas fa-list-ul"></i> Contents</div>
-                        <ul class="sb-toc-list">
-                            <li><span class="sb-toc-link">GraphQL vs REST</span></li>
-                            <li><span class="sb-toc-link">Schema & ER Model</span></li>
-                            <li><span class="sb-toc-link">Apollo Server Integration</span></li>
-                            <li><span class="sb-toc-link">Production Security</span></li>
-                        </ul>
-                    </div>
-                    <div class="sb-section">
-                        <div class="sb-heading"><i class="fas fa-link"></i> Related</div>
-                        <ul class="sb-link-list">
-                            <li class="sb-link-item"><a href="#"><i class="fas fa-file-alt"></i> Microservices Guide</a></li>
-                            <li class="sb-link-item"><a href="#"><i class="fas fa-file-alt"></i> Docker & K8s</a></li>
-                            <li class="sb-link-item"><a href="https://github.com/logicbyroshan" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub Profile</a></li>
-                        </ul>
-                    </div>
-                </aside>
-                <div class="modal-fs-main">
-                    <div class="blog-modal-hero">
-                        <img src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=1200&h=500&fit=crop" alt="GraphQL APIs" class="blog-modal-hero-img" loading="lazy" decoding="async">
-                        <div class="blog-modal-hero-fade"></div>
-                    </div>
-                    <div class="blog-modal-content">
-                        <div class="blog-modal-meta">
-                            <span class="blog-modal-tag"><i class="fab fa-node-js"></i> Node.js</span>
-                            <span class="blog-modal-tag"><i class="fas fa-project-diagram"></i> API Design</span>
-                            <span class="blog-modal-read-time"><i class="far fa-clock"></i> 6 min read</span>
-                        </div>
-                        <h2 class="blog-modal-title">Building Scalable APIs with Node.js and GraphQL Best Practices</h2>
-                        <div class="blog-modal-author-row">
-                            <div class="blog-modal-avatar">R</div>
-                            <div>
-                                <div class="blog-modal-author-name">Roshan Damor</div>
-                                <div class="blog-modal-author-date">October 28, 2024</div>
-                            </div>
-                        </div>
-                        <div class="blog-modal-divider"></div>
-                        <div class="blog-modal-article">
-                            <p>REST has served us well for decades, but as frontends grew more complex and mobile came to dominate, over-fetching and under-fetching became real pain points. GraphQL lets clients specify exact response structures in a single query.</p>
-                            <div class="doc-callout doc-callout-info"><i class="fas fa-info-circle doc-callout-icon"></i><div class="doc-callout-body"><div class="doc-callout-title">GraphQL vs REST</div>GraphQL collapses 3+ REST HTTP roundtrips into a single declarative POST query while automatically generating typescript type definitions.</div></div>
-                            <h3><i class="fas fa-database"></i> Schema &amp; ER Model</h3>
-                            <div class="doc-er-diagram-wrap"><div class="doc-er-header"><div class="doc-er-title"><i class="fas fa-project-diagram"></i> GraphQL Type System &amp; ER Schema</div><span class="blog-modal-tag">GraphQL SDL</span></div><div class="doc-er-grid"><div class="doc-er-table-card"><div class="doc-er-table-name"><span>type User</span><i class="fas fa-code-branch"></i></div><ul class="doc-er-field-list"><li class="doc-er-field"><span><span class="doc-er-key doc-er-pk">ID</span> id</span><span class="doc-er-type">ID!</span></li><li class="doc-er-field"><span>name</span><span class="doc-er-type">String!</span></li><li class="doc-er-field"><span>email</span><span class="doc-er-type">String!</span></li><li class="doc-er-field"><span><span class="doc-er-key doc-er-fk">REL</span> posts</span><span class="doc-er-type">[Post!]!</span></li></ul></div><div class="doc-er-table-card"><div class="doc-er-table-name"><span>type Post</span><i class="fas fa-code-branch"></i></div><ul class="doc-er-field-list"><li class="doc-er-field"><span><span class="doc-er-key doc-er-pk">ID</span> id</span><span class="doc-er-type">ID!</span></li><li class="doc-er-field"><span>title</span><span class="doc-er-type">String!</span></li><li class="doc-er-field"><span>content</span><span class="doc-er-type">String</span></li><li class="doc-er-field"><span><span class="doc-er-key doc-er-fk">FK</span> authorId</span><span class="doc-er-type">ID!</span></li></ul></div></div></div>
-                            <h3><i class="fas fa-code"></i> Apollo Server &amp; DataLoader Integration</h3>
-                            <div class="doc-code-block"><div class="doc-code-header"><span><i class="fas fa-file-code"></i> src/server.js</span><span class="doc-code-lang">JavaScript</span></div><pre><code>const { ApolloServer } = require('@apollo/server');
-const DataLoader = require('dataloader');
-
-const userLoader = new DataLoader(async (userIds) => {
-  const users = await db.users.findMany({ where: { id: { in: userIds } } });
-  return userIds.map(id => users.find(u => u.id === id));
-});
-
-const server = new ApolloServer({ typeDefs, resolvers });
-await server.start();</code></pre></div>
-                            <div class="doc-callout doc-callout-warning"><i class="fas fa-exclamation-triangle doc-callout-icon"></i><div class="doc-callout-body"><div class="doc-callout-title">Production Security</div>Always enforce Depth Limiting and Query Complexity scoring in production to prevent recursive DOS queries.</div></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Blog Modal 3: Docker + Kubernetes -->
-    <div class="modal-overlay" id="modal-blog-3">
-        <div class="modal-box modal-box--blog">
-            <div class="modal-header-bar">
-                <div class="modal-header-left">
-                    <div class="modal-icon-wrap modal-icon-compact"><i class="fas fa-book-open"></i></div>
-                    <h2 class="modal-title modal-title-compact">Technical Article</h2>
-                </div>
-                <div class="modal-header-right">
-                    <button class="modal-header-btn modal-expand-btn" aria-label="Full Page View" title="Full Page View"><i class="fas fa-expand"></i></button>
-                    <button class="modal-header-btn modal-close" aria-label="Close" title="Close"><i class="fas fa-times"></i></button>
-                </div>
-            </div>
-            <div class="modal-fs-body">
-                <aside class="modal-sidebar">
-                    <div class="sb-section">
-                        <div class="sb-heading"><i class="fas fa-user-circle"></i> Author</div>
-                        <div class="sb-author-card">
-                            <div class="sb-avatar">R</div>
-                            <div><div class="sb-author-name">Roshan Damor</div><div class="sb-author-role">AI &amp; Full Stack Engineer</div></div>
-                        </div>
-                    </div>
-                    <div class="sb-section">
-                        <div class="sb-heading"><i class="fas fa-info-circle"></i> Article Info</div>
-                        <ul class="sb-meta-list">
-                            <li class="sb-meta-item"><i class="far fa-calendar-alt"></i> December 3, 2024</li>
-                            <li class="sb-meta-item"><i class="far fa-clock"></i> 10 min read</li>
-                            <li class="sb-meta-item"><i class="fas fa-folder-open"></i> DevOps</li>
-                            <li class="sb-meta-item"><i class="fas fa-cloud"></i> Cloud Infrastructure</li>
-                        </ul>
-                    </div>
-                    <div class="sb-section">
-                        <div class="sb-heading"><i class="fas fa-tags"></i> Tags</div>
-                        <div class="sb-tags">
-                            <span class="sb-tag"><i class="fab fa-docker"></i> Docker</span>
-                            <span class="sb-tag">Kubernetes</span>
-                            <span class="sb-tag">CI/CD</span>
-                            <span class="sb-tag">Nginx</span>
-                            <span class="sb-tag">Node.js</span>
-                        </div>
-                    </div>
-                    <div class="sb-section sb-toc-section">
-                        <div class="sb-heading"><i class="fas fa-list-ul"></i> Contents</div>
-                        <ul class="sb-toc-list">
-                            <li><span class="sb-toc-link">Container Architecture</span></li>
-                            <li><span class="sb-toc-link">Dockerfile Patterns</span></li>
-                            <li><span class="sb-toc-link">Orchestration with K8s</span></li>
-                            <li><span class="sb-toc-link">Production Deploy</span></li>
-                        </ul>
-                    </div>
-                    <div class="sb-section">
-                        <div class="sb-heading"><i class="fas fa-link"></i> Related</div>
-                        <ul class="sb-link-list">
-                            <li class="sb-link-item"><a href="#"><i class="fas fa-file-alt"></i> Microservices Guide</a></li>
-                            <li class="sb-link-item"><a href="#"><i class="fas fa-file-alt"></i> GraphQL APIs</a></li>
-                            <li class="sb-link-item"><a href="https://github.com/logicbyroshan" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub Profile</a></li>
-                        </ul>
-                    </div>
-                </aside>
-                <div class="modal-fs-main">
-                    <div class="blog-modal-hero">
-                        <img src="https://images.unsplash.com/photo-1635322966219-b75ed2a7e7e9?w=1200&h=500&fit=crop" alt="Docker and Kubernetes" class="blog-modal-hero-img" loading="lazy" decoding="async">
-                        <div class="blog-modal-hero-fade"></div>
-                    </div>
-            <div class="blog-modal-content">
-                <div class="blog-modal-meta">
-                    <span class="blog-modal-tag"><i class="fab fa-docker"></i> DevOps</span>
-                    <span class="blog-modal-tag"><i class="fas fa-cloud"></i> Cloud</span>
-                    <span class="blog-modal-read-time"><i class="far fa-clock"></i> 10 min read</span>
-                </div>
-                <h2 class="blog-modal-title">Docker and Kubernetes: Complete Guide to Container Orchestration</h2>
-                <div class="blog-modal-author-row">
-                    <div class="blog-modal-avatar">R</div>
-                    <div>
-                        <div class="blog-modal-author-name">Roshan Damor</div>
-                        <div class="blog-modal-author-date">September 12, 2024</div>
-                    </div>
-                </div>
-                <div class="blog-modal-divider"></div>
-                <div class="blog-modal-article">
-                    <p>Containers have fundamentally changed how we build, ship, and run software. Before Docker, environment mismatches caused endless bugs. Containers package your application with everything it needs: the runtime, libraries, environment variables, and config.</p>
-
-                    <div class="doc-callout doc-callout-tip">
-                        <i class="fas fa-rocket doc-callout-icon"></i>
-                        <div class="doc-callout-body">
-                            <div class="doc-callout-title">Container vs VM</div>
-                            Containers share the host OS kernel and isolate only processes & filesystems, making startup instantaneous (milliseconds vs minutes for VMs).
-                        </div>
-                    </div>
-
-                    <h3><i class="fas fa-dharmachakra"></i> Kubernetes Cluster Topology & Schema</h3>
-
-                    <div class="doc-er-diagram-wrap">
-                        <div class="doc-er-header">
-                            <div class="doc-er-title"><i class="fas fa-sitemap"></i> Kubernetes Topology Architecture</div>
-                            <span class="blog-modal-tag">K8s v1.30</span>
-                        </div>
-                        <div class="doc-er-grid">
-                            <div class="doc-er-table-card">
-                                <div class="doc-er-table-name">
-                                    <span>Ingress Controller</span>
-                                    <i class="fas fa-network-wired"></i>
-                                </div>
-                                <ul class="doc-er-field-list">
-                                    <li class="doc-er-field"><span>Rule</span> <span class="doc-er-type">api.domain.com</span></li>
-                                    <li class="doc-er-field"><span>SSL</span> <span class="doc-er-type">Let's Encrypt</span></li>
-                                    <li class="doc-er-field"><span>Target</span> <span class="doc-er-type">ClusterIP Service</span></li>
-                                </ul>
-                            </div>
-
-                            <div class="doc-er-table-card">
-                                <div class="doc-er-table-name">
-                                    <span>Deployment Replicas</span>
-                                    <i class="fas fa-boxes"></i>
-                                </div>
-                                <ul class="doc-er-field-list">
-                                    <li class="doc-er-field"><span>Replicas</span> <span class="doc-er-type">3 Active Pods</span></li>
-                                    <li class="doc-er-field"><span>Probe</span> <span class="doc-er-type">HTTP /healthz</span></li>
-                                    <li class="doc-er-field"><span>Strategy</span> <span class="doc-er-type">RollingUpdate</span></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <h3><i class="fas fa-code"></i> Multi-Stage Dockerfile Blueprint</h3>
-
-                    <div class="doc-code-block">
-                        <div class="doc-code-header">
-                            <span><i class="fas fa-file-code"></i> Dockerfile</span>
-                            <span class="doc-code-lang">Docker</span>
-                        </div>
-                        <pre><code># ── Build stage ───────────────────────────
-FROM node:20-alpine AS builder
-WORKDIR /app
-COPY package*.json ./
-RUN npm ci --only=production
-COPY . .
-RUN npm run build
-
-# ── Production image ──────────────────────
-FROM node:20-alpine
-WORKDIR /app
-ENV NODE_ENV=production
-COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/node_modules ./node_modules
-USER node
-EXPOSE 3000
-CMD ["node", "dist/index.js"]</code></pre>
-                    </div>
-
-                    <p class="blog-modal-closing">Start with Docker, get comfortable building optimized images, then layer on Kubernetes for self-healing, scalable production deployments.</p>
-                        </div>
-                    </div>
-                </div>
-            </div><!-- /.modal-fs-body -->
-        </div>
-    </div>
-
-    <!-- ══════════════════════════════════════════
-         MODALS
-         ══════════════════════════════════════════ -->
-
-    <!-- Modal: Project Showcase -->
-    <div class="modal-overlay" id="modal-project">
-        <div class="modal-box modal-box-project">
-            <div class="modal-header-bar">
-                <div class="modal-header-left">
-                    <div class="modal-icon-wrap modal-icon-compact"><i class="fas fa-rocket"></i></div>
-                    <h2 class="modal-title modal-title-compact project-modal-title">Project Details</h2>
-                </div>
-                <div class="modal-header-right">
-                    <button class="modal-header-btn modal-expand-btn" aria-label="Full Page View" title="Full Page View"><i class="fas fa-expand"></i></button>
-                    <button class="modal-header-btn modal-close" aria-label="Close" title="Close"><i class="fas fa-times"></i></button>
-                </div>
-            </div>
-            <!-- Sidebar: shown only in fullscreen -->
-            <aside class="modal-sidebar">
-                <div class="sb-section">
-                    <div class="sb-heading"><i class="fas fa-layer-group"></i> Project Type</div>
-                    <ul class="sb-meta-list">
-                        <li class="sb-meta-item"><i class="fas fa-tag"></i> <span class="project-modal-nickname">Featured Project</span></li>
-                        <li class="sb-meta-item"><i class="fas fa-user"></i> Roshan Damor</li>
-                        <li class="sb-meta-item"><i class="fas fa-calendar"></i> 2024</li>
-                        <li class="sb-meta-item"><i class="fas fa-check-circle" style="color:#34d399"></i> Live & Active</li>
-                    </ul>
-                </div>
-                <div class="sb-section">
-                    <div class="sb-heading"><i class="fas fa-code"></i> Tech Stack</div>
-                    <div class="project-modal-stack sb-tech-list"></div>
-                </div>
-                <div class="sb-section">
-                    <div class="sb-heading"><i class="fas fa-external-link-alt"></i> Links</div>
-                    <ul class="sb-link-list">
-                        <li class="sb-link-item"><a href="#" class="project-modal-live" target="_blank" rel="noopener"><i class="fas fa-globe"></i> Live Preview</a></li>
-                        <li class="sb-link-item"><a href="#" class="project-modal-github" target="_blank" rel="noopener"><i class="fab fa-github"></i> Source Code</a></li>
-                    </ul>
-                </div>
-                <div class="sb-section">
-                    <div class="sb-heading"><i class="fas fa-chart-bar"></i> Stats</div>
-                    <div class="sb-stat-grid">
-                        <div class="sb-stat-card"><div class="sb-stat-value">100%</div><div class="sb-stat-label">Responsive</div></div>
-                        <div class="sb-stat-card"><div class="sb-stat-value">A+</div><div class="sb-stat-label">Performance</div></div>
-                    </div>
-                </div>
-            </aside>
-            <!-- Main project body -->
-            <div class="modal-body-content">
-                <div class="blog-modal-hero" style="height: 200px; margin-bottom: 20px;">
-                    <img src="/static/images/hero.webp" alt="Project Preview" class="project-modal-img blog-modal-hero-img" loading="lazy">
-                    <div class="blog-modal-hero-fade"></div>
-                </div>
-                <div class="blog-modal-meta" style="margin-bottom: 12px;">
-                    <span class="blog-modal-tag project-modal-nickname">Featured Project</span>
-                </div>
-                <p class="project-modal-desc modal-subtitle" style="font-size: 15px; line-height: 1.6; color: rgba(255,255,255,0.85); margin-bottom: 16px;">Detailed project showcase and technical breakdown.</p>
-                <div class="project-modal-doc" style="font-size: 14px; line-height: 1.6; color: rgba(255,255,255,0.8); margin-bottom: 20px;"></div>
-                <div class="modal-divider"></div>
-                <h4 style="color: #fff; margin-bottom: 10px; font-size: 14px; text-transform: uppercase; letter-spacing: 1px;">Technologies Used</h4>
-                <div class="project-tech-stack project-modal-stack" style="margin-bottom: 24px;"></div>
-                <div class="modal-actions">
-                    <a href="#" class="btn btn-primary modal-btn project-modal-live" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Live Preview</a>
-                    <a href="#" class="btn btn-secondary modal-btn project-modal-github" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i> Source Code</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal: Resume -->
-    <div class="modal-overlay" id="modal-resume">
-        <div class="modal-box">
-            <div class="modal-header-bar">
-                <div class="modal-header-left">
-                    <div class="modal-icon-wrap modal-icon-compact"><i class="fas fa-file-alt"></i></div>
-                    <h2 class="modal-title modal-title-compact">Resume Overview</h2>
-                </div>
-                <div class="modal-header-right">
-                    <button class="modal-header-btn modal-expand-btn" aria-label="Full Page View" title="Full Page View"><i class="fas fa-expand"></i></button>
-                    <button class="modal-header-btn modal-close" aria-label="Close" title="Close"><i class="fas fa-times"></i></button>
-                </div>
-            </div>
-            <!-- Sidebar: Profile card shown in fullscreen -->
-            <aside class="modal-sidebar">
-                <div class="sb-section">
-                    <div class="sb-author-card">
-                        <div class="sb-avatar">R</div>
-                        <div>
-                            <div class="sb-author-name">Roshan Damor</div>
-                            <div class="sb-author-role">Full Stack · AI Engineer</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="sb-section">
-                    <div class="sb-heading"><i class="fas fa-chart-bar"></i> Stats</div>
-                    <div class="sb-stat-grid">
-                        <div class="sb-stat-card"><div class="sb-stat-value">1300+</div><div class="sb-stat-label">DSA Solved</div></div>
-                        <div class="sb-stat-card"><div class="sb-stat-value">3+</div><div class="sb-stat-label">Years Exp.</div></div>
-                        <div class="sb-stat-card"><div class="sb-stat-value">15+</div><div class="sb-stat-label">Projects</div></div>
-                        <div class="sb-stat-card"><div class="sb-stat-value">5+</div><div class="sb-stat-label">Tech Stacks</div></div>
-                    </div>
-                </div>
-                <div class="sb-section">
-                    <div class="sb-heading"><i class="fas fa-code"></i> Core Skills</div>
-                    <ul class="sb-tech-list">
-                        <li class="sb-tech-item"><span class="sb-tech-dot"></span> Python & Django</li>
-                        <li class="sb-tech-item"><span class="sb-tech-dot"></span> React & Frontend</li>
-                        <li class="sb-tech-item"><span class="sb-tech-dot"></span> PostgreSQL & Redis</li>
-                        <li class="sb-tech-item"><span class="sb-tech-dot"></span> Celery & Background Jobs</li>
-                        <li class="sb-tech-item"><span class="sb-tech-dot"></span> Docker & Nginx</li>
-                        <li class="sb-tech-item"><span class="sb-tech-dot"></span> AI & LLM Workflows</li>
-                    </ul>
-                </div>
-                <div class="sb-section">
-                    <div class="sb-heading"><i class="fas fa-share-alt"></i> Connect</div>
-                    <ul class="sb-link-list">
-                        <li class="sb-link-item"><a href="https://github.com/logicbyroshan" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a></li>
-                        <li class="sb-link-item"><a href="https://linkedin.com" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
-                        <li class="sb-link-item"><a href="mailto:mail@logicbyroshan.in"><i class="fas fa-envelope"></i> Email Me</a></li>
-                    </ul>
-                </div>
-            </aside>
-            <div class="modal-body-content">
-                <p class="modal-subtitle">Roshan Damor — Software Engineer & AI Full Stack Developer</p>
-                <div class="modal-divider"></div>
-                <div class="modal-resume-preview">
-                    <div class="resume-row">
-                        <span class="resume-label">Name</span>
-                        <span class="resume-value">Roshan Damor</span>
-                    </div>
-                    <div class="resume-row">
-                        <span class="resume-label">Role</span>
-                        <span class="resume-value">Software Engineer · Full Stack Developer</span>
-                    </div>
-                    <div class="resume-row">
-                        <span class="resume-label">Tech</span>
-                        <span class="resume-value">Python · Django · React · PostgreSQL · Redis · Celery · AI</span>
-                    </div>
-                    <div class="resume-row">
-                        <span class="resume-label">DSA</span>
-                        <span class="resume-value">1300+ Problems Solved</span>
-                    </div>
-                    <div class="resume-row">
-                        <span class="resume-label">Location</span>
-                        <span class="resume-value">India</span>
-                    </div>
-                </div>
-                <div class="modal-actions">
-                    <a href="#contact" class="btn btn-primary modal-btn"><i class="fas fa-download"></i> Request PDF</a>
-                    <a href="#about" class="btn btn-secondary modal-btn"><i class="fas fa-eye"></i> View Profile</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal: Video Resume -->
-    <div class="modal-overlay" id="modal-video-resume">
-        <div class="modal-box">
-            <div class="modal-header-bar">
-                <div class="modal-header-left">
-                    <div class="modal-icon-wrap modal-icon-purple modal-icon-compact"><i class="fas fa-play-circle"></i></div>
-                    <h2 class="modal-title modal-title-compact">Video Resume</h2>
-                </div>
-                <div class="modal-header-right">
-                    <button class="modal-header-btn modal-expand-btn" aria-label="Full Page View" title="Full Page View"><i class="fas fa-expand"></i></button>
-                    <button class="modal-header-btn modal-close" aria-label="Close" title="Close"><i class="fas fa-times"></i></button>
-                </div>
-            </div>
-            <p class="modal-subtitle">60 seconds — who I am, what I build, why it matters</p>
-            <div class="modal-divider"></div>
-            <div class="modal-video-wrap">
-                <div class="modal-video-placeholder">
-                    <div class="video-play-btn"><i class="fas fa-play"></i></div>
-                    <p class="video-placeholder-text">Video Resume · 1:00 min</p>
-                </div>
-            </div>
-            <div class="modal-actions">
-                <a href="https://www.youtube.com/" class="btn btn-primary modal-btn" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i> Watch on YouTube</a>
-                <a href="#contact" class="btn btn-secondary modal-btn"><i class="fas fa-download"></i> Request Video</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal: Ask Rexi (AI Chat) -->
-    <div class="modal-overlay" id="modal-rexi">
-        <div class="modal-box modal-box-rexi">
-            <div class="modal-header-bar modal-rexi-header">
-                <div class="modal-header-left modal-rexi-header-left">
-                    <div class="modal-icon-wrap modal-icon-green modal-icon-compact"><i class="fas fa-dragon"></i></div>
-                    <h2 class="modal-title modal-title-compact">Ask Rexi</h2>
-                    <span class="rexi-model-badge">Qwen3-0.6B</span>
-                </div>
-                <div class="modal-header-right modal-rexi-header-right">
-                    <button class="modal-header-btn modal-expand-btn" id="rexi-fullscreen-btn" aria-label="Full Page View" title="Full Page View"><i class="fas fa-expand"></i></button>
-                    <button class="modal-header-btn modal-close" aria-label="Close" title="Close"><i class="fas fa-times"></i></button>
-                </div>
-            </div>
-            <div class="modal-chat">
-                <div class="chat-messages" id="rexi-messages">
-                    <div class="chat-msg chat-msg-bot">
-                        <div class="chat-avatar"><i class="fas fa-dragon"></i></div>
-                        <div class="chat-bubble">Hey! 👋 I'm Rexi, Roshan's AI assistant powered by ⚡ <b>Qwen3-0.6B</b>. Ask me about his skills, projects, experience, or anything else!</div>
-                    </div>
-                </div>
-                <div class="chat-input-row">
-                    <input type="text" class="chat-input" id="rexi-input" placeholder="Ask me something..." autocomplete="off">
-                    <button class="chat-send-btn" id="rexi-send" type="button" aria-label="Send message to Rexi"><i class="fas fa-paper-plane"></i></button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal: Download Resume (About section button) -->
-    <div class="modal-overlay" id="modal-download-resume">
-        <div class="modal-box">
-            <div class="modal-header-bar">
-                <div class="modal-header-left">
-                    <div class="modal-icon-wrap modal-icon-blue modal-icon-compact"><i class="fas fa-file-download"></i></div>
-                    <h2 class="modal-title modal-title-compact">Download Resume</h2>
-                </div>
-                <div class="modal-header-right">
-                    <button class="modal-header-btn modal-expand-btn" aria-label="Full Page View" title="Full Page View"><i class="fas fa-expand"></i></button>
-                    <button class="modal-header-btn modal-close" aria-label="Close" title="Close"><i class="fas fa-times"></i></button>
-                </div>
-            </div>
-            <p class="modal-subtitle">Choose your preferred format</p>
-            <div class="modal-divider"></div>
-            <div class="modal-download-options">
-                <a href="#contact" class="download-option-card">
-                    <div class="download-option-icon"><i class="fas fa-file-pdf"></i></div>
-                    <div class="download-option-info">
-                        <div class="download-option-title">PDF Format</div>
-                        <div class="download-option-desc">Best for job applications & ATS systems</div>
-                    </div>
-                    <i class="fas fa-arrow-down download-option-arrow"></i>
-                </a>
-                <a href="#contact" class="download-option-card">
-                    <div class="download-option-icon"><i class="fas fa-file-word"></i></div>
-                    <div class="download-option-info">
-                        <div class="download-option-title">Word Format</div>
-                        <div class="download-option-desc">Editable format for HR departments</div>
-                    </div>
-                    <i class="fas fa-arrow-down download-option-arrow"></i>
-                </a>
-                <a href="https://linkedin.com/" class="download-option-card" target="_blank" rel="noopener noreferrer">
-                    <div class="download-option-icon"><i class="fas fa-link"></i></div>
-                    <div class="download-option-info">
-                        <div class="download-option-title">LinkedIn Profile</div>
-                        <div class="download-option-desc">View full professional profile</div>
-                    </div>
-                    <i class="fas fa-external-link-alt download-option-arrow"></i>
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <!-- Scroll to Top Button -->
+    <!-- Floating Utility Buttons -->
     <button id="soundToggleBtn" class="sound-toggle-btn" aria-label="Toggle sound" aria-pressed="true" type="button">
         <i class="fas fa-volume-up"></i>
     </button>
@@ -1791,16 +1181,3 @@ CMD ["node", "dist/index.js"]</code></pre>
     <button id="scrollTopBtn" class="scroll-top-btn" aria-label="Back to top" type="button">
         <i class="fas fa-chevron-up"></i>
     </button>
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-

@@ -208,7 +208,7 @@ function updateProfile(profile) {
   });
 }
 
-const PROJECT_DOCUMENTATION = {
+export const PROJECT_DOCUMENTATION = {
   CardFlow: `
     <div class="case-study-container">
       <!-- 1. Hero & Scale Metrics -->
@@ -596,7 +596,7 @@ Production Operations ◄── Cross-Platform Clients ◄── Background Proc
   `,
 };
 
-const STATIC_PROJECTS = [
+export const STATIC_PROJECTS = [
   {
     title: 'CardFlow',
     project_name: 'CardFlow',
@@ -683,7 +683,7 @@ const STATIC_SKILL_CARDS = [
   {
     title: 'Software Engineering',
     icon: 'fa-puzzle-piece',
-    skills: ['Python', 'Java', 'C/C++', 'JavaScript', 'TypeScript', 'Django', 'DRF', 'FastAPI', 'Flask', 'Node.js', 'REST APIs', 'System Design', 'Git'],
+    skills: ['Python', 'Java', 'C/C++', 'JavaScript', 'Django', 'FastAPI', 'Flask', 'Node.js', 'REST APIs', 'System Design', 'Git'],
   },
   {
     title: 'AI & Data',
@@ -803,15 +803,16 @@ function updateProjects(projects = []) {
       const statusText = hasDisplayStatus ? project.status : (displayStatusInfo.text || '🟢 Production');
       const statusClass = project.status_class || displayStatusInfo.cls || 'status-prod';
 
+      const projectSlug = encodeURIComponent((projectName || '').toLowerCase().replace(/[^a-z0-9]/g, ''));
       const githubLink = safeUrl(project.github_url || staticProject?.github_url || 'https://github.com/logicbyroshan');
       const hasGithub = project.has_github ?? (Boolean(githubLink) && !githubLink.includes('#') && githubLink !== 'https://github.com/logicbyroshan');
       const secondaryBtn = project.secondary_btn || (hasGithub ? '' : 'Live Preview');
 
-      let buttonsHtml = `<button type="button" class="btn btn-primary project-btn" data-modal="modal-project">Case Study</button>`;
+      let buttonsHtml = `<a href="#/projects/${projectSlug}" class="btn btn-primary project-btn project-page-link" data-project-slug="${projectSlug}">Case Study</a>`;
       if (hasGithub) {
         buttonsHtml += `<a href="${escapeHtml(githubLink)}" class="github-btn" target="_blank" rel="noopener noreferrer" aria-label="Open project repository"><i class="fab fa-github"></i></a>`;
       } else if (secondaryBtn === 'Technical Overview') {
-        buttonsHtml += `<button type="button" class="btn btn-secondary" data-modal="modal-project">Technical Overview</button>`;
+        buttonsHtml += `<a href="#/projects/${projectSlug}" class="btn btn-secondary project-page-link" data-project-slug="${projectSlug}">Technical Overview</a>`;
       } else if (secondaryBtn === 'Live Preview') {
         buttonsHtml += `<a href="https://logicbyroshan.in/#projects" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">Live Preview</a>`;
       }
@@ -823,7 +824,7 @@ function updateProjects(projects = []) {
         || '';
 
       return `
-        <div class="project-card ${index === 0 ? 'active' : ''}" data-index="${index}" data-modal="modal-project">
+        <div class="project-card ${index === 0 ? 'active' : ''}" data-index="${index}" data-project-slug="${projectSlug}">
           <div class="project-doc-content" style="display:none;">${docHtml}</div>
           <div class="project-content">
             <div class="project-meta-row">
@@ -897,4 +898,4 @@ export function hydratePortfolioDom(data) {
   updateExperience(data?.experience || []);
 }
 
-export { STATIC_PROJECTS, STATIC_SKILL_CARDS, updateProjects, updateSkills };
+export { STATIC_SKILL_CARDS, updateProjects, updateSkills };
