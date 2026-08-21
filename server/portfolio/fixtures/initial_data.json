@@ -361,7 +361,7 @@
     "documentation": "<h3>Overview</h3>\n<p>VidyaMaxx is a next-generation school management platform currently undergoing pilot testing with selected partner schools. It unifies administrative operations, grading, attendance tracking, and student communication with intelligent AI workflows.</p>\n\n<h3>Key Architectural Highlights</h3>\n<ul>\n  <li><strong>Academic Operations Hub:</strong> Centralized management of schedules, attendance records, exam grade calculations, and transcript generation.</li>\n  <li><strong>AI-Assisted Insights:</strong> Machine learning models analyze student progress patterns, alerting educators to students needing academic intervention.</li>\n  <li><strong>Multi-Tenant Architecture:</strong> Isolated data tenancy per school organization ensuring strict FERPA-compliant privacy and data security.</li>\n</ul>\n\n<h3>Technical Stack</h3>\n<p>Django, React, PostgreSQL, Redis, Python AI Services, Tailwind CSS.</p>",
     "category": 20,
     "technologies": "Django, React, PostgreSQL, Redis, AI",
-    "github_url": null,
+    "github_url": "https://github.com/logicbyroshan/vidyamaxx-school-management-saas.git",
     "live_url": "https://logicbyroshan.in/#projects",
     "demo_url": "https://logicbyroshan.in/#projects",
     "other_url": null,
@@ -376,7 +376,7 @@
     "likes": 0,
     "order": 5,
     "created_at": "2026-08-21T09:49:10.910Z",
-    "updated_at": "2026-08-21T09:49:10.910Z"
+    "updated_at": "2026-08-21T09:59:03.238Z"
   }
 },
 {
