@@ -53,18 +53,14 @@
 
 .project-card {
     display: none;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    align-items: center;
-    background: linear-gradient(180deg, rgba(25, 30, 65, 0.75) 0%, rgba(18, 22, 52, 0.6) 50%, rgba(11, 15, 38, 0.85) 100%);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(124, 58, 237, 0.25);
+    background: linear-gradient(180deg, var(--card-gradient-start) 0%, rgba(25, 30, 65, 0.6) 50%, var(--card-gradient-end) 100%);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(124, 58, 237, 0.3);
     border-radius: 24px;
-    padding: 40px;
+    padding: 24px;
     position: absolute;
     width: 100%;
-    min-height: 440px;
     opacity: 0;
     transform: translateX(100px);
     transition: transform 0.6s ease, opacity 0.6s ease;
@@ -72,11 +68,10 @@
 }
 
 .project-card.active {
-    display: grid;
+    display: block;
     opacity: 1;
     transform: translateX(0);
     position: relative;
-    min-height: 440px;
 }
 
 .project-card.slide-out-left {
@@ -97,7 +92,7 @@
 
 .project-card.slide-out-left,
 .project-card.slide-out-right {
-    display: grid;
+    display: block;
     position: absolute;
     width: 100%;
     top: 0;
@@ -106,7 +101,7 @@
 
 .project-card.slide-in-left,
 .project-card.slide-in-right {
-    display: grid;
+    display: block;
     position: relative;
     width: 100%;
 }
@@ -312,22 +307,24 @@
     box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4);
 }
 
-/* Universal Thumbnail for Projects without custom graphic */
+/* Solid (non-transparent) Vibrant Gradient Thumbnail filling the card room */
 .universal-project-thumb {
     width: 100%;
-    height: 100%;
     aspect-ratio: 16 / 9;
+    min-height: 400px;
+    max-height: 500px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     position: relative;
     overflow: hidden;
-    border-radius: 20px;
-    padding: 24px;
+    border-radius: 18px;
+    padding: 36px 28px;
     text-align: center;
     box-sizing: border-box;
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.4);
 }
 
 .universal-thumb-bg-pattern {
@@ -346,7 +343,7 @@
     position: absolute;
     right: -10px;
     bottom: -15px;
-    font-size: 130px;
+    font-size: 140px;
     color: rgba(255, 255, 255, 0.07);
     pointer-events: none;
     line-height: 1;
@@ -358,8 +355,9 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 8px;
-    max-width: 90%;
+    gap: 12px;
+    max-width: 800px;
+    width: 100%;
 }
 
 .universal-thumb-tag {
@@ -381,21 +379,22 @@
 
 .universal-thumb-title {
     font-family: var(--font-heading, 'Outfit', sans-serif);
-    font-size: 36px;
+    font-size: 42px;
     font-weight: 700;
     color: #ffffff;
     letter-spacing: -0.5px;
     line-height: 1.15;
     margin: 0;
-    text-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+    text-shadow: 0 4px 18px rgba(0, 0, 0, 0.6);
 }
 
 .universal-thumb-sub {
-    font-size: 13px;
-    color: rgba(255, 255, 255, 0.85);
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.88);
     font-weight: 400;
-    line-height: 1.4;
-    max-width: 320px;
+    line-height: 1.5;
+    max-width: 650px;
+    margin: 0;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
@@ -406,18 +405,27 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 6px;
+    gap: 8px;
     margin-top: 4px;
 }
 
 .universal-thumb-tech-pill {
-    font-size: 11px;
-    padding: 3px 10px;
-    border-radius: 12px;
-    background: rgba(0, 0, 0, 0.32);
+    font-size: 12px;
+    padding: 4px 12px;
+    border-radius: 14px;
+    background: rgba(0, 0, 0, 0.35);
     color: rgba(255, 255, 255, 0.95);
     border: 1px solid rgba(255, 255, 255, 0.18);
     font-weight: 500;
+}
+
+.universal-thumb-buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 8px;
+    flex-wrap: wrap;
 }
 
 /* Preset Gradient Variants for Universal Thumbnails */
