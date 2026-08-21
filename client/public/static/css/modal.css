@@ -2273,4 +2273,167 @@ html.modal-open {
     .cs-arch-arrow {
         transform: rotate(90deg);
     }
+    .cs-grid-3, .cs-grid-2 {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Workflow State Pipeline */
+.cs-workflow-flow {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(15, 23, 60, 0.6);
+    border: 1px solid rgba(124, 58, 237, 0.25);
+    border-radius: 12px;
+    padding: 12px 16px;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.cs-wf-step {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-align: center;
+    background: rgba(124, 58, 237, 0.15);
+    border: 1px solid rgba(124, 58, 237, 0.35);
+    color: #e9d5ff;
+}
+
+.cs-wf-step.wf-active {
+    background: rgba(16, 185, 129, 0.18);
+    border-color: rgba(16, 185, 129, 0.4);
+    color: #6ee7b7;
+}
+
+.cs-wf-arrow {
+    color: rgba(167, 139, 250, 0.6);
+    font-size: 11px;
+}
+
+/* 3-Col & 2-Col Component Grids */
+.cs-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+}
+
+.cs-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.cs-card-sm {
+    background: rgba(15, 23, 60, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+    padding: 12px 14px;
+}
+
+.cs-card-sm-title {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: #c4b5fd;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.cs-card-sm p {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1.45;
+    margin: 0;
+}
+
+/* Decision Cards */
+.cs-decision-card {
+    background: rgba(15, 23, 60, 0.55);
+    border: 1px solid rgba(124, 58, 237, 0.2);
+    border-radius: 10px;
+    padding: 12px 14px;
+}
+
+.cs-decision-header {
+    font-size: 13px;
+    font-weight: 600;
+    color: #38bdf8;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.cs-decision-card p {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.78);
+    line-height: 1.45;
+    margin: 0;
+}
+
+/* Challenge Cards */
+.cs-challenge-card {
+    background: rgba(15, 23, 60, 0.55);
+    border-left: 3px solid #f59e0b;
+    border-radius: 0 10px 10px 0;
+    padding: 10px 14px;
+    margin-bottom: 8px;
+}
+
+.cs-challenge-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #fcd34d;
+    margin-bottom: 3px;
+}
+
+.cs-challenge-card p {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.78);
+    line-height: 1.4;
+    margin: 0;
+}
+
+/* Live Links Row */
+.cs-links-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    padding: 12px 16px;
+    background: rgba(15, 23, 60, 0.7);
+    border: 1px solid rgba(124, 58, 237, 0.3);
+    border-radius: 12px;
+}
+
+.cs-link-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 0.2s, background 0.2s;
+}
+
+.cs-link-pill.primary {
+    background: linear-gradient(135deg, #7c3aed 0%, #6366f1 100%);
+    color: #ffffff;
+}
+
+.cs-link-pill.secondary {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #e2e8f0;
+}
+
+.cs-link-pill:hover {
+    transform: translateY(-2px);
+    color: #ffffff;
 }
