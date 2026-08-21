@@ -336,7 +336,7 @@
     "live_url": "https://logicbyroshan.in/#projects",
     "demo_url": "https://logicbyroshan.in/#projects",
     "other_url": null,
-    "thumbnail": "",
+    "thumbnail": "/static/images/cardflow-banner.webp",
     "start_date": null,
     "end_date": null,
     "client": "",
@@ -347,7 +347,7 @@
     "likes": 0,
     "order": 6,
     "created_at": "2026-08-21T09:49:10.745Z",
-    "updated_at": "2026-08-21T09:54:21.439Z"
+    "updated_at": "2026-08-21T10:06:21.157Z"
   }
 },
 {
@@ -365,7 +365,7 @@
     "live_url": "https://logicbyroshan.in/#projects",
     "demo_url": "https://logicbyroshan.in/#projects",
     "other_url": null,
-    "thumbnail": "",
+    "thumbnail": "/static/images/vidyamaxx-banner.webp",
     "start_date": null,
     "end_date": null,
     "client": "",
@@ -376,7 +376,7 @@
     "likes": 0,
     "order": 5,
     "created_at": "2026-08-21T09:49:10.910Z",
-    "updated_at": "2026-08-21T09:59:03.238Z"
+    "updated_at": "2026-08-21T10:06:21.280Z"
   }
 },
 {
