@@ -7,6 +7,7 @@ import ProjectDetailPage from './pages/ProjectDetailPage';
 import ExperiencePage from './pages/ExperiencePage';
 import AboutPage from './pages/AboutPage';
 import RexiModal from './components/RexiModal';
+import AppNavbar from './components/AppNavbar';
 
 const CORE_LEGACY_SCRIPTS = [
   '/static/js/script.js',
@@ -315,6 +316,7 @@ function App() {
 
   return (
     <>
+      <AppNavbar currentRoute={route} onNavigate={navigate} />
       <RexiModal />
       {route.name === 'project-detail' && <ProjectDetailPage slug={route.slug} onNavigate={navigate} />}
       {route.name === 'experience' && <ExperiencePage onNavigate={navigate} />}

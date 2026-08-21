@@ -9,34 +9,17 @@ export default function ExperiencePage({ onNavigate }) {
   return (
     <div className="page-container">
       <div className="page-wrapper">
-        {/* Top Sticky Navigation */}
-        <nav className="page-top-nav" aria-label="Experience Navigation">
-          <button
-            type="button"
-            className="page-back-btn"
-            onClick={() => onNavigate('home', 'experience')}
-          >
-            <i className="fas fa-arrow-left"></i> Back to Portfolio
-          </button>
-
-          <a href="#home" className="page-brand-logo" onClick={(e) => { e.preventDefault(); onNavigate('home'); }}>
-            <img src="/static/images/logo.webp" alt="Roshan Damor" width="120" height="30" />
-          </a>
-
-          <button
-            type="button"
-            className="btn btn-primary"
-            style={{ padding: '8px 18px', fontSize: '13px', display: 'inline-flex', alignItems: 'center', gap: '6px' }}
-            data-modal="modal-rexi"
-          >
-            <i className="fas fa-dragon"></i> Ask Rexi AI
-          </button>
-        </nav>
+        {/* Breadcrumb Navigation */}
+        <div className="page-breadcrumbs">
+          <a href="#home" onClick={(e) => { e.preventDefault(); onNavigate('home'); }}>Home</a>
+          <span className="breadcrumb-separator">/</span>
+          <span className="breadcrumb-current">Experience</span>
+        </div>
 
         {/* Hero Header */}
         <header className="page-hero">
           <span className="page-badge">
-            <i className="fas fa-briefcase"></i> Work History & Roadmap
+            <i className="fas fa-briefcase"></i> Work History &amp; Roadmap
           </span>
           <h1 className="page-title">
             Engineering <span className="text-gradient">Experience</span>
@@ -68,14 +51,14 @@ export default function ExperiencePage({ onNavigate }) {
           <div className="exp-pillars-grid">
             <div className="exp-pillar-card">
               <h4><i className="fas fa-microchip"></i> High-Throughput Processing</h4>
-              <p>Designed asynchronous image and PDF generation pipelines using Celery & Redis, capable of processing hundreds of high-res student cards concurrently without HTTP timeouts.</p>
+              <p>Designed asynchronous image and PDF generation pipelines using Celery &amp; Redis, capable of processing hundreds of high-res student cards concurrently without HTTP timeouts.</p>
             </div>
             <div className="exp-pillar-card">
-              <h4><i className="fas fa-database"></i> Database & Query Optimization</h4>
+              <h4><i className="fas fa-database"></i> Database &amp; Query Optimization</h4>
               <p>Structured relational schemas in PostgreSQL with selective indexing and connection pooling, delivering sub-50ms query latencies across 136,000+ generated records.</p>
             </div>
             <div className="exp-pillar-card">
-              <h4><i className="fas fa-shield-alt"></i> Enterprise RBAC & Security</h4>
+              <h4><i className="fas fa-shield-alt"></i> Enterprise RBAC &amp; Security</h4>
               <p>Built granular Role-Based Access Control allowing multi-tenant school administrators, design operators, and billing managers isolated, audited data access.</p>
             </div>
             <div className="exp-pillar-card">
@@ -135,7 +118,7 @@ export default function ExperiencePage({ onNavigate }) {
               <p>Developed unified brand guidelines, vector logo assets, and social media creative kits for promotional campaigns.</p>
             </div>
             <div className="exp-pillar-card">
-              <h4><i className="fas fa-print"></i> Print & Digital Media</h4>
+              <h4><i className="fas fa-print"></i> Print &amp; Digital Media</h4>
               <p>Prepared high-resolution print layouts with strict CMYK bleed configurations and web-optimized UI banners.</p>
             </div>
           </div>
@@ -152,7 +135,7 @@ export default function ExperiencePage({ onNavigate }) {
           <button
             type="button"
             className="btn btn-primary"
-            style={{ padding: '14px 36px', fontSize: '16px' }}
+            style={{ padding: '14px 36px', fontSize: '15px' }}
             onClick={() => onNavigate('home', 'experience')}
           >
             <i className="fas fa-arrow-left" style={{ marginRight: '8px' }}></i> Return to Portfolio Home

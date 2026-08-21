@@ -32,34 +32,17 @@ export default function AboutPage({ onNavigate }) {
   return (
     <div className="page-container">
       <div className="page-wrapper">
-        {/* Top Sticky Navigation */}
-        <nav className="page-top-nav" aria-label="About Navigation">
-          <button
-            type="button"
-            className="page-back-btn"
-            onClick={() => onNavigate('home', 'about')}
-          >
-            <i className="fas fa-arrow-left"></i> Back to Portfolio
-          </button>
-
-          <a href="#home" className="page-brand-logo" onClick={(e) => { e.preventDefault(); onNavigate('home'); }}>
-            <img src="/static/images/logo.webp" alt="Roshan Damor" width="120" height="30" />
-          </a>
-
-          <button
-            type="button"
-            className="btn btn-primary"
-            style={{ padding: '8px 18px', fontSize: '13px', display: 'inline-flex', alignItems: 'center', gap: '6px' }}
-            data-modal="modal-rexi"
-          >
-            <i className="fas fa-dragon"></i> Ask Rexi AI
-          </button>
-        </nav>
+        {/* Breadcrumb Navigation */}
+        <div className="page-breadcrumbs">
+          <a href="#home" onClick={(e) => { e.preventDefault(); onNavigate('home'); }}>Home</a>
+          <span className="breadcrumb-separator">/</span>
+          <span className="breadcrumb-current">About Me</span>
+        </div>
 
         {/* Hero Header */}
         <header className="page-hero">
           <span className="page-badge">
-            <i className="fas fa-user-tie"></i> Full Profile & Background
+            <i className="fas fa-user-tie"></i> Full Profile &amp; Background
           </span>
           <h1 className="page-title">
             About <span className="text-gradient">Roshan Damor</span>
@@ -142,13 +125,13 @@ export default function AboutPage({ onNavigate }) {
             {/* Story Section */}
             <section className="about-article-section">
               <h3 className="about-sec-heading">
-                <i className="fas fa-terminal"></i> Engineering Philosophy & Bio
+                <i className="fas fa-terminal"></i> Engineering Philosophy &amp; Bio
               </h3>
               <p>
                 I am a passionate <strong>Software Engineer</strong> who thrives at the intersection of algorithmic efficiency, robust backend architectures, and responsive user experiences. Currently at <strong>Adarsh ID Cards</strong>, I architect and build <strong>CardFlow</strong>—a production SaaS platform that automates large-scale student identity card generation, asynchronous image processing, and direct printing pipelines for over 1,000+ daily active users.
               </p>
               <p>
-                With more than <strong>1,300+ algorithmic problems solved</strong> across LeetCode, CodeForces, and HackerRank, I focus on building systems that don't just work on day one, but scale reliably with predictable latencies, sound database design, and defensive error handling.
+                With more than <strong>1,300+ algorithmic problems solved</strong> across LeetCode, CodeForces, and HackerRank, I focus on building systems that don&apos;t just work on day one, but scale reliably with predictable latencies, sound database design, and defensive error handling.
               </p>
             </section>
 
@@ -178,7 +161,7 @@ export default function AboutPage({ onNavigate }) {
             {/* Resume Downloads */}
             <section className="about-article-section">
               <h3 className="about-sec-heading">
-                <i className="fas fa-file-download"></i> Download Resume & Connect
+                <i className="fas fa-file-download"></i> Download Resume &amp; Connect
               </h3>
               <p>
                 Access verified resume documents or connect directly for engineering roles and collaborations:
@@ -188,7 +171,7 @@ export default function AboutPage({ onNavigate }) {
                   <i className="fas fa-file-pdf resume-download-icon"></i>
                   <div>
                     <div className="resume-download-title">PDF Resume</div>
-                    <div className="resume-download-sub">Optimized for ATS & Engineering Hiring</div>
+                    <div className="resume-download-sub">Optimized for ATS &amp; Engineering Hiring</div>
                   </div>
                 </a>
                 <a href="#contact" onClick={(e) => { e.preventDefault(); onNavigate('home', 'contact'); }} className="resume-download-card">
@@ -202,7 +185,7 @@ export default function AboutPage({ onNavigate }) {
                   <i className="fab fa-github resume-download-icon"></i>
                   <div>
                     <div className="resume-download-title">GitHub Profile</div>
-                    <div className="resume-download-sub">15+ Repositories & Open Source code</div>
+                    <div className="resume-download-sub">15+ Repositories &amp; Open Source code</div>
                   </div>
                 </a>
               </div>

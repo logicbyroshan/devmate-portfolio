@@ -5,10 +5,16 @@ export default function ProjectDetailPage({ slug, onNavigate }) {
   // Normalize slug and find project
   const cleanSlug = String(slug || '').toLowerCase().replace(/[^a-z0-9]/g, '');
   
-  const project = STATIC_PROJECTS.find(p => {
+  const currentIndex = STATIC_PROJECTS.findIndex(p => {
     const pSlug = (p.project_name || p.title || '').toLowerCase().replace(/[^a-z0-9]/g, '');
     return pSlug === cleanSlug || cleanSlug.includes(pSlug) || pSlug.includes(cleanSlug);
-  }) || STATIC_PROJECTS[0];
+  });
+
+  const projectIndex = currentIndex >= 0 ? currentIndex : 0;
+  const project = STATIC_PROJECTS[projectIndex] || STATIC_PROJECTS[0];
+
+  const prevProject = STATIC_PROJECTS[(projectIndex - 1 + STATIC_PROJECTS.length) % STATIC_PROJECTS.length];
+  const nextProject = STATIC_PROJECTS[(projectIndex + 1) % STATIC_PROJECTS.length];
 
   const projectName = project?.project_name || project?.title || 'CardFlow';
   const categoryName = project?.category?.name || 'Enterprise SaaS';
@@ -20,32 +26,19 @@ export default function ProjectDetailPage({ slug, onNavigate }) {
     document.title = `${projectName} Case Study | Roshan Damor`;
   }, [projectName]);
 
+  const getSlugOf = (p) => (p.project_name || p.title || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+
   return (
     <div className="page-container">
       <div className="page-wrapper">
-        {/* Top Sticky Navigation */}
-        <nav className="page-top-nav" aria-label="Project Navigation">
-          <button
-            type="button"
-            className="page-back-btn"
-            onClick={() => onNavigate('home', 'projects')}
-          >
-            <i className="fas fa-arrow-left"></i> Back to Portfolio
-          </button>
-
-          <a href="#home" className="page-brand-logo" onClick={(e) => { e.preventDefault(); onNavigate('home'); }}>
-            <img src="/static/images/logo.webp" alt="Roshan Damor" width="120" height="30" />
-          </a>
-
-          <button
-            type="button"
-            className="btn btn-primary"
-            style={{ padding: '8px 18px', fontSize: '13px', display: 'inline-flex', alignItems: 'center', gap: '6px' }}
-            data-modal="modal-rexi"
-          >
-            <i className="fas fa-dragon"></i> Ask Rexi AI
-          </button>
-        </nav>
+        {/* Breadcrumb Navigation */}
+        <div className="page-breadcrumbs">
+          <a href="#home" onClick={(e) => { e.preventDefault(); onNavigate('home'); }}>Home</a>
+          <span className="breadcrumb-separator">/</span>
+          <a href="#projects" onClick={(e) => { e.preventDefault(); onNavigate('home', 'projects'); }}>Projects</a>
+          <span className="breadcrumb-separator">/</span>
+          <span className="breadcrumb-current">{projectName}</span>
+        </div>
 
         {/* Project Hero Header */}
         <header className="page-hero">
@@ -60,7 +53,7 @@ export default function ProjectDetailPage({ slug, onNavigate }) {
           </p>
         </header>
 
-        {/* Hero Card & Banner */}
+        {/* Hero Card with 16:9 Standardized Banner */}
         <div className="project-detail-hero-card">
           <div className="project-detail-banner-wrap">
             <img
@@ -106,14 +99,14 @@ export default function ProjectDetailPage({ slug, onNavigate }) {
             {/* Tech Stack List */}
             <div className="project-detail-tech-stack">
               {(project?.technologies_list || []).map((t, idx) => (
-                <span key={idx} className="project-tech-badge" style={{ fontSize: '13px', padding: '6px 12px' }}>
+                <span key={idx} className="project-tech-badge" style={{ fontSize: '13px', padding: '6px 14px' }}>
                   {t}
                 </span>
               ))}
             </div>
           </div>
 
-          {/* Rich Case Study Document Injection */}
+          {/* Rich Case Study Document Body */}
           <div className="project-detail-body">
             {docHtml ? (
               <div
@@ -128,15 +121,48 @@ export default function ProjectDetailPage({ slug, onNavigate }) {
           </div>
         </div>
 
-        {/* Back Navigation Bar at bottom */}
+        {/* Project Discovery Navigator (Prev / Next) */}
+        <div className="project-pagination-grid">
+          <a
+            href={`#/projects/${getSlugOf(prevProject)}`}
+            className="project-nav-card prev"
+            onClick={(e) => {
+              e.preventDefault();
+              onNavigate('project-detail', getSlugOf(prevProject));
+            }}
+          >
+            <i className="fas fa-arrow-left" style={{ color: '#a78bfa', fontSize: '18px' }}></i>
+            <div>
+              <div className="project-nav-card-sub">Previous Project</div>
+              <div className="project-nav-card-title">{prevProject.project_name || prevProject.title}</div>
+            </div>
+          </a>
+
+          <a
+            href={`#/projects/${getSlugOf(nextProject)}`}
+            className="project-nav-card next"
+            onClick={(e) => {
+              e.preventDefault();
+              onNavigate('project-detail', getSlugOf(nextProject));
+            }}
+          >
+            <div>
+              <div className="project-nav-card-sub">Next Project</div>
+              <div className="project-nav-card-title">{nextProject.project_name || nextProject.title}</div>
+            </div>
+            <i className="fas fa-arrow-right" style={{ color: '#38bdf8', fontSize: '18px' }}></i>
+          </a>
+        </div>
+
+        {/* Return Button */}
         <div style={{ textAlign: 'center', marginTop: '40px' }}>
           <button
             type="button"
             className="btn btn-primary"
-            style={{ padding: '14px 36px', fontSize: '16px' }}
+            style={{ padding: '14px 36px', fontSize: '15px' }}
             onClick={() => onNavigate('home', 'projects')}
           >
-            <i className="fas fa-arrow-left" style={{ marginRight: '8px' }}></i> Return to All Projects
+            <i className="fas fa-th-large" style={{ marginRight: '8px' }}></i> View All Projects
           </button>
         </div>
       </div>
