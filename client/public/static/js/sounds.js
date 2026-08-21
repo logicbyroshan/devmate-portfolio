@@ -8,7 +8,7 @@
     let ctx = null;
     let bgAudio = null;
     let audioReady = false;
-    const BG_VOLUME = 0.25;
+    const BG_VOLUME = 0.08;
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     let isMuted = localStorage.getItem('portfolioMuted') === 'true' || prefersReducedMotion;
     let soundBindingsReady = false;
