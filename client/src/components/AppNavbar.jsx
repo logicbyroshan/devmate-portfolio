@@ -3,8 +3,6 @@ import React, { useState } from 'react';
 export default function AppNavbar({ currentRoute, onNavigate }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const isSubpage = currentRoute.name !== 'home';
-
   const handleNav = (e, target, anchor) => {
     e.preventDefault();
     setMobileMenuOpen(false);
@@ -25,156 +23,163 @@ export default function AppNavbar({ currentRoute, onNavigate }) {
   };
 
   return (
-    <header className="unified-navbar-wrapper">
-      <div className="unified-navbar-container">
-        {/* Left: Brand Logo */}
-        <a
-          href="#home"
-          className="unified-nav-brand"
-          onClick={(e) => handleNav(e, 'home')}
-          aria-label="Roshan Damor Home"
-        >
-          <img
-            src="/static/images/logo.webp"
-            alt="Roshan Damor Logo"
-            className="unified-nav-logo"
-            width="135"
-            height="34"
-            decoding="async"
-          />
-        </a>
-
-        {/* Center: Desktop Nav Links */}
-        <nav className="unified-nav-links" aria-label="Main Navigation">
-          <a
-            href="#home"
-            className={`unified-nav-link ${currentRoute.name === 'home' && !window.location.hash.includes('#about') && !window.location.hash.includes('#projects') && !window.location.hash.includes('#experience') && !window.location.hash.includes('#contact') ? 'active' : ''}`}
-            onClick={(e) => handleNav(e, 'home')}
-          >
-            Home
-          </a>
-          <a
-            href="#/about"
-            className={`unified-nav-link ${currentRoute.name === 'about' ? 'active' : ''}`}
-            onClick={(e) => handleNav(e, 'about')}
-          >
-            About
-          </a>
-          <a
-            href="#projects"
-            className={`unified-nav-link ${currentRoute.name === 'project-detail' ? 'active' : ''}`}
-            onClick={(e) => handleNav(e, 'home', 'projects')}
-          >
-            Projects
-          </a>
-          <a
-            href="#/experience"
-            className={`unified-nav-link ${currentRoute.name === 'experience' ? 'active' : ''}`}
-            onClick={(e) => handleNav(e, 'experience')}
-          >
-            Experience
-          </a>
-          <a
-            href="#contact"
-            className="unified-nav-link"
-            onClick={(e) => handleNav(e, 'home', 'contact')}
-          >
-            Contact
-          </a>
-        </nav>
-
-        {/* Right: Actions */}
-        <div className="unified-nav-actions">
-          {isSubpage && (
-            <button
-              type="button"
-              className="unified-nav-back-btn"
-              onClick={(e) => handleNav(e, 'home')}
-              title="Return to Portfolio Home"
-            >
-              <i className="fas fa-arrow-left"></i>
-              <span>Back to Home</span>
-            </button>
-          )}
-
-          <button
-            type="button"
-            className="btn btn-primary unified-rexi-btn"
-            onClick={handleRexi}
-            aria-label="Ask Rexi AI Assistant"
-          >
-            <i className="fas fa-dragon"></i>
-            <span>Ask Rexi</span>
-          </button>
-
-          {/* Mobile Hamburger Toggle */}
-          <button
-            type="button"
-            className={`unified-hamburger ${mobileMenuOpen ? 'open' : ''}`}
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Toggle navigation menu"
-            aria-expanded={mobileMenuOpen}
-          >
-            <span></span>
-            <span></span>
-            <span></span>
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile Drawer Menu */}
-      {mobileMenuOpen && (
-        <div className="unified-mobile-drawer">
-          <nav className="unified-mobile-nav">
+    <>
+      {/* Navigation for Desktop - Exact Original Navbar Structure */}
+      <div className="navbar navbar-desktop">
+        <div className="container nav-container">
+          <nav role="navigation" className="nav-menu">
             <a
-              href="#home"
-              className={`unified-mobile-link ${currentRoute.name === 'home' ? 'active' : ''}`}
-              onClick={(e) => handleNav(e, 'home')}
+              href="#skills"
+              className="nav-link"
+              onClick={(e) => handleNav(e, 'home', 'skills')}
             >
-              <i className="fas fa-home"></i> Home
-            </a>
-            <a
-              href="#/about"
-              className={`unified-mobile-link ${currentRoute.name === 'about' ? 'active' : ''}`}
-              onClick={(e) => handleNav(e, 'about')}
-            >
-              <i className="fas fa-user-tie"></i> About Me
+              Skills
             </a>
             <a
               href="#projects"
-              className={`unified-mobile-link ${currentRoute.name === 'project-detail' ? 'active' : ''}`}
+              className="nav-link"
               onClick={(e) => handleNav(e, 'home', 'projects')}
             >
-              <i className="fas fa-folder-open"></i> Projects
+              Projects
             </a>
             <a
-              href="#/experience"
-              className={`unified-mobile-link ${currentRoute.name === 'experience' ? 'active' : ''}`}
-              onClick={(e) => handleNav(e, 'experience')}
+              href="#experience"
+              className="nav-link"
+              onClick={(e) => handleNav(e, 'home', 'experience')}
             >
-              <i className="fas fa-briefcase"></i> Experience
+              Experience
             </a>
-            <a
-              href="#contact"
-              className="unified-mobile-link"
-              onClick={(e) => handleNav(e, 'home', 'contact')}
-            >
-              <i className="fas fa-envelope"></i> Contact
-            </a>
-
-            <div className="unified-mobile-actions">
-              <button
-                type="button"
-                className="btn btn-primary"
-                style={{ width: '100%', padding: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}
-                onClick={handleRexi}
-              >
-                <i className="fas fa-dragon"></i> Ask Rexi AI Assistant
-              </button>
-            </div>
           </nav>
+
+          <a
+            href="#home"
+            className="brand"
+            onClick={(e) => handleNav(e, 'home')}
+            aria-label="Roshan Damor Logo"
+          >
+            <img
+              src="/static/images/logo.webp"
+              alt="Roshan Damor Logo"
+              className="logo-image"
+              width="135"
+              height="34"
+              decoding="async"
+            />
+          </a>
+
+          <div className="nav-actions">
+            <a
+              href="#/about"
+              className="btn btn-secondary btn-nav"
+              onClick={(e) => handleNav(e, 'about')}
+            >
+              About
+            </a>
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={handleRexi}
+              aria-label="Ask Rexi AI Assistant"
+            >
+              Ask Rexi
+            </button>
+          </div>
         </div>
-      )}
-    </header>
+      </div>
+
+      {/* Navigation for Mobile - Exact Original Navbar Structure */}
+      <div className="navbar navbar-mobile">
+        <div className="container nav-container-mobile">
+          <button
+            className={`hamburger-menu ${mobileMenuOpen ? 'active' : ''}`}
+            id="hamburgerMenu"
+            aria-label="Toggle mobile menu"
+            aria-expanded={mobileMenuOpen}
+            type="button"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+
+          <a
+            href="#home"
+            className="brand"
+            onClick={(e) => handleNav(e, 'home')}
+            aria-label="Roshan Damor Logo"
+          >
+            <img
+              src="/static/images/logo.webp"
+              alt="Roshan Damor Logo"
+              className="logo-image"
+              width="135"
+              height="34"
+              decoding="async"
+            />
+          </a>
+
+          <button
+            type="button"
+            className="btn btn-primary mobile-resume-btn"
+            onClick={handleRexi}
+            aria-label="Ask Rexi"
+          >
+            <i className="fas fa-dragon"></i>
+          </button>
+        </div>
+
+        {/* Mobile Menu */}
+        <div className={`mobile-menu ${mobileMenuOpen ? 'active' : ''}`} id="mobileMenu">
+          <nav className="mobile-nav">
+            <a
+              href="#skills"
+              className="mobile-nav-link"
+              onClick={(e) => handleNav(e, 'home', 'skills')}
+            >
+              Skills
+            </a>
+            <a
+              href="#projects"
+              className="mobile-nav-link"
+              onClick={(e) => handleNav(e, 'home', 'projects')}
+            >
+              Projects
+            </a>
+            <a
+              href="#experience"
+              className="mobile-nav-link"
+              onClick={(e) => handleNav(e, 'home', 'experience')}
+            >
+              Experience
+            </a>
+            <a
+              href="#/about"
+              className="mobile-nav-link"
+              onClick={(e) => handleNav(e, 'about')}
+            >
+              About
+            </a>
+          </nav>
+          <div className="mobile-nav-actions" style={{ padding: '0 30px' }}>
+            <button
+              type="button"
+              className="btn btn-primary"
+              style={{ width: '100%' }}
+              onClick={handleRexi}
+            >
+              Ask Rexi
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Overlay */}
+        <div
+          className={`mobile-overlay ${mobileMenuOpen ? 'active' : ''}`}
+          id="mobileOverlay"
+          onClick={() => setMobileMenuOpen(false)}
+        ></div>
+      </div>
+    </>
   );
 }

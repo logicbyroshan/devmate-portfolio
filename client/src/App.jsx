@@ -316,11 +316,25 @@ function App() {
 
   return (
     <>
-      <AppNavbar currentRoute={route} onNavigate={navigate} />
       <RexiModal />
-      {route.name === 'project-detail' && <ProjectDetailPage slug={route.slug} onNavigate={navigate} />}
-      {route.name === 'experience' && <ExperiencePage onNavigate={navigate} />}
-      {route.name === 'about' && <AboutPage onNavigate={navigate} />}
+      {route.name === 'project-detail' && (
+        <>
+          <AppNavbar currentRoute={route} onNavigate={navigate} />
+          <ProjectDetailPage slug={route.slug} onNavigate={navigate} />
+        </>
+      )}
+      {route.name === 'experience' && (
+        <>
+          <AppNavbar currentRoute={route} onNavigate={navigate} />
+          <ExperiencePage onNavigate={navigate} />
+        </>
+      )}
+      {route.name === 'about' && (
+        <>
+          <AppNavbar currentRoute={route} onNavigate={navigate} />
+          <AboutPage onNavigate={navigate} />
+        </>
+      )}
       {route.name === 'home' && <div dangerouslySetInnerHTML={content} />}
     </>
   );
