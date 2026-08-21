@@ -1345,32 +1345,6 @@
   },
   {
     "model": "portfolio.experience",
-    "pk": 4,
-    "fields": {
-      "position": "Graphic Designer Intern",
-      "slug": "graphic-designer-intern-miracle",
-      "employment_type": "internship",
-      "employment_status": "internship",
-      "category": 14,
-      "location": "India",
-      "company_name": "Miracle Organisation",
-      "company_about": "Miracle Organisation is a creative agency focused on branding, visual communications, and digital design.",
-      "company_website": null,
-      "company_logo": "",
-      "start_date": "2025-04-01",
-      "end_date": "2025-05-31",
-      "currently_working": false,
-      "short_description": "1-month internship as a Graphic Designer — handled branding materials, posters, banners, and digital content creation.",
-      "detailed_description": "Graphic Design Internship at Miracle Organisation (April 2025 - May 2025).\n\nResponsibilities:\n- Designed branding materials, posters, banners, and digital content for campaigns\n- Worked on visual identity elements including typography, color systems, and layout\n- Collaborated with the team to deliver design assets on time\n- Gained hands-on experience in professional design workflows",
-      "is_active": true,
-      "is_draft": false,
-      "order": 2,
-      "created_at": "2026-08-21T13:22:58.272Z",
-      "updated_at": "2026-08-21T13:22:58.272Z"
-    }
-  },
-  {
-    "model": "portfolio.experience",
     "pk": 3,
     "fields": {
       "position": "Software Engineer",
@@ -1390,9 +1364,35 @@
       "detailed_description": "Led full-cycle engineering of CardFlow, a production-grade ID card management SaaS platform built from the ground up for Adarsh ID Cards.\n\nKey Responsibilities:\n- Architected the entire system: Django/DRF backend, React frontend, PostgreSQL, Celery + Redis background processing, and deployment infrastructure\n- Built a centralized data management engine supporting structured card records, bulk operations, duplicate detection, photo fields, and configurable field types\n- Designed and implemented a multi-state workflow system: Pending -> Verified -> Approved -> Processed -> Downloaded\n- Developed RBAC (Role-Based Access Control) with granular permission scopes for administrators, operators, and clients\n- Built a card generation engine outputting production-ready ID card layouts at scale\n- Integrated cross-platform clients (Web + Desktop via Electron) against the same REST API backend\n- Deployed and operated the system in production, supporting 1,000+ real users and tens of thousands of card records\n- Managed PostgreSQL schema design, Redis caching, Celery task queues, Nginx, and Gunicorn process management",
       "is_active": true,
       "is_draft": false,
-      "order": 1,
+      "order": 10,
       "created_at": "2026-08-21T12:38:52.648Z",
       "updated_at": "2026-08-21T12:39:49.288Z"
+    }
+  },
+  {
+    "model": "portfolio.experience",
+    "pk": 4,
+    "fields": {
+      "position": "Graphic Designer Intern",
+      "slug": "graphic-designer-intern-miracle",
+      "employment_type": "internship",
+      "employment_status": "internship",
+      "category": 14,
+      "location": "India",
+      "company_name": "Miracle Organisation",
+      "company_about": "Miracle Organisation is a creative agency focused on branding, visual communications, and digital design.",
+      "company_website": null,
+      "company_logo": "",
+      "start_date": "2025-04-01",
+      "end_date": "2025-05-31",
+      "currently_working": false,
+      "short_description": "1-month internship as a Graphic Designer — handled branding materials, posters, banners, and digital content creation.",
+      "detailed_description": "Graphic Design Internship at Miracle Organisation (April 2025 - May 2025).\n\nResponsibilities:\n- Designed branding materials, posters, banners, and digital content for campaigns\n- Worked on visual identity elements including typography, color systems, and layout\n- Collaborated with the team to deliver design assets on time\n- Gained hands-on experience in professional design workflows",
+      "is_active": true,
+      "is_draft": false,
+      "order": 5,
+      "created_at": "2026-08-21T13:22:58.272Z",
+      "updated_at": "2026-08-21T13:22:58.272Z"
     }
   },
   {
