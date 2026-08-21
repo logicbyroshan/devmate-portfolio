@@ -7,7 +7,6 @@
 
     let ctx = null;
     let bgAudio = null;
-    let bgStarted = false;
     let audioReady = false;
     const BG_VOLUME = 0.25;
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -41,7 +40,6 @@
             bgAudio.loop = true;
         }
         bgAudio.volume = BG_VOLUME;
-        bgStarted = true;
         if (!isMuted) {
             bgAudio.play().catch(function (err) {
                 console.log('Background music waiting for user interaction', err);

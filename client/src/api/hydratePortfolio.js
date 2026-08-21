@@ -798,7 +798,7 @@ function updateProjects(projects = []) {
       const projectName = project.project_name || project.title;
 
       // Resolve display status — prefer explicit display format, fallback to lookup, then default
-      const hasDisplayStatus = project.status && /[🟢🟡🔵🔴🟠]/.test(project.status);
+      const hasDisplayStatus = project.status && /[🟢🟡🔵🔴🟠]/u.test(project.status);
       const displayStatusInfo = PROJECT_DISPLAY_STATUS[projectName] || {};
       const statusText = hasDisplayStatus ? project.status : (displayStatusInfo.text || '🟢 Production');
       const statusClass = project.status_class || displayStatusInfo.cls || 'status-prod';
