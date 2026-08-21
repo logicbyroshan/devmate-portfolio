@@ -1,3 +1,12 @@
+    <!-- Preloader skip: run inline (no defer) before first paint so preloader never flashes on refresh -->
+    <script>
+      (function(){
+        var isBot = /Lighthouse|Googlebot|bingbot|HeadlessChrome/i.test(navigator.userAgent);
+        if (isBot || sessionStorage.getItem('preloader_shown')) {
+          document.documentElement.classList.add('preloader-skip');
+        }
+      })();
+    </script>
     <!-- ══════════════════════════════════════════
          MODERN MINIMALIST PRELOADER WITH PARALLAX REVEAL
          ══════════════════════════════════════════ -->
@@ -711,47 +720,22 @@ Production Operations ◄── Cross-Platform Clients ◄── Background Proc
             <div class="roadmap-timeline">
                 <div class="timeline-line"></div>
                 
-                <div class="roadmap-item roadmap-left">
+                <div class="roadmap-item roadmap-left animate">
                     <div class="roadmap-card">
-                        <span class="roadmap-date">January 2023 - Present</span>
-                        <h3 class="roadmap-title">Senior Full Stack Developer</h3>
-                        <p class="roadmap-description">Leading development of enterprise-scale web applications using React, Node.js, and AWS. Architected microservices infrastructure serving 100k+ daily users. Mentored junior developers and implemented CI/CD pipelines reducing deployment time by 60%.</p>
+                        <span class="roadmap-date">December 2025 - Present</span>
+                        <h3 class="roadmap-title">Software Engineer</h3>
+                        <div class="roadmap-company"><i class="fas fa-building"></i> Adarsh ID Cards</div>
+                        <p class="roadmap-description">Designed and built CardFlow — a production SaaS platform for ID card data management, automated workflows, and card generation. Serving 1,000+ real users with multi-client cross-platform architecture.</p>
                     </div>
                     <div class="roadmap-dot"></div>
                 </div>
 
-                <div class="roadmap-item roadmap-right">
+                <div class="roadmap-item roadmap-right animate">
                     <div class="roadmap-card">
-                        <span class="roadmap-date">June 2021 - December 2022</span>
-                        <h3 class="roadmap-title">Full Stack Developer</h3>
-                        <p class="roadmap-description">Developed and maintained multiple client-facing applications using Next.js, TypeScript, and PostgreSQL. Improved application performance by 40% through code optimization and database indexing. Collaborated with cross-functional teams in Agile environment.</p>
-                    </div>
-                    <div class="roadmap-dot"></div>
-                </div>
-
-                <div class="roadmap-item roadmap-left">
-                    <div class="roadmap-card">
-                        <span class="roadmap-date">March 2020 - May 2021</span>
-                        <h3 class="roadmap-title">Frontend Developer</h3>
-                        <p class="roadmap-description">Built responsive and accessible user interfaces using React and modern CSS frameworks. Implemented state management solutions with Redux and Context API. Worked closely with UX designers to deliver pixel-perfect implementations.</p>
-                    </div>
-                    <div class="roadmap-dot"></div>
-                </div>
-
-                <div class="roadmap-item roadmap-right">
-                    <div class="roadmap-card">
-                        <span class="roadmap-date">July 2019 - February 2020</span>
-                        <h3 class="roadmap-title">Junior Developer</h3>
-                        <p class="roadmap-description">Started professional journey building web applications with JavaScript and Python. Learned best practices in code quality, testing, and version control. Contributed to open-source projects and participated in code reviews.</p>
-                    </div>
-                    <div class="roadmap-dot"></div>
-                </div>
-
-                <div class="roadmap-item roadmap-left">
-                    <div class="roadmap-card">
-                        <span class="roadmap-date">January 2019 - June 2019</span>
-                        <h3 class="roadmap-title">Software Development Intern</h3>
-                        <p class="roadmap-description">Gained hands-on experience in full-stack development through internship program. Built features for internal tools and learned industry-standard development workflows. Completed training in modern frameworks and cloud technologies.</p>
+                        <span class="roadmap-date">April 2025 - May 2025</span>
+                        <h3 class="roadmap-title">Graphic Designer Intern</h3>
+                        <div class="roadmap-company"><i class="fas fa-building"></i> Miracle Organisation</div>
+                        <p class="roadmap-description">1-month internship as a Graphic Designer — handled branding materials, posters, banners, and digital content creation.</p>
                     </div>
                     <div class="roadmap-dot"></div>
                 </div>
@@ -818,7 +802,8 @@ Production Operations ◄── Cross-Platform Clients ◄── Background Proc
                     <p class="faq-description">Below is a list of frequently asked questions about my development work, technical expertise, and collaboration process.</p>
                     
                     <div class="faq-tabs">
-                        <button class="faq-tab active" data-category="general">General</button>
+                        <button class="faq-tab active" data-category="all">All</button>
+                        <button class="faq-tab" data-category="general">General</button>
                         <button class="faq-tab" data-category="technical">Technical</button>
                         <button class="faq-tab" data-category="collaboration">Collaboration</button>
                         <button class="faq-tab" data-category="projects">Projects</button>
@@ -827,41 +812,81 @@ Production Operations ◄── Cross-Platform Clients ◄── Background Proc
                     <div class="faq-accordion">
                         <div class="faq-item" data-category="general technical">
                             <div class="faq-question">
-                                <span class="faq-text">What technologies do you specialize in?</span>
+                                <span class="faq-text">What is your primary tech stack?</span>
                                 <span class="faq-icon">+</span>
                             </div>
                             <div class="faq-answer">
-                                <p>I specialize in full-stack development with React, Next.js, Node.js, and modern JavaScript frameworks. I also have extensive experience with Python, Django, PostgreSQL, MongoDB, and cloud services like AWS and Docker.</p>
+                                <p>My primary stack is Python / Django on the backend with React on the frontend, PostgreSQL as the main database, and Redis + Celery for background processing and caching. For deployment I use Nginx, Gunicorn, and Linux-based servers. I also work with Electron for desktop clients, and REST APIs for all integrations.</p>
                             </div>
                         </div>
 
-                        <div class="faq-item" data-category="general projects collaboration">
+                        <div class="faq-item" data-category="technical projects">
                             <div class="faq-question">
-                                <span class="faq-text">How long does a typical project take?</span>
+                                <span class="faq-text">Tell me about CardFlow — what did you build exactly?</span>
                                 <span class="faq-icon">+</span>
                             </div>
                             <div class="faq-answer">
-                                <p>Project timelines vary based on complexity and requirements. A simple website might take 2-4 weeks, while a full-stack application typically requires 6-12 weeks. I provide detailed timelines during the initial consultation.</p>
+                                <p>CardFlow is a production SaaS platform I designed and built from scratch for Adarsh ID Cards. It handles the complete ID card pipeline: data ingestion, verification workflows, approval stages, photo processing, card generation, and download management — for schools and organizations. It's currently serving 1,000+ real users across multiple organizations and processes tens of thousands of card records. The architecture includes a Django REST API, React web client, Electron desktop client, RBAC, Celery background workers, and a PostgreSQL database.</p>
                             </div>
                         </div>
 
-                        <div class="faq-item" data-category="technical collaboration projects">
+                        <div class="faq-item" data-category="general collaboration">
                             <div class="faq-question">
-                                <span class="faq-text">Do you work on existing codebases?</span>
+                                <span class="faq-text">Are you open to freelance or new opportunities?</span>
                                 <span class="faq-icon">+</span>
                             </div>
                             <div class="faq-answer">
-                                <p>Yes, I regularly work with existing codebases for bug fixes, feature additions, performance optimization, and complete refactoring. I can quickly understand and adapt to any project structure.</p>
+                                <p>Yes, I'm open to the right opportunities — particularly projects involving production-grade SaaS, AI-integrated systems, backend architecture, or full-stack engineering. I'm also available for technical consulting and freelance work. Reach out via the contact form and let's talk about what you're building.</p>
                             </div>
                         </div>
 
                         <div class="faq-item" data-category="technical general">
                             <div class="faq-question">
-                                <span class="faq-text">What's your approach to problem-solving?</span>
+                                <span class="faq-text">How do you approach system design and architecture?</span>
                                 <span class="faq-icon">+</span>
                             </div>
                             <div class="faq-answer">
-                                <p>I follow a systematic approach: understand requirements, analyze edge cases, implement clean solutions with proper testing, and ensure scalability. I focus on writing maintainable code and documenting complex logic.</p>
+                                <p>I start by understanding the real business requirements and data lifecycle, not just the feature list. I design for the workflows first, then choose the right architecture to support them. I separate concerns clearly — API layer, business logic, data layer, background processing — and avoid over-engineering early. My CardFlow architecture is a good example: multi-client (web + desktop) against a single API backend with clear workflow state machines.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item" data-category="technical projects">
+                            <div class="faq-question">
+                                <span class="faq-text">What kind of AI work have you done?</span>
+                                <span class="faq-icon">+</span>
+                            </div>
+                            <div class="faq-answer">
+                                <p>I've integrated LLMs, RAG pipelines, and AI agents into production and prototype systems. VidyaMaxx, my school management platform, includes AI-powered features for academic workflows. I also built TaskFlixx — an AI-driven task management tool — and PrepSarthi, an AI-assisted exam preparation platform. My AI work focuses on practical integrations that add real business value, not just demo-level experiments.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item" data-category="collaboration projects">
+                            <div class="faq-question">
+                                <span class="faq-text">Can you work on an existing codebase or take over a project?</span>
+                                <span class="faq-icon">+</span>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Absolutely. I've taken codebases from scratch to production, and I'm equally comfortable onboarding into existing systems. My approach is to understand the current architecture before changing anything, identify pain points systematically, and refactor incrementally with minimal disruption to ongoing operations.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item" data-category="collaboration general">
+                            <div class="faq-question">
+                                <span class="faq-text">How do you handle deployment and production operations?</span>
+                                <span class="faq-icon">+</span>
+                            </div>
+                            <div class="faq-answer">
+                                <p>I manage the full deployment stack — Nginx as a reverse proxy, Gunicorn for WSGI serving, Celery workers with Redis, PostgreSQL tuning, and Linux server management. I've operated CardFlow in production serving real users, so I understand what it takes to keep systems reliable, handle database migrations safely, and manage background job failures gracefully.</p>
+                            </div>
+                        </div>
+
+                        <div class="faq-item" data-category="projects general">
+                            <div class="faq-question">
+                                <span class="faq-text">Are your projects open source?</span>
+                                <span class="faq-icon">+</span>
+                            </div>
+                            <div class="faq-answer">
+                                <p>Some are, some aren't. CardFlow and EazeTrip are private since they serve real clients in production. VidyaMaxx is currently in pilot testing. TaskFlixx and PrepSarthi are open source — you can find them on my GitHub. I believe in contributing to the open-source ecosystem while also understanding when code is proprietary business logic.</p>
                             </div>
                         </div>
                     </div>
@@ -1607,12 +1632,12 @@ CMD ["node", "dist/index.js"]</code></pre>
                 <div class="sb-section">
                     <div class="sb-heading"><i class="fas fa-code"></i> Core Skills</div>
                     <ul class="sb-tech-list">
-                        <li class="sb-tech-item"><span class="sb-tech-dot"></span> React & Next.js</li>
-                        <li class="sb-tech-item"><span class="sb-tech-dot"></span> Django & Python</li>
-                        <li class="sb-tech-item"><span class="sb-tech-dot"></span> Node.js & Express</li>
-                        <li class="sb-tech-item"><span class="sb-tech-dot"></span> AWS & Cloud Infra</li>
-                        <li class="sb-tech-item"><span class="sb-tech-dot"></span> TypeScript & JS</li>
-                        <li class="sb-tech-item"><span class="sb-tech-dot"></span> AI/ML Integration</li>
+                        <li class="sb-tech-item"><span class="sb-tech-dot"></span> Python & Django</li>
+                        <li class="sb-tech-item"><span class="sb-tech-dot"></span> React & Frontend</li>
+                        <li class="sb-tech-item"><span class="sb-tech-dot"></span> PostgreSQL & Redis</li>
+                        <li class="sb-tech-item"><span class="sb-tech-dot"></span> Celery & Background Jobs</li>
+                        <li class="sb-tech-item"><span class="sb-tech-dot"></span> Docker & Nginx</li>
+                        <li class="sb-tech-item"><span class="sb-tech-dot"></span> AI & LLM Workflows</li>
                     </ul>
                 </div>
                 <div class="sb-section">
@@ -1620,12 +1645,12 @@ CMD ["node", "dist/index.js"]</code></pre>
                     <ul class="sb-link-list">
                         <li class="sb-link-item"><a href="https://github.com/logicbyroshan" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a></li>
                         <li class="sb-link-item"><a href="https://linkedin.com" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i> LinkedIn</a></li>
-                        <li class="sb-link-item"><a href="mailto:hello@roshandra.me"><i class="fas fa-envelope"></i> Email Me</a></li>
+                        <li class="sb-link-item"><a href="mailto:mail@logicbyroshan.in"><i class="fas fa-envelope"></i> Email Me</a></li>
                     </ul>
                 </div>
             </aside>
             <div class="modal-body-content">
-                <p class="modal-subtitle">Roshan Damor — Full-Stack Developer & AI Engineer</p>
+                <p class="modal-subtitle">Roshan Damor — Software Engineer & AI Full Stack Developer</p>
                 <div class="modal-divider"></div>
                 <div class="modal-resume-preview">
                     <div class="resume-row">
@@ -1634,11 +1659,11 @@ CMD ["node", "dist/index.js"]</code></pre>
                     </div>
                     <div class="resume-row">
                         <span class="resume-label">Role</span>
-                        <span class="resume-value">Full Stack Developer · AI Engineer</span>
+                        <span class="resume-value">Software Engineer · Full Stack Developer</span>
                     </div>
                     <div class="resume-row">
                         <span class="resume-label">Tech</span>
-                        <span class="resume-value">React · Node.js · Django · AWS · TypeScript</span>
+                        <span class="resume-value">Python · Django · React · PostgreSQL · Redis · Celery · AI</span>
                     </div>
                     <div class="resume-row">
                         <span class="resume-label">DSA</span>
@@ -1646,7 +1671,7 @@ CMD ["node", "dist/index.js"]</code></pre>
                     </div>
                     <div class="resume-row">
                         <span class="resume-label">Location</span>
-                        <span class="resume-value">Bhopal, Madhya Pradesh, India</span>
+                        <span class="resume-value">India</span>
                     </div>
                 </div>
                 <div class="modal-actions">

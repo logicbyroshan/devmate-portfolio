@@ -792,8 +792,9 @@ function updateProjects(projects = []) {
         .map((tech) => `<span class="project-tech-badge">${escapeHtml(tech)}</span>`)
         .join('');
 
-      const categoryName = project.category?.name || 'Enterprise SaaS';
-      const imageUrl = project.thumbnail || '/static/images/ecom.webp';
+      const staticProject = STATIC_PROJECTS.find((p) => p.project_name === projectName || p.title === projectName);
+      const categoryName = project.category?.name || staticProject?.category?.name || 'Enterprise SaaS';
+      const imageUrl = project.thumbnail || staticProject?.thumbnail || '/static/images/ecom.webp';
       const projectName = project.project_name || project.title;
 
       // Resolve display status — prefer explicit display format, fallback to lookup, then default
@@ -802,8 +803,8 @@ function updateProjects(projects = []) {
       const statusText = hasDisplayStatus ? project.status : (displayStatusInfo.text || '🟢 Production');
       const statusClass = project.status_class || displayStatusInfo.cls || 'status-prod';
 
-      const githubLink = safeUrl(project.github_url || 'https://github.com/logicbyroshan');
-      const hasGithub = project.has_github ?? (Boolean(project.github_url) && !project.github_url.includes('#'));
+      const githubLink = safeUrl(project.github_url || staticProject?.github_url || 'https://github.com/logicbyroshan');
+      const hasGithub = project.has_github ?? (Boolean(githubLink) && !githubLink.includes('#') && githubLink !== 'https://github.com/logicbyroshan');
       const secondaryBtn = project.secondary_btn || (hasGithub ? '' : 'Live Preview');
 
       let buttonsHtml = `<button type="button" class="btn btn-primary project-btn" data-modal="modal-project">Case Study</button>`;
@@ -844,10 +845,14 @@ function updateProjects(projects = []) {
       `;
     })
     .join('');
+
+  if (typeof window !== 'undefined' && typeof window.initProjectsSlider === 'function') {
+    window.initProjectsSlider();
+  }
 }
 
 function updateExperience(experience) {
-  if (!experience.length) return;
+  if (!experience || !experience.length) return;
 
   const timeline = document.querySelector('.roadmap-timeline');
   if (!timeline) return;
@@ -859,12 +864,16 @@ function updateExperience(experience) {
     .map((item, index) => {
       const sideClass = index % 2 === 0 ? 'roadmap-left' : 'roadmap-right';
       const description = item.short_description || item.detailed_description || '';
+      const companyHtml = item.company_name
+        ? `<div class="roadmap-company"><i class="fas fa-building"></i> ${escapeHtml(item.company_name)}</div>`
+        : '';
 
       return `
-        <div class="roadmap-item ${sideClass}">
+        <div class="roadmap-item ${sideClass} animate">
           <div class="roadmap-card">
             <span class="roadmap-date">${escapeHtml(formatDateRange(item.start_date, item.end_date, item.currently_working))}</span>
             <h3 class="roadmap-title">${escapeHtml(item.position)}</h3>
+            ${companyHtml}
             <p class="roadmap-description">${escapeHtml(description)}</p>
           </div>
           <div class="roadmap-dot"></div>
@@ -874,6 +883,10 @@ function updateExperience(experience) {
     .join('');
 
   timeline.innerHTML = `${timelineLine}${rows}`;
+
+  if (typeof window !== 'undefined' && typeof window.initRoadmapSection === 'function') {
+    window.initRoadmapSection();
+  }
 }
 
 export function hydratePortfolioDom(data) {

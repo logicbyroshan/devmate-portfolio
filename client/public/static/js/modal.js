@@ -204,8 +204,8 @@
         // Modal triggers (Project cards, Blog cards, About buttons, Rexi AI button)
         const trigger = e.target.closest('[data-modal]');
         if (trigger) {
-            // If github external link clicked inside card, don't intercept modal
-            if (e.target.closest('.github-btn')) return;
+            // If any external link, github link, live preview, or action button with href clicked inside card, don't intercept modal
+            if (e.target.closest('.github-btn, .live-preview-btn, a[target="_blank"], a[href^="http"], a.btn-secondary')) return;
 
             e.preventDefault();
             const modalId = trigger.dataset.modal;
@@ -246,15 +246,15 @@
 
     const REXI_KNOWLEDGE = {
         name:       'Roshan Damor',
-        role:       'AI Full Stack Developer',
-        location:   'Bhopal, Madhya Pradesh, India',
-        tech:       'React, Next.js, Node.js, Python, Django, FastAPI, AWS, Docker, PostgreSQL, MongoDB, TypeScript, Tailwind CSS',
+        role:       'Software Engineer & AI Full Stack Developer',
+        location:   'India',
+        tech:       'Python, Django, React, PostgreSQL, Redis, Celery, REST APIs, Electron, Docker, Nginx, Linux, Tailwind CSS',
         dsa:        '1300+ DSA problems solved across LeetCode, CodeForces and HackerRank',
-        projects:   'CardFlow (ID Management), JobPilot (AI Job Matcher), VidyaFlow (School OS), RiseTogether',
-        experience: 'Full-stack software engineering; built and shipped production applications',
+        projects:   'CardFlow (Enterprise ID Card Management SaaS in production for 1000+ users), VidyaMaxx (AI-First School Management Platform in pilot), PrintNexx (Internal image processing tool), EazeTrip (Tour operations platform), TaskFlixx (AI task manager), PrepSarthi (AI exam prep)',
+        experience: 'Software Engineer at Adarsh ID Cards (Dec 2025 - Present) building CardFlow SaaS; previously Graphic Designer Intern at Miracle Organisation (Apr - May 2025)',
         contact:    'mail@logicbyroshan.in | Available via LinkedIn or the contact form on this site',
         education:  'B.Tech Computer Science with specialization in AI & Machine Learning',
-        hobbies:    'Competitive programming, open-source contributions, exploring new AI tools',
+        hobbies:    'System design, open-source building, competitive programming, exploring LLM architectures',
     };
 
     const REXI_RESPONSES = [
