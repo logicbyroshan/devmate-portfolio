@@ -332,7 +332,7 @@
     "documentation": "<h3>Overview</h3>\n<p>CardFlow is a production ID-card management platform built to handle enterprise identity workflows, data ingestion, student/staff record processing, and automated print-ready card generation. Currently used by over 1,000 active users in schools and organizations.</p>\n\n<h3>Key Architectural Highlights</h3>\n<ul>\n  <li><strong>Data Ingestion & Pipelines:</strong> Robust validation for CSV/Excel data uploads with duplicate detection and real-time error reporting.</li>\n  <li><strong>Automated Card Generation:</strong> High-throughput server-side rendering producing high-DPI print-ready cards with barcodes and QR verification.</li>\n  <li><strong>Role-Based Access Control (RBAC):</strong> Granular permissions for Superadmins, School Administrators, and Operators.</li>\n  <li><strong>Background Job Processing:</strong> Celery + Redis workers handle heavy batch card rendering asynchronously without blocking the user interface.</li>\n</ul>\n\n<h3>Technical Stack</h3>\n<p>Django, Django REST Framework, React, PostgreSQL, Redis, Celery, Docker, Nginx.</p>",
     "category": 19,
     "technologies": "Django, React, PostgreSQL, Redis, Celery",
-    "github_url": null,
+    "github_url": "https://github.com/logicbyroshan/cardfloww-idcard-management-saas.git",
     "live_url": "https://logicbyroshan.in/#projects",
     "demo_url": "https://logicbyroshan.in/#projects",
     "other_url": null,
@@ -347,7 +347,7 @@
     "likes": 0,
     "order": 6,
     "created_at": "2026-08-21T09:49:10.745Z",
-    "updated_at": "2026-08-21T09:49:10.745Z"
+    "updated_at": "2026-08-21T09:54:21.439Z"
   }
 },
 {

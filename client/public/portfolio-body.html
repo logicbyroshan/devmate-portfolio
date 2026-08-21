@@ -282,6 +282,69 @@
             <div class="projects-slider">
                 <!-- Card 1: CardFlow -->
                 <div class="project-card active" data-index="0" data-modal="modal-project">
+                    <div class="project-doc-content" style="display:none;">
+                        <div class="case-study-container">
+                            <div class="case-study-hero-banner">
+                                <div class="case-study-badge"><i class="fas fa-shield-alt"></i> Enterprise Production SaaS</div>
+                                <h3 class="case-study-headline">Enterprise ID Card Management & Automated Generation Platform</h3>
+                                <p class="case-study-lead">CardFlow is a centralized production software platform designed to help schools and organizations manage large-scale ID-card data, streamline verification and approval workflows, process student records, and generate downloadable high-DPI ID cards.</p>
+                            </div>
+                            <div class="case-study-section">
+                                <h4 class="case-study-sec-title"><i class="fas fa-chart-line"></i> Production Scale & Impact</h4>
+                                <div class="case-study-stats-grid">
+                                    <div class="cs-stat-card"><div class="cs-stat-number">1,000+</div><div class="cs-stat-label">Active Users</div><div class="cs-stat-sub">Real organization workloads</div></div>
+                                    <div class="cs-stat-card"><div class="cs-stat-number">136K+</div><div class="cs-stat-label">Cards Managed</div><div class="cs-stat-sub">Processed student & staff records</div></div>
+                                    <div class="cs-stat-card"><div class="cs-stat-number">86K+</div><div class="cs-stat-label">Cards Downloaded</div><div class="cs-stat-sub">High-DPI print-ready outputs</div></div>
+                                    <div class="cs-stat-card"><div class="cs-stat-number">435+</div><div class="cs-stat-label">Play Store Installs</div><div class="cs-stat-sub">Cross-platform mobile apps</div></div>
+                                </div>
+                            </div>
+                            <div class="case-study-section">
+                                <h4 class="case-study-sec-title"><i class="fas fa-crosshairs"></i> The Problem vs. The CardFlow Solution</h4>
+                                <div class="cs-two-col">
+                                    <div class="cs-col-box cs-problem-box">
+                                        <div class="cs-col-header"><i class="fas fa-exclamation-triangle"></i> Traditional Bottlenecks</div>
+                                        <ul class="cs-list cs-list-problem">
+                                            <li>Manual spreadsheets & disconnected image folders</li>
+                                            <li>Duplicate records & disorganized student photographs</li>
+                                            <li>Repetitive manual data verification & status tracking</li>
+                                            <li>Multiple stakeholders editing conflicting datasets</li>
+                                            <li>Slow, error-prone manual approval and export processes</li>
+                                        </ul>
+                                    </div>
+                                    <div class="cs-col-box cs-solution-box">
+                                        <div class="cs-col-header"><i class="fas fa-check-circle"></i> Centralized CardFlow Solution</div>
+                                        <ul class="cs-list cs-list-solution">
+                                            <li>Centralized data pipelines with instant duplicate detection</li>
+                                            <li>Automated photo cropping, finishing, and matching</li>
+                                            <li>Granular RBAC for Admins, Schools, and Operators</li>
+                                            <li>Asynchronous background rendering via Celery & Redis</li>
+                                            <li>One-click batch generation of print-ready thermal card files</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="case-study-section">
+                                <h4 class="case-study-sec-title"><i class="fas fa-user-check"></i> End-to-End Engineering Ownership</h4>
+                                <p class="cs-text">Designed and built CardFlow from the ground up as the sole software engineer, owning the entire system lifecycle:</p>
+                                <div class="cs-roles-grid">
+                                    <div class="cs-role-card"><div class="cs-role-title"><i class="fas fa-sitemap"></i> Architecture & DB</div><p>PostgreSQL schema design, indexing, multi-role RBAC authorization model, and Celery asynchronous task queues.</p></div>
+                                    <div class="cs-role-card"><div class="cs-role-title"><i class="fas fa-server"></i> Backend & APIs</div><p>Django REST Framework, secure JWT auth, bulk import/export parsers, validation pipelines, and audit logging.</p></div>
+                                    <div class="cs-role-card"><div class="cs-role-title"><i class="fas fa-desktop"></i> Frontend & UI</div><p>React dashboard, fast client-side sorting & filtering for thousands of records, photo crop previews, and batch workflows.</p></div>
+                                    <div class="cs-role-card"><div class="cs-role-title"><i class="fas fa-network-wired"></i> DevOps & Ops</div><p>Linux VPS server management, Nginx reverse proxy, Gunicorn workers, Redis caching, and zero-downtime deployments.</p></div>
+                                </div>
+                            </div>
+                            <div class="case-study-section">
+                                <h4 class="case-study-sec-title"><i class="fas fa-cubes"></i> System Architecture Flow</h4>
+                                <div class="cs-arch-flow">
+                                    <div class="cs-arch-step"><div class="cs-arch-icon"><i class="fas fa-users"></i></div><div class="cs-arch-name">Clients</div><div class="cs-arch-desc">React Web • Desktop • Mobile App</div></div>
+                                    <div class="cs-arch-arrow"><i class="fas fa-arrow-right"></i></div>
+                                    <div class="cs-arch-step"><div class="cs-arch-icon"><i class="fas fa-bolt"></i></div><div class="cs-arch-name">Django REST API</div><div class="cs-arch-desc">JWT Auth • RBAC • Data Pipelines</div></div>
+                                    <div class="cs-arch-arrow"><i class="fas fa-arrow-right"></i></div>
+                                    <div class="cs-arch-step"><div class="cs-arch-icon"><i class="fas fa-database"></i></div><div class="cs-arch-name">Data & Workers</div><div class="cs-arch-desc">PostgreSQL • Redis • Celery Workers</div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="project-content">
                         <div class="project-meta-row">
                             <span class="project-nickname">Enterprise SaaS</span>
@@ -299,6 +362,7 @@
                         <div class="project-buttons">
                             <button type="button" class="btn btn-primary project-btn" data-modal="modal-project">Case Study</button>
                             <a href="https://logicbyroshan.in/#projects" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">Live Preview</a>
+                            <a href="https://github.com/logicbyroshan/cardfloww-idcard-management-saas.git" class="github-btn" target="_blank" rel="noopener noreferrer" aria-label="Open CardFlow repository"><i class="fab fa-github"></i></a>
                         </div>
                     </div>
                     <div class="project-image">
