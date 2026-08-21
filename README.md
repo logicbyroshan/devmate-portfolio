@@ -1,401 +1,229 @@
-<div align="center">
-  <img src="client/public/static/images/logo.webp" alt="Roshan Damor Logo" width="120" style="border-radius: 50%; box-shadow: 0 0 20px rgba(124, 58, 237, 0.5);"/>
-  <h1>🚀 Roshan Damor — Software Engineer Portfolio</h1>
-  <p><b>A production-oriented personal portfolio platform built with React, Vite & Django REST Framework</b></p>
+# DevMate Portfolio — Roshan Damor
 
-  <p>
-    <a href="https://logicbyroshan.in">
-      <img src="https://img.shields.io/badge/Live_Portfolio-Online-brightgreen?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Live Portfolio"/>
-    </a>
-    <a href="https://www.djangoproject.com/">
-      <img src="https://img.shields.io/badge/Django-5.2-092E20?style=for-the-badge&logo=django&logoColor=white" alt="Django 5.2"/>
-    </a>
-    <a href="https://react.dev/">
-      <img src="https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React 18"/>
-    </a>
-    <a href="https://vitejs.dev/">
-      <img src="https://img.shields.io/badge/Vite-5-646CFF?style=for-the-badge&logo=vite&logoColor=white" alt="Vite 5"/>
-    </a>
-    <a href="https://www.python.org/">
-      <img src="https://img.shields.io/badge/Python-3.11+-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python 3.11+"/>
-    </a>
-  </p>
-</div>
+A production-grade personal portfolio with a **Django REST API backend** and a **React + Vite frontend**, serving real project case studies, experience, skills, and a working contact form.
 
 ---
 
-## 🌟 Visual Preview & Showcase
+## 🏗️ Architecture
 
-<table width="100%">
-  <tr>
-    <td width="50%" align="center">
-      <b>✨ Interactive Hero & Glassmorphic UI</b><br/><br/>
-      <img src="client/public/static/images/screenshot_hero.png" alt="Interactive Portfolio Hero Section" width="100%" style="border-radius: 10px; border: 1px solid rgba(124,58,237,0.3);"/>
-    </td>
-    <td width="50%" align="center">
-      <b>💻 Dynamic Projects Showcase</b><br/><br/>
-      <img src="client/public/static/images/screenshot_projects.png" alt="Dynamic Projects Showcase" width="100%" style="border-radius: 10px; border: 1px solid rgba(124,58,237,0.3);"/>
-    </td>
-  </tr>
-  <tr>
-    <td width="50%" align="center">
-      <b>📖 Technical Documentation & ER Diagrams</b><br/><br/>
-      <img src="client/public/static/images/screenshot_documentation.png" alt="Technical Documentation and ER Diagrams" width="100%" style="border-radius: 10px; border: 1px solid rgba(124,58,237,0.3);"/>
-    </td>
-    <td width="50%" align="center">
-      <b>🤖 Ask Rexi — AI Assistant</b><br/><br/>
-      <img src="client/public/static/images/screenshot_rexi_ai.png" alt="Ask Rexi AI Assistant" width="100%" style="border-radius: 10px; border: 1px solid rgba(124,58,237,0.3);"/>
-    </td>
-  </tr>
-</table>
-
----
-
-## 🎯 Executive Overview
-
-This repository contains the source code for my personal software engineering portfolio — a production-oriented web application designed to present projects, technical experience, engineering work, and professional information through an interactive interface.
-
-The system combines a React + Vite client with a Django REST backend and a database-driven content management workflow. Instead of relying entirely on static portfolio content, the application exposes structured data through APIs and allows portfolio information to be managed from the backend.
-
-### Key Highlights
-
-- **⚛️ React + Vite Application**: Interactive client-side application with reusable UI components, dynamic content rendering, responsive layouts, and optimized builds.
-- **⚡ API-Driven Architecture**: Portfolio content is retrieved through a centralized bootstrap API and transformed into the frontend application at runtime.
-
----
-
-## 🏗️ System Architecture & Data Flow
-
-### 1. High-Level Context Diagram
-
-```mermaid
-flowchart LR
-    Visitor([🌐 Visitor / Recruiter]) -->|HTTP / HTTPS| ReactApp[📱 React 18 SPA]
-    ReactApp -->|GET /api/bootstrap/| DjangoAPI[⚡ Django REST API]
-    ReactApp -->|POST /api/contact/| DjangoAPI
-    DjangoAPI --> Database[(💾 PostgreSQL / SQLite)]
-    AdminUser([🔐 Portfolio Owner]) -->|Django Admin Auth| AdminDashboard[🛠️ Content Management System]
-    AdminDashboard --> Database
 ```
-
-### 2. Monorepo Request & Hydration Lifecycle
-
-```mermaid
-sequenceDiagram
-    autonumber
-    actor Visitor
-    participant Client as React + Vite Client
-    participant API as Django REST API
-    participant DB as Database
-
-    Visitor->>Client: Accesses Portfolio
-    Client->>Client: Render shell & static fallback markup
-    Client->>API: GET /api/bootstrap/
-    API->>DB: Query Profile, Projects, Skills & Experiences
-    DB-->>API: Return ORM Datasets
-    API-->>Client: 200 OK (JSON Bootstrap Payload)
-    Client->>Client: Execute hydratePortfolio.js & Refresh Dynamic State
-    Client->>Visitor: Interactive, fully populated UI ready
-```
-
-### 3. Contact Request Flow
-
-```mermaid
-sequenceDiagram
-    autonumber
-    actor Visitor
-    participant Client as React + Vite Client
-    participant API as Django REST API
-    participant DB as Database
-
-    Visitor->>Client: Submits Contact Form
-    Client->>API: POST /api/contact/ (Name, Email, Message)
-    API->>API: Validate & Rate Limit / Spam Check
-    API->>DB: Save ContactMessage Record
-    DB-->>API: Persisted Successfully
-    API-->>Client: 201 Created / Success Response
-    Client->>Visitor: Show Confirmation Notification
-```
-
----
-
-## 🚀 Feature Spotlight
-
-### 1. Interactive Portfolio Experience
-- Responsive portfolio interface
-- Custom dark glassmorphic design system
-- Interactive hero and project sections
-- Dynamic project and experience rendering
-- Modal-based content presentation
-- Responsive desktop and mobile layouts
-- Smooth UI transitions and micro-interactions
-
-### 2. 📖 Technical Documentation & Article Viewer
-- Interactive technical documentation viewer
-- Sticky fullscreen documentation header
-- Database ER diagram visualization
-- Entity relationship cards
-- Primary key (PK) and foreign key (FK) indicators
-- Technical step cards
-- Alert and callout components
-- Syntax-highlighted code blocks
-- Fullscreen reading mode
-
-### 3. 🤖 Ask Rexi — AI Assistant Integration
-
-Ask Rexi provides an interactive AI interface that allows recruiters and visitors to explore portfolio information conversationally.
-
-The assistant can be used to understand:
-- Projects
-- Technical skills
-- Engineering experience
-- Development background
-- Technologies used
-- Professional profile
-
-The goal is to make the portfolio an interactive technical profile rather than only a collection of static pages.
-
-### 4. 🗂️ Content Management System
-
-The Django administration interface provides authenticated management for:
-- Projects
-- Skills
-- Experience
-- Articles
-- Profile information
-- Contact messages
-- Portfolio content
-
-This separates portfolio content from frontend presentation logic and allows routine content updates without modifying the frontend application.
-
-### 5. ⚡ Dynamic API Hydration
-
-The frontend initializes its dynamic content through:
-
-```http
-GET /api/bootstrap/
-```
-
-The bootstrap response provides the structured datasets required to populate the application.
-
-A local fallback mechanism is also available so the interface can maintain a usable initial state when the API is unavailable.
-
-### 6. 🔎 SEO & AI Discoverability
-
-The application includes:
-- `sitemap.xml`
-- `robots.txt`
-- `llms.txt`
-- OpenGraph metadata
-- JSON-LD structured data
-- `Person` schema
-- `WebSite` schema
-- Dynamic page metadata
-
-These features make the portfolio easier for search engines, crawlers, and AI-powered systems to understand.
-
----
-
-## 📁 Repository Structure
-
-```text
-Code Portfolio/
-├── client/                         # React + Vite Frontend
-│   ├── public/
-│   │   ├── portfolio-body.html    # Main DOM structure & modal definitions
-│   │   └── static/
-│   │       ├── css/                # Modular stylesheets
-│   │       ├── js/                 # Client-side interaction engines
-│   │       └── images/             # Screenshots, logos & project assets
-│   │
+DevMate/
+├── client/          # React + Vite frontend (SPA)
 │   ├── src/
-│   │   ├── api/                    # API client & portfolio hydration
-│   │   ├── App.jsx                 # React application wrapper
-│   │   └── main.jsx                # Vite application entry point
-│   │
-│   └── package.json
+│   │   ├── App.jsx                    # Root component — hydrates static HTML, loads legacy scripts
+│   │   ├── portfolio-body.html        # Static HTML body (loaded as raw string, injected via dangerouslySetInnerHTML)
+│   │   └── api/
+│   │       ├── portfolioApi.js        # API fetch layer (calls /api/bootstrap/ on load)
+│   │       └── hydratePortfolio.js   # DOM hydration — merges API data into static HTML
+│   └── public/static/
+│       ├── css/                       # Section-level CSS files + responsive.css
+│       └── js/                        # Legacy section scripts (modal, faq, contact, projects, etc.)
 │
-├── server/                         # Django REST Backend
-│   ├── portfolio/                  # Models, serializers & API views
-│   ├── server/                     # Settings & URL configuration
-│   ├── manage.py
-│   └── requirements.txt
-│
-└── README.md                       # Project documentation
+└── server/          # Django backend (REST API)
+    ├── config/      # Django settings, CORS, rate limiting
+    ├── portfolio/   # Core app — models, views, serializers, fixtures
+    │   └── fixtures/
+    │       └── initial_data.json      # Database seed (load with: python manage.py loaddata initial_data)
+    └── media/
+        └── projects/thumbnails/       # Project banner images (WebP, optimized)
 ```
 
 ---
 
-## ⚙️ Local Development Setup
+## 🚀 Quick Start
 
-### Prerequisites
-- **Node.js**: `v18.x` or higher
-- **Python**: `v3.11` or higher
-- **Git**
-
-### 1. Backend Setup
+### Backend (Django)
 
 ```bash
-# Navigate to backend
 cd server
-
-# Create virtual environment
 python -m venv .venv
+.venv\Scripts\activate          # Windows
+# source .venv/bin/activate     # Linux/Mac
 
-# Windows
-.venv\Scripts\activate
-
-# macOS / Linux
-source .venv/bin/activate
-
-# Install dependencies
 pip install -r requirements.txt
+cp .env.example .env            # Fill in your values
 
-# Apply migrations
 python manage.py migrate
-
-# Create Django admin account
-python manage.py createsuperuser
-
-# Start backend server
-python manage.py runserver
+python manage.py loaddata portfolio/fixtures/initial_data.json
+python manage.py runserver 127.0.0.1:8000
 ```
 
-### 2. Frontend Setup
-
-Open a new terminal:
+### Frontend (Vite + React)
 
 ```bash
-# Navigate to frontend
 cd client
-
-# Install dependencies
 npm install
-
-# Start Vite development server
-npm run dev
+cp .env.example .env            # Set VITE_API_BASE_URL=http://127.0.0.1:8000
+npm run dev                     # Runs at http://localhost:5173
 ```
 
-### Local Services
-
-- **Frontend**: [http://localhost:5173](http://localhost:5173)
-- **Backend**: [http://localhost:8000](http://localhost:8000)
-- **Django Administration**: [http://localhost:8000/admin](http://localhost:8000/admin)
-
 ---
 
-## 🔒 Security & Performance Features
+## 📡 API Reference
 
-### Security
-- **CORS Protection** — Controlled origin configuration for API access
-- **CSRF Protection** — Django CSRF safeguards for state-changing requests
-- **API Validation** — Backend validation for incoming payloads
-- **Rate Limiting** — Protection against excessive contact requests
-- **Duplicate Suppression** — Reduction of repeated and spam submissions
-- **Authentication** — Protected administrative operations
-- **Environment Configuration** — Sensitive configuration kept outside source control
+Base URL (development): `http://127.0.0.1:8000`
 
-### Performance
-- **Vite Build Pipeline** — Optimized frontend development and production builds
-- **Lazy-loaded Media** — Reduced initial media loading cost
-- **WebP Assets** — Optimized image delivery
-- **API-driven Hydration** — Structured content loading through a centralized endpoint
-- **Nginx + Gunicorn** — Production HTTP request handling
-- **Dockerized Deployment** — Consistent application runtime
+All endpoints are **read-only (GET)**. Write operations are handled via the Django admin panel at `/admin/`.
 
----
+### Core Endpoints
 
-## 🧠 Engineering Decisions
+| Endpoint | Method | Description |
+|---|---|---|
+| `/api/bootstrap/` | GET | **Recommended** — returns profile + featured projects + skills + experience in one call |
+| `/api/projects/` | GET | All published projects (paginated) |
+| `/api/projects/{slug}/` | GET | Single project by slug |
+| `/api/projects/featured/` | GET | Featured projects (top 6) |
+| `/api/experience/` | GET | Work experience timeline |
+| `/api/skills/` | GET | All skills grouped by category |
+| `/api/skills/top/` | GET | Top 10 skills by proficiency |
+| `/api/achievements/` | GET | Certifications and achievements |
+| `/api/categories/` | GET | All categories (projects, skills, experience) |
+| `/api/profile/` | GET | User profile + social links + meta |
+| `/api/summary/` | GET | Aggregate counts (projects, skills, years etc.) |
+| `/api/contact/` | POST | Submit contact message |
+| `/api/health/` | GET | Health check |
 
-### Why React + Vite?
+### Bootstrap Response Shape
 
-The portfolio requires a highly interactive frontend with reusable UI components, dynamic content, client-side interactions, and responsive rendering.
-
-Vite provides a fast development environment and an efficient production build pipeline.
-
-### Why Django + Django REST Framework?
-
-Django provides the backend foundation for:
-- Database modeling
-- Authentication
-- Administration
-- Security middleware
-- Business logic
-- Content management
-
-Django REST Framework provides the API layer consumed by the React application.
-
-### Why API-Driven Content?
-
-Portfolio content is separated from the presentation layer:
-
-```text
-Portfolio Content
-       ↓
- Django Models
-       ↓
-Django REST API
-       ↓
-React Application
-       ↓
- Interactive UI
+```json
+{
+  "profile": { "full_name": "Roshan Damor", "title": "...", "bio": "...", ... },
+  "projects": [ { "id": 1, "title": "CardFlow", "documentation": "<html>...", "thumbnail": "...", ... } ],
+  "skills": [ { "name": "Django", "category": {...}, "proficiency": 95 } ],
+  "experience": [ { "position": "Software Engineer", "company_name": "Adarsh ID Cards", ... } ]
+}
 ```
 
-This allows portfolio data to be maintained independently of frontend presentation code.
+### Project Object Shape
 
-### Why a Bootstrap Endpoint?
+```json
+{
+  "id": 1,
+  "title": "CardFlow",
+  "slug": "cardflow",
+  "project_name": "CardFlow",
+  "description": "Short description shown on the project card",
+  "documentation": "<div class=\"case-study-container\">...</div>",
+  "category": { "name": "Enterprise SaaS" },
+  "technologies": "Django, React, PostgreSQL, Redis, Celery",
+  "technologies_list": ["Django", "React", "PostgreSQL", "Redis", "Celery"],
+  "thumbnail": "http://localhost:8000/media/projects/thumbnails/cardflow-banner.webp",
+  "github_url": "https://github.com/logicbyroshan/cardfloww-idcard-management-saas.git",
+  "live_url": "https://logicbyroshan.in",
+  "status": "published",
+  "is_featured": true,
+  "order": 1
+}
+```
 
-The portfolio requires several datasets during initialization:
-- Profile
-- Projects
-- Skills
-- Experience
-- Articles
-- Other structured content
+> **Note**: The `documentation` field contains rich case-study HTML. The frontend additionally maintains `PROJECT_DOCUMENTATION` in `hydratePortfolio.js` as the canonical clean-encoded version. The JS version always takes priority over the DB version for named projects (CardFlow, VidyaMaxx).
 
-A centralized bootstrap response provides a predictable initialization flow while reducing unnecessary initial API requests.
+### Contact POST Body
 
----
+```json
+{
+  "full_name": "Jane Smith",
+  "email": "jane@example.com",
+  "message": "Hello, I'd like to discuss a project.",
+  "is_urgent": false
+}
+```
 
-## 📊 Engineering Focus
-
-This project demonstrates practical engineering across:
-- Application architecture
-- REST API design
-- Frontend engineering
-- Backend engineering
-- Database-backed systems
-- Authentication and authorization
-- API validation and throttling
-- Dynamic data hydration
-- AI integration
-- SEO and structured metadata
-- Security considerations
-- Containerized deployment
-- Production web infrastructure
-
----
-
-## 🔭 Future Improvements
-
-Planned improvements include:
-- Expanded AI assistant capabilities
-- More advanced portfolio knowledge retrieval
-- Improved application observability
-- Automated testing and CI/CD improvements
-- Performance profiling and optimization
-- Expanded technical documentation
-- More structured AI-readable project metadata
-- Additional interactive engineering demonstrations
+**Success response:**
+```json
+{ "success": true, "id": 1, "message": "Thank you for reaching out. Your message has been received." }
+```
 
 ---
 
-## 📝 License
+## 🔒 Security
 
-Distributed under the **MIT License**.
+- **CORS**: Configured for `localhost:5173` (dev) and production domain. Update `CORS_ALLOWED_ORIGINS` in `config/settings.py`.
+- **Rate limiting**: 100 req/hour (anonymous), 1000 req/hour (authenticated).
+- **Read-only API**: All data mutations go through `/admin/`.
+- **Filtering**: Only `is_active=True` and `status=published` records are returned.
 
-See `LICENSE` for details.
+---
 
-<div align="center">
-  <sub>Built with ❤️ by <a href="https://github.com/logicbyroshan">Roshan Damor</a></sub>
-</div>
+## 🖼️ Media / Images
+
+Project banner images live in `server/media/projects/thumbnails/` and are served at `/media/projects/thumbnails/<filename>`.
+
+Current banners:
+- `cardflow-banner.webp` — CardFlow (optimized WebP ~28KB)
+- `vidyamaxx-banner.webp` — VidyaMaxx (optimized WebP ~29KB)
+
+To add a new banner: place the file in `server/media/projects/thumbnails/` and update the project's `thumbnail` field via `/admin/`.
+
+---
+
+## 🗃️ Data Management
+
+**Seed the database:**
+```bash
+python manage.py loaddata portfolio/fixtures/initial_data.json
+```
+
+**Export current DB state:**
+```python
+# Run from server/ directory
+import os, django, json
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
+django.setup()
+from django.core import serializers
+from portfolio.models import Category, UserProfile, Skill, Experience, Achievement, Project
+
+output = []
+for model in [Category, UserProfile, Skill, Experience, Achievement, Project]:
+    import json as _json
+    data = _json.loads(serializers.serialize('json', model.objects.all()))
+    output.extend(data)
+
+with open('portfolio/fixtures/initial_data.json', 'w', encoding='utf-8') as f:
+    json.dump(output, f, ensure_ascii=False, indent=2)
+```
+
+---
+
+## 🔧 Environment Variables
+
+### Server (`server/.env`)
+
+```env
+SECRET_KEY=your-django-secret-key
+DEBUG=True
+ALLOWED_HOSTS=localhost,127.0.0.1
+DATABASE_URL=sqlite:///db.sqlite3
+CORS_ALLOWED_ORIGINS=http://localhost:5173,http://localhost:3000
+```
+
+### Client (`client/.env`)
+
+```env
+VITE_API_BASE_URL=http://127.0.0.1:8000
+```
+
+---
+
+## 📦 Key Dependencies
+
+### Backend
+- `django` — Web framework
+- `djangorestframework` — REST API
+- `django-cors-headers` — CORS handling
+- `Pillow` — Image processing
+
+### Frontend
+- `react` + `vite` — UI framework + build tool
+- `font-awesome` — Icons (via CDN)
+- `google-fonts` — Outfit, Aclonica (via CDN)
+
+---
+
+## 🚢 Production Notes
+
+1. Set `DEBUG=False` and configure a proper `SECRET_KEY`
+2. Update `CORS_ALLOWED_ORIGINS` with your production domain
+3. Run `python manage.py collectstatic` to serve static files
+4. Use Gunicorn + Nginx for production serving
+5. Run `npm run build` in `client/` to build the production bundle
