@@ -807,7 +807,6 @@ function updateProjects(projects = []) {
       const projectName = project.project_name || project.title;
       const staticProject = STATIC_PROJECTS.find((p) => p.project_name === projectName || p.title === projectName);
       const categoryName = project.category?.name || staticProject?.category?.name || 'Enterprise SaaS';
-      const imageUrl = project.thumbnail || staticProject?.thumbnail || null;
 
       // Normalize technologies_list (API may return array, static has array)
       let techList = project.technologies_list || staticProject?.technologies_list || [];
@@ -839,49 +838,21 @@ function updateProjects(projects = []) {
         buttonsHtml += `<a href="https://logicbyroshan.in/#projects" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">Live Preview</a>`;
       }
 
-      // Check if project has an authentic custom banner image
-      const hasCustomBanner = imageUrl && (imageUrl.includes('cardflow-banner') || imageUrl.includes('vidyamaxx-banner'));
+      const gradClass = UNIVERSAL_GRADIENTS[index % UNIVERSAL_GRADIENTS.length];
+      const iconClass = UNIVERSAL_ICONS[index % UNIVERSAL_ICONS.length];
 
-      let imageHtml = '';
-      if (hasCustomBanner) {
-        imageHtml = `
-          <div class="project-image">
-            <span class="project-category">${escapeHtml(categoryName)}</span>
-            <img src="${escapeHtml(imageUrl)}" alt="${escapeHtml(projectName)}" width="1200" height="800" loading="lazy" decoding="async">
-          </div>
-        `;
-      } else {
-        const gradClass = UNIVERSAL_GRADIENTS[index % UNIVERSAL_GRADIENTS.length];
-        const iconClass = UNIVERSAL_ICONS[index % UNIVERSAL_ICONS.length];
-        const thumbTechPills = techList.slice(0, 3).map(t => `<span class="universal-thumb-tech-pill">${escapeHtml(t)}</span>`).join('');
-
-        imageHtml = `
-          <div class="project-image">
-            <div class="universal-project-thumb ${gradClass}">
-              <div class="universal-thumb-bg-pattern"></div>
-              <i class="fas ${iconClass} universal-thumb-watermark"></i>
-              <div class="universal-thumb-content">
-                <span class="universal-thumb-tag">${escapeHtml(categoryName)}</span>
-                <h3 class="universal-thumb-title">${escapeHtml(projectName)}</h3>
-                <p class="universal-thumb-sub">${escapeHtml(project.description || '')}</p>
-                <div class="universal-thumb-tech-row">${thumbTechPills}</div>
-              </div>
-              <span class="project-category">${escapeHtml(categoryName)}</span>
-            </div>
-          </div>
-        `;
-      }
-
-      // Use JS case-study doc first (canonical, clean encoding); fall back to DB documentation
+      // Use JS case-study doc first; fall back to DB documentation
       const docHtml = PROJECT_DOCUMENTATION[projectName]
         || PROJECT_DOCUMENTATION[project.title]
         || project.documentation
         || '';
 
       return `
-        <div class="project-card ${index === 0 ? 'active' : ''}" data-index="${index}" data-project-slug="${projectSlug}">
+        <div class="project-card ${gradClass} ${index === 0 ? 'active' : ''}" data-index="${index}" data-project-slug="${projectSlug}">
           <div class="project-doc-content" style="display:none;">${docHtml}</div>
-          <div class="project-content">
+          <div class="project-card-bg-pattern"></div>
+          <i class="fas ${iconClass} project-card-watermark"></i>
+          <div class="project-card-inner">
             <div class="project-meta-row">
               <span class="project-nickname">${escapeHtml(categoryName)}</span>
               <span class="project-status-badge ${statusClass}">${escapeHtml(statusText)}</span>
@@ -893,7 +864,6 @@ function updateProjects(projects = []) {
               ${buttonsHtml}
             </div>
           </div>
-          ${imageHtml}
         </div>
       `;
     })
