@@ -48,15 +48,13 @@ python manage.py test
 - Localhost requests (`localhost` / `127.0.0.1`) are allowed without API key to keep local dev, preview, and audit workflows smooth.
 
 ## Production notes
-- Intended public website domain: `www.roshandmaor.me`
-- Intended admin domain: `admin.roshandmaor.me`
-- Legacy-compatible aliases are supported for `roshandamor.me` hostnames.
-- Use PostgreSQL in production
-- For a full DigitalOcean deployment runbook, see [../DIGITALOCEAN_PRODUCTION_GUIDE.md](../DIGITALOCEAN_PRODUCTION_GUIDE.md)
+- Intended public website domain: `logicbyroshan.in` / `www.logicbyroshan.in`
+- Intended admin domain: `admin.logicbyroshan.in`
+- Use PostgreSQL in production for optimal performance and concurrency
 
 ## Admin subdomain checklist
-1. DNS records exist for both `www.roshandmaor.me` and `admin.roshandmaor.me`.
-2. Reverse proxy forwards host and proto headers:
+1. DNS records exist for `logicbyroshan.in`, `www.logicbyroshan.in`, and `admin.logicbyroshan.in`.
+2. Reverse proxy (Nginx / Caddy / Traefik on your VPS) forwards host and proto headers:
 	- `Host`
 	- `X-Forwarded-Proto`
 3. Django environment has production values for:
@@ -66,7 +64,7 @@ python manage.py test
 	- `CORS_ALLOW_CREDENTIALS=False`
 	- `TRUST_X_FORWARDED_PROTO=True`
 	- `TRUST_X_FORWARDED_FOR=True`
-4. SSL certificate covers both subdomains.
+4. SSL certificate covers `logicbyroshan.in`, `www.logicbyroshan.in`, and `admin.logicbyroshan.in`.
 
 ## PostgreSQL performance and reliability knobs
 Set these in production `.env`:

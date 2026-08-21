@@ -612,7 +612,27 @@ def portfolio_bootstrap(request):
     serializer_context = {"request": request}
 
     profile = bootstrap_profile_queryset().first()
-    featured_projects = bootstrap_projects_queryset()[:6]
+    featured_projects = list(bootstrap_projects_queryset()[:6])
+    if not featured_projects:
+        featured_projects = list(
+            Project.objects.filter(is_active=True)
+            .exclude(status="draft")
+            .prefetch_related(
+                Prefetch("category", queryset=category_with_counts_queryset()),
+                Prefetch(
+                    "screenshots",
+                    queryset=ProjectScreenshot.objects.only(
+                        "id",
+                        "project_id",
+                        "image",
+                        "caption",
+                        "order",
+                        "uploaded_at",
+                    ).order_by("order", "-uploaded_at"),
+                ),
+            )
+            .order_by("-order", "-created_at")[:6]
+        )
     top_skills = bootstrap_skills_queryset()[:10]
     recent_experience = bootstrap_experience_queryset()[:6]
 

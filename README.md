@@ -1,14 +1,24 @@
 <div align="center">
   <img src="client/public/static/images/logo.webp" alt="Roshan Damor Logo" width="120" style="border-radius: 50%; box-shadow: 0 0 20px rgba(124, 58, 237, 0.5);"/>
-  <h1>🚀 Roshan Damor — AI Engineer & Full Stack Developer Portfolio</h1>
-  <p><b>A high-performance, ultra-modern Monorepo Web Application built with React, Vite & Django REST Framework</b></p>
+  <h1>🚀 Roshan Damor — Software Engineer Portfolio</h1>
+  <p><b>A production-oriented personal portfolio platform built with React, Vite & Django REST Framework</b></p>
 
   <p>
-    <a href="http://localhost:5173"><img src="https://img.shields.io/badge/Live_Portfolio-Online-brightgreen?style=for-the-badge&logo=vercel" alt="Live Demo"/></a>
-    <a href="http://localhost:8000/admin"><img src="https://img.shields.io/badge/Django_Admin-v5.2-092E20?style=for-the-badge&logo=django" alt="Django Admin"/></a>
-    <a href="https://reactjs.org"><img src="https://img.shields.io/badge/React-v18-61DAFB?style=for-the-badge&logo=react" alt="React 18"/></a>
-    <a href="https://vitejs.dev"><img src="https://img.shields.io/badge/Vite-v5-646CFF?style=for-the-badge&logo=vite" alt="Vite 5"/></a>
-    <a href="https://www.python.org"><img src="https://img.shields.io/badge/Python-v3.11+-3776AB?style=for-the-badge&logo=python" alt="Python 3.11"/></a>
+    <a href="https://logicbyroshan.in">
+      <img src="https://img.shields.io/badge/Live_Portfolio-Online-brightgreen?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Live Portfolio"/>
+    </a>
+    <a href="https://www.djangoproject.com/">
+      <img src="https://img.shields.io/badge/Django-5.2-092E20?style=for-the-badge&logo=django&logoColor=white" alt="Django 5.2"/>
+    </a>
+    <a href="https://react.dev/">
+      <img src="https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React 18"/>
+    </a>
+    <a href="https://vitejs.dev/">
+      <img src="https://img.shields.io/badge/Vite-5-646CFF?style=for-the-badge&logo=vite&logoColor=white" alt="Vite 5"/>
+    </a>
+    <a href="https://www.python.org/">
+      <img src="https://img.shields.io/badge/Python-3.11+-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python 3.11+"/>
+    </a>
   </p>
 </div>
 
@@ -20,21 +30,21 @@
   <tr>
     <td width="50%" align="center">
       <b>✨ Interactive Hero & Glassmorphic UI</b><br/><br/>
-      <img src="client/public/static/images/screenshot_hero.png" alt="Hero Section" width="100%" style="border-radius: 10px; border: 1px solid rgba(124,58,237,0.3);"/>
+      <img src="client/public/static/images/screenshot_hero.png" alt="Interactive Portfolio Hero Section" width="100%" style="border-radius: 10px; border: 1px solid rgba(124,58,237,0.3);"/>
     </td>
     <td width="50%" align="center">
       <b>💻 Dynamic Projects Showcase</b><br/><br/>
-      <img src="client/public/static/images/screenshot_projects.png" alt="Projects Showcase" width="100%" style="border-radius: 10px; border: 1px solid rgba(124,58,237,0.3);"/>
+      <img src="client/public/static/images/screenshot_projects.png" alt="Dynamic Projects Showcase" width="100%" style="border-radius: 10px; border: 1px solid rgba(124,58,237,0.3);"/>
     </td>
   </tr>
   <tr>
     <td width="50%" align="center">
       <b>📖 Technical Documentation & ER Diagrams</b><br/><br/>
-      <img src="client/public/static/images/screenshot_documentation.png" alt="Documentation Modal" width="100%" style="border-radius: 10px; border: 1px solid rgba(124,58,237,0.3);"/>
+      <img src="client/public/static/images/screenshot_documentation.png" alt="Technical Documentation and ER Diagrams" width="100%" style="border-radius: 10px; border: 1px solid rgba(124,58,237,0.3);"/>
     </td>
     <td width="50%" align="center">
-      <b>🤖 Ask Rexi — AI Assistant Modal</b><br/><br/>
-      <img src="client/public/static/images/screenshot_rexi_ai.png" alt="Ask Rexi AI Assistant Modal" width="100%" style="border-radius: 10px; border: 1px solid rgba(124,58,237,0.3);"/>
+      <b>🤖 Ask Rexi — AI Assistant</b><br/><br/>
+      <img src="client/public/static/images/screenshot_rexi_ai.png" alt="Ask Rexi AI Assistant" width="100%" style="border-radius: 10px; border: 1px solid rgba(124,58,237,0.3);"/>
     </td>
   </tr>
 </table>
@@ -43,29 +53,14 @@
 
 ## 🎯 Executive Overview
 
-This repository represents a full-stack, enterprise-ready personal portfolio platform designed for an AI Engineer and Full Stack Developer. It combines a lightning-fast React frontend with a robust Django REST backend, providing both an engaging visitor experience and an effortless content management workflow.
+This repository contains the source code for my personal software engineering portfolio — a production-oriented web application designed to present projects, technical experience, engineering work, and professional information through an interactive interface.
+
+The system combines a React + Vite client with a Django REST backend and a database-driven content management workflow. Instead of relying entirely on static portfolio content, the application exposes structured data through APIs and allows portfolio information to be managed from the backend.
 
 ### Key Highlights
-- **Unified Sizing & Dual-State Modals**: All interactive modals (Blog previews, Technical Articles, Project Details, Rexi AI Chat, and Resume Overviews) share standard dimensions (`680px` max-width) and toggle smoothly into fullscreen mode (`95vw` x `92vh`).
-- **Documentation Engine**: Support for embedded database **ER Diagrams**, PK/FK key tags, technical step cards, alert callout blocks, and syntax-highlighted code frames.
-- **Dynamic API Hydration**: Real-time bootstrap fetching (`GET /api/bootstrap/`) with local fallback hydration to ensure zero layout jump and fast rendering.
-- **Integrated Audio Engine**: Ambient background sound controls with optimized volume (`0.05` ambient level) and interactive sound feedback.
-- **Anti-Spam & Security Core**: Backend rate-limiting, IP duplicate suppression, and payload validation on contact API routes.
 
----
-
-## 🛠️ Technology Stack
-
-| Layer | Technology | Key Details |
-| :--- | :--- | :--- |
-| **Frontend Framework** | **React 18 + Vite 5** | High-performance SPA with client-side routing & dynamic hydration |
-| **Styling & Design** | **Vanilla CSS3** | Custom dark mode glassmorphic design system, smooth micro-animations |
-| **Icons & Typography** | **FontAwesome 6 + Google Fonts** | *Aclonica*, *Outfit*, and *Inter* typography paired with rich tech icons |
-| **Audio Processing** | **Howler.js / Custom JS Engine** | Low-latency ambient audio engine with user volume control |
-| **Backend Core** | **Python 3.11+ / Django 5.2** | Secure ORM layer, admin dashboard, and REST services |
-| **API Framework** | **Django REST Framework (DRF)** | Serialized JSON endpoints, Simple JWT authentication, throttling |
-| **Database** | **SQLite (Dev) / PostgreSQL (Prod)** | Relational database storage with automated migration scripts |
-| **Container & Cloud** | **Docker + Nginx + Gunicorn** | Multi-stage Docker deployment optimized for DigitalOcean / VPS |
+- **⚛️ React + Vite Application**: Interactive client-side application with reusable UI components, dynamic content rendering, responsive layouts, and optimized builds.
+- **⚡ API-Driven Architecture**: Portfolio content is retrieved through a centralized bootstrap API and transformed into the frontend application at runtime.
 
 ---
 
@@ -99,27 +94,105 @@ sequenceDiagram
     API->>DB: Query Profile, Projects, Skills & Experiences
     DB-->>API: Return ORM Datasets
     API-->>Client: 200 OK (JSON Bootstrap Payload)
-    Client->>Client: Execute hydratePortfolio.js & Refresh SEO Metadata
+    Client->>Client: Execute hydratePortfolio.js & Refresh Dynamic State
     Client->>Visitor: Interactive, fully populated UI ready
+```
+
+### 3. Contact Request Flow
+
+```mermaid
+sequenceDiagram
+    autonumber
+    actor Visitor
+    participant Client as React + Vite Client
+    participant API as Django REST API
+    participant DB as Database
+
+    Visitor->>Client: Submits Contact Form
+    Client->>API: POST /api/contact/ (Name, Email, Message)
+    API->>API: Validate & Rate Limit / Spam Check
+    API->>DB: Save ContactMessage Record
+    DB-->>API: Persisted Successfully
+    API-->>Client: 201 Created / Success Response
+    Client->>Visitor: Show Confirmation Notification
 ```
 
 ---
 
 ## 🚀 Feature Spotlight
 
-### 1. Technical Documentation & Article Viewer
-- **Sticky Glassmorphic Header**: Keeps full screen and close controls visible while scrolling through long technical articles.
-- **ER Diagram Visualizer**: High-density database schema cards showing entity relationships, primary keys (`PK`), and foreign keys (`FK`).
-- **Callout & Code Headers**: Rich alert callouts (`.doc-callout-note`, `.doc-callout-tip`) and formatted code frames with language tags.
+### 1. Interactive Portfolio Experience
+- Responsive portfolio interface
+- Custom dark glassmorphic design system
+- Interactive hero and project sections
+- Dynamic project and experience rendering
+- Modal-based content presentation
+- Responsive desktop and mobile layouts
+- Smooth UI transitions and micro-interactions
 
-### 2. Ask Rexi — AI Assistant Integration
-- Interactive AI chat interface for recruiters and visitors to query portfolio skills, background, and project details in real time.
+### 2. 📖 Technical Documentation & Article Viewer
+- Interactive technical documentation viewer
+- Sticky fullscreen documentation header
+- Database ER diagram visualization
+- Entity relationship cards
+- Primary key (PK) and foreign key (FK) indicators
+- Technical step cards
+- Alert and callout components
+- Syntax-highlighted code blocks
+- Fullscreen reading mode
 
-### 3. Comprehensive Content Admin
-- Auth-protected Django dashboard for instant updates to Projects, Skills, Timeline, and Inbox messages without re-deploying frontend code.
+### 3. 🤖 Ask Rexi — AI Assistant Integration
 
-### 4. SEO & AI Crawler Readiness
-- Standardized `llms.txt`, OpenGraph metadata, JSON-LD structured data (`Person`, `WebSite`), `sitemap.xml`, and `robots.txt` built into static outputs.
+Ask Rexi provides an interactive AI interface that allows recruiters and visitors to explore portfolio information conversationally.
+
+The assistant can be used to understand:
+- Projects
+- Technical skills
+- Engineering experience
+- Development background
+- Technologies used
+- Professional profile
+
+The goal is to make the portfolio an interactive technical profile rather than only a collection of static pages.
+
+### 4. 🗂️ Content Management System
+
+The Django administration interface provides authenticated management for:
+- Projects
+- Skills
+- Experience
+- Articles
+- Profile information
+- Contact messages
+- Portfolio content
+
+This separates portfolio content from frontend presentation logic and allows routine content updates without modifying the frontend application.
+
+### 5. ⚡ Dynamic API Hydration
+
+The frontend initializes its dynamic content through:
+
+```http
+GET /api/bootstrap/
+```
+
+The bootstrap response provides the structured datasets required to populate the application.
+
+A local fallback mechanism is also available so the interface can maintain a usable initial state when the API is unavailable.
+
+### 6. 🔎 SEO & AI Discoverability
+
+The application includes:
+- `sitemap.xml`
+- `robots.txt`
+- `llms.txt`
+- OpenGraph metadata
+- JSON-LD structured data
+- `Person` schema
+- `WebSite` schema
+- Dynamic page metadata
+
+These features make the portfolio easier for search engines, crawlers, and AI-powered systems to understand.
 
 ---
 
@@ -127,25 +200,28 @@ sequenceDiagram
 
 ```text
 Code Portfolio/
-├── client/                     # React + Vite Frontend App
+├── client/                         # React + Vite Frontend
 │   ├── public/
-│   │   ├── portfolio-body.html  # Main DOM structure & Modal definitions
+│   │   ├── portfolio-body.html    # Main DOM structure & modal definitions
 │   │   └── static/
-│   │       ├── css/            # Modular stylesheets (modal.css, main.css, etc.)
-│   │       ├── js/             # Interactive engines (modal.js, sounds.js)
-│   │       └── images/         # Screenshots, logos, & project media assets
+│   │       ├── css/                # Modular stylesheets
+│   │       ├── js/                 # Client-side interaction engines
+│   │       └── images/             # Screenshots, logos & project assets
+│   │
 │   ├── src/
-│   │   ├── api/                # API client & hydratePortfolio.js script
-│   │   ├── App.jsx             # React entry wrapper
-│   │   └── main.jsx            # Vite mount point
+│   │   ├── api/                    # API client & portfolio hydration
+│   │   ├── App.jsx                 # React application wrapper
+│   │   └── main.jsx                # Vite application entry point
+│   │
 │   └── package.json
-├── server/                     # Django REST Backend
-│   ├── portfolio/              # Core Django app (models, serializers, api_views)
-│   ├── server/                 # Django settings & URL routing
+│
+├── server/                         # Django REST Backend
+│   ├── portfolio/                  # Models, serializers & API views
+│   ├── server/                     # Settings & URL configuration
 │   ├── manage.py
 │   └── requirements.txt
-├── README.md                   # System Documentation
-└── DIGITALOCEAN_PRODUCTION_GUIDE.md
+│
+└── README.md                       # Project documentation
 ```
 
 ---
@@ -157,59 +233,168 @@ Code Portfolio/
 - **Python**: `v3.11` or higher
 - **Git**
 
-### 1. Backend Setup (Django)
+### 1. Backend Setup
+
 ```bash
-# Navigate to backend directory
+# Navigate to backend
 cd server
 
-# Create and activate virtual environment
+# Create virtual environment
 python -m venv .venv
-# On Windows:
+
+# Windows
 .venv\Scripts\activate
-# On macOS/Linux:
+
+# macOS / Linux
 source .venv/bin/activate
 
 # Install dependencies
 pip install -r requirements.txt
 
-# Run migrations & seed data
+# Apply migrations
 python manage.py migrate
 
-# Create admin superuser
+# Create Django admin account
 python manage.py createsuperuser
 
-# Start development server
+# Start backend server
 python manage.py runserver
 ```
 
-### 2. Frontend Setup (React)
+### 2. Frontend Setup
+
+Open a new terminal:
+
 ```bash
-# Open a new terminal and navigate to client directory
+# Navigate to frontend
 cd client
 
-# Install NPM packages
+# Install dependencies
 npm install
 
-# Start Vite dev server
+# Start Vite development server
 npm run dev
 ```
-Visit `http://localhost:5173` to view the public application and `http://localhost:8000/admin` to access the Django Content Manager.
+
+### Local Services
+
+- **Frontend**: [http://localhost:5173](http://localhost:5173)
+- **Backend**: [http://localhost:8000](http://localhost:8000)
+- **Django Administration**: [http://localhost:8000/admin](http://localhost:8000/admin)
 
 ---
 
 ## 🔒 Security & Performance Features
 
-- **CORS & CSRF Protection**: Strict origin whitelisting configured via `django-cors-headers`.
-- **Anti-Spam Throttling**: IP-based rate limiting on the `/api/contact/` endpoint.
-- **Lazy Loaded Media**: Optimized WebP image formats and native browser `loading="lazy"` attributes.
+### Security
+- **CORS Protection** — Controlled origin configuration for API access
+- **CSRF Protection** — Django CSRF safeguards for state-changing requests
+- **API Validation** — Backend validation for incoming payloads
+- **Rate Limiting** — Protection against excessive contact requests
+- **Duplicate Suppression** — Reduction of repeated and spam submissions
+- **Authentication** — Protected administrative operations
+- **Environment Configuration** — Sensitive configuration kept outside source control
+
+### Performance
+- **Vite Build Pipeline** — Optimized frontend development and production builds
+- **Lazy-loaded Media** — Reduced initial media loading cost
+- **WebP Assets** — Optimized image delivery
+- **API-driven Hydration** — Structured content loading through a centralized endpoint
+- **Nginx + Gunicorn** — Production HTTP request handling
+- **Dockerized Deployment** — Consistent application runtime
+
+---
+
+## 🧠 Engineering Decisions
+
+### Why React + Vite?
+
+The portfolio requires a highly interactive frontend with reusable UI components, dynamic content, client-side interactions, and responsive rendering.
+
+Vite provides a fast development environment and an efficient production build pipeline.
+
+### Why Django + Django REST Framework?
+
+Django provides the backend foundation for:
+- Database modeling
+- Authentication
+- Administration
+- Security middleware
+- Business logic
+- Content management
+
+Django REST Framework provides the API layer consumed by the React application.
+
+### Why API-Driven Content?
+
+Portfolio content is separated from the presentation layer:
+
+```text
+Portfolio Content
+       ↓
+ Django Models
+       ↓
+Django REST API
+       ↓
+React Application
+       ↓
+ Interactive UI
+```
+
+This allows portfolio data to be maintained independently of frontend presentation code.
+
+### Why a Bootstrap Endpoint?
+
+The portfolio requires several datasets during initialization:
+- Profile
+- Projects
+- Skills
+- Experience
+- Articles
+- Other structured content
+
+A centralized bootstrap response provides a predictable initialization flow while reducing unnecessary initial API requests.
+
+---
+
+## 📊 Engineering Focus
+
+This project demonstrates practical engineering across:
+- Application architecture
+- REST API design
+- Frontend engineering
+- Backend engineering
+- Database-backed systems
+- Authentication and authorization
+- API validation and throttling
+- Dynamic data hydration
+- AI integration
+- SEO and structured metadata
+- Security considerations
+- Containerized deployment
+- Production web infrastructure
+
+---
+
+## 🔭 Future Improvements
+
+Planned improvements include:
+- Expanded AI assistant capabilities
+- More advanced portfolio knowledge retrieval
+- Improved application observability
+- Automated testing and CI/CD improvements
+- Performance profiling and optimization
+- Expanded technical documentation
+- More structured AI-readable project metadata
+- Additional interactive engineering demonstrations
 
 ---
 
 ## 📝 License
 
-Distributed under the **MIT License**. See `LICENSE` for details.
+Distributed under the **MIT License**.
 
----
+See `LICENSE` for details.
 
 <div align="center">
   <sub>Built with ❤️ by <a href="https://github.com/logicbyroshan">Roshan Damor</a></sub>

@@ -83,10 +83,11 @@ def normalize_host(value):
 
 def host_aliases(host):
     aliases = []
-    if "roshandamor.me" in host:
-        aliases.append(host.replace("roshandamor.me", "roshandmaor.me"))
-    if "roshandmaor.me" in host:
-        aliases.append(host.replace("roshandmaor.me", "roshandamor.me"))
+    if "logicbyroshan.in" in host:
+        if host.startswith("www."):
+            aliases.append(host.replace("www.", "", 1))
+        elif not host.startswith("admin."):
+            aliases.append(f"www.{host}")
     return aliases
 
 
@@ -143,8 +144,8 @@ ALLOWED_HOSTS = env_list(
     "127.0.0.1,localhost,testserver" if (DEBUG or RUNNING_TESTS) else "",
 )
 
-PUBLIC_SITE_DOMAIN = normalize_host(os.getenv("PUBLIC_SITE_DOMAIN", ""))
-ADMIN_SITE_DOMAIN = normalize_host(os.getenv("ADMIN_SITE_DOMAIN", ""))
+PUBLIC_SITE_DOMAIN = normalize_host(os.getenv("PUBLIC_SITE_DOMAIN", "logicbyroshan.in"))
+ADMIN_SITE_DOMAIN = normalize_host(os.getenv("ADMIN_SITE_DOMAIN", "admin.logicbyroshan.in"))
 
 configured_hosts = [normalize_host(host) for host in ALLOWED_HOSTS]
 domain_hosts = unique_list(

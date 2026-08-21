@@ -267,16 +267,20 @@ class ApiQueryPerformanceTests(TestCase):
 		self.assertLessEqual(len(ctx.captured_queries), 14)
 
 
-@override_settings(API_KEY="", SECURE_SSL_REDIRECT=False)
+@override_settings(
+	API_KEY="",
+	SECURE_SSL_REDIRECT=False,
+	ALLOWED_HOSTS=["admin.logicbyroshan.in", "logicbyroshan.in", "www.logicbyroshan.in", "testserver"],
+)
 class AdminSubdomainAccessTests(TestCase):
 	def test_intended_admin_subdomain_reaches_login(self):
-		response = self.client.get("/", HTTP_HOST="admin.roshandmaor.me")
+		response = self.client.get("/", HTTP_HOST="admin.logicbyroshan.in")
 
 		self.assertEqual(response.status_code, 302)
 		self.assertIn("/admin/login/", response["Location"])
 
-	def test_legacy_admin_subdomain_still_reaches_login(self):
-		response = self.client.get("/", HTTP_HOST="admin.roshandamor.me")
+	def test_root_domain_also_reaches_login_when_unauthenticated(self):
+		response = self.client.get("/", HTTP_HOST="logicbyroshan.in")
 
 		self.assertEqual(response.status_code, 302)
 		self.assertIn("/admin/login/", response["Location"])
