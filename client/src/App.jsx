@@ -1,7 +1,7 @@
 import { useEffect, useMemo } from 'react';
 import { fetchPortfolioData } from './api/portfolioApi';
 import { hydratePortfolioDom } from './api/hydratePortfolio';
-import defaultPortfolioHtml from '../public/portfolio-body.html?raw';
+import defaultPortfolioHtml from './portfolio-body.html?raw';
 
 const CORE_LEGACY_SCRIPTS = [
   '/static/js/script.js',

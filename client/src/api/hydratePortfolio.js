@@ -770,9 +770,24 @@ function updateProjects(projects = []) {
 
   const combinedProjects = getCombinedProjects(projects);
 
+  // Display status lookup: maps project name → display label & badge class
+  const PROJECT_DISPLAY_STATUS = {
+    'CardFlow':   { text: '🟢 Production',    cls: 'status-prod'  },
+    'VidyaMaxx':  { text: '🟡 Pilot Testing',  cls: 'status-pilot' },
+    'PrintNexx':  { text: '🟢 In Active Use',  cls: 'status-prod'  },
+    'EazeTrip':   { text: '🟢 Production',    cls: 'status-prod'  },
+    'TaskFlixx':  { text: '🟢 Live',           cls: 'status-prod'  },
+    'PrepSarthi': { text: '🔵 Open Source',    cls: 'status-oss'   },
+  };
+
   slider.innerHTML = combinedProjects
     .map((project, index) => {
-      const techBadges = (project.technologies_list || [])
+      // Normalize technologies_list (API may return array, static has array)
+      let techList = project.technologies_list || [];
+      if (typeof techList === 'string') {
+        techList = techList.split(',').map((t) => t.trim()).filter(Boolean);
+      }
+      const techBadges = techList
         .slice(0, 5)
         .map((tech) => `<span class="project-tech-badge">${escapeHtml(tech)}</span>`)
         .join('');
@@ -780,8 +795,13 @@ function updateProjects(projects = []) {
       const categoryName = project.category?.name || 'Enterprise SaaS';
       const imageUrl = project.thumbnail || '/static/images/ecom.webp';
       const projectName = project.project_name || project.title;
-      const statusText = project.status || '🟢 Production';
-      const statusClass = project.status_class || 'status-prod';
+
+      // Resolve display status — prefer explicit display format, fallback to lookup, then default
+      const hasDisplayStatus = project.status && /[🟢🟡🔵🔴🟠]/.test(project.status);
+      const displayStatusInfo = PROJECT_DISPLAY_STATUS[projectName] || {};
+      const statusText = hasDisplayStatus ? project.status : (displayStatusInfo.text || '🟢 Production');
+      const statusClass = project.status_class || displayStatusInfo.cls || 'status-prod';
+
       const githubLink = safeUrl(project.github_url || 'https://github.com/logicbyroshan');
       const hasGithub = project.has_github ?? (Boolean(project.github_url) && !project.github_url.includes('#'));
       const secondaryBtn = project.secondary_btn || (hasGithub ? '' : 'Live Preview');
@@ -795,7 +815,11 @@ function updateProjects(projects = []) {
         buttonsHtml += `<a href="https://logicbyroshan.in/#projects" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">Live Preview</a>`;
       }
 
-      const docHtml = project.documentation || PROJECT_DOCUMENTATION[projectName] || PROJECT_DOCUMENTATION[project.title] || '';
+      // Use JS case-study doc first (canonical, clean encoding); fall back to DB documentation
+      const docHtml = PROJECT_DOCUMENTATION[projectName]
+        || PROJECT_DOCUMENTATION[project.title]
+        || project.documentation
+        || '';
 
       return `
         <div class="project-card ${index === 0 ? 'active' : ''}" data-index="${index}" data-modal="modal-project">

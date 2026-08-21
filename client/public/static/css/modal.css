@@ -2549,3 +2549,161 @@ html.modal-open {
     font-weight: 500;
 }
 
+/* ── Responsive: Case Study Modal Elements ─────────────── */
+
+/* Fix ascii-box overflowing on narrow screens */
+.cs-ascii-box {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    max-width: 100%;
+}
+
+/* Single-column project card on tablet and below */
+@media (max-width: 860px) {
+    .project-card.active,
+    .project-card.slide-in-left,
+    .project-card.slide-in-right {
+        grid-template-columns: 1fr;
+    }
+
+    .project-image {
+        order: -1;
+    }
+}
+
+/* Case study modal-body: ensure no horizontal bleed */
+.modal-body-content {
+    overflow-x: hidden;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.project-modal-doc {
+    overflow-x: hidden;
+    max-width: 100%;
+}
+
+/* Stats grid: 2 col on mid, 1 col on small */
+@media (max-width: 520px) {
+    .case-study-stats-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+    }
+
+    .cs-stat-number {
+        font-size: 22px;
+    }
+
+    .cs-stat-label {
+        font-size: 11px;
+    }
+
+    .cs-stat-sub {
+        font-size: 10px;
+    }
+
+    .cs-ascii-box {
+        font-size: 10.5px;
+        padding: 10px 12px;
+    }
+
+    .cs-workflow-flow {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 4px;
+    }
+
+    .cs-wf-arrow {
+        transform: rotate(90deg);
+        margin-left: 8px;
+    }
+
+    .case-study-hero-banner {
+        padding: 16px;
+    }
+
+    .case-study-headline {
+        font-size: 17px;
+    }
+
+    .case-study-lead {
+        font-size: 12.5px;
+    }
+
+    .cs-links-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        padding: 10px 12px;
+    }
+
+    .cs-link-pill {
+        font-size: 11px;
+        padding: 5px 12px;
+    }
+
+    .cs-grid-3 {
+        grid-template-columns: 1fr;
+    }
+
+    .cs-grid-2 {
+        grid-template-columns: 1fr;
+    }
+
+    .cs-table {
+        font-size: 11.5px;
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .cs-table th,
+    .cs-table td {
+        padding: 7px 10px;
+    }
+
+    .modal-box-project .modal-body-content {
+        padding: 16px;
+    }
+
+    .modal-box-project .blog-modal-hero {
+        height: 140px !important;
+    }
+
+    .cs-challenge-card {
+        padding: 8px 12px;
+    }
+
+    .cs-challenge-title {
+        font-size: 12px;
+    }
+
+    .cs-challenge-card p,
+    .cs-card-sm p,
+    .cs-decision-card p {
+        font-size: 11.5px;
+    }
+}
+
+/* Very small phones: 375px and below */
+@media (max-width: 375px) {
+    .case-study-stats-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .cs-ascii-box {
+        font-size: 9.5px;
+    }
+
+    .case-study-headline {
+        font-size: 15px;
+    }
+
+    .case-study-sec-title {
+        font-size: 13px;
+    }
+
+    .modal-box-project {
+        padding: 0;
+    }
+}

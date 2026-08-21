@@ -11,6 +11,17 @@ function initPreloader() {
         return;
     }
 
+    // Skip preloader if already shown in this session (refreshes, back/forward navigation)
+    const SESSION_KEY = 'preloader_shown';
+    if (sessionStorage.getItem(SESSION_KEY)) {
+        preloader.style.display = 'none';
+        document.body.classList.add('preloader-done');
+        return;
+    }
+
+    // Mark as shown for this session
+    sessionStorage.setItem(SESSION_KEY, '1');
+
     document.body.classList.add('preloader-active');
     document.body.style.overflow = 'hidden';
     

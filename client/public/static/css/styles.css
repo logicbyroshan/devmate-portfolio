@@ -1342,3 +1342,20 @@ body.preloader-done .navbar {
     transform: translateY(0);
     transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
+
+/* -- Preloader skip: hide overlay instantly on refresh / return visits -- */
+html.preloader-skip #preloader {
+    display: none !important;
+}
+
+html.preloader-skip body {
+    overflow: visible;
+}
+
+html.preloader-skip #main-content,
+html.preloader-skip .navbar {
+    transform: translateY(0) !important;
+    opacity: 1 !important;
+    transition: none !important;
+}
+
