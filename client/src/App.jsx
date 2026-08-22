@@ -6,6 +6,7 @@ import defaultPortfolioHtml from './portfolio-body.html?raw';
 import ProjectDetailPage from './pages/ProjectDetailPage';
 import ExperiencePage from './pages/ExperiencePage';
 import AboutPage from './pages/AboutPage';
+import BlogDetailPage from './pages/BlogDetailPage';
 import RexiModal from './components/RexiModal';
 import AppNavbar from './components/AppNavbar';
 import SiteFooter from './components/SiteFooter';
@@ -37,6 +38,10 @@ function parseCurrentRoute() {
     const slug = hash.replace('#/projects/', '').split('?')[0].split('/')[0];
     return { name: 'project-detail', slug: decodeURIComponent(slug) };
   }
+  if (hash.startsWith('#/blog/')) {
+    const slug = hash.replace('#/blog/', '').split('?')[0].split('/')[0];
+    return { name: 'blog-detail', slug: decodeURIComponent(slug) };
+  }
   if (hash === '#/about' || hash.startsWith('#/about?')) {
     return { name: 'about' };
   }
@@ -47,6 +52,10 @@ function parseCurrentRoute() {
   if (pathname.startsWith('/projects/')) {
     const slug = pathname.replace('/projects/', '').split('?')[0].split('/')[0];
     return { name: 'project-detail', slug: decodeURIComponent(slug) };
+  }
+  if (pathname.startsWith('/blog/')) {
+    const slug = pathname.replace('/blog/', '').split('?')[0].split('/')[0];
+    return { name: 'blog-detail', slug: decodeURIComponent(slug) };
   }
   if (pathname === '/about' || pathname.startsWith('/about/')) {
     return { name: 'about' };
@@ -105,6 +114,10 @@ function App() {
       const slug = encodeURIComponent((param || 'cardflow').toLowerCase().replace(/[^a-z0-9]/g, ''));
       window.location.hash = `#/projects/${slug}`;
       setRoute({ name: 'project-detail', slug });
+    } else if (targetRoute === 'blog-detail') {
+      const slug = param || 'understanding-microservices-architecture';
+      window.location.hash = `#/blog/${slug}`;
+      setRoute({ name: 'blog-detail', slug });
     }
   }, []);
 
@@ -120,7 +133,16 @@ function App() {
         return;
       }
 
-      // 2. About page links
+      // 2. Blog detail links
+      const blogCard = e.target.closest('.blog-card, [data-blog-slug], a[href^="#/blog/"]');
+      if (blogCard) {
+        e.preventDefault();
+        const slug = blogCard.dataset.blogSlug || blogCard.getAttribute('href')?.replace('#/blog/', '');
+        navigate('blog-detail', slug);
+        return;
+      }
+
+      // 3. About page links
       const aboutLink = e.target.closest('[data-route="about"], a[href="#/about"]');
       if (aboutLink) {
         e.preventDefault();
@@ -128,7 +150,7 @@ function App() {
         return;
       }
 
-      // 3. Experience page links
+      // 4. Experience page links
       const expLink = e.target.closest('[data-route="experience"], a[href="#/experience"]');
       if (expLink) {
         e.preventDefault();
@@ -322,6 +344,13 @@ function App() {
         <>
           <AppNavbar currentRoute={route} onNavigate={navigate} />
           <ProjectDetailPage slug={route.slug} onNavigate={navigate} />
+          <SiteFooter onNavigate={navigate} />
+        </>
+      )}
+      {route.name === 'blog-detail' && (
+        <>
+          <AppNavbar currentRoute={route} onNavigate={navigate} />
+          <BlogDetailPage slug={route.slug} onNavigate={navigate} />
           <SiteFooter onNavigate={navigate} />
         </>
       )}
