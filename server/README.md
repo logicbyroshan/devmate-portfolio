@@ -1,10 +1,13 @@
-# Server (Django Admin + API)
+# Server (Django Backend + DRF REST API + Staff Admin)
 
 This folder hosts the Django backend that serves:
-- Custom admin panel (template-based)
-- Read-only/public API for client site
+- **Modular Service Layer (`portfolio/services/`)**: High-performance business logic, query selectors, Rexi AI chat engine, contact message & spam protection, and atomic interaction counters.
+- **REST API (`/api/v1/` & `/api/`)**: Versioned Django REST Framework APIs for client frontend hydration, project interactions, contact submissions, and AI assistant queries.
+- **Staff Admin / Management Panel**: Template-based dashboard with responsive CRUD interfaces.
 
-## Local setup
+---
+
+## 🚀 Local Setup & Development
 
 ```bash
 cd server
@@ -12,19 +15,16 @@ python -m venv ../.venv
 ```
 
 Windows PowerShell:
-
-```bash
+```powershell
 & ..\.venv\Scripts\Activate.ps1
 ```
 
 macOS/Linux:
-
 ```bash
 source ../.venv/bin/activate
 ```
 
-Install dependencies and bootstrap settings:
-
+Install dependencies and start development server:
 ```bash
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
@@ -34,7 +34,9 @@ python manage.py createsuperuser
 python manage.py runserver 127.0.0.1:8000
 ```
 
-## Validation commands
+---
+
+## 🧪 Validation & Testing Commands
 
 ```bash
 python manage.py check
@@ -42,45 +44,59 @@ python manage.py check --deploy
 python manage.py test
 ```
 
-## API key behavior
+---
 
-- Public read endpoints enforce `PORTFOLIO_API_KEY` when configured.
-- Localhost requests (`localhost` / `127.0.0.1`) are allowed without API key to keep local dev, preview, and audit workflows smooth.
+## 🏗️ Architecture & Service Layer (`portfolio/services/`)
 
-## Production notes
-- Intended public website domain: `logicbyroshan.in` / `www.logicbyroshan.in`
-- Intended admin domain: `admin.logicbyroshan.in`
-- Use PostgreSQL in production for optimal performance and concurrency
+1. **`PortfolioQueryService`**:
+   - Single-payload `/bootstrap/` dataset generator for fast client hydration.
+   - Aggregate statistics calculator using single-pass SQL `aggregate()`.
+   - Lean query projections (`.only()`) and relation prefetching (`Prefetch()`) with zero N+1 queries.
+2. **`ContactMessageService`**:
+   - Multi-layer spam protection (link count bounds, regex keyword filters).
+   - Dual rate-limiting (sliding IP and email windows).
+   - 24-hour duplicate message hash prevention.
+3. **`RexiChatService`**:
+   - Dynamic DB knowledge grounding (Profile, Projects, Skills, Experience, Achievements).
+   - Strict 3rd-person perspective prompt generator.
+   - HuggingFace Qwen inference with rule-grounded fallback matcher.
+4. **`InteractionService`**:
+   - Atomic database counters for project views and likes using Django `F()` expressions.
+5. **`SecurityService`**:
+   - Safe client IP extraction, constant-time API Key verification (`secrets.compare_digest`), text sanitization.
 
-## Admin subdomain checklist
-1. DNS records exist for `logicbyroshan.in`, `www.logicbyroshan.in`, and `admin.logicbyroshan.in`.
-2. Reverse proxy (Nginx / Caddy / Traefik on your VPS) forwards host and proto headers:
-	- `Host`
-	- `X-Forwarded-Proto`
-3. Django environment has production values for:
-	- `DJANGO_ALLOWED_HOSTS`
-	- `CSRF_TRUSTED_ORIGINS`
-	- `CORS_ALLOWED_ORIGINS`
-	- `CORS_ALLOW_CREDENTIALS=False`
-	- `TRUST_X_FORWARDED_PROTO=True`
-	- `TRUST_X_FORWARDED_FOR=True`
-4. SSL certificate covers `logicbyroshan.in`, `www.logicbyroshan.in`, and `admin.logicbyroshan.in`.
+---
 
-## PostgreSQL performance and reliability knobs
-Set these in production `.env`:
+## 📡 REST API Routes
 
-- `DB_CONN_MAX_AGE=60`
-- `DB_CONN_HEALTH_CHECKS=True`
-- `DB_CONNECT_TIMEOUT=10`
-- `DB_STATEMENT_TIMEOUT_MS=15000`
-- `DISALLOW_SQLITE_IN_PRODUCTION=True`
+| Endpoint | Method | Description |
+|---|---|---|
+| `/api/v1/health/` | `GET` | System health, database connectivity, and API version |
+| `/api/v1/bootstrap/` | `GET` | Single-call portfolio hydration (Profile + Projects + Skills + Experience) |
+| `/api/v1/summary/` | `GET` | Aggregated portfolio metrics |
+| `/api/v1/projects/` | `GET` | Active projects list (Filter: `category`, `status`, `featured`) |
+| `/api/v1/projects/{slug}/` | `GET` | Single project detail by slug |
+| `/api/v1/projects/featured/` | `GET` | Top 6 featured projects |
+| `/api/v1/projects/{slug}/like/` | `POST` | Atomically increment project likes |
+| `/api/v1/projects/{slug}/view/` | `POST` | Atomically increment project views |
+| `/api/v1/experience/` | `GET` | Active experience list |
+| `/api/v1/experience/{slug}/` | `GET` | Experience details by slug |
+| `/api/v1/skills/` | `GET` | Skills list |
+| `/api/v1/skills/{slug}/` | `GET` | Skill details by slug |
+| `/api/v1/skills/top/` | `GET` | Top 10 skills by proficiency |
+| `/api/v1/achievements/` | `GET` | Achievements and awards list |
+| `/api/v1/categories/` | `GET` | Categories with real-time item counts |
+| `/api/v1/profile/` | `GET` | Developer profile and social metadata |
+| `/api/v1/contact/` | `POST` | Secure contact message submission |
+| `/api/v1/rexi/chat/` | `POST` | Rexi AI assistant chat endpoint |
 
-## Runtime hardening checks
-Run before each release:
+*Note: Canonical `/api/<endpoint>` routes are automatically maintained for 100% backward compatibility.*
 
-1. `python manage.py migrate`
-2. `python manage.py check`
-3. `python manage.py check --deploy`
-4. `python manage.py test`
+---
 
-The backend project root is this `server` folder.
+## 🔒 Security & Performance Features
+
+- **API Key Security**: Verified via `secrets.compare_digest` when `PORTFOLIO_API_KEY` is configured.
+- **Scoped Rate Limiting**: Throttles configured for `contact`, `rexi`, and `interaction` endpoints.
+- **Composite Indexing**: Optimized database indexes on all slug, category, status, and timestamp columns.
+- **Read-Only Enforced**: Public data endpoints strictly enforce `ReadOnlyPermission`.

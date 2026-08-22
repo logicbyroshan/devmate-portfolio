@@ -118,7 +118,7 @@ def manage_projects(request):
                 )
 
     # Get recent projects (latest 6 projects regardless of status)
-    recent_projects = Project.objects.all().order_by('-created_at')[:6]
+    recent_projects = Project.objects.select_related("category").all().order_by("-created_at")[:6]
 
     context = {
         "recent_projects": recent_projects,
@@ -314,9 +314,9 @@ def list_projects(request):
     filter_type = request.GET.get("filter", "all")
 
     if filter_type == "draft":
-        projects = Project.objects.filter(status="draft")
+        projects = Project.objects.select_related("category").filter(status="draft")
     else:
-        projects = Project.objects.all()
+        projects = Project.objects.select_related("category").all()
 
     context = {
         "projects": projects,
@@ -354,7 +354,7 @@ def manage_experience(request):
                     {"success": False, "message": "Experience not found"}, status=404
                 )
 
-    experiences = Experience.objects.all()[:6]  # Get latest 6
+    experiences = Experience.objects.select_related("category").all()[:6]  # Get latest 6
     total_count = Experience.objects.count()
 
     context = {
@@ -561,9 +561,9 @@ def list_experience(request):
     filter_type = request.GET.get("filter", "all")
 
     if filter_type == "draft":
-        experiences = Experience.objects.filter(is_draft=True)
+        experiences = Experience.objects.select_related("category").filter(is_draft=True)
     else:
-        experiences = Experience.objects.all()
+        experiences = Experience.objects.select_related("category").all()
 
     context = {
         "experiences": experiences,
@@ -600,7 +600,7 @@ def manage_skills(request):
             return JsonResponse({"success": False, "error": "Skill not found"}, status=404)
 
     # Get latest 6 skills (regardless of draft status)
-    recent_skills = Skill.objects.all().order_by("-created_at")[:6]
+    recent_skills = Skill.objects.select_related("category").all().order_by("-created_at")[:6]
     total_count = Skill.objects.count()
 
     context = {
@@ -640,9 +640,9 @@ def list_skills(request):
     filter_type = request.GET.get("filter", "all")
 
     if filter_type == "draft":
-        skills = Skill.objects.filter(is_draft=True).order_by("-created_at")
+        skills = Skill.objects.select_related("category").filter(is_draft=True).order_by("-created_at")
     else:  # all
-        skills = Skill.objects.all().order_by("-created_at")
+        skills = Skill.objects.select_related("category").all().order_by("-created_at")
 
     # Get counts
     total_count = Skill.objects.count()
@@ -717,7 +717,7 @@ def manage_achievements(request):
         except Achievement.DoesNotExist:
             return JsonResponse({"success": False, "error": "Achievement not found"})
 
-    recent_achievements = Achievement.objects.all().order_by("-created_at")[:6]
+    recent_achievements = Achievement.objects.select_related("category").all().order_by("-created_at")[:6]
     total_count = Achievement.objects.count()
 
     context = {
@@ -798,9 +798,9 @@ def list_achievements(request):
     filter_type = request.GET.get("filter", "all")
 
     if filter_type == "draft":
-        achievements = Achievement.objects.filter(is_draft=True)
+        achievements = Achievement.objects.select_related("category").filter(is_draft=True)
     else:
-        achievements = Achievement.objects.all()
+        achievements = Achievement.objects.select_related("category").all()
 
     achievements = achievements.order_by("-achievement_date")
 
