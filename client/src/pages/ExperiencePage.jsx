@@ -9,17 +9,6 @@ export default function ExperiencePage({ onNavigate }) {
   return (
     <div className="page-container">
       <div className="page-wrapper">
-        {/* Breadcrumb Navigation - Centered & Glassmorphic */}
-        <div className="page-breadcrumbs-wrap">
-          <nav className="page-breadcrumbs" aria-label="Breadcrumb">
-            <a href="#home" onClick={(e) => { e.preventDefault(); onNavigate('home'); }}>
-              <i className="fas fa-home"></i> Home
-            </a>
-            <span className="breadcrumb-separator"><i className="fas fa-chevron-right"></i></span>
-            <span className="breadcrumb-current">Experience</span>
-          </nav>
-        </div>
-
         {/* Hero Header */}
         <header className="page-hero">
           <span className="page-badge">
