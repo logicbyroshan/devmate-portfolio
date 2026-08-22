@@ -119,24 +119,30 @@
 }
 
 .doc-mermaid-canvas-wrapper {
-    background: rgba(8, 12, 38, 0.6);
+    background: rgba(8, 12, 38, 0.7);
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 14px;
-    padding: 24px 16px;
+    padding: 36px 24px;
     overflow-x: auto;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 240px;
+    min-height: 380px;
 }
 
 .doc-mermaid-svg-container {
     transition: transform 0.25s ease;
-    max-width: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .doc-mermaid-svg-container svg {
-    max-width: 100% !important;
+    width: 100% !important;
+    min-width: 600px;
+    max-width: 1000px !important;
+    min-height: 280px;
     height: auto !important;
 }
 
@@ -1155,14 +1161,19 @@
 
 /* Page Section Layout */
 .doc-page-section {
-    padding: 36px 0 24px;
+    padding: 44px 44px 32px;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
-    scroll-margin-top: 130px;
 }
 
 .doc-page-section:first-of-type {
     border-top: none;
-    padding-top: 20px;
+    padding-top: 28px;
+}
+
+@media (max-width: 768px) {
+    .doc-page-section {
+        padding: 30px 20px 20px;
+    }
 }
 
 .doc-section-heading-wrap {

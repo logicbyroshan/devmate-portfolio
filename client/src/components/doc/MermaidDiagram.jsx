@@ -9,19 +9,34 @@ function initMermaid() {
     startOnLoad: false,
     theme: 'base',
     securityLevel: 'loose',
+    flowchart: {
+      useMaxWidth: true,
+      htmlLabels: true,
+      curve: 'basis',
+      nodeSpacing: 50,
+      rankSpacing: 50,
+      padding: 20
+    },
+    er: {
+      useMaxWidth: true,
+      fontSize: 15,
+      entityPadding: 16
+    },
     themeVariables: {
       darkMode: true,
       background: 'transparent',
-      primaryColor: '#2e1065',
+      primaryColor: '#1e1b4b',
       primaryTextColor: '#f8fafc',
       primaryBorderColor: '#8b5cf6',
       lineColor: '#38bdf8',
-      secondaryColor: '#1e1b4b',
+      secondaryColor: '#2e1065',
       tertiaryColor: '#0f172a',
       fontFamily: 'Outfit, sans-serif',
-      fontSize: '13px',
-      nodeBorder: '#7c3aed',
-      clusterBkg: 'rgba(15, 23, 42, 0.7)',
+      fontSize: '15px',
+      nodeBorder: '#8b5cf6',
+      nodeTextColor: '#ffffff',
+      mainBkg: '#141a48',
+      clusterBkg: 'rgba(20, 26, 68, 0.85)',
       clusterBorder: '#6366f1',
       titleColor: '#38bdf8',
       edgeLabelBackground: '#090d2e',
@@ -42,7 +57,8 @@ export default function MermaidDiagram({ chart, title, subtitle, diagramType = '
   const [error, setError] = useState(null);
   const [showCode, setShowCode] = useState(false);
   const [copied, setCopied] = useState(false);
-  const [zoomLevel, setZoomLevel] = useState(1);
+  const [zoomLevel, setZoomLevel] = useState(1.15);
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
   useEffect(() => {
     initMermaid();
@@ -59,7 +75,7 @@ export default function MermaidDiagram({ chart, title, subtitle, diagramType = '
       .catch((err) => {
         if (isMounted) {
           console.error('Mermaid render error:', err);
-          setError('Failed to render diagram dynamically. Displaying structured view.');
+          setError('Failed to render diagram dynamically.');
         }
       });
 
@@ -76,9 +92,9 @@ export default function MermaidDiagram({ chart, title, subtitle, diagramType = '
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const handleZoomIn = () => setZoomLevel(prev => Math.min(prev + 0.15, 1.8));
-  const handleZoomOut = () => setZoomLevel(prev => Math.max(prev - 0.15, 0.6));
-  const handleResetZoom = () => setZoomLevel(1);
+  const handleZoomIn = () => setZoomLevel(prev => Math.min(prev + 0.2, 2.5));
+  const handleZoomOut = () => setZoomLevel(prev => Math.max(prev - 0.2, 0.6));
+  const handleResetZoom = () => setZoomLevel(1.15);
 
   return (
     <div className="doc-mermaid-card">
@@ -103,6 +119,14 @@ export default function MermaidDiagram({ chart, title, subtitle, diagramType = '
               <i className="fas fa-redo-alt"></i>
             </button>
           </div>
+          <button 
+            className="doc-ctrl-btn"
+            onClick={() => setIsFullscreen(true)}
+            title="Expand Fullscreen"
+            aria-label="Expand Fullscreen"
+          >
+            <i className="fas fa-expand-alt"></i> Expand
+          </button>
           <button 
             className={`doc-ctrl-btn ${showCode ? 'active' : ''}`}
             onClick={() => setShowCode(!showCode)}
@@ -140,11 +164,43 @@ export default function MermaidDiagram({ chart, title, subtitle, diagramType = '
         ) : (
           <div 
             className="doc-mermaid-svg-container"
-            style={{ transform: `scale(${zoomLevel})`, transformOrigin: 'center top' }}
+            style={{ transform: `scale(${zoomLevel})`, transformOrigin: 'center center' }}
             dangerouslySetInnerHTML={{ __html: svgContent }}
           />
         )}
       </div>
+
+      {/* Fullscreen Zoom Modal */}
+      {isFullscreen && (
+        <div 
+          className="doc-lightbox-backdrop"
+          onClick={() => setIsFullscreen(false)}
+          role="dialog"
+          aria-modal="true"
+        >
+          <div 
+            className="doc-lightbox-modal"
+            style={{ maxWidth: '1200px', padding: '24px' }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px' }}>
+              <h4 style={{ color: '#ffffff', margin: 0, fontSize: '18px' }}>{title || 'Mermaid Diagram Inspector'}</h4>
+              <button 
+                className="doc-lightbox-close"
+                style={{ position: 'static' }}
+                onClick={() => setIsFullscreen(false)}
+                aria-label="Close modal"
+              >
+                <i className="fas fa-times"></i>
+              </button>
+            </div>
+            <div 
+              style={{ background: '#080c26', borderRadius: '12px', padding: '30px 20px', overflow: 'auto', display: 'flex', justifyContent: 'center' }}
+              dangerouslySetInnerHTML={{ __html: svgContent }}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

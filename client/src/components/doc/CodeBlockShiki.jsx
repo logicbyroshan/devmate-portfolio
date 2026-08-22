@@ -1,72 +1,114 @@
 import React, { useState } from 'react';
 
-// High-fidelity syntax tokenizer replicating Shiki themes
-function highlightSyntax(code, lang = 'python') {
-  const lines = code.split('\n');
-  
-  return lines.map((line) => {
-    let formatted = line
-      // Escape HTML
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;');
+function escapeHtml(str) {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+}
 
-    if (lang === 'python') {
-      // Comments
-      if (formatted.trim().startsWith('#')) {
-        return `<span class="shiki-comment">${formatted}</span>`;
-      }
-      formatted = formatted
-        // Strings
-        .replace(/(['"])(?:(?=(\\?))\2.)*?\1/g, '<span class="shiki-string">$&</span>')
-        // Keywords
-        .replace(/\b(def|class|return|import|from|as|async|await|if|elif|else|for|while|try|except|with|pass|raise|lambda|True|False|None|self|yield)\b/g, '<span class="shiki-keyword">$1</span>')
-        // Builtins & decorators
-        .replace(/@[\w.]+/g, '<span class="shiki-decorator">$&</span>')
-        .replace(/\b(int|str|dict|list|set|bool|tuple|print|len|range|enumerate|super|Exception|isinstance)\b/g, '<span class="shiki-type">$1</span>')
-        // Functions
-        .replace(/\b([a-zA-Z_]\w*)(?=\()/g, '<span class="shiki-func">$1</span>')
-        // Numbers
-        .replace(/\b(\d+(\.\d+)?)\b/g, '<span class="shiki-num">$1</span>');
-    } else if (lang === 'javascript' || lang === 'js' || lang === 'typescript' || lang === 'ts') {
-      // Comments
-      if (formatted.trim().startsWith('//')) {
-        return `<span class="shiki-comment">${formatted}</span>`;
-      }
-      formatted = formatted
-        // Strings
-        .replace(/(['"`])(?:(?=(\\?))\2.)*?\1/g, '<span class="shiki-string">$&</span>')
-        // Keywords
-        .replace(/\b(const|let|var|function|return|import|export|default|from|async|await|if|else|for|while|try|catch|throw|class|extends|new|this|typeof|instanceof)\b/g, '<span class="shiki-keyword">$1</span>')
-        // Types & Objects
-        .replace(/\b(React|useState|useEffect|useRef|useCallback|Promise|Array|Object|String|Number|Boolean|JSON|console|document|window)\b/g, '<span class="shiki-type">$1</span>')
-        // Functions
-        .replace(/\b([a-zA-Z_]\w*)(?=\()/g, '<span class="shiki-func">$1</span>')
-        // Numbers
-        .replace(/\b(\d+(\.\d+)?)\b/g, '<span class="shiki-num">$1</span>');
-    } else if (lang === 'sql') {
-      formatted = formatted
-        // Comments
-        .replace(/(--.*$)/g, '<span class="shiki-comment">$1</span>')
-        // Strings
-        .replace(/(['"])(?:(?=(\\?))\2.)*?\1/g, '<span class="shiki-string">$&</span>')
-        // Keywords
-        .replace(/\b(SELECT|FROM|WHERE|INSERT|INTO|UPDATE|DELETE|JOIN|LEFT|RIGHT|INNER|OUTER|ON|GROUP|BY|ORDER|HAVING|LIMIT|CREATE|TABLE|INDEX|PRIMARY|KEY|FOREIGN|REFERENCES|NOT|NULL|DEFAULT|CASCADE|CONSTRAINT)\b/gi, '<span class="shiki-keyword">$&</span>')
-        // Types
-        .replace(/\b(UUID|VARCHAR|INTEGER|BIGINT|BOOLEAN|TIMESTAMP|JSONB|TEXT|SERIAL|DECIMAL|DATE)\b/gi, '<span class="shiki-type">$&</span>')
-        // Numbers
-        .replace(/\b(\d+)\b/g, '<span class="shiki-num">$1</span>');
-    } else if (lang === 'bash' || lang === 'sh') {
-      if (formatted.trim().startsWith('#')) {
-        return `<span class="shiki-comment">${formatted}</span>`;
-      }
-      formatted = formatted
-        .replace(/(['"])(?:(?=(\\?))\2.)*?\1/g, '<span class="shiki-string">$&</span>')
-        .replace(/\b(docker|docker-compose|kubectl|git|npm|pip|python|gunicorn|nginx|celery|redis-cli|psql|systemctl|curl)\b/g, '<span class="shiki-keyword">$1</span>')
-        .replace(/(--[\w-]+|-[\w]+)/g, '<span class="shiki-decorator">$1</span>');
+// Tokenizes a line into styled HTML spans without overlapping replacements
+function highlightPythonLine(line) {
+  // Check full comment line
+  if (line.trim().startsWith('#')) {
+    return `<span class="shiki-comment">${escapeHtml(line)}</span>`;
+  }
+
+  // Token pattern matching strings, comments, keywords, decorators, types, numbers, functions
+  const pattern = /(#.*$)|("""[\s\S]*?"""|'''[\s\S]*?'''|"(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*')|(@[\w.]+)|(\b(?:def|class|return|import|from|as|async|await|if|elif|else|for|while|try|except|with|pass|raise|lambda|True|False|None|self|yield)\b)|(\b(?:int|str|dict|list|set|bool|tuple|print|len|range|enumerate|super|Exception|isinstance)\b)|(\b\d+(?:\.\d+)?\b)|(\b[a-zA-Z_]\w*(?=\())/g;
+
+  let result = '';
+  let lastIndex = 0;
+  let match;
+
+  while ((match = pattern.exec(line)) !== null) {
+    // Append preceding plain text
+    if (match.index > lastIndex) {
+      result += escapeHtml(line.slice(lastIndex, match.index));
     }
 
-    return formatted;
+    const [raw, comment, str, decorator, keyword, typeName, num, func] = match;
+
+    if (comment) {
+      result += `<span class="shiki-comment">${escapeHtml(comment)}</span>`;
+    } else if (str) {
+      result += `<span class="shiki-string">${escapeHtml(str)}</span>`;
+    } else if (decorator) {
+      result += `<span class="shiki-decorator">${escapeHtml(decorator)}</span>`;
+    } else if (keyword) {
+      result += `<span class="shiki-keyword">${escapeHtml(keyword)}</span>`;
+    } else if (typeName) {
+      result += `<span class="shiki-type">${escapeHtml(typeName)}</span>`;
+    } else if (num) {
+      result += `<span class="shiki-num">${escapeHtml(num)}</span>`;
+    } else if (func) {
+      result += `<span class="shiki-func">${escapeHtml(func)}</span>`;
+    } else {
+      result += escapeHtml(raw);
+    }
+
+    lastIndex = pattern.lastIndex;
+  }
+
+  if (lastIndex < line.length) {
+    result += escapeHtml(line.slice(lastIndex));
+  }
+
+  return result;
+}
+
+function highlightSqlLine(line) {
+  if (line.trim().startsWith('--')) {
+    return `<span class="shiki-comment">${escapeHtml(line)}</span>`;
+  }
+
+  const pattern = /(--.*$)|('(?:\\.|[^'\\])*')|(\b(?:SELECT|FROM|WHERE|INSERT|INTO|UPDATE|DELETE|JOIN|LEFT|RIGHT|INNER|OUTER|ON|GROUP|BY|ORDER|HAVING|LIMIT|CREATE|TABLE|INDEX|PRIMARY|KEY|FOREIGN|REFERENCES|NOT|NULL|DEFAULT|CASCADE|CONSTRAINT|PARTITION|HASH|FOR|VALUES|WITH|MODULUS|REMAINDER|USING)\b)|(\b(?:UUID|VARCHAR|INTEGER|BIGINT|BOOLEAN|TIMESTAMP|JSONB|TEXT|SERIAL|DECIMAL|DATE|ZONE)\b)|(\b\d+\b)/gi;
+
+  let result = '';
+  let lastIndex = 0;
+  let match;
+
+  while ((match = pattern.exec(line)) !== null) {
+    if (match.index > lastIndex) {
+      result += escapeHtml(line.slice(lastIndex, match.index));
+    }
+
+    const [raw, comment, str, keyword, typeName, num] = match;
+
+    if (comment) {
+      result += `<span class="shiki-comment">${escapeHtml(comment)}</span>`;
+    } else if (str) {
+      result += `<span class="shiki-string">${escapeHtml(str)}</span>`;
+    } else if (keyword) {
+      result += `<span class="shiki-keyword">${escapeHtml(keyword)}</span>`;
+    } else if (typeName) {
+      result += `<span class="shiki-type">${escapeHtml(typeName)}</span>`;
+    } else if (num) {
+      result += `<span class="shiki-num">${escapeHtml(num)}</span>`;
+    } else {
+      result += escapeHtml(raw);
+    }
+
+    lastIndex = pattern.lastIndex;
+  }
+
+  if (lastIndex < line.length) {
+    result += escapeHtml(line.slice(lastIndex));
+  }
+
+  return result;
+}
+
+function highlightGenericLine(line) {
+  return escapeHtml(line);
+}
+
+function highlightSyntax(code, lang = 'python') {
+  const lines = code.split('\n');
+  return lines.map((line) => {
+    if (lang === 'python') return highlightPythonLine(line);
+    if (lang === 'sql') return highlightSqlLine(line);
+    return highlightGenericLine(line);
   });
 }
 

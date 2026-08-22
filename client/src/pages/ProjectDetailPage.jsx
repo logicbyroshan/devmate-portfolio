@@ -127,14 +127,6 @@ export default function ProjectDetailPage({ slug, onNavigate }) {
 
   const getSlugOf = (p) => (p.project_name || p.title || '').toLowerCase().replace(/[^a-z0-9]/g, '');
 
-  const scrollToSection = (e, sectionId) => {
-    e.preventDefault();
-    const el = document.getElementById(sectionId);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  };
-
   const nextSlide = () => {
     setActiveSlide((prev) => (prev + 1) % gallery.length);
   };
@@ -173,30 +165,6 @@ export default function ProjectDetailPage({ slug, onNavigate }) {
             {docData.tagline || project?.description}
           </p>
         </header>
-
-        {/* Sticky Quick-Jump Navigation Bar */}
-        <div className="doc-quickjump-nav-wrap">
-          <div className="doc-quickjump-nav">
-            <a href="#doc-overview" className="doc-quickjump-link" onClick={(e) => scrollToSection(e, 'doc-overview')}>
-              <i className="fas fa-book-open"></i> Overview
-            </a>
-            <a href="#doc-architecture" className="doc-quickjump-link" onClick={(e) => scrollToSection(e, 'doc-architecture')}>
-              <i className="fas fa-network-wired"></i> Architecture
-            </a>
-            <a href="#doc-diagrams" className="doc-quickjump-link" onClick={(e) => scrollToSection(e, 'doc-diagrams')}>
-              <i className="fas fa-project-diagram"></i> Flowcharts &amp; ERD
-            </a>
-            <a href="#doc-code" className="doc-quickjump-link" onClick={(e) => scrollToSection(e, 'doc-code')}>
-              <i className="fas fa-code"></i> Implementation
-            </a>
-            <a href="#doc-math" className="doc-quickjump-link" onClick={(e) => scrollToSection(e, 'doc-math')}>
-              <i className="fas fa-square-root-alt"></i> Performance Models
-            </a>
-            <a href="#doc-media" className="doc-quickjump-link" onClick={(e) => scrollToSection(e, 'doc-media')}>
-              <i className="fas fa-photo-video"></i> Media &amp; Demo
-            </a>
-          </div>
-        </div>
 
         {/* Unified Documentation Container */}
         <div className="project-detail-hero-card">
