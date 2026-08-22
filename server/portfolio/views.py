@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import JsonResponse
 from django.contrib import messages
 from django.db import IntegrityError, transaction
+from django.db.models import Count
+from django.utils.text import slugify
 from .models import (
     Project,
     Category,
@@ -12,9 +14,14 @@ from .models import (
     Skill,
     Achievement,
 )
-from .forms import ProjectForm, CategoryForm, UserProfileForm, ExperienceForm, SkillForm, AchievementForm
-from django.utils.text import slugify
-import json
+from .forms import (
+    ProjectForm,
+    CategoryForm,
+    UserProfileForm,
+    ExperienceForm,
+    SkillForm,
+    AchievementForm,
+)
 
 
 def parse_int(value):
@@ -56,7 +63,6 @@ def generate_unique_slug(model_class, raw_value, slug_field="slug", max_attempts
 # Dashboard Views
 def dashboard(request):
     """Main dashboard view with real data"""
-    from django.db.models import Count
     
     # Get counts
     total_projects = Project.objects.count()

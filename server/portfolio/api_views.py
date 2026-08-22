@@ -4,7 +4,6 @@ Consumes the modular Service Layer for clean separation of concerns,
 high performance, and strict security.
 """
 
-from django.conf import settings
 from django.db import connection
 from django.utils import timezone
 from rest_framework import permissions, status, viewsets
