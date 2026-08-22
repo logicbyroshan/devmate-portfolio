@@ -92,9 +92,9 @@ body {
         radial-gradient(circle at 78% 20%, rgba(56, 189, 248, 0.26) 0%, rgba(56, 189, 248, 0) 48%),
         url('../images/mybgimg.webp');
     background-position: top left, top right, top center;
-    background-size: 100vw 100vh, 100vw 100vh, cover;
+    background-size: 140% 140%, 120% 120%, cover;
     background-repeat: no-repeat;
-    background-attachment: fixed;
+    background-attachment: scroll;
     color: var(--text-color);
     line-height: 1.5;
     min-height: 100vh;
