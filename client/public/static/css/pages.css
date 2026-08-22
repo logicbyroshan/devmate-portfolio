@@ -67,12 +67,12 @@
 
 /* ── Project Details 16:9 Standardized Hero ── */
 .project-detail-hero-card {
-    background: linear-gradient(180deg, rgba(25, 30, 70, 0.75) 0%, rgba(15, 20, 50, 0.95) 100%);
-    border: 1px solid rgba(124, 58, 237, 0.3);
-    border-radius: 24px;
-    overflow: hidden;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    overflow: visible;
     margin-bottom: 40px;
-    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.45);
+    box-shadow: none;
 }
 
 /* Interactive Project Screenshot Slider */
@@ -82,8 +82,11 @@
     aspect-ratio: 16 / 9;
     max-height: 560px;
     overflow: hidden;
-    border-radius: 20px 20px 0 0;
+    border-radius: 20px;
     background: #080c20;
+    border: 1px solid rgba(124, 58, 237, 0.35);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
+    margin-bottom: 24px;
 }
 
 .screenshot-slide-stage {
@@ -216,7 +219,7 @@
 }
 
 .project-detail-header-info {
-    padding: 32px 40px 10px;
+    padding: 12px 0 10px;
 }
 
 .project-detail-meta-row {
@@ -236,7 +239,7 @@
 }
 
 .project-detail-body {
-    padding: 20px 40px 40px;
+    padding: 10px 0 30px;
 }
 
 .project-detail-tech-stack {
