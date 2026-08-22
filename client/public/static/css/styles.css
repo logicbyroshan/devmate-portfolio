@@ -88,9 +88,9 @@ body {
     font-family: var(--font-body);
     background-color: var(--bg-color);
     background-image:
-        radial-gradient(circle at 12% 14%, rgba(124, 58, 237, 0.26) 0%, rgba(124, 58, 237, 0) 44%),
-        radial-gradient(circle at 78% 20%, rgba(56, 189, 248, 0.2) 0%, rgba(56, 189, 248, 0) 48%),
-        linear-gradient(180deg, rgba(4, 6, 26, 0.4) 0%, rgba(4, 6, 26, 0.65) 100%),
+        radial-gradient(circle at 12% 14%, rgba(124, 58, 237, 0.22) 0%, rgba(124, 58, 237, 0) 44%),
+        radial-gradient(circle at 78% 20%, rgba(56, 189, 248, 0.18) 0%, rgba(56, 189, 248, 0) 48%),
+        linear-gradient(rgba(4, 6, 26, 0.45), rgba(4, 6, 26, 0.45)),
         url('../images/mybgimg.webp');
     background-position: top left, top right, top center, top center;
     background-size: 140% 140%, 120% 120%, 100% 100%, cover;
