@@ -8,6 +8,7 @@ import ExperiencePage from './pages/ExperiencePage';
 import AboutPage from './pages/AboutPage';
 import RexiModal from './components/RexiModal';
 import AppNavbar from './components/AppNavbar';
+import SiteFooter from './components/SiteFooter';
 
 const CORE_LEGACY_SCRIPTS = [
   '/static/js/script.js',
@@ -321,18 +322,21 @@ function App() {
         <>
           <AppNavbar currentRoute={route} onNavigate={navigate} />
           <ProjectDetailPage slug={route.slug} onNavigate={navigate} />
+          <SiteFooter onNavigate={navigate} />
         </>
       )}
       {route.name === 'experience' && (
         <>
           <AppNavbar currentRoute={route} onNavigate={navigate} />
           <ExperiencePage onNavigate={navigate} />
+          <SiteFooter onNavigate={navigate} />
         </>
       )}
       {route.name === 'about' && (
         <>
           <AppNavbar currentRoute={route} onNavigate={navigate} />
           <AboutPage onNavigate={navigate} />
+          <SiteFooter onNavigate={navigate} />
         </>
       )}
       {route.name === 'home' && <div dangerouslySetInnerHTML={content} />}

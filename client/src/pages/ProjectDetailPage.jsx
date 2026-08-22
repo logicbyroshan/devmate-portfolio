@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { STATIC_PROJECTS, PROJECT_DOCUMENTATION } from '../api/hydratePortfolio';
+import { ALL_PROJECT_DOCS } from '../api/projectDocData';
 import MermaidDiagram from '../components/doc/MermaidDiagram';
 import CodeBlockShiki from '../components/doc/CodeBlockShiki';
 import KaTeXFormula from '../components/doc/KaTeXFormula';
@@ -93,113 +94,8 @@ const PROJECT_GALLERIES = {
   ]
 };
 
-const CARDFLOW_MERMAID_FLOWCHART = `
-flowchart LR
-    A[Data Ingestion<br>CSV / Excel / API] --> B[Schema Validation<br>& PII Cleansing]
-    B --> C{Approval Gate<br>Multi-Role RBAC}
-    C -- Rejected --> D[Exception Alert<br>WebSocket Notification]
-    C -- Approved --> E[Celery Task Dispatch<br>Redis Message Queue]
-    E --> F[Image Engine<br>Face Alignment & Crop]
-    F --> G[Card Composition<br>Dynamic 300DPI Canvas]
-    G --> H[Secure Storage<br>Encrypted S3 Bucket]
-`;
-
-const CARDFLOW_MERMAID_ERD = `
-erDiagram
-    ORGANIZATION ||--o{ USER : employs
-    ORGANIZATION ||--o{ CARD_TEMPLATE : designs
-    ORGANIZATION ||--o{ CARD_RECORD : manages
-    CARD_RECORD }o--|| BATCH_JOB : grouped_in
-    USER ||--o{ AUDIT_LOG : generates
-    
-    ORGANIZATION {
-        uuid id PK
-        string name
-        string tier
-        timestamp created_at
-    }
-    USER {
-        uuid id PK
-        uuid org_id FK
-        string email
-        string role
-    }
-    CARD_RECORD {
-        uuid id PK
-        uuid org_id FK
-        uuid batch_id FK
-        string cardholder_name
-        string status
-        jsonb metadata
-    }
-    CARD_TEMPLATE {
-        uuid id PK
-        uuid org_id FK
-        string layout_schema
-        integer dpi
-    }
-    BATCH_JOB {
-        uuid id PK
-        string status
-        integer total_cards
-        integer processed_cards
-    }
-`;
-
-const PYTHON_CODE_SAMPLE = `import io
-from PIL import Image, ImageDraw, ImageFont
-from celery import shared_task
-from django.core.files.storage import default_storage
-from .models import BatchJob, CardRecord, CardTemplate
-
-@shared_task(bind=True, max_retries=3, default_retry_delay=10)
-def generate_card_batch_task(self, batch_id: str, organization_id: str):
-    """
-    Asynchronous Celery pipeline to compose print-ready ID cards.
-    Handles image normalization, QR vector rendering, and S3 multipart upload.
-    """
-    try:
-        batch = BatchJob.objects.select_related('template').get(id=batch_id, org_id=organization_id)
-        records = CardRecord.objects.filter(batch=batch, status='approved')
-        
-        output_buffer = io.BytesIO()
-        composer = CardComposer(template=batch.template)
-        
-        processed_count = 0
-        for record in records.iterator(chunk_size=500):
-            composer.render_card(record)
-            processed_count += 1
-            
-        zip_path = f"batches/{organization_id}/{batch_id}/cards_bundle.zip"
-        default_storage.save(zip_path, output_buffer)
-        
-        batch.mark_completed(file_path=zip_path)
-        return {"status": "SUCCESS", "processed_records": processed_count}
-    except Exception as exc:
-        raise self.retry(exc=exc)
-`;
-
-const SQL_CODE_SAMPLE = `-- Partitioned Multi-Tenant Card Records Table for High Throughput
-CREATE TABLE card_records (
-    id UUID NOT NULL DEFAULT gen_random_uuid(),
-    org_id UUID NOT NULL,
-    batch_id UUID NOT NULL,
-    cardholder_name VARCHAR(255) NOT NULL,
-    status VARCHAR(50) NOT NULL DEFAULT 'pending',
-    metadata JSONB NOT NULL DEFAULT '{}'::jsonb,
-    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT pk_card_records PRIMARY KEY (org_id, id)
-) PARTITION BY HASH (org_id);
-
--- Create 8 hash partitions for distributed I/O performance
-CREATE TABLE card_records_p0 PARTITION OF card_records FOR VALUES WITH (MODULUS 8, REMAINDER 0);
-CREATE TABLE card_records_p1 PARTITION OF card_records FOR VALUES WITH (MODULUS 8, REMAINDER 1);
-CREATE INDEX idx_card_metadata_gin ON card_records USING gin (metadata);
-`;
-
 export default function ProjectDetailPage({ slug, onNavigate }) {
   const [activeSlide, setActiveSlide] = useState(0);
-  const [activeDocTab, setActiveDocTab] = useState('overview');
 
   // Normalize slug and find project
   const cleanSlug = String(slug || '').toLowerCase().replace(/[^a-z0-9]/g, '');
@@ -217,18 +113,27 @@ export default function ProjectDetailPage({ slug, onNavigate }) {
 
   const projectName = project?.project_name || project?.title || 'CardFlow';
   const categoryName = project?.category?.name || 'Enterprise SaaS';
-  const docHtml = PROJECT_DOCUMENTATION[projectName] || PROJECT_DOCUMENTATION[project?.title] || project?.documentation || '';
-
   const projectKey = (projectName || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+
+  const docData = ALL_PROJECT_DOCS[projectKey] || ALL_PROJECT_DOCS.cardflow;
+  const rawHtmlDoc = PROJECT_DOCUMENTATION[projectName] || PROJECT_DOCUMENTATION[project?.title] || project?.documentation || '';
   const gallery = PROJECT_GALLERIES[projectKey] || PROJECT_GALLERIES.cardflow;
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
-    document.title = `${projectName} Documentation & Case Study | Roshan Damor`;
+    document.title = `${projectName} Technical Documentation & Case Study | Roshan Damor`;
     setActiveSlide(0);
   }, [projectName]);
 
   const getSlugOf = (p) => (p.project_name || p.title || '').toLowerCase().replace(/[^a-z0-9]/g, '');
+
+  const scrollToSection = (e, sectionId) => {
+    e.preventDefault();
+    const el = document.getElementById(sectionId);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  };
 
   const nextSlide = () => {
     setActiveSlide((prev) => (prev + 1) % gallery.length);
@@ -262,14 +167,38 @@ export default function ProjectDetailPage({ slug, onNavigate }) {
             <i className="fas fa-folder-open"></i> {categoryName}
           </span>
           <h1 className="page-title">
-            {projectName} <span className="text-gradient">Case Study &amp; Technical Docs</span>
+            {projectName} <span className="text-gradient">Technical Documentation</span>
           </h1>
           <p className="page-subtitle">
-            {project?.description}
+            {docData.tagline || project?.description}
           </p>
         </header>
 
-        {/* Hero Card with Interactive Screenshot Slider */}
+        {/* Sticky Quick-Jump Navigation Bar */}
+        <div className="doc-quickjump-nav-wrap">
+          <div className="doc-quickjump-nav">
+            <a href="#doc-overview" className="doc-quickjump-link" onClick={(e) => scrollToSection(e, 'doc-overview')}>
+              <i className="fas fa-book-open"></i> Overview
+            </a>
+            <a href="#doc-architecture" className="doc-quickjump-link" onClick={(e) => scrollToSection(e, 'doc-architecture')}>
+              <i className="fas fa-network-wired"></i> Architecture
+            </a>
+            <a href="#doc-diagrams" className="doc-quickjump-link" onClick={(e) => scrollToSection(e, 'doc-diagrams')}>
+              <i className="fas fa-project-diagram"></i> Flowcharts &amp; ERD
+            </a>
+            <a href="#doc-code" className="doc-quickjump-link" onClick={(e) => scrollToSection(e, 'doc-code')}>
+              <i className="fas fa-code"></i> Implementation
+            </a>
+            <a href="#doc-math" className="doc-quickjump-link" onClick={(e) => scrollToSection(e, 'doc-math')}>
+              <i className="fas fa-square-root-alt"></i> Performance Models
+            </a>
+            <a href="#doc-media" className="doc-quickjump-link" onClick={(e) => scrollToSection(e, 'doc-media')}>
+              <i className="fas fa-photo-video"></i> Media &amp; Demo
+            </a>
+          </div>
+        </div>
+
+        {/* Unified Documentation Container */}
         <div className="project-detail-hero-card">
           {/* Screenshot Slider Gallery */}
           <div className="project-screenshot-slider">
@@ -326,17 +255,18 @@ export default function ProjectDetailPage({ slug, onNavigate }) {
             )}
           </div>
 
+          {/* Meta Row with Status, Links & Stats */}
           <div className="project-detail-header-info">
             <div className="project-detail-meta-row">
               <div>
-                <span className="project-status-badge status-prod" style={{ fontSize: '14px', padding: '6px 14px' }}>
-                  {project?.status || '🟢 Production'}
+                <span className={`project-status-badge ${docData.statusClass || 'status-prod'}`} style={{ fontSize: '14px', padding: '6px 14px' }}>
+                  {docData.status || project?.status || '🟢 Production'}
                 </span>
               </div>
               <div className="project-detail-links">
-                {project?.github_url && project.github_url !== '#' && (
+                {docData.githubUrl && (
                   <a
-                    href={project.github_url}
+                    href={docData.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="cs-link-pill secondary"
@@ -344,14 +274,14 @@ export default function ProjectDetailPage({ slug, onNavigate }) {
                     <i className="fab fa-github"></i> GitHub Repo
                   </a>
                 )}
-                {projectName === 'CardFlow' && (
+                {docData.liveUrl && (
                   <a
-                    href="https://cardflow.in"
+                    href={docData.liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="cs-link-pill primary"
                   >
-                    <i className="fas fa-globe"></i> Live Website (cardflow.in)
+                    <i className="fas fa-globe"></i> Live Application
                   </a>
                 )}
               </div>
@@ -365,170 +295,149 @@ export default function ProjectDetailPage({ slug, onNavigate }) {
                 </span>
               ))}
             </div>
+
+            {/* Key Metrics Grid */}
+            {docData.stats && docData.stats.length > 0 && (
+              <div className="doc-stats-grid" style={{ marginTop: '20px' }}>
+                {docData.stats.map((s, idx) => (
+                  <div key={idx} className="doc-stat-box">
+                    <span className="doc-stat-val">{s.value}</span>
+                    <span className="doc-stat-lbl">{s.label}</span>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* ══════════════════════════════════════════════════════════════
-             DOCUMENTATION ENGINE TABBED INTERFACE
+             UNIFIED SINGLE-DOCUMENTATION FLOW (ALL SECTIONS RENDERED)
              ══════════════════════════════════════════════════════════════ */}
-          <div className="doc-tabs-bar" style={{ marginTop: '24px', display: 'flex', gap: '8px', flexWrap: 'wrap' }}>
-            <button
-              className={`doc-ctrl-btn ${activeDocTab === 'overview' ? 'active' : ''}`}
-              onClick={() => setActiveDocTab('overview')}
-            >
-              <i className="fas fa-book-open"></i> Case Study &amp; Overview
-            </button>
-            <button
-              className={`doc-ctrl-btn ${activeDocTab === 'architecture' ? 'active' : ''}`}
-              onClick={() => setActiveDocTab('architecture')}
-            >
-              <i className="fas fa-network-wired"></i> Architecture (React Flow)
-            </button>
-            <button
-              className={`doc-ctrl-btn ${activeDocTab === 'diagrams' ? 'active' : ''}`}
-              onClick={() => setActiveDocTab('diagrams')}
-            >
-              <i className="fas fa-project-diagram"></i> Flowcharts &amp; ERD (Mermaid)
-            </button>
-            <button
-              className={`doc-ctrl-btn ${activeDocTab === 'code' ? 'active' : ''}`}
-              onClick={() => setActiveDocTab('code')}
-            >
-              <i className="fas fa-code"></i> Implementation (Shiki)
-            </button>
-            <button
-              className={`doc-ctrl-btn ${activeDocTab === 'math' ? 'active' : ''}`}
-              onClick={() => setActiveDocTab('math')}
-            >
-              <i className="fas fa-square-root-alt"></i> Performance Models (KaTeX)
-            </button>
-            <button
-              className={`doc-ctrl-btn ${activeDocTab === 'media' ? 'active' : ''}`}
-              onClick={() => setActiveDocTab('media')}
-            >
-              <i className="fas fa-photo-video"></i> Media &amp; Demo
-            </button>
-          </div>
 
-          {/* Tab Content 1: Overview & Case Study Body */}
-          {activeDocTab === 'overview' && (
-            <div className="project-detail-body">
-              {docHtml ? (
-                <div
-                  className="case-study-injected"
-                  dangerouslySetInnerHTML={{ __html: docHtml }}
-                />
-              ) : (
-                <p style={{ color: 'rgba(255,255,255,0.7)', fontSize: '15px' }}>
-                  {project?.description}
-                </p>
-              )}
+          {/* 1. Executive Overview & Problem Context */}
+          <section id="doc-overview" className="doc-page-section">
+            <div className="doc-section-heading-wrap">
+              <span className="doc-badge-pill">
+                <i className="fas fa-book-open"></i> Section 1: Executive Overview
+              </span>
+              <h2 className="doc-section-title">Context, Problem Statement &amp; Architecture Strategy</h2>
             </div>
-          )}
+            
+            {docData.overviewHtml ? (
+              <div dangerouslySetInnerHTML={{ __html: docData.overviewHtml }} />
+            ) : rawHtmlDoc ? (
+              <div className="case-study-injected" dangerouslySetInnerHTML={{ __html: rawHtmlDoc }} />
+            ) : (
+              <p style={{ color: 'rgba(255,255,255,0.78)', fontSize: '15px', lineHeight: '1.65' }}>
+                {project?.description}
+              </p>
+            )}
+          </section>
 
-          {/* Tab Content 2: Interactive Architecture (React Flow + D2) */}
-          {activeDocTab === 'architecture' && (
-            <div className="doc-section-content" style={{ marginTop: '20px' }}>
-              <InteractiveArchitecture />
-              <ComplexDiagramD2 scenarioKey={projectKey} />
+          {/* 2. Interactive System Architecture Topology (React Flow & D2) */}
+          <section id="doc-architecture" className="doc-page-section">
+            <div className="doc-section-heading-wrap">
+              <span className="doc-badge-pill">
+                <i className="fas fa-network-wired"></i> Section 2: Interactive Architecture
+              </span>
+              <h2 className="doc-section-title">High-Availability Topology &amp; Security Rings</h2>
             </div>
-          )}
+            <InteractiveArchitecture />
+            <ComplexDiagramD2 scenarioKey={projectKey} />
+          </section>
 
-          {/* Tab Content 3: Mermaid Flowcharts & ER Diagrams */}
-          {activeDocTab === 'diagrams' && (
-            <div className="doc-section-content" style={{ marginTop: '20px' }}>
+          {/* 3. Engineering Flowcharts & Relational Schema (Mermaid) */}
+          <section id="doc-diagrams" className="doc-page-section">
+            <div className="doc-section-heading-wrap">
+              <span className="doc-badge-pill">
+                <i className="fas fa-project-diagram"></i> Section 3: Engineering Diagrams
+              </span>
+              <h2 className="doc-section-title">Lifecycle State Machine &amp; Database Entity Relationships</h2>
+            </div>
+            
+            {docData.flowchart && (
               <MermaidDiagram 
-                chart={CARDFLOW_MERMAID_FLOWCHART}
+                chart={docData.flowchart}
                 diagramType="Flowchart"
-                title="End-to-End Card Lifecycle & Processing Pipeline"
-                subtitle="Visualizes real-time data ingestion, approval gating, Celery task distribution, and S3 artifact storage."
+                title={`${projectName} End-to-End Processing & Workflow Pipeline`}
+                subtitle="Visualizes data ingestion, validation state gates, background queues, and cloud storage sinks."
               />
+            )}
 
+            {docData.erd && (
               <MermaidDiagram 
-                chart={CARDFLOW_MERMAID_ERD}
+                chart={docData.erd}
                 diagramType="ERD"
-                title="Relational Schema & Multi-Tenant Entity Model"
-                subtitle="Illustrates relational integrity between Organizations, Users, CardTemplates, BatchJobs, and Audit Logs."
+                title={`${projectName} Multi-Tenant Relational Entity Model`}
+                subtitle="Entity relationships illustrating foreign key constraints, ownership hierarchies, and audit logging trails."
               />
-            </div>
-          )}
+            )}
+          </section>
 
-          {/* Tab Content 4: Code Implementation (Shiki) */}
-          {activeDocTab === 'code' && (
-            <div className="doc-section-content" style={{ marginTop: '20px' }}>
+          {/* 4. Production Code Implementation (Shiki) */}
+          <section id="doc-code" className="doc-page-section">
+            <div className="doc-section-heading-wrap">
+              <span className="doc-badge-pill">
+                <i className="fas fa-code"></i> Section 4: Production Implementation
+              </span>
+              <h2 className="doc-section-title">Core Algorithms, Serializers &amp; Partition Strategies</h2>
+            </div>
+
+            {docData.codeSamples && docData.codeSamples.map((sample, idx) => (
               <CodeBlockShiki 
-                code={PYTHON_CODE_SAMPLE}
-                language="python"
-                filename="services/card_composer.py"
-                description="Core Celery worker task that pulls approved card batches from Redis queue, performs dynamic vector template composition, and streams chunks to storage."
+                key={idx}
+                code={sample.code}
+                language={sample.language}
+                filename={sample.filename}
+                description={sample.description}
               />
+            ))}
+          </section>
 
-              <CodeBlockShiki 
-                code={SQL_CODE_SAMPLE}
-                language="sql"
-                filename="models/schema_partition.sql"
-                description="PostgreSQL table definition using Hash Partitioning on org_id to support zero-contention parallel inserts and high-volume batch reads."
-              />
+          {/* 5. Mathematical Models & Performance Complexity (KaTeX) */}
+          <section id="doc-math" className="doc-page-section">
+            <div className="doc-section-heading-wrap">
+              <span className="doc-badge-pill">
+                <i className="fas fa-square-root-alt"></i> Section 5: Mathematical Models
+              </span>
+              <h2 className="doc-section-title">Throughput Capacity, Latency Budgets &amp; Algorithm Analysis</h2>
             </div>
-          )}
 
-          {/* Tab Content 5: Performance Models & Equations (KaTeX) */}
-          {activeDocTab === 'math' && (
-            <div className="doc-section-content" style={{ marginTop: '20px' }}>
+            {docData.formulas && docData.formulas.map((item, idx) => (
               <KaTeXFormula 
-                formula="\text{Throughput} = \frac{N_{\text{cards}}}{\Delta t_{\text{batch}}} = \frac{10{,}000\text{ records}}{83.3\text{ seconds}} \approx 120.0\text{ cards/sec}"
-                title="Card Generation Batch Throughput Model"
-                description="Mathematical model calculating continuous card rendering throughput across a pool of 16 Celery worker threads."
-                variables={[
-                  { symbol: 'N_cards', meaning: 'Total records in batch', value: '10,000' },
-                  { symbol: 'Δt_batch', meaning: 'Total elapsed time', value: '83.3 s' },
-                  { symbol: 'Throughput', meaning: 'Sustained throughput rate', value: '120 cards/s' }
-                ]}
+                key={idx}
+                formula={item.formula}
+                title={item.title}
+                description={item.description}
+                variables={item.variables}
               />
+            ))}
+          </section>
 
-              <KaTeXFormula 
-                formula="T_{\text{p99}} = T_{\text{gateway}} + T_{\text{django}} + T_{\text{redis}} + T_{\text{postgres}} \le 45\text{ms}"
-                title="P99 End-to-End Latency Budget Equation"
-                description="Component-wise latency breakdown for multi-tenant API requests ensuring low latency under concurrent enterprise loads."
-                variables={[
-                  { symbol: 'T_gateway', meaning: 'Nginx SSL termination & reverse proxy', value: '3ms' },
-                  { symbol: 'T_django', meaning: 'Gunicorn WSGI execution & RBAC checks', value: '18ms' },
-                  { symbol: 'T_redis', meaning: 'Token verification & rate-limiting', value: '2ms' },
-                  { symbol: 'T_postgres', meaning: 'Indexed query execution time', value: '12ms' }
-                ]}
-              />
-
-              <KaTeXFormula 
-                formula="\eta_{\text{cache}} = \frac{H_{\text{redis}}}{H_{\text{redis}} + M_{\text{db}}} = \frac{184{,}200}{194{,}800} \approx 94.56\%"
-                title="Redis In-Memory Cache Hit Ratio"
-                description="Efficiency metric showing proportion of school configuration and session requests served directly from memory."
-                variables={[
-                  { symbol: 'H_redis', meaning: 'Cache hits served by Redis', value: '184,200' },
-                  { symbol: 'M_db', meaning: 'Cache misses forwarded to PostgreSQL', value: '10,600' },
-                  { symbol: 'η_cache', meaning: 'Cache hit efficiency ratio', value: '94.56%' }
-                ]}
-              />
+          {/* 6. Media Gallery Lightbox & Video Showcase */}
+          <section id="doc-media" className="doc-page-section">
+            <div className="doc-section-heading-wrap">
+              <span className="doc-badge-pill">
+                <i className="fas fa-photo-video"></i> Section 6: Media &amp; Live Walkthrough
+              </span>
+              <h2 className="doc-section-title">Interactive Video Walkthrough &amp; High-Resolution Gallery</h2>
             </div>
-          )}
 
-          {/* Tab Content 6: Media Lightbox & Video Showcase */}
-          {activeDocTab === 'media' && (
-            <div className="doc-section-content" style={{ marginTop: '20px' }}>
-              <VideoShowcase 
-                posterSrc={gallery[0]?.src}
-                title={`${projectName} Production Walkthrough & Interactive Demo`}
-                duration="03:45"
-                resolution="1080p 60fps"
-              />
-              <ImageLightbox 
-                images={gallery}
-                title={`${projectName} Interface & Architecture Screenshot Gallery`}
-              />
-            </div>
-          )}
+            <VideoShowcase 
+              posterSrc={gallery[0]?.src}
+              title={`${projectName} Production Walkthrough & Interactive Demo`}
+              duration="03:45"
+              resolution="1080p 60fps"
+            />
+
+            <ImageLightbox 
+              images={gallery}
+              title={`${projectName} High-Resolution Screenshot Suite`}
+            />
+          </section>
         </div>
 
         {/* Project Discovery Navigator (Prev / Next) */}
-        <div className="project-pagination-grid">
+        <div className="project-pagination-grid" style={{ marginTop: '40px' }}>
           <a
             href={`#/projects/${getSlugOf(prevProject)}`}
             className="project-nav-card prev"
@@ -561,7 +470,7 @@ export default function ProjectDetailPage({ slug, onNavigate }) {
         </div>
 
         {/* Return Button */}
-        <div style={{ textAlign: 'center', marginTop: '40px' }}>
+        <div style={{ textAlign: 'center', marginTop: '36px', marginBottom: '60px' }}>
           <button
             type="button"
             className="btn btn-primary"
