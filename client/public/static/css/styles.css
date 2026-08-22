@@ -2,9 +2,9 @@
    CSS Variables & Reset
    ======================================== */
 :root {
-    --dark-bg: #070a29;
-    --dark-bg-2: #0a0e3a;
-    --dark-bg-3: #0d1147;
+    --dark-bg: #04061a;
+    --dark-bg-2: #060924;
+    --dark-bg-3: #080d32;
     --primary-gradient: linear-gradient(94deg, #5c27fe, #dec7ff 100%, #ffffff);
     --connect-gradient: linear-gradient(85deg, #5c27fe, #ffffff 100%, #dec7ff);
     --secondary-gradient: linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.1));
@@ -12,10 +12,10 @@
     --text-secondary: #b3b3b3;
     --font-heading: 'Aclonica', sans-serif;
     --font-body: 'Outfit', sans-serif;
-    --bg-color: #070a29;
-    --card-gradient-start: rgba(40, 50, 120, 1);
-    --card-gradient-end: rgba(15, 25, 70, 0);
-    --scrollbar-bg: #070a29;
+    --bg-color: #04061a;
+    --card-gradient-start: rgba(30, 40, 100, 1);
+    --card-gradient-end: rgba(10, 18, 55, 0);
+    --scrollbar-bg: #04061a;
     --scrollbar-track-border: rgba(124, 58, 237, 0.2);
     --radius-sm: 10px;
     --radius-md: 12px;
@@ -88,11 +88,12 @@ body {
     font-family: var(--font-body);
     background-color: var(--bg-color);
     background-image:
-        radial-gradient(circle at 12% 14%, rgba(124, 58, 237, 0.32) 0%, rgba(124, 58, 237, 0) 44%),
-        radial-gradient(circle at 78% 20%, rgba(56, 189, 248, 0.26) 0%, rgba(56, 189, 248, 0) 48%),
+        radial-gradient(circle at 12% 14%, rgba(124, 58, 237, 0.26) 0%, rgba(124, 58, 237, 0) 44%),
+        radial-gradient(circle at 78% 20%, rgba(56, 189, 248, 0.2) 0%, rgba(56, 189, 248, 0) 48%),
+        linear-gradient(180deg, rgba(4, 6, 26, 0.4) 0%, rgba(4, 6, 26, 0.65) 100%),
         url('../images/mybgimg.webp');
-    background-position: top left, top right, top center;
-    background-size: 140% 140%, 120% 120%, cover;
+    background-position: top left, top right, top center, top center;
+    background-size: 140% 140%, 120% 120%, 100% 100%, cover;
     background-repeat: no-repeat;
     background-attachment: scroll;
     color: var(--text-color);
