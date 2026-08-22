@@ -6,23 +6,36 @@ export default function RexiModal() {
       {/* ── Resume Modal ────────────────────────────────── */}
       <div className="modal-overlay" id="modal-resume">
         <div className="modal-box">
-          <button className="modal-close" aria-label="Close"><i className="fas fa-times"></i></button>
-          <div className="modal-icon-wrap"><i className="fas fa-file-alt"></i></div>
-          <h2 className="modal-title">Resume</h2>
-          <p className="modal-subtitle">Roshan Damor — Software Engineer &amp; AI Full Stack Developer</p>
-          <div className="modal-divider"></div>
-          <div className="modal-resume-preview">
+          {/* Sticky header bar with icon + title + close button */}
+          <div className="modal-header-bar">
+            <div className="modal-header-left">
+              <div className="modal-icon-wrap modal-icon-compact">
+                <i className="fas fa-file-alt"></i>
+              </div>
+              <div>
+                <h2 className="modal-title modal-title-compact">Resume</h2>
+                <p className="modal-subtitle" style={{ margin: 0, fontSize: '12px' }}>Roshan Damor &mdash; Software Engineer</p>
+              </div>
+            </div>
+            <div className="modal-header-right">
+              <button type="button" className="modal-header-btn modal-close" aria-label="Close" title="Close">
+                <i className="fas fa-times"></i>
+              </button>
+            </div>
+          </div>
+          {/* Resume rows */}
+          <div className="modal-resume-preview" style={{ marginTop: '4px' }}>
             <div className="resume-row">
               <span className="resume-label">Name</span>
               <span className="resume-value">Roshan Damor</span>
             </div>
             <div className="resume-row">
               <span className="resume-label">Role</span>
-              <span className="resume-value">Software Engineer · AI Full Stack Developer</span>
+              <span className="resume-value">Software Engineer &middot; AI Full Stack Developer</span>
             </div>
             <div className="resume-row">
               <span className="resume-label">Tech</span>
-              <span className="resume-value">React · Django · Python · PostgreSQL · Node.js · Docker</span>
+              <span className="resume-value">React &middot; Django &middot; Python &middot; PostgreSQL &middot; Node.js &middot; Docker</span>
             </div>
             <div className="resume-row">
               <span className="resume-label">DSA</span>
@@ -47,15 +60,28 @@ export default function RexiModal() {
       {/* ── Video Resume Modal ──────────────────────────── */}
       <div className="modal-overlay" id="modal-video-resume">
         <div className="modal-box">
-          <button className="modal-close" aria-label="Close"><i className="fas fa-times"></i></button>
-          <div className="modal-icon-wrap modal-icon-purple"><i className="fas fa-play-circle"></i></div>
-          <h2 className="modal-title">Video Resume</h2>
-          <p className="modal-subtitle">60 seconds — who I am, what I build, why it matters</p>
-          <div className="modal-divider"></div>
-          <div className="modal-video-wrap">
+          {/* Sticky header bar with icon + title + close button */}
+          <div className="modal-header-bar">
+            <div className="modal-header-left">
+              <div className="modal-icon-wrap modal-icon-purple modal-icon-compact">
+                <i className="fas fa-play-circle"></i>
+              </div>
+              <div>
+                <h2 className="modal-title modal-title-compact">Video Resume</h2>
+                <p className="modal-subtitle" style={{ margin: 0, fontSize: '12px' }}>60 seconds &mdash; who I am, what I build</p>
+              </div>
+            </div>
+            <div className="modal-header-right">
+              <button type="button" className="modal-header-btn modal-close" aria-label="Close" title="Close">
+                <i className="fas fa-times"></i>
+              </button>
+            </div>
+          </div>
+          {/* Video placeholder */}
+          <div className="modal-video-wrap" style={{ marginTop: '8px' }}>
             <div className="modal-video-placeholder">
               <div className="video-play-btn"><i className="fas fa-play"></i></div>
-              <p className="video-placeholder-text">Video Resume · 1:00 min</p>
+              <p className="video-placeholder-text">Video Resume &middot; 1:00 min</p>
             </div>
           </div>
           <div className="modal-actions">

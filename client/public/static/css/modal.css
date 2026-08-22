@@ -181,6 +181,34 @@ html.modal-open {
     transform: scale(1.05);
 }
 
+/* ─── Standalone Close Button (for simple modals without a header-bar) ──── */
+/* Used in: modal-resume, modal-video-resume                                  */
+.modal-box > .modal-close,
+.modal-box--blog > .modal-close {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 34px;
+    height: 34px;
+    min-width: 34px;
+    min-height: 34px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 13px;
+    line-height: 1;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    z-index: 10;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
 .modal-close:hover {
     background: rgba(239, 68, 68, 0.35) !important;
     border-color: rgba(239, 68, 68, 0.65) !important;
