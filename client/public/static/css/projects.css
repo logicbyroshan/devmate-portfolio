@@ -699,6 +699,35 @@
         justify-content: center;
     }
 
+    .universal-project-thumb {
+        aspect-ratio: auto;
+        min-height: 380px;
+        max-height: none;
+        padding: 24px 18px;
+    }
+
+    .universal-thumb-title {
+        font-size: 28px;
+    }
+
+    .universal-thumb-sub {
+        font-size: 13px;
+        line-height: 1.5;
+    }
+
+    .universal-thumb-tech-row {
+        gap: 6px;
+    }
+
+    .universal-thumb-tech-pill {
+        font-size: 11px;
+        padding: 3px 10px;
+    }
+
+    .universal-thumb-buttons {
+        gap: 10px;
+    }
+
     .github-btn {
         height: 42px;
         width: 42px;
@@ -707,9 +736,9 @@
     }
 
     .nav-btn {
-        width: 42px;
-        height: 42px;
-        font-size: 15px;
+        width: 44px;
+        height: 44px;
+        font-size: 16px;
     }
 
     .project-image {
@@ -733,6 +762,35 @@
         padding: 6px 16px;
         bottom: 15px;
         right: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .universal-project-thumb {
+        padding: 20px 14px;
+        min-height: 360px;
+    }
+
+    .universal-thumb-title {
+        font-size: 24px;
+    }
+
+    .universal-thumb-sub {
+        font-size: 12.5px;
+        line-height: 1.45;
+    }
+
+    .universal-thumb-buttons {
+        flex-direction: column;
+        width: 100%;
+        gap: 8px;
+    }
+
+    .universal-thumb-buttons .btn {
+        width: 100%;
+        justify-content: center;
+        padding: 12px 18px;
+        font-size: 13px;
     }
 }
 
@@ -773,3 +831,4 @@
         font-size: 14px;
     }
 }
+

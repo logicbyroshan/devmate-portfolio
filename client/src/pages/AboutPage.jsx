@@ -32,11 +32,15 @@ export default function AboutPage({ onNavigate }) {
   return (
     <div className="page-container">
       <div className="page-wrapper">
-        {/* Breadcrumb Navigation */}
-        <div className="page-breadcrumbs">
-          <a href="#home" onClick={(e) => { e.preventDefault(); onNavigate('home'); }}>Home</a>
-          <span className="breadcrumb-separator">/</span>
-          <span className="breadcrumb-current">About Me</span>
+        {/* Breadcrumb Navigation - Centered & Glassmorphic */}
+        <div className="page-breadcrumbs-wrap">
+          <nav className="page-breadcrumbs" aria-label="Breadcrumb">
+            <a href="#home" onClick={(e) => { e.preventDefault(); onNavigate('home'); }}>
+              <i className="fas fa-home"></i> Home
+            </a>
+            <span className="breadcrumb-separator"><i className="fas fa-chevron-right"></i></span>
+            <span className="breadcrumb-current">About Me</span>
+          </nav>
         </div>
 
         {/* Hero Header */}

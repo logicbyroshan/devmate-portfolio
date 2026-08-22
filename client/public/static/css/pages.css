@@ -930,9 +930,12 @@
     }
     .about-page-grid {
         grid-template-columns: 1fr;
+        gap: 28px;
     }
     .project-pagination-grid {
         grid-template-columns: 1fr;
+        gap: 14px;
+        margin-top: 36px;
     }
     .page-title {
         font-size: 34px;
@@ -941,27 +944,379 @@
     .project-detail-body,
     .about-main-article,
     .exp-deep-card {
-        padding: 24px;
+        padding: 28px;
     }
 }
 
-@media (max-width: 600px) {
-    .unified-navbar-wrapper {
-        padding: 12px 16px;
-    }
-    .unified-nav-logo {
-        height: 28px;
-    }
-    .unified-nav-back-btn span {
-        display: none;
-    }
+@media (max-width: 768px) {
     .page-container {
-        padding: 20px 12px 80px;
+        padding: 24px 16px 80px;
     }
+    
+    .page-hero {
+        margin-bottom: 28px;
+        padding: 6px 0;
+    }
+    
+    .page-badge {
+        font-size: 11.5px;
+        padding: 5px 14px;
+        margin-bottom: 12px;
+    }
+    
     .page-title {
+        font-size: 28px;
+        margin-bottom: 10px;
+    }
+    
+    .page-subtitle {
+        font-size: 14px;
+        line-height: 1.6;
+    }
+    
+    /* Project Detail Hero & Slider */
+    .project-detail-hero-card {
+        border-radius: 18px;
+        margin-bottom: 30px;
+    }
+    
+    .project-screenshot-slider {
+        aspect-ratio: 16 / 10;
+        max-height: 380px;
+        border-radius: 16px 16px 0 0;
+    }
+    
+    .screenshot-slide-overlay {
+        padding: 16px 20px;
+        background: linear-gradient(0deg, rgba(10, 14, 39, 0.98) 0%, rgba(10, 14, 39, 0.6) 50%, transparent 100%);
+    }
+    
+    .screenshot-slide-title {
+        font-size: 18px;
+        margin-bottom: 4px;
+    }
+    
+    .screenshot-slide-caption {
+        font-size: 12.5px;
+        line-height: 1.4;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    
+    .screenshot-nav-btn {
+        width: 38px;
+        height: 38px;
+        font-size: 14px;
+    }
+    
+    .screenshot-nav-btn.prev {
+        left: 10px;
+    }
+    
+    .screenshot-nav-btn.next {
+        right: 10px;
+    }
+    
+    .screenshot-dots-row {
+        bottom: 12px;
+        right: 16px;
+        gap: 6px;
+    }
+    
+    .project-detail-header-info {
+        padding: 22px 20px 10px;
+    }
+    
+    .project-detail-body {
+        padding: 12px 20px 28px;
+    }
+    
+    .case-study-injected {
+        gap: 24px;
+    }
+    
+    .case-study-hero-banner {
+        padding: 20px 18px;
+        border-radius: 14px;
+    }
+    
+    .case-study-headline {
+        font-size: 19px;
+    }
+    
+    .case-study-lead {
+        font-size: 13.5px;
+        line-height: 1.6;
+    }
+    
+    .case-study-sec-title {
+        font-size: 15px;
+        padding-bottom: 8px;
+    }
+    
+    .case-study-stats-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
+    
+    .cs-stat-card {
+        padding: 16px 12px;
+        border-radius: 12px;
+    }
+    
+    .cs-stat-number {
         font-size: 26px;
     }
+    
+    .cs-stat-label {
+        font-size: 12.5px;
+    }
+    
+    .cs-two-col {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+    
+    .cs-col-box {
+        padding: 18px 16px;
+        border-radius: 14px;
+    }
+    
+    .cs-col-header {
+        font-size: 14px;
+    }
+    
+    .cs-list {
+        font-size: 13px;
+        gap: 8px;
+    }
+    
+    /* Diagrams & Flowcharts Mobile Stack */
+    .cs-arch-flow {
+        flex-direction: column;
+        padding: 18px 16px;
+        border-radius: 14px;
+        gap: 12px;
+    }
+    
+    .cs-arch-step {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 14px 12px;
+        border-radius: 12px;
+    }
+    
+    .cs-arch-arrow {
+        transform: rotate(90deg);
+        margin: 2px 0;
+        font-size: 15px;
+    }
+    
+    .cs-workflow-flow {
+        padding: 16px 14px;
+        justify-content: center;
+        gap: 8px;
+        border-radius: 14px;
+    }
+    
+    .cs-wf-step {
+        padding: 8px 14px;
+        font-size: 12px;
+    }
+    
+    .cs-wf-arrow {
+        font-size: 12px;
+    }
+    
+    .cs-roles-grid,
+    .cs-grid-2,
+    .cs-grid-3 {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .cs-role-card,
+    .cs-card-sm {
+        padding: 14px 16px;
+        border-radius: 12px;
+    }
+    
+    .cs-highlight-box {
+        padding: 18px 16px;
+        border-radius: 14px;
+    }
+    
+    /* Experience & About Page Cards */
+    .exp-deep-card {
+        padding: 22px 18px;
+        border-radius: 16px;
+        margin-bottom: 24px;
+    }
+    
+    .exp-card-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        margin-bottom: 16px;
+        padding-bottom: 14px;
+    }
+    
     .exp-role-title {
-        font-size: 20px;
+        font-size: 22px;
+    }
+    
+    .exp-company-name {
+        font-size: 15px;
+    }
+    
+    .exp-pillars-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .exp-pillar-card {
+        padding: 16px 14px;
+    }
+    
+    .about-main-article {
+        padding: 22px 18px;
+        border-radius: 16px;
+    }
+    
+    .about-sec-heading {
+        font-size: 19px;
+        margin-bottom: 12px;
+    }
+    
+    .about-article-section p {
+        font-size: 14.5px;
+        line-height: 1.65;
     }
 }
+
+@media (max-width: 480px) {
+    .page-container {
+        padding: 16px 12px 70px;
+    }
+    
+    .page-breadcrumbs {
+        padding: 6px 14px;
+        font-size: 11.5px;
+        gap: 6px;
+    }
+    
+    .page-title {
+        font-size: 24px;
+    }
+    
+    .page-subtitle {
+        font-size: 13px;
+    }
+    
+    .project-screenshot-slider {
+        aspect-ratio: 16 / 11;
+        max-height: 300px;
+    }
+    
+    .screenshot-slide-overlay {
+        padding: 12px 14px;
+    }
+    
+    .screenshot-slide-title {
+        font-size: 15px;
+    }
+    
+    .screenshot-slide-caption {
+        font-size: 11px;
+    }
+    
+    .screenshot-slide-badge {
+        font-size: 9.5px;
+        padding: 2px 8px;
+    }
+    
+    .screenshot-nav-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 12px;
+    }
+    
+    .screenshot-dot {
+        width: 6px;
+        height: 6px;
+    }
+    
+    .screenshot-dot.active {
+        width: 16px;
+    }
+    
+    .project-detail-header-info {
+        padding: 16px 14px 8px;
+    }
+    
+    .project-detail-body {
+        padding: 8px 14px 20px;
+    }
+    
+    .about-profile-card {
+        padding: 20px 14px;
+        border-radius: 16px;
+    }
+    
+    .about-avatar-wrap {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 12px;
+    }
+    
+    .about-sidebar-name {
+        font-size: 20px;
+    }
+    
+    .about-sidebar-role {
+        font-size: 13px;
+        margin-bottom: 14px;
+    }
+    
+    .about-stat-row {
+        gap: 8px;
+        margin-bottom: 14px;
+    }
+    
+    .about-stat-item {
+        padding: 8px 6px;
+        border-radius: 10px;
+    }
+    
+    .about-stat-value {
+        font-size: 16px;
+    }
+    
+    .about-stat-label {
+        font-size: 10.5px;
+    }
+    
+    .about-main-article {
+        padding: 18px 14px;
+    }
+    
+    .exp-deep-card {
+        padding: 18px 14px;
+    }
+    
+    .exp-role-title {
+        font-size: 19px;
+    }
+    
+    .project-nav-card {
+        padding: 12px 14px;
+        border-radius: 12px;
+    }
+    
+    .project-nav-card-title {
+        font-size: 14px;
+    }
+}
+
