@@ -534,9 +534,11 @@ body {
 .contact-info-title,
 .blog-title,
 .modal-title,
-.blog-modal-title {
+.blog-modal-title,
+.page-title {
     font-family: var(--font-heading);
     font-weight: 400;
+    letter-spacing: -0.5px;
 }
 
 .about-description,
@@ -557,11 +559,70 @@ body {
 .modal-subtitle,
 .blog-modal-article,
 .blog-modal-author-name,
-.blog-modal-author-date {
+.blog-modal-author-date,
+.page-subtitle {
     font-family: var(--font-body);
 }
 
-/* Removed duplicate hover state for btn-secondary */
+/* ══════════════════════════════════════════════════════════════
+   MASTER DESIGN SYSTEM CONSISTENCY LAYER
+   ══════════════════════════════════════════════════════════════ */
+
+/* Unified Section Badges across all pages */
+.hero-badge,
+.about-badge,
+.tech-badge,
+.projects-badge,
+.roadmap-badge,
+.blog-badge,
+.faq-badge,
+.contact-badge,
+.page-badge,
+.case-study-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 18px;
+    background: linear-gradient(135deg, rgba(124, 58, 237, 0.2) 0%, rgba(56, 189, 248, 0.15) 100%);
+    border: 1px solid rgba(124, 58, 237, 0.35);
+    border-radius: 20px;
+    color: #a78bfa;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-family: var(--font-body);
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.12);
+}
+
+/* Unified Tech Stack Pills & Badges across all pages */
+.project-tech-badge,
+.universal-thumb-tech-pill,
+.cs-tech-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 14px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 14px;
+    color: rgba(255, 255, 255, 0.92);
+    font-size: 12.5px;
+    font-weight: 500;
+    font-family: var(--font-body);
+    transition: all 0.25s ease;
+}
+
+.project-tech-badge:hover,
+.universal-thumb-tech-pill:hover,
+.cs-tech-pill:hover {
+    background: rgba(124, 58, 237, 0.25);
+    border-color: rgba(167, 139, 250, 0.5);
+    color: #ffffff;
+    transform: translateY(-1px);
+}
 
 /* Shared polish layer for visual consistency across sections */
 .nft-card,
@@ -606,20 +667,6 @@ body {
 .blog-image-wrapper,
 .about-img-3 {
     background: linear-gradient(180deg, var(--card-gradient-start) 0%, rgba(25, 30, 65, 0.6) 50%, var(--card-gradient-end) 100%);
-}
-
-.about-badge,
-.tech-badge,
-.projects-badge,
-.roadmap-badge,
-.faq-badge,
-.contact-badge,
-.project-tech-badge,
-.project-nickname,
-.project-category,
-.roadmap-date,
-.faq-tab {
-    border-radius: var(--radius-pill);
 }
 
 .btn,
