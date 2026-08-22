@@ -110,11 +110,12 @@
             return;
         }
 
-        // Rexi AI Modal trigger
-        const trigger = e.target.closest('[data-modal="modal-rexi"]');
+        // Generic data-modal trigger — works for modal-rexi, modal-resume, modal-video-resume, etc.
+        const trigger = e.target.closest('[data-modal]');
         if (trigger) {
             e.preventDefault();
-            openModal('modal-rexi');
+            const modalId = trigger.getAttribute('data-modal');
+            if (modalId) openModal(modalId);
             return;
         }
 

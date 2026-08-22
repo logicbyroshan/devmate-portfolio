@@ -20,12 +20,12 @@ export default function AppNavbar({ currentRoute, onNavigate }) {
     onNavigate(target, anchor);
   };
 
-  const handleRexi = () => {
+  const handleModal = (modalId) => {
     setMobileMenuOpen(false);
     if (typeof window.openModal === 'function') {
-      window.openModal('modal-rexi');
+      window.openModal(modalId);
     } else {
-      const modal = document.getElementById('modal-rexi');
+      const modal = document.getElementById(modalId);
       if (modal) {
         modal.classList.add('modal-visible');
         document.body.classList.add('modal-open');
@@ -79,20 +79,21 @@ export default function AppNavbar({ currentRoute, onNavigate }) {
           </a>
 
           <div className="nav-actions">
-            <a
-              href="#/about"
+            <button
+              type="button"
               className="btn btn-secondary btn-nav"
-              onClick={(e) => handleNav(e, 'about')}
+              onClick={() => handleModal('modal-resume')}
+              aria-label="View Resume"
             >
-              About
-            </a>
+              Resume
+            </button>
             <button
               type="button"
               className="btn btn-primary"
-              onClick={handleRexi}
-              aria-label="Ask Rexi AI Assistant"
+              onClick={() => handleModal('modal-video-resume')}
+              aria-label="Watch Video Resume"
             >
-              Ask Rexi
+              Video Resume
             </button>
           </div>
         </div>
@@ -133,10 +134,10 @@ export default function AppNavbar({ currentRoute, onNavigate }) {
           <button
             type="button"
             className="btn btn-primary mobile-resume-btn"
-            onClick={handleRexi}
-            aria-label="Ask Rexi"
+            onClick={() => handleModal('modal-resume')}
+            aria-label="Resume"
           >
-            <i className="fas fa-dragon"></i>
+            <i className="fas fa-file-alt"></i>
           </button>
         </div>
 
@@ -172,14 +173,22 @@ export default function AppNavbar({ currentRoute, onNavigate }) {
               About
             </a>
           </nav>
-          <div className="mobile-nav-actions" style={{ padding: '0 30px' }}>
+          <div className="mobile-nav-actions" style={{ padding: '0 30px', display: 'flex', gap: '10px' }}>
+            <button
+              type="button"
+              className="btn btn-secondary btn-nav"
+              style={{ flex: 1 }}
+              onClick={() => handleModal('modal-resume')}
+            >
+              Resume
+            </button>
             <button
               type="button"
               className="btn btn-primary"
-              style={{ width: '100%' }}
-              onClick={handleRexi}
+              style={{ flex: 1 }}
+              onClick={() => handleModal('modal-video-resume')}
             >
-              Ask Rexi
+              Video Resume
             </button>
           </div>
         </div>

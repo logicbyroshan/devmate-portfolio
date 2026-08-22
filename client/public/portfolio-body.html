@@ -41,8 +41,8 @@
                 <img src="/static/images/logo.webp" alt="Roshan Damor Logo" class="logo-image" width="135" height="34" decoding="async">
             </a>
             <div class="nav-actions">
-                <a href="#/about" class="btn btn-secondary btn-nav" data-route="about">About</a>
-                <button type="button" class="btn btn-primary" data-modal="modal-rexi">Ask Rexi</button>
+                <button type="button" class="btn btn-secondary btn-nav" data-modal="modal-resume">Resume</button>
+                <button type="button" class="btn btn-primary" data-modal="modal-video-resume">Video Resume</button>
             </div>
         </div>
     </div>
@@ -58,8 +58,8 @@
             <a href="#home" class="brand">
                 <img src="/static/images/logo.webp" alt="Roshan Damor Logo" class="logo-image" width="135" height="34" decoding="async">
             </a>
-            <button type="button" class="btn btn-primary mobile-resume-btn" data-modal="modal-rexi" aria-label="Ask Rexi">
-                <i class="fas fa-dragon"></i>
+            <button type="button" class="btn btn-primary mobile-resume-btn" data-modal="modal-resume" aria-label="Resume">
+                <i class="fas fa-file-alt"></i>
             </button>
         </div>
         
@@ -71,8 +71,9 @@
                 <a href="#experience" class="mobile-nav-link">Experience</a>
                 <a href="#/about" class="mobile-nav-link" data-route="about">About</a>
             </nav>
-            <div class="mobile-nav-actions">
-                <button type="button" class="btn btn-primary" data-modal="modal-rexi">Ask Rexi</button>
+            <div class="mobile-nav-actions" style="display:flex;gap:10px;">
+                <button type="button" class="btn btn-secondary btn-nav" style="flex:1" data-modal="modal-resume">Resume</button>
+                <button type="button" class="btn btn-primary" style="flex:1" data-modal="modal-video-resume">Video Resume</button>
             </div>
         </div>
         
@@ -1026,3 +1027,61 @@ Production Operations ◄── Cross-Platform Clients ◄── Background Proc
     <button id="scrollTopBtn" class="scroll-top-btn" aria-label="Back to top" type="button">
         <i class="fas fa-chevron-up"></i>
     </button>
+
+    <!-- Modal: Resume -->
+    <div class="modal-overlay" id="modal-resume">
+        <div class="modal-box">
+            <button class="modal-close" aria-label="Close"><i class="fas fa-times"></i></button>
+            <div class="modal-icon-wrap"><i class="fas fa-file-alt"></i></div>
+            <h2 class="modal-title">Resume</h2>
+            <p class="modal-subtitle">Roshan Damor &mdash; Software Engineer &amp; AI Full Stack Developer</p>
+            <div class="modal-divider"></div>
+            <div class="modal-resume-preview">
+                <div class="resume-row">
+                    <span class="resume-label">Name</span>
+                    <span class="resume-value">Roshan Damor</span>
+                </div>
+                <div class="resume-row">
+                    <span class="resume-label">Role</span>
+                    <span class="resume-value">Software Engineer &middot; AI Full Stack Developer</span>
+                </div>
+                <div class="resume-row">
+                    <span class="resume-label">Tech</span>
+                    <span class="resume-value">React &middot; Django &middot; Python &middot; PostgreSQL &middot; Node.js &middot; Docker</span>
+                </div>
+                <div class="resume-row">
+                    <span class="resume-label">DSA</span>
+                    <span class="resume-value">1300+ Problems Solved</span>
+                </div>
+                <div class="resume-row">
+                    <span class="resume-label">Location</span>
+                    <span class="resume-value">India</span>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <a href="mailto:mail@logicbyroshan.in" class="btn btn-primary modal-btn"><i class="fas fa-download"></i> Request PDF</a>
+                <a href="#/about" class="btn btn-secondary modal-btn" data-route="about"><i class="fas fa-eye"></i> Full Profile</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Video Resume -->
+    <div class="modal-overlay" id="modal-video-resume">
+        <div class="modal-box">
+            <button class="modal-close" aria-label="Close"><i class="fas fa-times"></i></button>
+            <div class="modal-icon-wrap modal-icon-purple"><i class="fas fa-play-circle"></i></div>
+            <h2 class="modal-title">Video Resume</h2>
+            <p class="modal-subtitle">60 seconds &mdash; who I am, what I build, why it matters</p>
+            <div class="modal-divider"></div>
+            <div class="modal-video-wrap">
+                <div class="modal-video-placeholder">
+                    <div class="video-play-btn"><i class="fas fa-play"></i></div>
+                    <p class="video-placeholder-text">Video Resume &middot; 1:00 min</p>
+                </div>
+            </div>
+            <div class="modal-actions">
+                <a href="https://www.youtube.com/@logicbyroshan" class="btn btn-primary modal-btn" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i> Watch on YouTube</a>
+                <a href="mailto:mail@logicbyroshan.in" class="btn btn-secondary modal-btn"><i class="fas fa-download"></i> Request Video</a>
+            </div>
+        </div>
+    </div>
