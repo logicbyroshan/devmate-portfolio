@@ -7,7 +7,15 @@ from django.test import TestCase, override_settings
 from django.test.utils import CaptureQueriesContext
 from django.urls import reverse
 
-from .models import Achievement, Category, Experience, Project, Skill
+from .models import (
+	Achievement,
+	Category,
+	ContactMessage,
+	Experience,
+	Project,
+	Skill,
+	UserProfile,
+)
 from .views import generate_unique_slug
 
 
@@ -621,3 +629,134 @@ class AdminCrudFlowTests(TestCase):
 			)
 			self.assertEqual(response.status_code, 400, msg=f"Expected 400 for {url}")
 			self.assertFalse(response.json().get("success", False))
+
+
+@override_settings(API_KEY="", SECURE_SSL_REDIRECT=False)
+class ServiceLayerAndV1ApiTests(TestCase):
+	def setUp(self):
+		self.cat = Category.objects.create(
+			name="Full Stack",
+			slug="full-stack",
+			category_type="project",
+		)
+		self.project = Project.objects.create(
+			title="CardFlow SaaS",
+			slug="cardflow-saas",
+			description="ID Card SaaS",
+			technologies="Django, React",
+			category=self.cat,
+			status="active",
+			is_active=True,
+			is_featured=True,
+			views=10,
+			likes=5,
+		)
+		self.profile = UserProfile.objects.create(
+			full_name="Roshan Damor",
+			email="mail@logicbyroshan.in",
+			title="AI Full Stack Developer",
+			location="India",
+			experience_years=3,
+		)
+
+	def test_api_v1_health_endpoint(self):
+		response = self.client.get("/api/v1/health/")
+		self.assertEqual(response.status_code, 200)
+		data = response.json()
+		self.assertEqual(data["status"], "healthy")
+		self.assertEqual(data["api_version"], "v1")
+		self.assertEqual(data["database"]["status"], "ok")
+
+	def test_api_canonical_health_endpoint(self):
+		response = self.client.get("/api/health/")
+		self.assertEqual(response.status_code, 200)
+		data = response.json()
+		self.assertEqual(data["status"], "healthy")
+
+	def test_api_v1_projects_and_actions(self):
+		# List
+		response = self.client.get("/api/v1/projects/")
+		self.assertEqual(response.status_code, 200)
+
+		# Featured
+		response_featured = self.client.get("/api/v1/projects/featured/")
+		self.assertEqual(response_featured.status_code, 200)
+		self.assertTrue(len(response_featured.json()) >= 1)
+
+		# Detail
+		response_detail = self.client.get("/api/v1/projects/cardflow-saas/")
+		self.assertEqual(response_detail.status_code, 200)
+		self.assertEqual(response_detail.json()["slug"], "cardflow-saas")
+
+		# Like action
+		response_like = self.client.post("/api/v1/projects/cardflow-saas/like/")
+		self.assertEqual(response_like.status_code, 200)
+		self.assertEqual(response_like.json()["likes"], 6)
+
+		# View action
+		response_view = self.client.post("/api/v1/projects/cardflow-saas/view/")
+		self.assertEqual(response_view.status_code, 200)
+		self.assertEqual(response_view.json()["views"], 11)
+
+	def test_contact_service_spam_and_rate_limiting(self):
+		# Short message rejected
+		resp = self.client.post(
+			"/api/v1/contact/",
+			{"full_name": "Alice", "email": "alice@example.com", "message": "Hi"},
+		)
+		self.assertEqual(resp.status_code, 400)
+		self.assertFalse(resp.json()["success"])
+
+		# Crypto spam rejected
+		resp_spam = self.client.post(
+			"/api/v1/contact/",
+			{"full_name": "Spammer", "email": "spammer@example.com", "message": "Buy best crypto investment now on our site!"},
+		)
+		self.assertEqual(resp_spam.status_code, 400)
+		self.assertIn("spam", resp_spam.json()["message"].lower())
+
+		# Too many links rejected
+		resp_links = self.client.post(
+			"/api/v1/contact/",
+			{"full_name": "Linker", "email": "linker@example.com", "message": "Check https://site1.com and https://site2.com and https://site3.com for deals!"},
+		)
+		self.assertEqual(resp_links.status_code, 400)
+		self.assertIn("links", resp_links.json()["message"].lower())
+
+		# Valid submission
+		resp_ok = self.client.post(
+			"/api/v1/contact/",
+			{
+				"full_name": "Valid Client",
+				"email": "client@example.com",
+				"message": "Hello Roshan, we would like to discuss a software engineering contract with you.",
+			},
+		)
+		self.assertEqual(resp_ok.status_code, 201)
+		self.assertTrue(resp_ok.json()["success"])
+
+		# Duplicate rejected
+		resp_dup = self.client.post(
+			"/api/v1/contact/",
+			{
+				"full_name": "Valid Client",
+				"email": "client@example.com",
+				"message": "Hello Roshan, we would like to discuss a software engineering contract with you.",
+			},
+		)
+		self.assertEqual(resp_dup.status_code, 409)
+
+	def test_rexi_chat_service(self):
+		# Empty query rejected
+		resp_empty = self.client.post("/api/v1/rexi/chat/", {"message": ""})
+		self.assertEqual(resp_empty.status_code, 400)
+
+		# Identity query
+		resp_id = self.client.post("/api/v1/rexi/chat/", {"message": "Who are you?"})
+		self.assertEqual(resp_id.status_code, 200)
+		self.assertIn("Rexi", resp_id.json()["reply"])
+
+		# Skill query
+		resp_skill = self.client.post("/api/v1/rexi/chat/", {"message": "What is Roshan's tech stack?"})
+		self.assertEqual(resp_skill.status_code, 200)
+		self.assertIn("Roshan", resp_skill.json()["reply"])
