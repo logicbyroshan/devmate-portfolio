@@ -38,15 +38,25 @@
         if (!bgAudio) {
             bgAudio = new Audio('/portfolio-bgm.mp3');
             bgAudio.loop = true;
+            bgAudio.volume = BG_VOLUME;
         }
-        bgAudio.volume = BG_VOLUME;
-        if (!isMuted) {
+        // Only set volume if not already at the correct level (prevents accumulation)
+        if (Math.abs(bgAudio.volume - BG_VOLUME) > 0.001) {
+            bgAudio.volume = BG_VOLUME;
+        }
+        if (!isMuted && bgAudio.paused) {
             bgAudio.play().catch(function (err) {
                 console.log('Background music waiting for user interaction', err);
             });
-        } else {
+        } else if (isMuted) {
             bgAudio.pause();
         }
+        // Guard: ensure volume never drifts above BG_VOLUME
+        bgAudio.addEventListener('volumechange', function () {
+            if (bgAudio.volume > BG_VOLUME + 0.001) {
+                bgAudio.volume = BG_VOLUME;
+            }
+        }, { once: false });
     }
 
 

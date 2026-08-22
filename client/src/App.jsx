@@ -4,7 +4,6 @@ import { hydratePortfolioDom } from './api/hydratePortfolio';
 import defaultPortfolioHtml from './portfolio-body.html?raw';
 
 import ProjectDetailPage from './pages/ProjectDetailPage';
-import ExperiencePage from './pages/ExperiencePage';
 import AboutPage from './pages/AboutPage';
 import BlogDetailPage from './pages/BlogDetailPage';
 import RexiModal from './components/RexiModal';
@@ -46,7 +45,8 @@ function parseCurrentRoute() {
     return { name: 'about' };
   }
   if (hash === '#/experience' || hash.startsWith('#/experience?')) {
-    return { name: 'experience' };
+    // Experience no longer has a dedicated page — home page
+    return { name: 'home' };
   }
 
   if (pathname.startsWith('/projects/')) {
@@ -61,7 +61,8 @@ function parseCurrentRoute() {
     return { name: 'about' };
   }
   if (pathname === '/experience' || pathname.startsWith('/experience/')) {
-    return { name: 'experience' };
+    // Experience no longer has a dedicated page — home page
+    return { name: 'home' };
   }
 
   return { name: 'home' };
@@ -108,8 +109,14 @@ function App() {
       window.location.hash = '#/about';
       setRoute({ name: 'about' });
     } else if (targetRoute === 'experience') {
-      window.location.hash = '#/experience';
-      setRoute({ name: 'experience' });
+      // Experience is on the home page — scroll to section
+      window.history.pushState(null, '', '/');
+      window.location.hash = '';
+      setRoute({ name: 'home' });
+      setTimeout(() => {
+        const el = document.getElementById('experience');
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }, 80);
     } else if (targetRoute === 'project-detail') {
       const slug = encodeURIComponent((param || 'cardflow').toLowerCase().replace(/[^a-z0-9]/g, ''));
       window.location.hash = `#/projects/${slug}`;
@@ -150,11 +157,18 @@ function App() {
         return;
       }
 
-      // 4. Experience page links
+      // 4. Experience links — scroll to section on home page
       const expLink = e.target.closest('[data-route="experience"], a[href="#/experience"]');
       if (expLink) {
         e.preventDefault();
         navigate('experience');
+      }
+
+      // 5. Wire SFX click for React-page buttons (sounds.js only loads on home)
+      const sfxTarget = e.target.closest('.btn, .nav-link, .mobile-nav-link, .doc-ctrl-btn, .blog-sb-link, .blog-sb-share-btn');
+      if (sfxTarget && window._SoundEngine) {
+        window._SoundEngine.initAudio();
+        window._SoundEngine.playClick();
       }
     };
 
@@ -354,13 +368,7 @@ function App() {
           <SiteFooter onNavigate={navigate} />
         </>
       )}
-      {route.name === 'experience' && (
-        <>
-          <AppNavbar currentRoute={route} onNavigate={navigate} />
-          <ExperiencePage onNavigate={navigate} />
-          <SiteFooter onNavigate={navigate} />
-        </>
-      )}
+      {/* Experience now lives on home page — no separate route rendered */}
       {route.name === 'about' && (
         <>
           <AppNavbar currentRoute={route} onNavigate={navigate} />
